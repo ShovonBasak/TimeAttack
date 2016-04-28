@@ -16,7 +16,7 @@ public class gameScene {
         Player player = new Player(20);
         player.setLayoutX(50);
         player.setLayoutY(50);
-        Coin coin = new Coin(15);
+        Coin coin = new Coin(100,100,15);
 
 
         Group group = new Group(player,coin);

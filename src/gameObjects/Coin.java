@@ -6,12 +6,13 @@ import javafx.scene.text.Text;
 
 
 public class Coin extends Circle {
-    private Text label = new Text("$");
 
-    public Coin(double radius){
-        super(radius, Paint.valueOf("Yellow"));
-        label.setFill(Paint.valueOf("Green"));
-        label.setX(this.getLayoutX());
-        label.setY(this.getLayoutY());
+    public Coin(double radius) {
+        super(radius,Paint.valueOf("Yellow"));
+    }
+
+    public Coin(double centerX, double centerY, double radius){
+        super(centerX,centerY,radius, Paint.valueOf("Yellow"));
+
     }
 }
