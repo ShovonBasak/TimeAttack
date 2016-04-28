@@ -11,9 +11,13 @@ public class gameScene {
 
     public static void show(){
         Stage window = new Stage();
+        window.setTitle("Time Attack");
 
-        Player player = new Player(10);
-        Coin coin = new Coin(5);
+        Player player = new Player(20);
+        player.setLayoutX(50);
+        player.setLayoutY(50);
+        Coin coin = new Coin(15);
+
 
         Group group = new Group(player,coin);
 
