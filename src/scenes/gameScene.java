@@ -8,27 +8,16 @@ import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class GameScene implements Runnable{
-    Stage window;
+public class GameScene{
+    public Stage window;
     Scene background;
     Group group;
     Player player;
     Enemy1 enemy;
+    Enemy1 enemy1;
     Text text;
     Thread enemyThread;
 
-    boolean horizontalDirection;
-    boolean verticalDirection;
-    double rightWall;
-    double leftWall;
-    double topWall;
-    double bottomWall;
-
-
-    public GameScene(){
-        horizontalDirection = true;
-        verticalDirection = true;
-    }
 
     public void show(){
         window = new Stage();
@@ -38,78 +27,21 @@ public class GameScene implements Runnable{
         player.setLayoutX(50);
         player.setLayoutY(50);
 
-        enemy = new Enemy1(100, 100, 15);
-        enemy.setSpeed(4);
+        enemy = new Enemy1(100, 100, 15, this);
+        enemy.setSpeed(3);
+        enemy.setHorizontalDirection(true);
+        enemy.setVerticalDirection(true);
 
-        group = new Group(player,enemy);
+        enemy1 = new Enemy1(300, 50, 15, this);
+        enemy1.setSpeed(2);
+        enemy1.setHorizontalDirection(false);
+        enemy1.setVerticalDirection(false);
+
+        group = new Group(player,enemy,enemy1);
 
         background = new Scene(group,800,600);
 
         window.setScene(background);
         window.show();
-
-        enemyThread = new Thread(this);
-        enemyThread.start();
     }
-
-    public void run() {
-        enemy1Logic();
-    }
-
-    public void enemy1Logic() {
-        while(enemy.isVisible()){
-            enemy.radius = enemy.getRadius();
-            enemy.centerX = enemy.getCenterX();
-            enemy.centerY = enemy.getCenterY();
-            enemy.rightBound = enemy.centerX + enemy.radius;
-            enemy.leftBound = enemy.centerX - enemy.radius;
-            enemy.upperBound = enemy.centerY - enemy.radius;
-            enemy.lowerBound = enemy.centerY + enemy.radius;
-
-            rightWall = window.getWidth() - 20;
-            leftWall = 5;
-            topWall = 5;
-            bottomWall = window.getHeight() - 40;
-
-            if(horizontalDirection){
-                if(enemy.rightBound < rightWall){
-                    enemy.setCenterX(enemy.centerX + enemy.speedX);
-                }
-                else{
-                    horizontalDirection = false;
-                }
-            }
-            else{
-                if(enemy.leftBound > leftWall){
-                    enemy.setCenterX(enemy.centerX - enemy.speedX);
-                }
-                else{
-                    horizontalDirection = true;
-                }
-            }
-
-
-            if(verticalDirection){
-                if(enemy.lowerBound < bottomWall){
-                    enemy.setCenterY(enemy.centerY + enemy.speedY);
-                }
-                else{
-                    verticalDirection = false;
-                }
-            }
-            else{
-                if(enemy.upperBound > topWall){
-                    enemy.setCenterY(enemy.centerY - enemy.speedY);
-                }
-                else{
-                    verticalDirection = true;
-                }
-            }
-
-            try{
-                enemyThread.sleep(40);
-            }catch (Exception e){}
-        }
-    }
-
 }
