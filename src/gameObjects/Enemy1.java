@@ -4,7 +4,7 @@ package gameObjects;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
-public class Enemy extends Circle{
+public class Enemy1 extends Circle {
 
     public double radius;
     public double rightBound;
@@ -17,7 +17,7 @@ public class Enemy extends Circle{
     public double speedY;
 
 
-    public Enemy(double radius) {
+    public Enemy1(double radius) {
         super(radius,Paint.valueOf("red"));
         radius = this.getRadius();
         centerX = this.getCenterX();
@@ -30,7 +30,7 @@ public class Enemy extends Circle{
         speedY = 2;
     }
 
-    public Enemy(double centerX, double centerY, double radius){
+    public Enemy1(double centerX, double centerY, double radius) {
         super(centerX,centerY,radius, Paint.valueOf("red"));
         radius = this.getRadius();
         centerX = this.getCenterX();
