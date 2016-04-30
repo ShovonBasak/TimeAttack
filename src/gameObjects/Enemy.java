@@ -13,8 +13,9 @@ public class Enemy extends Circle{
     public double lowerBound;
     public double centerX;
     public double centerY;
-    public double dx;
-    public double dy;
+    public double speedX;
+    public double speedY;
+
 
     public Enemy(double radius) {
         super(radius,Paint.valueOf("red"));
@@ -25,8 +26,8 @@ public class Enemy extends Circle{
         leftBound = centerX - radius;
         upperBound = centerY - radius;
         lowerBound = centerY + radius;
-        dx = 1;
-        dy = 1;
+        speedX = 2;
+        speedY = 2;
     }
 
     public Enemy(double centerX, double centerY, double radius){
@@ -38,7 +39,14 @@ public class Enemy extends Circle{
         leftBound = centerX - radius;
         upperBound = centerY - radius;
         lowerBound = centerY + radius;
-        dx = 1;
-        dy = 1;
+        speedX = 2;
+        speedY = 2;
     }
+
+    public void setSpeed(double x){
+        speedX =x;
+        speedY =x;
+    }
+
+
 }
