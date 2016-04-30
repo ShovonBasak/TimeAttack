@@ -1,19 +1,25 @@
 package gameObjects;
 
 
+import javafx.application.Platform;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
-public class Player extends Circle{
-    public double radius;
-    public double rightBound;
-    public double leftBound;
-    public double upperBound;
-    public double lowerBound;
-    public double centerX;
-    public double centerY;
-    public double speedX;
-    public double speedY;
+import javax.swing.plaf.basic.BasicSplitPaneUI;
+
+public class Player extends Circle implements Runnable {
+
+    double rightBound;
+    double leftBound;
+    double upperBound;
+    double lowerBound;
+    double centerX;
+    double centerY;
+    double speedX;
+    double speedY;
+    Thread playerThread;
 
     public Player(double radius){
         super(radius, Paint.valueOf("Green"));
@@ -26,6 +32,8 @@ public class Player extends Circle{
         lowerBound = centerY + radius;
         speedX = 2;
         speedY = 2;
+        playerThread = new Thread(this);
+        playerThread.start();
     }
 
     public void setSpeed(double x) {
@@ -41,21 +49,59 @@ public class Player extends Circle{
         return speedY;
     }
 
-    public void moveXF() {
-        this.setCenterX(centerX + getSpeedX());
+    public void moveRight() {
+        centerX = centerX + getSpeedX();
+        this.setCenterX(centerX);
     }
 
-    public void moveXB() {
-        this.setCenterX(centerX - getSpeedX());
+    public void moveLeft() {
+        centerX = centerX - getSpeedX();
+        this.setCenterX(centerX);
     }
 
 
-    public void moveYU() {
-        this.setCenterY(centerY - getSpeedY());
+    public void moveUp() {
+        centerY = centerY - getSpeedY();
+        this.setCenterY(centerY);
     }
 
-    public void moveYD() {
-        this.setCenterY(centerY + getSpeedY());
+    public void moveDown() {
+        centerY = centerY + getSpeedY();
+        this.setCenterY(centerY);
     }
+
+    public void run() {
+        while (this.isVisible()) {
+            Platform.runLater(() -> {
+                getScene().setOnKeyPressed(e -> {
+                    //move according to key press
+                    if (e.getCode().equals(KeyCode.RIGHT)) {
+                        this.moveRight();
+                    }
+
+                    if (e.getCode().equals(KeyCode.LEFT)) {
+                        this.moveLeft();
+                    }
+
+                    if (e.getCode().equals(KeyCode.UP)) {
+                        this.moveUp();
+                    }
+
+                    if (e.getCode().equals(KeyCode.DOWN)) {
+                        this.moveDown();
+                    }
+
+
+                });
+            });
+
+            try {
+                playerThread.sleep(1);
+                //System.out.println("Running");
+            } catch (Exception e) {
+            }
+        }
+    }
+
 
 }
