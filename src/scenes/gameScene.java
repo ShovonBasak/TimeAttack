@@ -15,9 +15,6 @@ public class GameScene{
     Player player;
     Enemy1 enemy;
     Enemy1 enemy1;
-    Text text;
-    Thread enemyThread;
-
 
     public void show(){
         window = new Stage();
@@ -26,6 +23,7 @@ public class GameScene{
         player = new Player(20);
         player.setLayoutX(50);
         player.setLayoutY(50);
+        player.setSpeed(5);
 
         enemy = new Enemy1(100, 100, 15, this);
         enemy.setSpeed(3);

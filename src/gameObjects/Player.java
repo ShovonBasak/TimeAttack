@@ -97,7 +97,7 @@ public class Player extends Circle implements Runnable {
 
             try {
                 playerThread.sleep(1);
-                //System.out.println("Running");
+
             } catch (Exception e) {
             }
         }

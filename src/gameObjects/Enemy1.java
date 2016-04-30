@@ -9,18 +9,18 @@ import scenes.GameScene;
 public class Enemy1 extends Circle implements Runnable{
     GameScene gameScene;
 
-    public boolean horizontalDirection;
-    public boolean verticalDirection;
+    boolean horizontalDirection;
+    boolean verticalDirection;
 
-    public double radius;
-    public double rightBound;
-    public double leftBound;
-    public double upperBound;
-    public double lowerBound;
-    public double centerX;
-    public double centerY;
-    public double speedX;
-    public double speedY;
+    double radius;
+    double rightBound;
+    double leftBound;
+    double upperBound;
+    double lowerBound;
+    double centerX;
+    double centerY;
+    double speedX;
+    double speedY;
 
     Thread enemyThread;
 
@@ -45,20 +45,10 @@ public class Enemy1 extends Circle implements Runnable{
     }
 
     public void setHorizontalDirection(boolean direction){
-        if(direction){
-            horizontalDirection = true;
-        }
-        else{
-            horizontalDirection = false;
-        }
+        horizontalDirection = direction;
     }
     public void setVerticalDirection(boolean direction){
-        if(direction){
-            verticalDirection = true;
-        }
-        else{
-            verticalDirection = false;
-        }
+        verticalDirection = direction;
     }
 
     public void setSpeed(double x){
