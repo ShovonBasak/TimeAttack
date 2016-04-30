@@ -1,7 +1,7 @@
 package scenes;
 
 
-import gameObjects.Enemy;
+import gameObjects.Enemy1;
 import gameObjects.Player;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -13,7 +13,7 @@ public class GameScene implements Runnable{
     Scene background;
     Group group;
     Player player;
-    Enemy enemy;
+    Enemy1 enemy;
     Text text;
     Thread enemyThread;
 
@@ -38,7 +38,8 @@ public class GameScene implements Runnable{
         player.setLayoutX(50);
         player.setLayoutY(50);
 
-        enemy = new Enemy(100,100,15);
+        enemy = new Enemy1(100, 100, 15);
+        enemy.setSpeed(4);
 
         group = new Group(player,enemy);
 
@@ -52,6 +53,10 @@ public class GameScene implements Runnable{
     }
 
     public void run() {
+        enemy1Logic();
+    }
+
+    public void enemy1Logic() {
         while(enemy.isVisible()){
             enemy.radius = enemy.getRadius();
             enemy.centerX = enemy.getCenterX();
@@ -68,7 +73,7 @@ public class GameScene implements Runnable{
 
             if(horizontalDirection){
                 if(enemy.rightBound < rightWall){
-                    enemy.setCenterX(enemy.centerX + enemy.dx);
+                    enemy.setCenterX(enemy.centerX + enemy.speedX);
                 }
                 else{
                     horizontalDirection = false;
@@ -76,7 +81,7 @@ public class GameScene implements Runnable{
             }
             else{
                 if(enemy.leftBound > leftWall){
-                    enemy.setCenterX(enemy.centerX - enemy.dx);
+                    enemy.setCenterX(enemy.centerX - enemy.speedX);
                 }
                 else{
                     horizontalDirection = true;
@@ -86,7 +91,7 @@ public class GameScene implements Runnable{
 
             if(verticalDirection){
                 if(enemy.lowerBound < bottomWall){
-                    enemy.setCenterY(enemy.centerY + enemy.dy);
+                    enemy.setCenterY(enemy.centerY + enemy.speedY);
                 }
                 else{
                     verticalDirection = false;
@@ -94,7 +99,7 @@ public class GameScene implements Runnable{
             }
             else{
                 if(enemy.upperBound > topWall){
-                    enemy.setCenterY(enemy.centerY - enemy.dy);
+                    enemy.setCenterY(enemy.centerY - enemy.speedY);
                 }
                 else{
                     verticalDirection = true;
@@ -106,4 +111,5 @@ public class GameScene implements Runnable{
             }catch (Exception e){}
         }
     }
+
 }
