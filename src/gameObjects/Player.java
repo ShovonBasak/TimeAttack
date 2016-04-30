@@ -33,7 +33,29 @@ public class Player extends Circle{
         speedY = x;
     }
 
-    public void moveX(double x) {
-
+    public double getSpeedX() {
+        return speedX;
     }
+
+    public double getSpeedY() {
+        return speedY;
+    }
+
+    public void moveXF() {
+        this.setCenterX(centerX + getSpeedX());
+    }
+
+    public void moveXB() {
+        this.setCenterX(centerX - getSpeedX());
+    }
+
+
+    public void moveYU() {
+        this.setCenterY(centerY - getSpeedY());
+    }
+
+    public void moveYD() {
+        this.setCenterY(centerY + getSpeedY());
+    }
+
 }
