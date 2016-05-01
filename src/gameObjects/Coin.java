@@ -19,7 +19,7 @@ public class Coin extends movableObject {
     public Coin(double centerX, double centerY, double radius){
         super(centerX, centerY, radius, "Yellow");
 
-        speed = 1;
+        this.setSpeed(15);
         time = 16;
         adjustTimeLabelX = -5;
         adjustTimeLabelY = 3;
@@ -31,30 +31,40 @@ public class Coin extends movableObject {
         thisTherad.start();
     }
 
+    public void showCoin(){
+        this.setVisible(true);
+        this.timeLabel.setVisible(true);
+    }
+
+    public void hideCoin(){
+        this.setVisible(false);
+        this.timeLabel.setVisible(false);
+    }
+
     public Text getTimeLabel() {
         return timeLabel;
     }
 
+    private void setTimeLabelAdjustment(){
+        timeLabel.setX(getCenterX() + adjustTimeLabelX);
+        timeLabel.setY(getCenterY() + adjustTimeLabelY);
+    }
 
     public void moveRight(){
-        setCenterX(getCenterX() + speed);
-        timeLabel.setX(getCenterX() + adjustTimeLabelX);
-        timeLabel.setY(getCenterY() + adjustTimeLabelY);
+        super.moveRight();
+        setTimeLabelAdjustment();
     }
     public void moveLeft(){
-        setCenterX(getCenterX() - speed);
-        timeLabel.setX(getCenterX() + adjustTimeLabelX);
-        timeLabel.setY(getCenterY() + adjustTimeLabelY);
+        super.moveRight();
+        setTimeLabelAdjustment();
     }
     public void moveDown(){
-        this.setCenterY(getCenterY() + speed);
-        timeLabel.setX(this.getCenterX() + adjustTimeLabelX);
-        timeLabel.setY(this.getCenterY() + adjustTimeLabelY);
+        super.moveDown();
+        setTimeLabelAdjustment();
     }
     public void moveUp(){
-        this.setCenterY(getCenterY() - speed);
-        timeLabel.setX(this.getCenterX() + adjustTimeLabelX);
-        timeLabel.setY(this.getCenterY() + adjustTimeLabelY);
+        super.moveUp();
+        setTimeLabelAdjustment();
     }
 
 
@@ -68,8 +78,8 @@ public class Coin extends movableObject {
                 }
             });
             try {
-                thisTherad.sleep(1000);
-            } catch (Exception e) {
+                Thread.sleep(1000);
+            } catch (Exception ignored) {
             }
         }
     }

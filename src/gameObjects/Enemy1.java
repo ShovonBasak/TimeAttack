@@ -3,9 +3,7 @@ package gameObjects;
 
 import javafx.application.Platform;
 
-public class Enemy1 extends movableObject implements Runnable{
-    private boolean horizontalDirection;
-    private boolean verticalDirection;
+public class Enemy1 extends Enemy implements Runnable{
     private double rightBound;
     private double leftBound;
     private double upperBound;
@@ -18,8 +16,6 @@ public class Enemy1 extends movableObject implements Runnable{
         leftBound = rightBound - (getRadius() * 2);
         upperBound = getCenterY() - getRadius();
         lowerBound = upperBound + (getRadius() * 2);
-        horizontalDirection = true;
-        verticalDirection = true;
 
         thisTherad = new Thread(this);
         thisTherad.start();
@@ -32,13 +28,6 @@ public class Enemy1 extends movableObject implements Runnable{
 
     public double getSpeed() {
         return speed;
-    }
-
-    public void setHorizontalDirection(boolean direction){
-        horizontalDirection = direction;
-    }
-    public void setVerticalDirection(boolean direction){
-        verticalDirection = direction;
     }
 
     public void run() {
