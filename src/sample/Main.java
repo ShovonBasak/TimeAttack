@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import scenes.LevelOne;
 import scenes.LoadingScreen;
@@ -11,7 +12,6 @@ public class Main extends Application{
     public void start(Stage primaryStage) throws Exception{
         LoadingScreen l = new LoadingScreen();
         l.show();
-
         //levelOne = new LevelOne();
         //levelOne.show();
     }
@@ -20,4 +20,5 @@ public class Main extends Application{
     public static void main(String[] args) {
         launch(args);
     }
+
 }
