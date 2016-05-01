@@ -2,73 +2,39 @@ package gameObjects;
 
 
 import javafx.application.Platform;
-import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
-import javax.swing.plaf.basic.BasicSplitPaneUI;
-
-public class Player extends Circle implements Runnable {
+public class Player extends movableObject {
 
     double rightBound;
     double leftBound;
     double upperBound;
     double lowerBound;
-    double centerX;
-    double centerY;
-    double speedX;
-    double speedY;
-    Thread playerThread;
 
-    public Player(double radius){
-        super(radius, Paint.valueOf("Green"));
+
+    public Player(double radius, String color) {
+        super(radius, color);
         radius = this.getRadius();
-        centerX = this.getCenterX();
-        centerY = this.getCenterY();
-        rightBound = centerX + radius;
-        leftBound = centerX - radius;
-        upperBound = centerY - radius;
-        lowerBound = centerY + radius;
-        speedX = 2;
-        speedY = 2;
-        playerThread = new Thread(this);
-        playerThread.start();
+        rightBound = getCenterX() + radius;
+        leftBound = getCenterX() - radius;
+        upperBound = getCenterY() - radius;
+        lowerBound = getCenterY() + radius;
+        setSpeed(1);
+        thisTherad = new Thread(this);
+        thisTherad.start();
     }
 
     public void setSpeed(double x) {
-        speedX = x;
-        speedY = x;
+        speed = x;
     }
 
-    public double getSpeedX() {
-        return speedX;
-    }
-
-    public double getSpeedY() {
-        return speedY;
-    }
-
-    public void moveRight() {
-        centerX = centerX + getSpeedX();
-        this.setCenterX(centerX);
-    }
-
-    public void moveLeft() {
-        centerX = centerX - getSpeedX();
-        this.setCenterX(centerX);
+    public double getSpeed() {
+        return speed;
     }
 
 
-    public void moveUp() {
-        centerY = centerY - getSpeedY();
-        this.setCenterY(centerY);
-    }
-
-    public void moveDown() {
-        centerY = centerY + getSpeedY();
-        this.setCenterY(centerY);
-    }
 
     public void run() {
         while (this.isVisible()) {
@@ -96,7 +62,7 @@ public class Player extends Circle implements Runnable {
             });
 
             try {
-                playerThread.sleep(1);
+                thisTherad.sleep(1);
 
             } catch (Exception e) {
             }
