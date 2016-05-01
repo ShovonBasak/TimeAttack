@@ -12,7 +12,6 @@ public class Enemy1 extends movableObject implements Runnable{
     private boolean horizontalDirection;
     private boolean verticalDirection;
 
-    private double radius;
     private double rightBound;
     private double leftBound;
     private double upperBound;
@@ -21,11 +20,10 @@ public class Enemy1 extends movableObject implements Runnable{
     public Enemy1(double centerX, double centerY, double radius, LevelOne gameScene) {
         super(centerX, centerY, radius, "red");
 
-        radius = getRadius();
-        rightBound = getCenterX() + radius;
-        leftBound = rightBound - (radius * 2);
-        upperBound = getCenterY() - radius;
-        lowerBound = upperBound + (radius * 2);
+        rightBound = getCenterX() + getRadius();
+        leftBound = rightBound - (getRadius() * 2);
+        upperBound = getCenterY() - getRadius();
+        lowerBound = upperBound + (getRadius() * 2);
         this.gameScene = gameScene;
         horizontalDirection = true;
         verticalDirection = true;
@@ -55,10 +53,10 @@ public class Enemy1 extends movableObject implements Runnable{
     public void run() {
         while(!Player.dead){
             Platform.runLater(() -> {
-                rightBound = getCenterX() + radius;
-                leftBound = rightBound - (radius * 2);
-                upperBound = getCenterY() - radius;
-                lowerBound = upperBound + (radius * 2);
+                rightBound = getCenterX() + getRadius();
+                leftBound = rightBound - (getRadius() * 2);
+                upperBound = getCenterY() - getRadius();
+                lowerBound = upperBound + (getRadius() * 2);
 
                 if (horizontalDirection) {
                     if (this.rightBound < gameScene.window.getWidth() - 30) {
