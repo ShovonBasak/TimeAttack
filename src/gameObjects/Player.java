@@ -37,31 +37,10 @@ public class Player extends movableObject {
 
     public void run() {
         while (!this.isDead()) {
-            Platform.runLater(() -> {
-                    getScene().addEventFilter(MouseEvent.MOUSE_DRAGGED, e->{
-                        this.setCenterX(e.getSceneX());
-                        this.setCenterY(e.getSceneY());
-                    });
-
-                    /*getScene().setOnKeyPressed(e -> {
-                        //move according to key press
-                        if (e.getCode().equals(KeyCode.RIGHT)) {
-                            this.moveRight();
-                        }
-
-                        if (e.getCode().equals(KeyCode.LEFT)) {
-                            this.moveLeft();
-                        }
-
-                        if (e.getCode().equals(KeyCode.UP)) {
-                            this.moveUp();
-                        }
-
-                        if (e.getCode().equals(KeyCode.DOWN)) {
-                            this.moveDown();
-                        }
-                    });*/
-            });
+            Platform.runLater(() -> getScene().addEventFilter(MouseEvent.MOUSE_DRAGGED, e -> {
+                this.setCenterX(e.getSceneX());
+                this.setCenterY(e.getSceneY());
+            }));
 
             try {
                 Thread.sleep(1);

@@ -65,7 +65,7 @@ public class LevelOne implements Runnable {
             Platform.runLater(() -> {
                 if(coin.isVisible()){
                     for(int i=0; i<3; i++){
-                        //For Player Collides with Enemy
+                        //For Coin Collides with Enemy
                         if(coin.intersects(enemy[i].getBoundsInLocal())){
                             if (coin.getCenterY() > enemy[i].getCenterY()) {
                                 enemy[i].setVerticalDirection(false);
