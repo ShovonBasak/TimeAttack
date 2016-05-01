@@ -51,19 +51,19 @@ public class LevelOne implements Runnable {
                 if(coin.isVisible()) {
                     //If enemy Collides with coin
                     if (enemy.intersects(coin.getBoundsInLocal())) {
-                        if(coin.centerY > enemy.centerY){
+                        if(coin.centerY > enemy.getCenterY()){
                             enemy.setVerticalDirection(false);
                             coin.moveDown();
                         }
-                        else if(coin.centerY < enemy.centerY){
+                        else if(coin.centerY < enemy.getCenterY()){
                             enemy.setVerticalDirection(true);
                             coin.moveUp();
                         }
-                        if(coin.centerX > enemy.centerX){
+                        if(coin.centerX > enemy.getCenterX()){
                             enemy.setHorizontalDirection(false);
                             coin.moveRight();
                         }
-                        else if(coin.centerY > enemy.centerY){
+                        else if(coin.centerY > enemy.getCenterX()){
                             enemy.setHorizontalDirection(false);
                             coin.moveLeft();
                         }

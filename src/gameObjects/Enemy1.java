@@ -17,32 +17,23 @@ public class Enemy1 extends movableObject implements Runnable{
     private double leftBound;
     private double upperBound;
     private double lowerBound;
-    public double centerX;
-    public double centerY;
-    private double speedX;
-    private double speedY;
-
-    private Thread enemyThread;
 
     public Enemy1(double centerX, double centerY, double radius, LevelOne gameScene) {
-        super(centerX,centerY,radius, "red");
+        super(centerX, centerY, radius, "red");
 
-        radius = this.getRadius();
-        centerX = this.getCenterX();
-        centerY = this.getCenterY();
-
-        rightBound = centerX + radius;
-        leftBound = centerX - radius;
-        upperBound = centerY - radius;
-        lowerBound = centerY + radius;
+        radius = getRadius();
+        rightBound = getCenterX() + radius;
+        leftBound = rightBound - (radius * 2);
+        upperBound = getCenterY() - radius;
+        lowerBound = upperBound + (radius * 2);
         this.gameScene = gameScene;
         horizontalDirection = true;
         verticalDirection = true;
 
         gameScene.group.getChildren().add(this);
 
-        enemyThread = new Thread(this);
-        enemyThread.start();
+        thisTherad = new Thread(this);
+        thisTherad.start();
     }
 
 
@@ -64,13 +55,10 @@ public class Enemy1 extends movableObject implements Runnable{
     public void run() {
         while(!Player.dead){
             Platform.runLater(() -> {
-                this.centerX = this.getCenterX();
-                this.centerY = this.getCenterY();
-                this.rightBound = this.centerX + this.radius;
-                this.leftBound = this.centerX - this.radius;
-                this.upperBound = this.centerY - this.radius;
-                this.lowerBound = this.centerY + this.radius;
-
+                rightBound = getCenterX() + radius;
+                leftBound = rightBound - (radius * 2);
+                upperBound = getCenterY() - radius;
+                lowerBound = upperBound + (radius * 2);
 
                 if (horizontalDirection) {
                     if (this.rightBound < gameScene.window.getWidth() - 30) {
@@ -102,7 +90,7 @@ public class Enemy1 extends movableObject implements Runnable{
                 }
             });
             try{
-                enemyThread.sleep(5);
+                thisTherad.sleep(5);
             }catch (Exception e){}
         }
     }

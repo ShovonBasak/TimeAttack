@@ -7,11 +7,10 @@ import javafx.scene.text.Text;
 import scenes.LevelOne;
 
 
-public class Coin extends Circle implements Runnable{
+public class Coin extends movableObject implements Runnable{
     private Text timeLabel;
     private int time;
     private LevelOne gameScene;
-    private Thread coinThread;
 
     private double radius;
     private double rightBound;
@@ -27,11 +26,12 @@ public class Coin extends Circle implements Runnable{
 
 
     public Coin(double centerX, double centerY, double radius, LevelOne gameScene){
-        super(centerX,centerY,radius, Paint.valueOf("Yellow"));
+        super(centerX, centerY, radius, "Yellow");
 
         radius = this.getRadius();
         centerX = this.getCenterX();
         centerY = this.getCenterY();
+
         rightBound = centerX + radius;
         leftBound = centerX - radius;
         upperBound = centerY - radius;
@@ -46,8 +46,8 @@ public class Coin extends Circle implements Runnable{
         timeLabel.setX(centerX + adjustTimeLabelX);
         timeLabel.setY(centerY + adjustTimeLabelY);
         this.gameScene = gameScene;
-        coinThread = new Thread(this);
-        coinThread.start();
+        thisTherad = new Thread(this);
+        thisTherad.start();
         gameScene.group.getChildren().addAll(this ,timeLabel);
     }
 
@@ -95,7 +95,7 @@ public class Coin extends Circle implements Runnable{
                 }
             });
             try {
-                coinThread.sleep(1000);
+                thisTherad.sleep(1000);
             } catch (Exception e) {
             }
         }
