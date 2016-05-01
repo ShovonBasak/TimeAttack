@@ -40,7 +40,7 @@ public class Coin extends movableObject {
         this.setCoinCenterX(5 + randomNumber.nextInt((int) getScene().getWidth()));
         this.setCoinCenterY(5 + randomNumber.nextInt((int) getScene().getHeight()));
         this.setVisible(true);
-        setTime();
+        setTime(15);
     }
 
     public void hideCoin(){
@@ -62,8 +62,8 @@ public class Coin extends movableObject {
         setTimeLabelAdjustment();
     }
 
-    public void setTime(){
-        time =15;
+    public void setTime(int time){
+        this.time =time;
         timeLabel.setVisible(false);
     }
 
@@ -95,7 +95,7 @@ public class Coin extends movableObject {
             Platform.runLater(() -> {
                 if(time > 0){
                     timeLabel.setText("" + time--);
-                    if(time == 5){
+                    if(time == 14){
                         timeLabel.setVisible(true);
                     }
                 }else{
