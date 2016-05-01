@@ -7,6 +7,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
 public class Player extends movableObject {
+    public static boolean dead;
 
     double rightBound;
     double leftBound;
@@ -14,8 +15,9 @@ public class Player extends movableObject {
     double lowerBound;
 
 
-    public Player(double radius, String color) {
-        super(radius, color);
+    public Player(double centerX, double centerY, double radius) {
+        super(centerX, centerY, radius, Paint.valueOf("Green"));
+        dead = false;
         radius = this.getRadius();
         rightBound = getCenterX() + radius;
         leftBound = getCenterX() - radius;

@@ -8,6 +8,10 @@ public abstract class movableObject extends Circle implements Runnable {
     double speed;
     Thread thisTherad;
 
+    public movableObject(double centerX, double centerY, double radius, Paint green) {
+        super(centerX, centerY, radius, Paint.valueOf("Green"));
+    }
+
     public double getSpeed() {
         return speed;
     }

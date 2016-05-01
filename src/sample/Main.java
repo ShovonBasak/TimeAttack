@@ -2,14 +2,14 @@ package sample;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import scenes.GameScene;
+import scenes.LevelOne;
 
 public class Main extends Application{
-    GameScene gameScene;
+    LevelOne levelOne;
 
     public void start(Stage primaryStage) throws Exception{
-        gameScene = new GameScene();
-        gameScene.show();
+        levelOne = new LevelOne();
+        levelOne.show();
     }
 
 

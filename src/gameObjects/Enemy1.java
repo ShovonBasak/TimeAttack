@@ -4,28 +4,29 @@ package gameObjects;
 import javafx.application.Platform;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import scenes.GameScene;
+import scenes.LevelOne;
 
 public class Enemy1 extends Circle implements Runnable{
-    GameScene gameScene;
+    private LevelOne gameScene;
 
-    boolean horizontalDirection;
-    boolean verticalDirection;
+    private boolean horizontalDirection;
+    private boolean verticalDirection;
 
-    double radius;
-    double rightBound;
-    double leftBound;
-    double upperBound;
-    double lowerBound;
-    double centerX;
-    double centerY;
-    double speedX;
-    double speedY;
+    private double radius;
+    private double rightBound;
+    private double leftBound;
+    private double upperBound;
+    private double lowerBound;
+    public double centerX;
+    public double centerY;
+    private double speedX;
+    private double speedY;
 
-    Thread enemyThread;
+    private Thread enemyThread;
 
-    public Enemy1(double centerX, double centerY, double radius, GameScene gameScene) {
+    public Enemy1(double centerX, double centerY, double radius, LevelOne gameScene) {
         super(centerX,centerY,radius, Paint.valueOf("red"));
+
         radius = this.getRadius();
         centerX = this.getCenterX();
         centerY = this.getCenterY();
@@ -36,9 +37,10 @@ public class Enemy1 extends Circle implements Runnable{
         speedX = 2;
         speedY = 2;
         this.gameScene = gameScene;
-
         horizontalDirection = true;
         verticalDirection = true;
+
+        gameScene.group.getChildren().add(this);
 
         enemyThread = new Thread(this);
         enemyThread.start();
@@ -70,7 +72,7 @@ public class Enemy1 extends Circle implements Runnable{
     }
 
     public void run() {
-        while(this.isVisible()){
+        while(!Player.dead){
             Platform.runLater(() -> {
                 this.centerX = this.getCenterX();
                 this.centerY = this.getCenterY();
