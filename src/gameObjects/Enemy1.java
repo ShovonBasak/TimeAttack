@@ -28,8 +28,6 @@ public class Enemy1 extends movableObject implements Runnable{
         horizontalDirection = true;
         verticalDirection = true;
 
-        gameScene.group.getChildren().add(this);
-
         thisTherad = new Thread(this);
         thisTherad.start();
     }

@@ -7,20 +7,15 @@ import javafx.scene.text.Text;
 import scenes.LevelOne;
 
 
-public class Coin extends movableObject implements Runnable{
+public class Coin extends movableObject {
     private Text timeLabel;
     private int time;
     private LevelOne gameScene;
 
-    private double radius;
     private double rightBound;
     private double leftBound;
     private double upperBound;
     private double lowerBound;
-    public double centerX;
-    public double centerY;
-    private double speedX;
-    private double speedY;
     private double adjustTimeLabelX;
     private double adjustTimeLabelY;
 
@@ -28,23 +23,19 @@ public class Coin extends movableObject implements Runnable{
     public Coin(double centerX, double centerY, double radius, LevelOne gameScene){
         super(centerX, centerY, radius, "Yellow");
 
-        radius = this.getRadius();
-        centerX = this.getCenterX();
-        centerY = this.getCenterY();
 
-        rightBound = centerX + radius;
-        leftBound = centerX - radius;
-        upperBound = centerY - radius;
-        lowerBound = centerY + radius;
-        speedX = 10;
-        speedY = 10;
+        rightBound = getCenterX() + getRadius();
+        leftBound = getCenterX() - getRadius();
+        upperBound = getCenterY() - getRadius();
+        lowerBound = getCenterY() + getRadius();
+        speed = 1;
         time = 16;
         adjustTimeLabelX = -5;
         adjustTimeLabelY = 3;
 
         timeLabel = new Text("" + time);
-        timeLabel.setX(centerX + adjustTimeLabelX);
-        timeLabel.setY(centerY + adjustTimeLabelY);
+        timeLabel.setX(getCenterX() + adjustTimeLabelX);
+        timeLabel.setY(getCenterY() + adjustTimeLabelY);
         this.gameScene = gameScene;
         thisTherad = new Thread(this);
         thisTherad.start();
@@ -57,22 +48,22 @@ public class Coin extends movableObject implements Runnable{
 
 
     public void moveRight(){
-        this.setCenterX(this.centerX + speedX);
-        timeLabel.setX(this.getCenterX() + adjustTimeLabelX);
-        timeLabel.setY(this.getCenterY() + adjustTimeLabelY);
+        setCenterX(getCenterX() + speed);
+        timeLabel.setX(getCenterX() + adjustTimeLabelX);
+        timeLabel.setY(getCenterY() + adjustTimeLabelY);
     }
     public void moveLeft(){
-        this.setCenterX(this.centerX - speedX);
-        timeLabel.setX(this.getCenterX() + adjustTimeLabelX);
-        timeLabel.setY(this.getCenterY() + adjustTimeLabelY);
+        setCenterX(getCenterX() - speed);
+        timeLabel.setX(getCenterX() + adjustTimeLabelX);
+        timeLabel.setY(getCenterY() + adjustTimeLabelY);
     }
     public void moveDown(){
-        this.setCenterY(this.centerY + speedY);
+        this.setCenterY(getCenterY() + speed);
         timeLabel.setX(this.getCenterX() + adjustTimeLabelX);
         timeLabel.setY(this.getCenterY() + adjustTimeLabelY);
     }
     public void moveUp(){
-        this.setCenterY(this.centerY - speedY);
+        this.setCenterY(getCenterY() - speed);
         timeLabel.setX(this.getCenterX() + adjustTimeLabelX);
         timeLabel.setY(this.getCenterY() + adjustTimeLabelY);
     }
@@ -81,12 +72,10 @@ public class Coin extends movableObject implements Runnable{
     public void run() {
         while(!Player.dead) {
             Platform.runLater(() -> {
-                this.centerX = this.getCenterX();
-                this.centerY = this.getCenterY();
-                this.rightBound = this.centerX + this.radius;
-                this.leftBound = this.centerX - this.radius;
-                this.upperBound = this.centerY - this.radius;
-                this.lowerBound = this.centerY + this.radius;
+                rightBound = getCenterX() + getRadius();
+                leftBound = getCenterX() - getRadius();
+                upperBound = getCenterY() - getRadius();
+                lowerBound = getCenterY() + getRadius();
 
                 timeLabel.setText("" + --time);
                 if(time < 0){
