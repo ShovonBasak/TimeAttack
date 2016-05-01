@@ -6,7 +6,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import scenes.LevelOne;
 
-public class Enemy1 extends movableObject implements Runnable{
+public class Enemy1 extends movableObject{
     private LevelOne gameScene;
 
     private boolean horizontalDirection;
@@ -69,6 +69,8 @@ public class Enemy1 extends movableObject implements Runnable{
                         horizontalDirection = true;
                     }
                 }
+
+
 
 
                 if (verticalDirection) {
