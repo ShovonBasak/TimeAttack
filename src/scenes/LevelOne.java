@@ -28,12 +28,14 @@ public class LevelOne implements Runnable {
 
         group = new Group(player);
 
-        enemy = new Enemy1(100, 100, 15, this);
+        enemy = new Enemy1(100, 100, 15);
         enemy.setSpeed(3);
-        enemy.setHorizontalDirection(true);
+        enemy.setHorizontalDirection(false);
         enemy.setVerticalDirection(true);
+        group.getChildren().add(enemy);
 
-        coin = new Coin(500, 300, 20, this);
+        coin = new Coin(500, 300, 20);
+        group.getChildren().addAll(coin,coin.getTimeLabel());
 
         background = new Scene(group, 800, 600);
 
@@ -46,7 +48,7 @@ public class LevelOne implements Runnable {
 
     @Override
     public void run() {
-        while (!player.dead) {
+        while (!player.isDead()) {
             Platform.runLater(() -> {
                 if(coin.isVisible()) {
                     //If enemy Collides with coin
@@ -75,7 +77,7 @@ public class LevelOne implements Runnable {
                 //If Player Collides with enemy
                 if(player.isVisible()) {
                     if (player.intersects(enemy.getBoundsInLocal())) {
-                        player.dead = true;
+                        player.setDead(true);
                         player.setVisible(false);
                     }
                 }

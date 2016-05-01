@@ -1,6 +1,7 @@
 package gameObjects;
 
 import javafx.application.Platform;
+import javafx.scene.Group;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
@@ -10,24 +11,14 @@ import scenes.LevelOne;
 public class Coin extends movableObject {
     private Text timeLabel;
     private int time;
-    private LevelOne gameScene;
 
-    private double rightBound;
-    private double leftBound;
-    private double upperBound;
-    private double lowerBound;
     private double adjustTimeLabelX;
     private double adjustTimeLabelY;
 
 
-    public Coin(double centerX, double centerY, double radius, LevelOne gameScene){
+    public Coin(double centerX, double centerY, double radius){
         super(centerX, centerY, radius, "Yellow");
 
-
-        rightBound = getCenterX() + getRadius();
-        leftBound = getCenterX() - getRadius();
-        upperBound = getCenterY() - getRadius();
-        lowerBound = getCenterY() + getRadius();
         speed = 1;
         time = 16;
         adjustTimeLabelX = -5;
@@ -36,10 +27,8 @@ public class Coin extends movableObject {
         timeLabel = new Text("" + time);
         timeLabel.setX(getCenterX() + adjustTimeLabelX);
         timeLabel.setY(getCenterY() + adjustTimeLabelY);
-        this.gameScene = gameScene;
         thisTherad = new Thread(this);
         thisTherad.start();
-        gameScene.group.getChildren().addAll(this ,timeLabel);
     }
 
     public Text getTimeLabel() {
@@ -70,13 +59,8 @@ public class Coin extends movableObject {
 
 
     public void run() {
-        while(!Player.dead) {
+        while(this.isVisible()) {
             Platform.runLater(() -> {
-                rightBound = getCenterX() + getRadius();
-                leftBound = getCenterX() - getRadius();
-                upperBound = getCenterY() - getRadius();
-                lowerBound = getCenterY() + getRadius();
-
                 timeLabel.setText("" + --time);
                 if(time < 0){
                     this.setVisible(false);

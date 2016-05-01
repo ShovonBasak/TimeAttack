@@ -3,11 +3,17 @@ package gameObjects;
 
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
 
 public class Player extends movableObject {
-    public static boolean dead;
+    private boolean dead;
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
+    }
+
+    public boolean isDead() {
+        return dead;
+    }
 
     double rightBound;
     double leftBound;
