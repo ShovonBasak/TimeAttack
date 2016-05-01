@@ -16,7 +16,7 @@ public class Player extends movableObject {
 
 
     public Player(double centerX, double centerY, double radius) {
-        super(centerX, centerY, radius, Paint.valueOf("Green"));
+        super(centerX, centerY, radius, "green");
         dead = false;
         radius = this.getRadius();
         rightBound = getCenterX() + radius;

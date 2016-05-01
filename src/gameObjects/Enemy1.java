@@ -6,7 +6,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import scenes.LevelOne;
 
-public class Enemy1 extends Circle implements Runnable{
+public class Enemy1 extends movableObject implements Runnable{
     private LevelOne gameScene;
 
     private boolean horizontalDirection;
@@ -25,17 +25,16 @@ public class Enemy1 extends Circle implements Runnable{
     private Thread enemyThread;
 
     public Enemy1(double centerX, double centerY, double radius, LevelOne gameScene) {
-        super(centerX,centerY,radius, Paint.valueOf("red"));
+        super(centerX,centerY,radius, "red");
 
         radius = this.getRadius();
         centerX = this.getCenterX();
         centerY = this.getCenterY();
+
         rightBound = centerX + radius;
         leftBound = centerX - radius;
         upperBound = centerY - radius;
         lowerBound = centerY + radius;
-        speedX = 2;
-        speedY = 2;
         this.gameScene = gameScene;
         horizontalDirection = true;
         verticalDirection = true;
@@ -46,29 +45,20 @@ public class Enemy1 extends Circle implements Runnable{
         enemyThread.start();
     }
 
+
+    public void setSpeed(double x) {
+        speed = x;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
     public void setHorizontalDirection(boolean direction){
         horizontalDirection = direction;
     }
     public void setVerticalDirection(boolean direction){
         verticalDirection = direction;
-    }
-
-    public void setSpeed(double x){
-        speedX = x;
-        speedY = x;
-    }
-
-    public void moveRight(){
-        this.setCenterX(this.centerX + speedX);
-    }
-    public void moveLeft(){
-        this.setCenterX(this.centerX - speedX);
-    }
-    public void moveDown(){
-        this.setCenterY(this.centerY + speedY);
-    }
-    public void moveUp(){
-        this.setCenterY(this.centerY - speedY);
     }
 
     public void run() {
