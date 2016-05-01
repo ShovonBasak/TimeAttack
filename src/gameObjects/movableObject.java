@@ -26,6 +26,8 @@ public abstract class movableObject extends Circle implements Runnable {
         setSpeed(1);
     }
 
+
+
     public void moveRight() {
         this.setCenterX(this.getCenterX() + speed);
     }

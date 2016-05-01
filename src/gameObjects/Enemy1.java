@@ -2,29 +2,22 @@ package gameObjects;
 
 
 import javafx.application.Platform;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
-import scenes.LevelOne;
 
 public class Enemy1 extends movableObject implements Runnable{
-    private LevelOne gameScene;
-
     private boolean horizontalDirection;
     private boolean verticalDirection;
-
     private double rightBound;
     private double leftBound;
     private double upperBound;
     private double lowerBound;
 
-    public Enemy1(double centerX, double centerY, double radius, LevelOne gameScene) {
+    public Enemy1(double centerX, double centerY, double radius) {
         super(centerX, centerY, radius, "red");
 
         rightBound = getCenterX() + getRadius();
         leftBound = rightBound - (getRadius() * 2);
         upperBound = getCenterY() - getRadius();
         lowerBound = upperBound + (getRadius() * 2);
-        this.gameScene = gameScene;
         horizontalDirection = true;
         verticalDirection = true;
 
@@ -49,7 +42,7 @@ public class Enemy1 extends movableObject implements Runnable{
     }
 
     public void run() {
-        while(!Player.dead){
+        while(this.isVisible()){
             Platform.runLater(() -> {
                 rightBound = getCenterX() + getRadius();
                 leftBound = rightBound - (getRadius() * 2);
@@ -57,13 +50,13 @@ public class Enemy1 extends movableObject implements Runnable{
                 lowerBound = upperBound + (getRadius() * 2);
 
                 if (horizontalDirection) {
-                    if (this.rightBound < gameScene.window.getWidth() - 30) {
+                    if (this.rightBound < getScene().getWidth()) {
                         this.moveRight();
                     } else {
                         horizontalDirection = false;
                     }
                 } else {
-                    if (this.leftBound > 20) {
+                    if (this.leftBound > 0) {
                         this.moveLeft();
                     } else {
                         horizontalDirection = true;
@@ -72,13 +65,13 @@ public class Enemy1 extends movableObject implements Runnable{
 
 
                 if (verticalDirection) {
-                    if (this.lowerBound < gameScene.window.getHeight() - 55) {
+                    if (this.lowerBound < getScene().getHeight()) {
                         this.moveDown();
                     } else {
                         verticalDirection = false;
                     }
                 } else {
-                    if (this.upperBound > 20) {
+                    if (this.upperBound > 0) {
                         this.moveUp();
                     } else {
                         verticalDirection = true;
