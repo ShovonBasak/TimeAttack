@@ -3,6 +3,7 @@ package gameObjects;
 
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 
 public class Player extends movableObject {
     private boolean dead;
@@ -15,20 +16,10 @@ public class Player extends movableObject {
         return dead;
     }
 
-    double rightBound;
-    double leftBound;
-    double upperBound;
-    double lowerBound;
-
 
     public Player(double centerX, double centerY, double radius) {
         super(centerX, centerY, radius, "green");
         dead = false;
-        radius = this.getRadius();
-        rightBound = getCenterX() + radius;
-        leftBound = getCenterX() - radius;
-        upperBound = getCenterY() - radius;
-        lowerBound = getCenterY() + radius;
         setSpeed(1);
         thisTherad = new Thread(this);
         thisTherad.start();
@@ -45,34 +36,36 @@ public class Player extends movableObject {
 
 
     public void run() {
-        while (this.isVisible()) {
+        while (!this.isDead()) {
             Platform.runLater(() -> {
-                getScene().setOnKeyPressed(e -> {
-                    //move according to key press
-                    if (e.getCode().equals(KeyCode.RIGHT)) {
-                        this.moveRight();
-                    }
+                    getScene().addEventFilter(MouseEvent.MOUSE_DRAGGED, e->{
+                        this.setCenterX(e.getSceneX());
+                        this.setCenterY(e.getSceneY());
+                    });
 
-                    if (e.getCode().equals(KeyCode.LEFT)) {
-                        this.moveLeft();
-                    }
+                    /*getScene().setOnKeyPressed(e -> {
+                        //move according to key press
+                        if (e.getCode().equals(KeyCode.RIGHT)) {
+                            this.moveRight();
+                        }
 
-                    if (e.getCode().equals(KeyCode.UP)) {
-                        this.moveUp();
-                    }
+                        if (e.getCode().equals(KeyCode.LEFT)) {
+                            this.moveLeft();
+                        }
 
-                    if (e.getCode().equals(KeyCode.DOWN)) {
-                        this.moveDown();
-                    }
+                        if (e.getCode().equals(KeyCode.UP)) {
+                            this.moveUp();
+                        }
 
-
-                });
+                        if (e.getCode().equals(KeyCode.DOWN)) {
+                            this.moveDown();
+                        }
+                    });*/
             });
 
             try {
-                thisTherad.sleep(1);
-
-            } catch (Exception e) {
+                Thread.sleep(1);
+            } catch (Exception ignored) {
             }
         }
     }

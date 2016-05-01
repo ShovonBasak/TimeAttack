@@ -10,19 +10,25 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Random;
+
 public class LevelOne implements Runnable {
-    public Stage window;
+    private Stage window;
     private Scene background;
-    public Group group;
-    public Player player;
+    private Group group;
+    private Player player;
     private Enemy[] enemy;
-    private Coin[] coin;
+    private Coin coin;
+    private Random randomPosition;
 
     private Thread mainThread;
+
 
     public void show() {
         window = new Stage();
         window.setTitle("Time Attack");
+
+        randomPosition = new Random();
 
         player = new Player(50, 50, 20);
         player.setSpeed(5);
@@ -41,13 +47,8 @@ public class LevelOne implements Runnable {
 
         group.getChildren().addAll(enemy[0],enemy[1],enemy[2]);
 
-        coin = new Coin[3];
-        coin[0] = new Coin(500, 300, 20);
-        coin[1] = new Coin(350, 100, 20);
-        coin[2] = new Coin(300, 500, 20);
-        group.getChildren().addAll(coin[0],coin[0].getTimeLabel());
-        group.getChildren().addAll(coin[1],coin[1].getTimeLabel());
-        group.getChildren().addAll(coin[2],coin[2].getTimeLabel());
+        coin = new Coin(5 + randomPosition.nextInt(500), 5 + randomPosition.nextInt(500), 28);
+        group.getChildren().addAll(coin,coin.getTimeLabel());
 
         background = new Scene(group, 800, 600);
 
@@ -60,49 +61,45 @@ public class LevelOne implements Runnable {
 
     @Override
     public void run() {
-        while (!player.isDead()) {
+        while ( !player.isDead() ) {
             Platform.runLater(() -> {
-                for(int i=0; i<3; i++){
-                    for(int j=0; j<3; j++){
-                        if(coin[j].isVisible()){
-                            if (enemy[i].intersects(coin[j].getBoundsInLocal())) {
-                                if (coin[j].getCenterY() > enemy[i].getCenterY()) {
-                                    enemy[i].setVerticalDirection(false);
-                                    coin[j].moveDown();
-                                } else if (coin[j].getCenterY() < enemy[i].getCenterY()) {
-                                    enemy[i].setVerticalDirection(true);
-                                    coin[j].moveUp();
-                                }
-                                if (coin[j].getCenterX() > enemy[i].getCenterX()) {
-                                    enemy[i].setHorizontalDirection(false);
-                                    coin[j].moveRight();
-                                } else if (coin[j].getCenterX() > enemy[i].getCenterX()) {
-                                    enemy[i].setHorizontalDirection(false);
-                                    coin[j].moveLeft();
-                                }
+                if(coin.isVisible()){
+                    for(int i=0; i<3; i++){
+                        //For Player Collides with Enemy
+                        if(coin.intersects(enemy[i].getBoundsInLocal())){
+                            if (coin.getCenterY() > enemy[i].getCenterY()) {
+                                enemy[i].setVerticalDirection(false);
+                                coin.moveDown();
+                            } else if (coin.getCenterY() < enemy[i].getCenterY()) {
+                                enemy[i].setVerticalDirection(true);
+                                coin.moveUp();
+                            }
+                            if (coin.getCenterX() > enemy[i].getCenterX()) {
+                                enemy[i].setHorizontalDirection(false);
+                                coin.moveRight();
+                            } else if (coin.getCenterX() > enemy[i].getCenterX()) {
+                                enemy[i].setHorizontalDirection(false);
+                                coin.moveLeft();
                             }
                         }
-                    }
-                    //If Player Collides with enemy
-                    if (player.intersects(enemy[i].getBoundsInLocal())) {
-                        player.setDead(true);
-                        player.setVisible(false);
+                        //If Player collides with Enemy
+                        if(player.intersects(enemy[i].getBoundsInLocal())){
+                            player.setDead(true);
+                        }
                     }
                 }
+                else{
+                    coin.showCoin();
+                }
 
-
-
-
-                    //If player Collides with coin
-                    /*if (player.intersects(coin.getBoundsInLocal())){
-                        coin.setVisible(false);
-                        coin.getTimeLabel().setVisible(false);
-                    }*/
-                //}
+                //If player Collides with coin
+                if(coin.intersects(player.getBoundsInLocal())){
+                    coin.hideCoin();
+                }
             });
             try{
-                mainThread.sleep(1);
-            } catch (Exception e) {}
+                Thread.sleep(1);
+            } catch (Exception ignored) {}
         }
     }
 }
