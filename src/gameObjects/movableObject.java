@@ -23,7 +23,7 @@ public abstract class movableObject extends Circle implements Runnable {
 
     public movableObject(double radius, String color) {
         super(radius, Paint.valueOf(color));
-        setSpeed(1);
+        setSpeed(.1);
     }
 
 

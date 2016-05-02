@@ -44,7 +44,7 @@ public class LevelOne implements Runnable {
 
         enemy = new Enemy1[3];
         enemy[0] = new Enemy1(100, 100, 15);
-        enemy[0].setSpeed(3);
+        enemy[0].setSpeed(.3);
         enemy[0].setHorizontalDirection(false);
         enemy[0].setVerticalDirection(true);
 

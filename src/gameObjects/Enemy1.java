@@ -68,7 +68,7 @@ public class Enemy1 extends Enemy implements Runnable{
                 }
             });
             try{
-                Thread.sleep(5);
+                Thread.sleep(1);
             }catch (Exception ignored){}
         }
     }
