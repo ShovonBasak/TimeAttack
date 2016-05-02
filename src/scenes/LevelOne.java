@@ -2,7 +2,6 @@ package scenes;
 
 
 import gameObjects.Coin;
-import gameObjects.Enemy;
 import gameObjects.Enemy1;
 import gameObjects.Player;
 import javafx.application.Platform;
