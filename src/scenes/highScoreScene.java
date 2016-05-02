@@ -2,6 +2,7 @@ package scenes;
 
 
 import Application.ScoreBoard;
+import UserInterface.CustomButton;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -15,13 +16,14 @@ public class highScoreScene {
     Stage window;
     Scene scene;
     VBox layout;
-    Button backButton;
+    CustomButton backButton;
     TableView<ScoreBoard> highScoreBoard;
 
     public highScoreScene(MainMenu mainMenu) {
         window = new Stage();
         layout = new VBox(10);
-        backButton = new Button("Back");
+        layout.setStyle("-fx-background-color: #4d004d;");
+        backButton = new CustomButton("Back");
         backButton.setOnAction(event -> {
             window.close();
             mainMenu.window.show();
@@ -29,6 +31,7 @@ public class highScoreScene {
 
 
         highScoreBoard = new TableView<>();
+        highScoreBoard.setStyle("-fx-background-color: #4d004d;");
         highScoreBoard.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         setTable();
 
