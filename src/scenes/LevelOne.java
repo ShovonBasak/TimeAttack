@@ -37,24 +37,26 @@ public class LevelOne implements Runnable {
 
         randomPosition = new Random();
 
-        player = new Player(50, 50, 20);
+        player = new Player(50, 500, 20);
         player.setSpeed(5);
 
         group = new Group(player);
 
         enemy = new Enemy1[3];
-        enemy[0] = new Enemy1(100, 100, 15);
+        enemy[0] = new Enemy1(1300, 600, 15);
         enemy[0].setSpeed(.3);
         enemy[0].setHorizontalDirection(false);
         enemy[0].setVerticalDirection(true);
 
-        enemy[1] = new Enemy1(500, 200, 15);
-        enemy[2] = new Enemy1(300, 600, 15);
+        enemy[1] = new Enemy1(1300, 600, 15);
+        enemy[1].setVerticalDirection(false);
+        enemy[2] = new Enemy1(1300, 600, 15);
+        enemy[1].setVerticalDirection(true);
 
 
         group.getChildren().addAll(enemy[0],enemy[1],enemy[2]);
 
-        coin = new Coin(28 + randomPosition.nextInt(500), 28 + randomPosition.nextInt(500), 28);
+        coin = new Coin(28 + randomPosition.nextInt(1200), 28 + randomPosition.nextInt(500), 28);
         group.getChildren().addAll(coin,coin.getTimeLabel());
 
         background = new Scene(group);
@@ -95,6 +97,7 @@ public class LevelOne implements Runnable {
                 Thread.sleep(1);
             } catch (Exception ignored) {}
         }
+        //window.setScene();
     }
 }
 

@@ -14,6 +14,10 @@ public class Coin extends movableObject {
     private double adjustTimeLabelX;
     private double adjustTimeLabelY;
 
+    private double leftBound;
+    private double rightBound;
+    private double upperBound;
+    private double lowerBound;
 
     public Coin(double centerX, double centerY, double radius){
         super(centerX, centerY, radius, "Yellow");
@@ -28,6 +32,12 @@ public class Coin extends movableObject {
         timeLabel.setX(getCenterX() + adjustTimeLabelX);
         timeLabel.setY(getCenterY() + adjustTimeLabelY);
         timeLabel.setVisible(false);
+
+        leftBound = centerX - radius;
+        rightBound = centerX + radius;
+        upperBound = centerY - radius;
+        lowerBound = centerY + radius;
+
         thisTherad = new Thread(this);
         thisTherad.start();
     }
@@ -88,19 +98,28 @@ public class Coin extends movableObject {
     public void collides(Enemy1 enemy){
         this.setSpeed(enemy.getSpeed() * 15);
 
+        leftBound = this.getCenterX() - this.getRadius();
+        rightBound = this.getCenterX() + this.getRadius();
+        upperBound = this.getCenterY() - this.getRadius();
+        lowerBound = this.getCenterY() + this.getRadius();
+
         if (this.getCenterY() > enemy.getCenterY()) {
             enemy.setVerticalDirection(false);
-            this.moveDown();
+            if(lowerBound < getScene().getHeight())
+                this.moveDown();
         } else if (this.getCenterY() < enemy.getCenterY()) {
             enemy.setVerticalDirection(true);
-            this.moveUp();
+            if(upperBound > getScene().getY())
+                this.moveUp();
         }
         if (this.getCenterX() > enemy.getCenterX()) {
             enemy.setHorizontalDirection(false);
-            this.moveRight();
+            if(rightBound < getScene().getWidth())
+                this.moveRight();
         } else if (this.getCenterX() > enemy.getCenterX()) {
             enemy.setHorizontalDirection(false);
-            this.moveLeft();
+            if(leftBound > getScene().getX())
+                this.moveLeft();
         }
     }
 
@@ -118,7 +137,7 @@ public class Coin extends movableObject {
                 }
             });
             try {
-                Thread.sleep(1000);
+                thisTherad.sleep(1000);
             } catch (Exception ignored) {
             }
         }
