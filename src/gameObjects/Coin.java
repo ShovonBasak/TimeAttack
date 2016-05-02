@@ -13,6 +13,7 @@ public class Coin extends movableObject {
     private Text timeLabel;
     private int time;
     private Random randomNumber;
+    private int visibilityTime;
 
     private double adjustTimeLabelX;
     private double adjustTimeLabelY;
@@ -34,7 +35,7 @@ public class Coin extends movableObject {
         timeLabel = new Text("" + time);
         timeLabel.setX(getCenterX() + adjustTimeLabelX);
         timeLabel.setY(getCenterY() + adjustTimeLabelY);
-        timeLabel.setVisible(false);
+        timeLabel.setVisible(true);
         timeLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
         timeLabel.setFill(Paint.valueOf("grey"));
 
@@ -48,10 +49,8 @@ public class Coin extends movableObject {
     }
 
     public void showCoin(){
-        this.setCoinCenterX(28 + randomNumber.nextInt((int) getScene().getWidth() - 28));
-        this.setCoinCenterY(28 + randomNumber.nextInt((int) getScene().getHeight() - 28));
         this.setVisible(true);
-        setTime(15);
+        this.timeLabel.setVisible(true);
     }
 
     public void hideCoin(){
@@ -73,9 +72,24 @@ public class Coin extends movableObject {
         setTimeLabelAdjustment();
     }
 
-    public void setTime(int time){
-        this.time =time;
-        timeLabel.setVisible(false);
+    public void setTime(int waitingTime, int visibilityTime){
+        this.setCoinCenterX(28 + randomNumber.nextInt((int) getScene().getWidth() - 28));
+        this.setCoinCenterY(28 + randomNumber.nextInt((int) getScene().getHeight() - 28));
+        this.time = waitingTime + visibilityTime;
+        this.setVisibilityTime(visibilityTime);
+    }
+
+    public void setVisibilityTime(int visibilityTime){
+        this.visibilityTime = visibilityTime;
+    }
+
+    public boolean isCoinVisible(){
+        if(time == visibilityTime){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     private void setTimeLabelAdjustment(){
@@ -132,14 +146,17 @@ public class Coin extends movableObject {
     public void run() {
         while(!Player.dead) {
             Platform.runLater(() -> {
-                if(time > 0){
-                    if(time == 15){
-                        timeLabel.setVisible(true);
+                if(time >= 0){
+                    if(isCoinVisible()){
+                        this.showCoin();
                     }
-                    timeLabel.setText("" + time--);
-                }else{
-                    this.showCoin();
+                    timeLabel.setText("" + time);
+                }else {
+                    this.setTime(2,15);
+                    this.hideCoin();
                 }
+
+                System.out.println(time--);
             });
             try {
                 thisTherad.sleep(1000);

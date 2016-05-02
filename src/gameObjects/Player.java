@@ -33,19 +33,23 @@ public class Player extends movableObject {
         return speed;
     }
 
+    public void movePlayer(){
+        getScene().addEventFilter(MouseEvent.MOUSE_DRAGGED, e -> {
+            if(e.getSceneX() < getScene().getWidth() && e.getSceneX() > getScene().getX()){
+                this.setCenterX(e.getSceneX());
+            }
+            if(e.getSceneY() < getScene().getHeight() && e.getSceneY() > getScene().getY()){
+                this.setCenterY(e.getSceneY());
+            }
 
+        });
+    }
 
     public void run() {
         while (!dead) {
-            Platform.runLater(() -> getScene().addEventFilter(MouseEvent.MOUSE_DRAGGED, e -> {
-                if(e.getSceneX() < getScene().getWidth() && e.getSceneX() > getScene().getX()){
-                    this.setCenterX(e.getSceneX());
-                }
-                if(e.getSceneY() < getScene().getHeight() && e.getSceneY() > getScene().getY()){
-                    this.setCenterY(e.getSceneY());
-                }
-
-            }));
+            Platform.runLater(() ->
+                movePlayer()
+            );
 
             try {
                 Thread.sleep(1);

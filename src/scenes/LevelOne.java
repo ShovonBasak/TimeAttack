@@ -89,14 +89,12 @@ public class LevelOne implements Runnable {
                         }
                     }
                 }
-                else{
-                    coin.showCoin();
-                }
 
                 //If player Collides with coin
                 if(!Player.dead){
                     if(coin.getBoundsInLocal().intersects(player.getBoundsInLocal())){
                         coin.hideCoin();
+                        coin.setTime(0,15);
                     }
                 }
             });
