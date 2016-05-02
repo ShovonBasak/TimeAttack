@@ -34,7 +34,7 @@ public class Player extends movableObject {
     }
 
     public void movePlayer(){
-        getScene().addEventFilter(MouseEvent.MOUSE_DRAGGED, e -> {
+        getScene().addEventFilter(MouseEvent.MOUSE_MOVED, e -> {
             if(e.getSceneX() < getScene().getWidth() && e.getSceneX() > getScene().getX()){
                 this.setCenterX(e.getSceneX());
             }
