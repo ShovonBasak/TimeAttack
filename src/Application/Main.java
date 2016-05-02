@@ -7,15 +7,12 @@ import scenes.LoadingScreen;
 import scenes.MainMenu;
 
 public class Main extends Application{
-    LevelOne levelOne;
+    MainMenu mainMenu = new MainMenu();
 
     public void start(Stage primaryStage) throws Exception{
-        //LoadingScreen l = new LoadingScreen();
-        //l.show();
-        MainMenu m = new MainMenu();
-        m.show();
-        //levelOne = new LevelOne();
-        //levelOne.show();
+        LoadingScreen l = new LoadingScreen();
+        l.show(mainMenu);
+
         //GameOverScene g = new GameOverScene();
         // g.show();
 

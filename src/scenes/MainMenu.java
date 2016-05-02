@@ -28,6 +28,9 @@ public class MainMenu {
         StartGame = new CustomButton("Start Game");
         StartGame.setOnAction(event1 -> {
             //do something
+            window.close();
+            new LevelOne().show(this);
+
         });
         Exit = new CustomButton("Exit");
         Exit.setOnAction(event -> {
