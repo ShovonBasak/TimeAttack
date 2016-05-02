@@ -1,6 +1,9 @@
 package gameObjects;
 
 import javafx.application.Platform;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 import java.util.Random;
@@ -25,13 +28,15 @@ public class Coin extends movableObject {
         randomNumber = new Random();
         this.setSpeed(15);
         time = 15;
-        adjustTimeLabelX = -5;
-        adjustTimeLabelY = 3;
+        adjustTimeLabelX = -8;
+        adjustTimeLabelY = 6;
 
         timeLabel = new Text("" + time);
         timeLabel.setX(getCenterX() + adjustTimeLabelX);
         timeLabel.setY(getCenterY() + adjustTimeLabelY);
         timeLabel.setVisible(false);
+        timeLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
+        timeLabel.setFill(Paint.valueOf("grey"));
 
         leftBound = centerX - radius;
         rightBound = centerX + radius;
