@@ -1,6 +1,7 @@
 package scenes;
 
 
+import Application.ScoreBoard;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -52,4 +53,10 @@ public class GameOverScene {
 
 
     }
+
+    public void updateDatabase(ScoreBoard sb) {
+        //send queries from the data of the given scoreboard object.
+    }
+
+
 }

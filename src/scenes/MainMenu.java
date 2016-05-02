@@ -1,12 +1,14 @@
 package scenes;
 
 
+import UserInterface.CustomButton;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -17,23 +19,25 @@ public class MainMenu {
     Stage window;
     public Scene scene;
     VBox layout;
-    Button StartGame;
-    Button Exit;
-    Button HighScore;
+    CustomButton StartGame;
+    CustomButton Exit;
+    CustomButton HighScore;
     Text gameName;
 
     public MainMenu() {
-        StartGame = new Button("Start Game");
+        StartGame = new CustomButton("Start Game");
         StartGame.setOnAction(event1 -> {
             //do something
         });
-        Exit = new Button("Exit");
+        Exit = new CustomButton("Exit");
         Exit.setOnAction(event -> {
             //do something
         });
-        HighScore = new Button("High Score");
+        HighScore = new CustomButton("High Score");
         HighScore.setOnAction(event -> {
-            //do something
+            window.close();
+            highScoreScene s = new highScoreScene(this);
+            s.show();
         });
 
         gameName = new Text("Time Attack");
@@ -50,6 +54,7 @@ public class MainMenu {
 
         layout = new VBox(20, gameName, StartGame, HighScore, Exit);
         layout.setAlignment(Pos.CENTER);
+        layout.setStyle("-fx-background-color: #663300;");
         scene = new Scene(layout, 800, 600);
 
 
