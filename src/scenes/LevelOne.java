@@ -20,6 +20,7 @@ public class LevelOne implements Runnable {
     private Coin coin;
     private Random randomPosition;
     Rectangle2D primaryScreenBounds;
+    MainMenu mainMenu;
 
     private Thread mainThread;
 
@@ -31,7 +32,7 @@ public class LevelOne implements Runnable {
         window.setY(primaryScreenBounds.getMinY());
         window.setMinWidth(primaryScreenBounds.getMaxX());
         window.setMinHeight(primaryScreenBounds.getMaxY());
-
+        this.mainMenu=mainMenu;
         randomPosition = new Random();
 
         player = new Player(50, 500, 20);
@@ -62,6 +63,7 @@ public class LevelOne implements Runnable {
 
         coin = new Coin(28 + randomPosition.nextInt(1200), 28 + randomPosition.nextInt(500), 28);
         group.getChildren().addAll(coin,coin.getTimeLabel());
+        group.setStyle("-fx-background-color: #000000;");
 
         background = new Scene(group);
 
@@ -77,7 +79,6 @@ public class LevelOne implements Runnable {
         while ( !player.isDead() ) {
             Platform.runLater(() -> {
                 if(coin.isVisible()){
-
                     for(int i=0; i<3; i++){
                         //If Coin Collides with Enemy
                         if(coin.getBoundsInLocal().intersects(enemy[i].getBoundsInLocal())){
@@ -86,8 +87,11 @@ public class LevelOne implements Runnable {
                         //If Player collides with Enemy
                         if(player.getBoundsInLocal().intersects(enemy[i].getBoundsInLocal())){
                             player.setDead(true);
+
                         }
                     }
+
+
                 }
                 else{
                     coin.showCoin();
@@ -98,11 +102,15 @@ public class LevelOne implements Runnable {
                     coin.hideCoin();
                 }
             });
+
+
+
             try{
                 Thread.sleep(1);
+
             } catch (Exception ignored) {}
         }
-        //window.setScene();
+
     }
 }
 
