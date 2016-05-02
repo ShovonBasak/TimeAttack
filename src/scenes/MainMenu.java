@@ -34,7 +34,8 @@ public class MainMenu {
         });
         Exit = new CustomButton("Exit");
         Exit.setOnAction(event -> {
-            //do something
+            //do
+            window.close();
         });
         HighScore = new CustomButton("High Score");
         HighScore.setOnAction(event -> {
