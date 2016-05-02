@@ -7,9 +7,15 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class Coin extends movableObject {
+    private Timer timer;
+    private int period;
+    private int delay;
+    private int interval;
     private Text timeLabel;
     private int time;
     private Random randomNumber;
@@ -32,6 +38,10 @@ public class Coin extends movableObject {
         adjustTimeLabelX = -8;
         adjustTimeLabelY = 6;
 
+        timer = new Timer();
+        delay = 1000;
+        period = 1000;
+        interval = 15;
         timeLabel = new Text("" + time);
         timeLabel.setX(getCenterX() + adjustTimeLabelX);
         timeLabel.setY(getCenterY() + adjustTimeLabelY);
@@ -46,11 +56,22 @@ public class Coin extends movableObject {
 
         thisTherad = new Thread(this);
         thisTherad.start();
+
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+                time = setInterval();
+            }
+        }, delay, period);
     }
 
     public void showCoin(){
         this.setVisible(true);
         this.timeLabel.setVisible(true);
+    }
+
+    private int setInterval() {
+        return --interval;
     }
 
     public void hideCoin(){
@@ -72,12 +93,14 @@ public class Coin extends movableObject {
         setTimeLabelAdjustment();
     }
 
-    public void setTime(int waitingTime, int visibilityTime){
+    public void setTimeAndPosition(int waitingTime, int visibilityTime){
         this.setCoinCenterX(28 + randomNumber.nextInt((int) getScene().getWidth() - 28));
         this.setCoinCenterY(28 + randomNumber.nextInt((int) getScene().getHeight() - 28));
         this.time = waitingTime + visibilityTime;
+        this.interval = this.time;
         this.setVisibilityTime(visibilityTime);
     }
+
 
     public void setVisibilityTime(int visibilityTime){
         this.visibilityTime = visibilityTime;
@@ -96,6 +119,7 @@ public class Coin extends movableObject {
         timeLabel.setX(this.getCenterX() + adjustTimeLabelX);
         timeLabel.setY(this.getCenterY() + adjustTimeLabelY);
     }
+
 
     public void moveRight(){
         super.moveRight();
@@ -146,20 +170,21 @@ public class Coin extends movableObject {
     public void run() {
         while(!Player.dead) {
             Platform.runLater(() -> {
-                if(time >= 0){
+                if(time > 0){
                     if(isCoinVisible()){
                         this.showCoin();
                     }
+                    else if(time > 15){
+                        time--;
+                    }
                     timeLabel.setText("" + time);
                 }else {
-                    this.setTime(2,15);
                     this.hideCoin();
+                    this.setTimeAndPosition(0,15);
                 }
-
-                System.out.println(time--);
             });
             try {
-                thisTherad.sleep(1000);
+                thisTherad.sleep(1);
             } catch (Exception ignored) {
             }
         }

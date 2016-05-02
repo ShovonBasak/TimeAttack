@@ -94,7 +94,7 @@ public class LevelOne implements Runnable {
                 if(!Player.dead){
                     if(coin.getBoundsInLocal().intersects(player.getBoundsInLocal())){
                         coin.hideCoin();
-                        coin.setTime(0,15);
+                        coin.setTimeAndPosition(0,15);
                     }
                 }
             });
