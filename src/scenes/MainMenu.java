@@ -22,7 +22,6 @@ public class MainMenu {
     CustomButton StartGame;
     CustomButton Exit;
     CustomButton HighScore;
-    CustomButton Instructions;
     Text gameName;
 
     public MainMenu() {
@@ -45,16 +44,8 @@ public class MainMenu {
             s.show();
         });
 
-
-        Instructions = new CustomButton("Instructions");
-        Instructions.setOnAction(event -> {
-            window.close();
-            instructionScene s = new instructionScene(this);
-            s.show();
-        });
-
         gameName = new Text("Time Attack");
-        gameName.setFont(Font.font("Informal Roman", FontWeight.BOLD, 50));
+        gameName.setFont(Font.font("Verdana", FontWeight.BOLD, 50));
         gameName.setCache(true);
         gameName.setFill(Color.DARKBLUE);
         gameName.setTranslateY(gameName.getTranslateY() - 10);
@@ -65,7 +56,7 @@ public class MainMenu {
     public void show() {
         window = new Stage();
 
-        layout = new VBox(20, gameName, StartGame, Instructions, HighScore, Exit);
+        layout = new VBox(20, gameName, StartGame, HighScore, Exit);
         layout.setAlignment(Pos.CENTER);
         layout.setStyle("-fx-background-color: #663300;");
         scene = new Scene(layout, 800, 600);

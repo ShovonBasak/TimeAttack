@@ -43,8 +43,8 @@ public class Coin extends movableObject {
         upperBound = centerY - radius;
         lowerBound = centerY + radius;
 
-        thisThread = new Thread(this);
-        thisThread.start();
+        thisTherad = new Thread(this);
+        thisTherad.start();
     }
 
     public void showCoin(){
@@ -130,7 +130,7 @@ public class Coin extends movableObject {
 
 
     public void run() {
-        while(this.isVisible()) {
+        while(!Player.dead) {
             Platform.runLater(() -> {
                 if(time > 0){
                     if(time == 15){
@@ -142,7 +142,7 @@ public class Coin extends movableObject {
                 }
             });
             try {
-                thisThread.sleep(1000);
+                thisTherad.sleep(1000);
             } catch (Exception ignored) {
             }
         }

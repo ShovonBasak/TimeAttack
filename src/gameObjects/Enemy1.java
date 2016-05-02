@@ -2,6 +2,9 @@ package gameObjects;
 
 
 import javafx.application.Platform;
+import gameObjects.Player;
+
+import static sun.audio.AudioPlayer.player;
 
 public class Enemy1 extends Enemy implements Runnable{
     private double rightBound;
@@ -17,8 +20,8 @@ public class Enemy1 extends Enemy implements Runnable{
         upperBound = getCenterY() - getRadius();
         lowerBound = upperBound + (getRadius() * 2);
 
-        thisThread = new Thread(this);
-        thisThread.start();
+        thisTherad = new Thread(this);
+        thisTherad.start();
     }
 
 
@@ -31,7 +34,7 @@ public class Enemy1 extends Enemy implements Runnable{
     }
 
     public void run() {
-        while(this.isVisible()){
+        while(!Player.dead){
             Platform.runLater(() -> {
                 rightBound = getCenterX() + getRadius();
                 leftBound = rightBound - (getRadius() * 2);
@@ -68,7 +71,7 @@ public class Enemy1 extends Enemy implements Runnable{
                 }
             });
             try{
-                Thread.sleep(1);
+                thisTherad.sleep(1);
             }catch (Exception ignored){}
         }
     }

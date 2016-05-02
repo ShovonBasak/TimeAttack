@@ -1,9 +1,7 @@
 package scenes;
 
 
-import Application.Main;
 import Application.ScoreBoard;
-import UserInterface.CustomButton;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,26 +16,18 @@ public class GameOverScene {
     Stage window;
     public Scene scene;
     VBox layout;
-    CustomButton restartGame;
-    CustomButton Exit;
-    CustomButton MainMenuB;
+    Button restartGame;
+    Button Exit;
     Text gameOver;
 
-    public GameOverScene(MainMenu mainMenu) {
-        restartGame = new CustomButton("Restart");
+    public GameOverScene() {
+        restartGame = new Button("Restart");
         restartGame.setOnAction(event1 -> {
-            window.close();
-            new LevelOne().show(mainMenu);
+            //do something
         });
-        Exit = new CustomButton("Exit");
+        Exit = new Button("Exit");
         Exit.setOnAction(event -> {
-            window.close();
-        });
-
-        MainMenuB=new CustomButton("Main Menu");
-        MainMenuB.setOnAction(event -> {
-            window.close();
-            mainMenu.window.show();
+            //do something
         });
 
 
@@ -53,9 +43,8 @@ public class GameOverScene {
     public void show() {
         window = new Stage();
 
-        layout = new VBox(20, gameOver, restartGame,MainMenuB, Exit);
+        layout = new VBox(20, gameOver, restartGame, Exit);
         layout.setAlignment(Pos.CENTER);
-        layout.setStyle("-fx-background-color: #000000;");
         scene = new Scene(layout, 800, 600);
 
 

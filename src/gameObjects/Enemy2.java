@@ -1,64 +1,74 @@
 package gameObjects;
 
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 
-import javafx.application.Platform;
 
-public class Enemy2 extends Enemy {
+public class Enemy2 extends Circle implements Runnable {
 
     Player player;
-
+    double speed;
+    Thread enemy2Thread;
 
     public Enemy2(double radius, Player player) {
-        super(radius, "Blue");
+        super(radius, Paint.valueOf("Blue"));
+        speed = 1;
         this.player = player;
 
-        thisThread = new Thread(this);
-        thisThread.start();
+        enemy2Thread = new Thread(this);
+        enemy2Thread.start();
     }
 
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
 
+    public double getSpeed() {
+        return speed;
+    }
 
+    public void moveRight() {
+        this.setCenterX(this.getCenterX() + getSpeed());
+    }
 
+    public void moveLeft() {
+        this.setCenterX(this.getCenterX() - getSpeed());
+    }
 
+    public void moveDown() {
+        this.setCenterY(this.getCenterY() + getSpeed());
+    }
+
+    public void moveUp() {
+        this.setCenterY(this.getCenterY() - getSpeed());
+    }
 
     public void run() {
         //This object needs to follow the player
-        while (!player.isDead()) {
+        while (!Player.dead) {
             System.out.println("X:" + player.getCenterX() + "\nY:" + player.getCenterY());
             System.out.println("X:" + getCenterX() + "\nY:" + getCenterY());
-            Platform.runLater(() -> {
-                double newX;
-                double newY;
-
-                //Y=Mx(M=dy/dx)
-                newY = (player.getCenterY() / player.getCenterX());
-                System.out.println("newY:" + String.valueOf(newY));
-
-                //X=My(M=dx/dy)
-                newX = (player.getCenterX() / player.getCenterY());
-                System.out.println("newX:" + String.valueOf(newX));
-
-                if (player.getCenterX() > getCenterX()) {
-                    setCenterX(getCenterX() + newX);
-                }
-
-                if (player.getCenterX() < getCenterX()) {
-                    setCenterX(getCenterX() - newX);
-                }
-
-                if (player.getCenterY() > getCenterY()) {
-                    setCenterY(getCenterY() + newY);
-                }
-
-                if (player.getCenterY() < getCenterY()) {
-                    setCenterY(getCenterY() - newY);
-                }
 
 
-            });
+            if (player.getCenterX() < this.getCenterX()) {
+                System.out.println("MoveLeft");
+                moveLeft();
+            }
+            if (player.getCenterX() > this.getCenterX()) {
+                moveRight();
+            }
+
+            if (player.getCenterY() < this.getCenterY()) {
+                moveDown();
+            }
+
+            if (player.getCenterY() > this.getCenterY()) {
+                moveUp();
+            }
+
 
             try {
-                thisThread.sleep(1);
+                enemy2Thread.sleep(1000);
             } catch (Exception e) {
             }
         }
