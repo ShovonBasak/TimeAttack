@@ -17,13 +17,12 @@ public class LevelOne implements Runnable {
     private Stage window;
     private Scene background;
     private Group group;
-    public Player player;
+    private Player player;
     private Enemy1[] enemy;
     private Coin coin;
     private Random randomPosition;
-    Rectangle2D primaryScreenBounds;
-    Scene scene;
-    Group root;
+    private Rectangle2D primaryScreenBounds;
+    GameOverScene gameOverScene;
 
     private Thread mainThread;
 
@@ -62,10 +61,10 @@ public class LevelOne implements Runnable {
 
         background = new Scene(group);
 
-        root = new Group(enemy[0]);
-        scene = new Scene(root);
         window.setScene(background);
         window.show();
+
+        gameOverScene = new GameOverScene();
 
         mainThread = new Thread(this);
         mainThread.start();
@@ -75,17 +74,17 @@ public class LevelOne implements Runnable {
     public void run() {
         while ( !Player.dead ) {
             Platform.runLater(() -> {
-                if(coin.isVisible()){
+                if(coin.isVisible() && !Player.dead){
                     for(int i=0; i<3; i++){
                         //If Coin Collides with Enemy
-                        if(coin.getBoundsInLocal().intersects(enemy[i].getBoundsInLocal())){
+                        if(!Player.dead && coin.getBoundsInLocal().intersects(enemy[i].getBoundsInLocal())){
                             coin.collides(enemy[i]);
                         }
                         //If Player collides with Enemy
-                        if(player.getBoundsInLocal().intersects(enemy[i].getBoundsInLocal())){
+                        if(!Player.dead && player.getBoundsInLocal().intersects(enemy[i].getBoundsInLocal())){
                             Player.dead = true;
                             window.close();
-                            new GameOverScene().show();
+                            gameOverScene.show();
                             break;
                         }
                     }
@@ -95,15 +94,17 @@ public class LevelOne implements Runnable {
                 }
 
                 //If player Collides with coin
-                if(coin.getBoundsInLocal().intersects(player.getBoundsInLocal())){
-                    coin.hideCoin();
+                if(!Player.dead){
+                    if(coin.getBoundsInLocal().intersects(player.getBoundsInLocal())){
+                        coin.hideCoin();
+                    }
                 }
             });
             try{
                 Thread.sleep(1);
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+            }
         }
-        //window.setScene(scene);
     }
 }
 

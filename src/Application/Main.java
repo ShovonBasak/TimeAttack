@@ -15,8 +15,6 @@ public class Main extends Application{
 
         //GameOverScene g = new GameOverScene();
         // g.show();
-
-
     }
 
 
