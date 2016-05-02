@@ -26,7 +26,7 @@ public class LevelOne implements Runnable {
 
     private Thread mainThread;
 
-    public void show() {
+    public void show(MainMenu mainMenu) {
         primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         window = new Stage();
         window.setTitle("Time Attack");
