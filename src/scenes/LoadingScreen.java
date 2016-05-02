@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 
 import javafx.scene.control.Button;
 import javafx.scene.effect.Reflection;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -48,13 +50,27 @@ public class LoadingScreen {
 
     }
 
-    public void show() {
+    public void show(MainMenu mainMenu) {
 
         window = new Stage();
 
         VBox layout = new VBox(20, companyName, presents, gameName);
         layout.setAlignment(Pos.CENTER);
-        scene = new Scene(layout, 800, 600, Color.valueOf("Black"));
+        layout.setStyle("-fx-background-color: #000000;");
+        scene = new Scene(layout, 800, 600);
+
+
+        scene.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
+            window.close();
+            mainMenu.show();
+        });
+
+        scene.addEventFilter(KeyEvent.ANY, event -> {
+            window.close();
+            mainMenu.show();
+        });
+
+
         window.setScene(scene);
         window.show();
 
