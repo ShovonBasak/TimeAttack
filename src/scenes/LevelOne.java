@@ -6,8 +6,10 @@ import gameObjects.Enemy;
 import gameObjects.Enemy1;
 import gameObjects.Player;
 import javafx.application.Platform;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.util.Random;
@@ -17,16 +19,21 @@ public class LevelOne implements Runnable {
     private Scene background;
     private Group group;
     private Player player;
-    private Enemy[] enemy;
+    private Enemy1[] enemy;
     private Coin coin;
     private Random randomPosition;
+    Rectangle2D primaryScreenBounds;
 
     private Thread mainThread;
 
-
     public void show() {
+        primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         window = new Stage();
         window.setTitle("Time Attack");
+        window.setX(primaryScreenBounds.getMinX());
+        window.setY(primaryScreenBounds.getMinY());
+        window.setMinWidth(primaryScreenBounds.getMaxX());
+        window.setMinHeight(primaryScreenBounds.getMaxY());
 
         randomPosition = new Random();
 
@@ -35,7 +42,7 @@ public class LevelOne implements Runnable {
 
         group = new Group(player);
 
-        enemy = new Enemy[3];
+        enemy = new Enemy1[3];
         enemy[0] = new Enemy1(100, 100, 15);
         enemy[0].setSpeed(3);
         enemy[0].setHorizontalDirection(false);
@@ -47,10 +54,10 @@ public class LevelOne implements Runnable {
 
         group.getChildren().addAll(enemy[0],enemy[1],enemy[2]);
 
-        coin = new Coin(5 + randomPosition.nextInt(500), 5 + randomPosition.nextInt(500), 28);
+        coin = new Coin(28 + randomPosition.nextInt(500), 28 + randomPosition.nextInt(500), 28);
         group.getChildren().addAll(coin,coin.getTimeLabel());
 
-        background = new Scene(group, 800, 600);
+        background = new Scene(group);
 
         window.setScene(background);
         window.show();
@@ -65,25 +72,12 @@ public class LevelOne implements Runnable {
             Platform.runLater(() -> {
                 if(coin.isVisible()){
                     for(int i=0; i<3; i++){
-                        //For Coin Collides with Enemy
-                        if(coin.intersects(enemy[i].getBoundsInLocal())){
-                            if (coin.getCenterY() > enemy[i].getCenterY()) {
-                                enemy[i].setVerticalDirection(false);
-                                coin.moveDown();
-                            } else if (coin.getCenterY() < enemy[i].getCenterY()) {
-                                enemy[i].setVerticalDirection(true);
-                                coin.moveUp();
-                            }
-                            if (coin.getCenterX() > enemy[i].getCenterX()) {
-                                enemy[i].setHorizontalDirection(false);
-                                coin.moveRight();
-                            } else if (coin.getCenterX() > enemy[i].getCenterX()) {
-                                enemy[i].setHorizontalDirection(false);
-                                coin.moveLeft();
-                            }
+                        //If Coin Collides with Enemy
+                        if(coin.getBoundsInLocal().intersects(enemy[i].getBoundsInLocal())){
+                            coin.collides(enemy[i]);
                         }
                         //If Player collides with Enemy
-                        if(player.intersects(enemy[i].getBoundsInLocal())){
+                        if(player.getBoundsInLocal().intersects(enemy[i].getBoundsInLocal())){
                             player.setDead(true);
                         }
                     }
@@ -93,7 +87,7 @@ public class LevelOne implements Runnable {
                 }
 
                 //If player Collides with coin
-                if(coin.intersects(player.getBoundsInLocal())){
+                if(coin.getBoundsInLocal().intersects(player.getBoundsInLocal())){
                     coin.hideCoin();
                 }
             });

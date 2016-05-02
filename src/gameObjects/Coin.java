@@ -1,11 +1,7 @@
 package gameObjects;
 
 import javafx.application.Platform;
-import javafx.scene.Group;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
-import scenes.LevelOne;
 
 import java.util.Random;
 
@@ -37,8 +33,8 @@ public class Coin extends movableObject {
     }
 
     public void showCoin(){
-        this.setCoinCenterX(5 + randomNumber.nextInt((int) getScene().getWidth()));
-        this.setCoinCenterY(5 + randomNumber.nextInt((int) getScene().getHeight()));
+        this.setCoinCenterX(28 + randomNumber.nextInt((int) getScene().getWidth() - 28));
+        this.setCoinCenterY(28 + randomNumber.nextInt((int) getScene().getHeight() - 28));
         this.setVisible(true);
         setTime(15);
     }
@@ -89,15 +85,34 @@ public class Coin extends movableObject {
         setTimeLabelAdjustment();
     }
 
+    public void collides(Enemy1 enemy){
+        this.setSpeed(enemy.getSpeed() * 15);
+
+        if (this.getCenterY() > enemy.getCenterY()) {
+            enemy.setVerticalDirection(false);
+            this.moveDown();
+        } else if (this.getCenterY() < enemy.getCenterY()) {
+            enemy.setVerticalDirection(true);
+            this.moveUp();
+        }
+        if (this.getCenterX() > enemy.getCenterX()) {
+            enemy.setHorizontalDirection(false);
+            this.moveRight();
+        } else if (this.getCenterX() > enemy.getCenterX()) {
+            enemy.setHorizontalDirection(false);
+            this.moveLeft();
+        }
+    }
+
 
     public void run() {
         while(this.isVisible()) {
             Platform.runLater(() -> {
                 if(time > 0){
-                    timeLabel.setText("" + time--);
-                    if(time == 14){
+                    if(time == 15){
                         timeLabel.setVisible(true);
                     }
+                    timeLabel.setText("" + time--);
                 }else{
                     this.showCoin();
                 }
