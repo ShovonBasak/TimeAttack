@@ -1,9 +1,7 @@
 package scenes;
 
 
-import gameObjects.Coin;
-import gameObjects.Enemy1;
-import gameObjects.Player;
+import gameObjects.*;
 import javafx.application.Platform;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
@@ -48,10 +46,17 @@ public class LevelOne implements Runnable {
         enemy[0].setVerticalDirection(true);
 
         enemy[1] = new Enemy1(1300, 600, 15);
+        enemy[1].setSpeed(.3);
         enemy[1].setVerticalDirection(false);
         enemy[2] = new Enemy1(1300, 600, 15);
         enemy[1].setVerticalDirection(true);
+        enemy[2].setSpeed(.3);
 
+        Enemy E2 = new Enemy2(10, player);
+        E2.setCenterY(100);
+        E2.setCenterX(100);
+        E2.setSpeed(2);
+        group.getChildren().add(E2);
 
         group.getChildren().addAll(enemy[0],enemy[1],enemy[2]);
 
@@ -72,6 +77,7 @@ public class LevelOne implements Runnable {
         while ( !player.isDead() ) {
             Platform.runLater(() -> {
                 if(coin.isVisible()){
+
                     for(int i=0; i<3; i++){
                         //If Coin Collides with Enemy
                         if(coin.getBoundsInLocal().intersects(enemy[i].getBoundsInLocal())){

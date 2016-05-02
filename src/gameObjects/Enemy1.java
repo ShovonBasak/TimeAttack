@@ -17,8 +17,8 @@ public class Enemy1 extends Enemy implements Runnable{
         upperBound = getCenterY() - getRadius();
         lowerBound = upperBound + (getRadius() * 2);
 
-        thisTherad = new Thread(this);
-        thisTherad.start();
+        thisThread = new Thread(this);
+        thisThread.start();
     }
 
 

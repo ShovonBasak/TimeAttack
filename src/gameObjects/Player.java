@@ -22,8 +22,8 @@ public class Player extends movableObject {
         dead = false;
         setSpeed(1);
 
-        thisTherad = new Thread(this);
-        thisTherad.start();
+        thisThread = new Thread(this);
+        thisThread.start();
     }
 
     public void setSpeed(double x) {

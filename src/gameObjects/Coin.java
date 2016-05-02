@@ -43,8 +43,8 @@ public class Coin extends movableObject {
         upperBound = centerY - radius;
         lowerBound = centerY + radius;
 
-        thisTherad = new Thread(this);
-        thisTherad.start();
+        thisThread = new Thread(this);
+        thisThread.start();
     }
 
     public void showCoin(){
@@ -142,7 +142,7 @@ public class Coin extends movableObject {
                 }
             });
             try {
-                thisTherad.sleep(1000);
+                thisThread.sleep(1000);
             } catch (Exception ignored) {
             }
         }
