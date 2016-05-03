@@ -11,7 +11,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import scenes.HighScoreScene;
+import scenes.highScoreScene;
 import scenes.LevelOne;
 import scenes.LoadingScreen;
 
@@ -28,7 +28,7 @@ public class Main extends Application{
 
     //scenes
     LoadingScreen loadingScreen;
-    HighScoreScene highScoreScene;
+    scenes.highScoreScene highScoreScene;
 
     //Level
     LevelOne levelOne;
@@ -46,7 +46,7 @@ public class Main extends Application{
     public Main() {
         //initialize scenes
         loadingScreen = new LoadingScreen(this);
-        highScoreScene = new HighScoreScene(this);
+        highScoreScene = new highScoreScene(this);
 
         //Levels
         levelOne = new LevelOne(this);

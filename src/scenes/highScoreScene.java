@@ -12,14 +12,14 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
-public class HighScoreScene {
+public class highScoreScene {
     Stage window;
     Scene scene;
     VBox layout;
     CustomButton backButton;
     TableView<ScoreBoard> highScoreBoard;
 
-    public HighScoreScene(Main mainMenu) {
+    public highScoreScene(Main mainMenu) {
         window = new Stage();
         layout = new VBox(10);
         layout.setStyle("-fx-background-color: #4d004d;");

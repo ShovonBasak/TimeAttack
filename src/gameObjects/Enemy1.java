@@ -12,8 +12,8 @@ public class Enemy1 extends Enemy implements Runnable{
     private double upperBound;
     private double lowerBound;
 
-    public Enemy1(double centerX, double centerY, double radius) {
-        super(centerX, centerY, radius, "red");
+    public Enemy1(double centerX, double centerY, double radius, Player player) {
+        super(centerX, centerY, radius, "red", player);
 
         rightBound = getCenterX() + getRadius();
         leftBound = rightBound - (getRadius() * 2);
@@ -40,6 +40,11 @@ public class Enemy1 extends Enemy implements Runnable{
                 leftBound = rightBound - (getRadius() * 2);
                 upperBound = getCenterY() - getRadius();
                 lowerBound = upperBound + (getRadius() * 2);
+
+                if (intersect(player)) {
+                    player.setDead(true);
+                }
+
 
                 if (horizontalDirection) {
                     if (this.rightBound < getScene().getWidth()) {

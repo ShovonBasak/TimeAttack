@@ -39,15 +39,15 @@ public class LevelOne implements Runnable {
         group = new Group(player);
 
         enemy = new Enemy1[3];
-        enemy[0] = new Enemy1(800, 600, 15);
+        enemy[0] = new Enemy1(800, 600, 15, player);
         enemy[0].setSpeed(.1);
         enemy[0].setHorizontalDirection(false);
         enemy[0].setVerticalDirection(true);
 
-        enemy[1] = new Enemy1(800, 600, 15);
+        enemy[1] = new Enemy1(800, 600, 15, player);
         enemy[1].setVerticalDirection(false);
         enemy[1].setSpeed(.3);
-        enemy[2] = new Enemy1(800, 600, 15);
+        enemy[2] = new Enemy1(800, 600, 15, player);
         enemy[1].setVerticalDirection(true);
         enemy[2].setSpeed(.3);
 
@@ -81,14 +81,15 @@ public class LevelOne implements Runnable {
                             coin.collides(enemy[i]);
                         }
                         //If Player collides with Enemy
-                        if(!Player.dead && player.getBoundsInLocal().intersects(enemy[i].getBoundsInLocal())){
+                        /*if(!Player.dead && player.getBoundsInLocal().intersects(enemy[i].getBoundsInLocal())){
                             Player.dead = true;
                             //change scene to gameOver Scene
                             mainMenu.getWindow().setScene(gameOverScene.getScene());
                             break;
-                        }
+                        }*/
                     }
                 }
+
 
                 //If player Collides with coin
                 if(!Player.dead){
@@ -101,8 +102,11 @@ public class LevelOne implements Runnable {
             try{
                 Thread.sleep(1);
             } catch (Exception ignored) {
+
             }
         }
+
+
     }
 }
 
