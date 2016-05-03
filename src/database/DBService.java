@@ -31,7 +31,7 @@ public class DBService {
         return 420;
     }
 
-    public boolean dbConnctionCheck() {
+    public boolean dbConnectionCheck() {
         return dbCon.connectionCheck();
     }
 
@@ -39,7 +39,7 @@ public class DBService {
         return isNameAvailable;
     }
 
-    public boolean isUserinserted() {
+    public boolean isUserInserted() {
         if (isUserInserted == 1)
             return true;
         else
@@ -86,7 +86,7 @@ public class DBService {
     }
 
 
-    public int updatescore(String userName,int score) {
+    public int updateScore(String userName,int score) {
         String query = "UPDATE scoretable Set Score="+score+" WHERE name='"+userName+"';";
         System.out.println(query);
 
@@ -99,7 +99,7 @@ public class DBService {
         return 420;
     }
 
-    public boolean unregister(String UserName) {
+    public boolean unRegister(String UserName) {
 
         String query = "DELETE FROM `scoretable` WHERE name='" + UserName + "';";
         System.out.println(query);
