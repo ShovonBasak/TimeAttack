@@ -5,7 +5,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
 
-public class Enemy2 extends Enemy {
+public class Enemy2 extends Circle implements Runnable {
 
     private Player player;
     private Coin coin;

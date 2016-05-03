@@ -28,7 +28,7 @@ public class Main extends Application{
 
     //scenes
     LoadingScreen loadingScreen;
-    scenes.highScoreScene highScoreScene;
+    highScoreScene highScoreScene;
 
     //Level
     LevelOne levelOne;
@@ -40,6 +40,10 @@ public class Main extends Application{
 
     public Scene getScene() {
         return scene;
+    }
+
+    public Scene getHighScoreScene() {
+        return highScoreScene.getScene();
     }
 
     //constructor
