@@ -1,5 +1,6 @@
 package gameObjects;
 
+import javafx.application.Platform;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
@@ -11,8 +12,8 @@ public class Enemy2 extends Circle implements Runnable {
     Thread enemy2Thread;
 
     public Enemy2(double radius, Player player) {
-        super(radius, Paint.valueOf("Blue"));
-        speed = 1;
+        super(100, 100, radius, Paint.valueOf("Blue"));
+        speed = .1;
         this.player = player;
 
         enemy2Thread = new Thread(this);
@@ -46,29 +47,50 @@ public class Enemy2 extends Circle implements Runnable {
     public void run() {
         //This object needs to follow the player
         while (!Player.dead) {
-            System.out.println("X:" + player.getCenterX() + "\nY:" + player.getCenterY());
-            System.out.println("X:" + getCenterX() + "\nY:" + getCenterY());
+            Platform.runLater(() -> {
+                //do anything
+            //System.out.println("X:" + player.getCenterX() + "\nY:" + player.getCenterY());
+            //System.out.println("X:" + getCenterX() + "\nY:" + getCenterY());
+
+                if(player.getCenterY() == this.getCenterY()){
+                   if(player.getCenterX() < this.getCenterX()){
+                       moveLeft();
+                   }
+                    else{
+                       moveRight();
+                   }
+                }
+                else if(player.getCenterX() == this.getCenterX()){
+                   if(player.getCenterY() < this.getCenterY()){
+                       moveUp();
+                   }
+                    else{
+                       moveDown();
+                   }
+                }
+                else{
+                    if (player.getCenterX() < this.getCenterX()) {
+                        //System.out.println("MoveLeft");
+                        moveLeft();
+                    }
+                    if (player.getCenterX() > this.getCenterX()) {
+                        moveRight();
+                    }
+
+                    if (player.getCenterY() < this.getCenterY()) {
+                        moveUp();
+                    }
+
+                    if (player.getCenterY() > this.getCenterY()) {
+                        moveDown();
+                    }
+                }
 
 
-            if (player.getCenterX() < this.getCenterX()) {
-                System.out.println("MoveLeft");
-                moveLeft();
-            }
-            if (player.getCenterX() > this.getCenterX()) {
-                moveRight();
-            }
 
-            if (player.getCenterY() < this.getCenterY()) {
-                moveDown();
-            }
-
-            if (player.getCenterY() > this.getCenterY()) {
-                moveUp();
-            }
-
-
+            });
             try {
-                enemy2Thread.sleep(1000);
+                enemy2Thread.sleep(1);
             } catch (Exception e) {
             }
         }
