@@ -49,11 +49,11 @@ public class Main extends Application{
         highScoreScene = new highScoreScene(this);
 
         //Levels
-        levelOne = new LevelOne(this);
+        //levelOne = new LevelOne(this);
 
         StartGame = new CustomButton("Start Game");
         StartGame.setOnAction(event1 -> {
-            window.setScene(levelOne.getScene());
+            window.setScene(new LevelOne(this).getScene());
 
         });
         Exit = new CustomButton("Exit");
