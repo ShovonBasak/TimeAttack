@@ -1,6 +1,7 @@
 package scenes;
 
 
+import Application.Main;
 import Application.ScoreBoard;
 import UserInterface.CustomButton;
 import javafx.scene.Scene;
@@ -18,14 +19,13 @@ public class highScoreScene {
     CustomButton backButton;
     TableView<ScoreBoard> highScoreBoard;
 
-    public highScoreScene(MainMenu mainMenu) {
+    public highScoreScene(Main mainMenu) {
         window = new Stage();
         layout = new VBox(10);
         layout.setStyle("-fx-background-color: #4d004d;");
         backButton = new CustomButton("Back");
         backButton.setOnAction(event -> {
-            window.close();
-            mainMenu.window.show();
+            //do something
         });
 
 

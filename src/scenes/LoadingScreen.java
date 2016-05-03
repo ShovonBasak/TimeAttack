@@ -1,6 +1,7 @@
 package scenes;
 
 
+import Application.Main;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -25,7 +26,7 @@ public class LoadingScreen {
     Text presents;
     public Text gameName;
 
-    public LoadingScreen() {
+    public LoadingScreen(Main mainMenu) {
 
         companyName = new Text("২ টাকার Developer");
         companyName.setFont(Font.font("Verdana", FontWeight.BOLD, 50));
@@ -48,11 +49,13 @@ public class LoadingScreen {
         reflection.setFraction(0.7);
         gameName.setEffect(reflection);
 
+        setScene(mainMenu);
+
     }
 
-    public void show(MainMenu mainMenu) {
+    public void setScene(Main mainMenu) {
 
-        window = new Stage();
+
 
         VBox layout = new VBox(20, companyName, presents, gameName);
         layout.setAlignment(Pos.CENTER);
@@ -61,18 +64,14 @@ public class LoadingScreen {
 
 
         scene.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
-            window.close();
-            mainMenu.show();
+            mainMenu.getWindow().setScene(mainMenu.getScene());
         });
 
         scene.addEventFilter(KeyEvent.ANY, event -> {
-            window.close();
-            mainMenu.show();
+            mainMenu.getWindow().setScene(mainMenu.getScene());
         });
 
 
-        window.setScene(scene);
-        window.show();
 
         FadeTransition ft = new FadeTransition(Duration.millis(5000), companyName);
         ft.setFromValue(0);
@@ -98,6 +97,11 @@ public class LoadingScreen {
 
 
 
+    }
+
+    public Scene getScene() {
+
+        return this.scene;
     }
 
 
