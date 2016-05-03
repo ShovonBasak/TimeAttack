@@ -5,6 +5,7 @@ import Application.Main;
 import gameObjects.Coin;
 import gameObjects.Enemy1;
 import gameObjects.Player;
+import gameObjects.ScoreLabel;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -22,6 +23,7 @@ public class LevelOne implements Runnable {
     private Random randomPosition;
     GameOverScene gameOverScene;
     Main mainMenu;
+    ScoreLabel scoreLabel;
     private Thread mainThread;
 
 
@@ -36,7 +38,10 @@ public class LevelOne implements Runnable {
         player = new Player(50, 500, 20);
         player.setSpeed(5);
 
-        coin = new Coin(28 + randomPosition.nextInt(800), 28 + randomPosition.nextInt(600), 28, player);
+
+        scoreLabel = new ScoreLabel();
+
+        coin = new Coin(28 + randomPosition.nextInt(800), 28 + randomPosition.nextInt(600), 28, player, scoreLabel);
 
         group = new Group(player);
 
@@ -53,7 +58,8 @@ public class LevelOne implements Runnable {
         enemy[1].setVerticalDirection(true);
         enemy[2].setSpeed(.6);
 
-        group.getChildren().addAll(enemy[0],enemy[1],enemy[2]);
+
+        group.getChildren().addAll(enemy[0],enemy[1],enemy[2],scoreLabel, scoreLabel.getScoreText());
 
         group.getChildren().addAll(coin,coin.getTimeLabel());
 

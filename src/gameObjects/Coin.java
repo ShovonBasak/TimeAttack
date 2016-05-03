@@ -18,9 +18,15 @@ public class Coin extends movableObject {
     private int interval;
     private Text timeLabel;
     private int time;
+
+    public int getTime() {
+        return time;
+    }
+
     private Random randomNumber;
     private int visibilityTime;
     private Player player;
+    private ScoreLabel scoreLabel;
 
     private double adjustTimeLabelX;
     private double adjustTimeLabelY;
@@ -30,10 +36,10 @@ public class Coin extends movableObject {
     private double upperBound;
     private double lowerBound;
 
-    public Coin(double centerX, double centerY, double radius, Player player){
+    public Coin(double centerX, double centerY, double radius, Player player, ScoreLabel scoreLabel){
         super(centerX, centerY, radius, "Yellow");
         this.player = player;
-
+        this.scoreLabel = scoreLabel;
 
         randomNumber = new Random();
         this.setSpeed(15);
@@ -142,6 +148,7 @@ public class Coin extends movableObject {
     }
 
     public void collides(Enemy enemy){
+        scoreLabel.setScore(scoreLabel.getScore() - 3);
         this.setSpeed(enemy.getSpeed() * 15);
 
         leftBound = this.getCenterX() - this.getRadius();
@@ -171,6 +178,7 @@ public class Coin extends movableObject {
 
     public void collides(Player player){
         if(!Player.dead){
+            scoreLabel.setScore(scoreLabel.getScore() + time);
             hideCoin();
             setTimeAndPosition(0,15);
         }
