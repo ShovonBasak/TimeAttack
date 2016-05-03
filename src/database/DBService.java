@@ -51,7 +51,7 @@ public class DBService {
 
 
     public ArrayList<ScoreBoard> playerScore() {
-        String query="SELECT nAme,score,lvlReached FROM `scoretable` WHERE score > 0 ORDER By score DESC";
+        String query="SELECT name,score,lvlReached FROM `scoretable` WHERE score > 0 ORDER By score DESC";
         System.out.println(query);
 
         ArrayList<ScoreBoard> scoreList = new ArrayList<>();
