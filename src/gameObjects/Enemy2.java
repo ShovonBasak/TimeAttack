@@ -58,7 +58,6 @@ public class Enemy2 extends Enemy {
     }
 
 
-
     public void run() {
         //This object needs to follow the player
         while (!Player.dead) {
