@@ -138,7 +138,7 @@ public class Coin extends movableObject {
         setTimeLabelAdjustment();
     }
 
-    public void collides(Enemy1 enemy){
+    public void collides(Enemy enemy){
         this.setSpeed(enemy.getSpeed() * 15);
 
         leftBound = this.getCenterX() - this.getRadius();

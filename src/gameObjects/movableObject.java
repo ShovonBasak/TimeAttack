@@ -26,6 +26,13 @@ public abstract class movableObject extends Circle implements Runnable {
         setSpeed(.1);
     }
 
+    public boolean intersect(movableObject object) {
+        if ((object.intersects(this.getBoundsInParent()))) {
+            return true;
+        }
+        return false;
+    }
+
 
 
     public void moveRight() {

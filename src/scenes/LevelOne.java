@@ -36,24 +36,26 @@ public class LevelOne implements Runnable {
         player = new Player(50, 500, 20);
         player.setSpeed(5);
 
+        coin = new Coin(28 + randomPosition.nextInt(800), 28 + randomPosition.nextInt(600), 28);
+
         group = new Group(player);
 
         enemy = new Enemy1[3];
-        enemy[0] = new Enemy1(800, 600, 15, player);
+        enemy[0] = new Enemy1(800, 600, 15, player, coin);
         enemy[0].setSpeed(.1);
         enemy[0].setHorizontalDirection(false);
         enemy[0].setVerticalDirection(true);
 
-        enemy[1] = new Enemy1(800, 600, 15, player);
+        enemy[1] = new Enemy1(800, 600, 15, player, coin);
         enemy[1].setVerticalDirection(false);
         enemy[1].setSpeed(.3);
-        enemy[2] = new Enemy1(800, 600, 15, player);
+        enemy[2] = new Enemy1(800, 600, 15, player, coin);
         enemy[1].setVerticalDirection(true);
         enemy[2].setSpeed(.3);
 
         group.getChildren().addAll(enemy[0],enemy[1],enemy[2]);
 
-        coin = new Coin(28 + randomPosition.nextInt(800), 28 + randomPosition.nextInt(600), 28);
+
         group.getChildren().addAll(coin,coin.getTimeLabel());
 
         scene = new Scene(group, 800, 600);
@@ -72,39 +74,21 @@ public class LevelOne implements Runnable {
 
     @Override
     public void run() {
-        while ( !Player.dead ) {
+        while (!player.isDead()) {
             Platform.runLater(() -> {
-                if(coin.isVisible() && !Player.dead){
-                    for(int i=0; i<3; i++){
-                        //If Coin Collides with Enemy
-                        if(!Player.dead && coin.getBoundsInLocal().intersects(enemy[i].getBoundsInLocal())){
-                            coin.collides(enemy[i]);
-                        }
-                        //If Player collides with Enemy
-                        /*if(!Player.dead && player.getBoundsInLocal().intersects(enemy[i].getBoundsInLocal())){
-                            Player.dead = true;
-                            //change scene to gameOver Scene
-                            mainMenu.getWindow().setScene(gameOverScene.getScene());
-                            break;
-                        }*/
-                    }
-                }
-
-
-                //If player Collides with coin
-                if(!Player.dead){
-                    if(coin.getBoundsInLocal().intersects(player.getBoundsInLocal())){
-                        coin.hideCoin();
-                        coin.setTimeAndPosition(0,15);
-                    }
-                }
+                //do anything
             });
-            try{
+
+            try {
                 Thread.sleep(1);
             } catch (Exception ignored) {
-
             }
         }
+
+        //runs when player is dead
+        Platform.runLater(() -> mainMenu.getWindow().setScene(gameOverScene.getScene()));
+
+
 
 
     }

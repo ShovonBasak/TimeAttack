@@ -12,8 +12,8 @@ public class Enemy1 extends Enemy implements Runnable{
     private double upperBound;
     private double lowerBound;
 
-    public Enemy1(double centerX, double centerY, double radius, Player player) {
-        super(centerX, centerY, radius, "red", player);
+    public Enemy1(double centerX, double centerY, double radius, Player player, Coin coin) {
+        super(centerX, centerY, radius, "red", player, coin);
 
         rightBound = getCenterX() + getRadius();
         leftBound = rightBound - (getRadius() * 2);
@@ -42,7 +42,13 @@ public class Enemy1 extends Enemy implements Runnable{
                 lowerBound = upperBound + (getRadius() * 2);
 
                 if (intersect(player)) {
+                    System.out.println("Player Intersect");
                     player.setDead(true);
+                }
+
+                if (intersect(coin)) {
+                    System.out.println("Coin Intersect");
+                    //Do bounce off code here
                 }
 
 

@@ -39,7 +39,7 @@ public class Player extends movableObject {
     }
 
     public void run() {
-        while (!dead) {
+        while (!isDead()) {
             Platform.runLater(() ->
                 movePlayer()
             );
