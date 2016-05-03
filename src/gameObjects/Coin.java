@@ -149,6 +149,7 @@ public class Coin extends movableObject {
     }
 
     public void collides(Enemy enemy){
+        scoreLabel.setScore(scoreLabel.getScore());
         this.setSpeed(enemy.getSpeed());
 
         leftBound = this.getCenterX() - this.getRadius();

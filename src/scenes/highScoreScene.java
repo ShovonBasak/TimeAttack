@@ -37,7 +37,6 @@ public class highScoreScene {
         highScoreBoard.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         setTable();
         setScene();
-        updateTable();
     }
 
     public void setScene() {
@@ -78,10 +77,10 @@ public class highScoreScene {
         //1 row = 1 scoreboard object get and arraylist from the database and create objects from those.
 
         DBService x = new DBService();
-        ArrayList<ScoreBoard> SB = x.getScoreList();
+        ArrayList<ScoreBoard> b = x.getScoreList();
 
-        for (ScoreBoard scoreBoard : SB) {
-            highScoreBoard.getItems().addAll(scoreBoard);
+        for (ScoreBoard scoreBoard : b) {
+            highScoreBoard.getItems().addAll(b);
         }
     }
 
