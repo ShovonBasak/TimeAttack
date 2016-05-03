@@ -25,13 +25,6 @@ public class Player extends movableObject {
         thisTherad.start();
     }
 
-    public void setSpeed(double x) {
-        speed = x;
-    }
-
-    public double getSpeed() {
-        return speed;
-    }
 
     public void movePlayer(){
         getScene().addEventFilter(MouseEvent.MOUSE_MOVED, e -> {
