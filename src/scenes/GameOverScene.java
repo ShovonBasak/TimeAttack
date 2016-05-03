@@ -1,7 +1,9 @@
 package scenes;
 
 
+import Application.Main;
 import Application.ScoreBoard;
+import UserInterface.CustomButton;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,22 +15,26 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class GameOverScene {
-    Stage window;
     public Scene scene;
     VBox layout;
-    Button restartGame;
-    Button Exit;
+    CustomButton restartGame;
+    CustomButton Exit;
+    CustomButton mainMenuB;
     Text gameOver;
 
-    public GameOverScene() {
-        restartGame = new Button("Restart");
+    public GameOverScene(Main mainMenu) {
+        restartGame = new CustomButton("Restart");
         restartGame.setOnAction(event1 -> {
-            //do something
+            mainMenu.getWindow().setScene(new LevelOne(mainMenu).getScene());
         });
-        Exit = new Button("Exit");
-        Exit.setOnAction(event -> {
-            //do something
-        });
+
+
+        mainMenuB = new CustomButton("Main Menu");
+        mainMenuB.setOnAction(event -> mainMenu.getWindow().setScene(mainMenu.getScene()));
+
+
+        Exit = new CustomButton("Exit");
+        Exit.setOnAction(event -> mainMenu.getWindow().close());
 
 
         gameOver = new Text("Game Over");
@@ -37,22 +43,21 @@ public class GameOverScene {
         gameOver.setFill(Color.PALEVIOLETRED);
         gameOver.setTranslateY(gameOver.getTranslateY() - 10);
 
+        setScene();
 
     }
 
-    public void show() {
-        window = new Stage();
-
-        layout = new VBox(20, gameOver, restartGame, Exit);
+    public void setScene() {
+        layout = new VBox(20, gameOver, restartGame, mainMenuB, Exit);
         layout.setAlignment(Pos.CENTER);
         scene = new Scene(layout, 800, 600);
-
-
-        window.setScene(scene);
-        window.show();
-
-
+        layout.setStyle("-fx-background-color: #000000;");
     }
+
+    public Scene getScene() {
+        return this.scene;
+    }
+
 
     public void updateDatabase(ScoreBoard sb) {
         //send queries from the data of the given scoreboard object.

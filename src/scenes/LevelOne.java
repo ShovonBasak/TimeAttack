@@ -6,35 +6,30 @@ import gameObjects.Coin;
 import gameObjects.Enemy1;
 import gameObjects.Player;
 import javafx.application.Platform;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.util.Random;
 
 public class LevelOne implements Runnable {
     private Stage window;
-    private Scene background;
+    private Scene scene;
     private Group group;
     private Player player;
     private Enemy1[] enemy;
     private Coin coin;
     private Random randomPosition;
-    private Rectangle2D primaryScreenBounds;
     GameOverScene gameOverScene;
-
+    Main mainMenu;
     private Thread mainThread;
 
-    public void show(Main mainMenu) {
-        primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+
+    public LevelOne(Main mainMenu) {
+        this.mainMenu = mainMenu;
         window = new Stage();
         window.setTitle("Time Attack");
-        window.setX(primaryScreenBounds.getMinX());
-        window.setY(primaryScreenBounds.getMinY());
-        window.setMinWidth(primaryScreenBounds.getMaxX());
-        window.setMinHeight(primaryScreenBounds.getMaxY());
+
 
         randomPosition = new Random();
 
@@ -60,16 +55,19 @@ public class LevelOne implements Runnable {
         coin = new Coin(28 + randomPosition.nextInt(1200), 28 + randomPosition.nextInt(500), 28);
         group.getChildren().addAll(coin,coin.getTimeLabel());
 
-        background = new Scene(group);
+        scene = new Scene(group, 800, 600);
 
-        window.setScene(background);
-        window.show();
 
-        gameOverScene = new GameOverScene();
+        gameOverScene = new GameOverScene(mainMenu);
 
         mainThread = new Thread(this);
         mainThread.start();
     }
+
+    public Scene getScene() {
+        return this.scene;
+    }
+
 
     @Override
     public void run() {
@@ -84,8 +82,8 @@ public class LevelOne implements Runnable {
                         //If Player collides with Enemy
                         if(!Player.dead && player.getBoundsInLocal().intersects(enemy[i].getBoundsInLocal())){
                             Player.dead = true;
-                            window.close();
-                            gameOverScene.show();
+                            //change scene to gameOver Scene
+                            mainMenu.getWindow().setScene(gameOverScene.getScene());
                             break;
                         }
                     }

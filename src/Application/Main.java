@@ -10,11 +10,13 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import scenes.HighScoreScene;
+import scenes.LevelOne;
 import scenes.LoadingScreen;
 
 
 public class Main extends Application{
-
+    //Class variables
     Stage window;
     Scene scene;
     VBox layout;
@@ -25,6 +27,10 @@ public class Main extends Application{
 
     //scenes
     LoadingScreen loadingScreen;
+    HighScoreScene highScoreScene;
+
+    //Level
+    LevelOne levelOne;
 
 
     public Stage getWindow() {
@@ -39,11 +45,14 @@ public class Main extends Application{
     public Main() {
         //initialize scenes
         loadingScreen = new LoadingScreen(this);
+        highScoreScene = new HighScoreScene(this);
+
+        //Levels
+        levelOne = new LevelOne(this);
 
         StartGame = new CustomButton("Start Game");
         StartGame.setOnAction(event1 -> {
-            //do something
-
+            window.setScene(levelOne.getScene());
 
         });
         Exit = new CustomButton("Exit");
@@ -52,8 +61,7 @@ public class Main extends Application{
 
         HighScore = new CustomButton("High Score");
         HighScore.setOnAction(event -> {
-            //dosomehing
-
+            window.setScene(highScoreScene.getScene());
         });
 
         gameName = new Text("Time Attack");
