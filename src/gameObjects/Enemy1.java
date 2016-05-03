@@ -24,6 +24,36 @@ public class Enemy1 extends Enemy implements Runnable{
         thisTherad.start();
     }
 
+    public void collidesWithWall(){
+        if (horizontalDirection) {
+            if (this.rightBound < getScene().getWidth()) {
+                this.moveRight();
+            } else {
+                horizontalDirection = false;
+            }
+        } else {
+            if (this.leftBound > 0) {
+                this.moveLeft();
+            } else {
+                horizontalDirection = true;
+            }
+        }
+
+
+        if (verticalDirection) {
+            if (this.lowerBound < getScene().getHeight()) {
+                this.moveDown();
+            } else {
+                verticalDirection = false;
+            }
+        } else {
+            if (this.upperBound > 0) {
+                this.moveUp();
+            } else {
+                verticalDirection = true;
+            }
+        }
+    }
 
     public void setSpeed(double x) {
         speed = x;
@@ -41,45 +71,15 @@ public class Enemy1 extends Enemy implements Runnable{
                 upperBound = getCenterY() - getRadius();
                 lowerBound = upperBound + (getRadius() * 2);
 
-                if (intersect(player)) {
-                    System.out.println("Player Intersect");
-                    // player.setDead(true);
+                if (this.intersect(player)) {
+                    Player.dead = true;
                 }
 
-                if (intersect(coin)) {
-                    System.out.println("Coin Intersect");
-                    //Do bounce off code here
+                if (this.intersect(coin)) {
+                    coin.collides(this);
                 }
 
-
-                if (horizontalDirection) {
-                    if (this.rightBound < getScene().getWidth()) {
-                        this.moveRight();
-                    } else {
-                        horizontalDirection = false;
-                    }
-                } else {
-                    if (this.leftBound > 0) {
-                        this.moveLeft();
-                    } else {
-                        horizontalDirection = true;
-                    }
-                }
-
-
-                if (verticalDirection) {
-                    if (this.lowerBound < getScene().getHeight()) {
-                        this.moveDown();
-                    } else {
-                        verticalDirection = false;
-                    }
-                } else {
-                    if (this.upperBound > 0) {
-                        this.moveUp();
-                    } else {
-                        verticalDirection = true;
-                    }
-                }
+                collidesWithWall();
             });
             try{
                 thisTherad.sleep(1);

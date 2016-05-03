@@ -20,6 +20,7 @@ public class Coin extends movableObject {
     private int time;
     private Random randomNumber;
     private int visibilityTime;
+    private Player player;
 
     private double adjustTimeLabelX;
     private double adjustTimeLabelY;
@@ -29,8 +30,10 @@ public class Coin extends movableObject {
     private double upperBound;
     private double lowerBound;
 
-    public Coin(double centerX, double centerY, double radius){
+    public Coin(double centerX, double centerY, double radius, Player player){
         super(centerX, centerY, radius, "Yellow");
+        this.player = player;
+
 
         randomNumber = new Random();
         this.setSpeed(15);
@@ -166,10 +169,19 @@ public class Coin extends movableObject {
         }
     }
 
+    public void collides(Player player){
+        if(!Player.dead){
+            hideCoin();
+            setTimeAndPosition(0,15);
+        }
+    }
 
     public void run() {
         while(!Player.dead) {
             Platform.runLater(() -> {
+                if (this.intersect(player)) {
+                    this.collides(player);
+                }
                 if(time > 0){
                     if(isCoinVisible()){
                         this.showCoin();

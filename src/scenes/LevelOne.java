@@ -36,7 +36,7 @@ public class LevelOne implements Runnable {
         player = new Player(50, 500, 20);
         player.setSpeed(5);
 
-        coin = new Coin(28 + randomPosition.nextInt(800), 28 + randomPosition.nextInt(600), 28);
+        coin = new Coin(28 + randomPosition.nextInt(800), 28 + randomPosition.nextInt(600), 28, player);
 
         group = new Group(player);
 
@@ -48,10 +48,10 @@ public class LevelOne implements Runnable {
 
         enemy[1] = new Enemy1(800, 600, 15, player, coin);
         enemy[1].setVerticalDirection(false);
-        enemy[1].setSpeed(.3);
+        enemy[1].setSpeed(.6);
         enemy[2] = new Enemy1(800, 600, 15, player, coin);
         enemy[1].setVerticalDirection(true);
-        enemy[2].setSpeed(.3);
+        enemy[2].setSpeed(.6);
 
         group.getChildren().addAll(enemy[0],enemy[1],enemy[2]);
 
@@ -72,7 +72,6 @@ public class LevelOne implements Runnable {
     }
 
 
-    @Override
     public void run() {
         while (!player.isDead()) {
             Platform.runLater(() -> {
