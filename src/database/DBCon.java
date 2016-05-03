@@ -12,23 +12,30 @@ public class DBCon {
         try {
             //step1 load the driver class
             Class.forName("oracle.jdbc.driver.OracleDriver");
+        }catch(ClassNotFoundException e) {
+        }
+        try{
 
             //step2 create  the connection object
             con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "scott", "tiger");
 
             //step3 create the statement object
             stmt = con.createStatement();
+
+            sqlQuery = "select  table_name from user_tables where table_name = 'scoreBoard'";
+            //createTable();
+
         } catch (Exception ex) {
             connectionCheck = false;
         }
-        createTable();
     }
 
     public void createTable(){
         if(connectionCheck()){
             try {
-                inUpdateDelete("CREATE TABLE score_board (name varchar(255), score varchar(255), lvlReached varchar (255));");
+                inUpdateDelete("CREATE TABLE scoreBoard (name varchar(255), score number(10), lvlReached varchar (255))");
             } catch (SQLException e) {
+                System.out.print("SQL");
                 e.printStackTrace();
             }
         }

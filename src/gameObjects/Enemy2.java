@@ -10,6 +10,7 @@ public class Enemy2 extends Enemy {
     private Player player;
     private Coin coin;
     private Thread enemy2Thread;
+    private double m;
 
     public Enemy2(double centerX, double centerY,double radius, Player player, Coin coin) {
         super(centerX, centerY, radius, "Blue", player, coin);
@@ -40,7 +41,6 @@ public class Enemy2 extends Enemy {
         }
         else{
             if (player.getCenterX() < this.getCenterX()) {
-                //System.out.println("MoveLeft");
                 moveLeft();
             }
             if (player.getCenterX() > this.getCenterX()) {

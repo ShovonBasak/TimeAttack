@@ -5,26 +5,25 @@ import Application.ScoreBoard;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 
 
 public class DBService {
-    private DBCon dbCon = new DBCon();
-    private ScoreBoard scoreBoard;
-    private String user;
-    private int score;
+    private DBCon dbCon ;
     private int isDatabaseUpdated;
-    private boolean isNameAvailable = true;
+
+    public DBService(){
+        dbCon = new DBCon();
+    }
 
     public int updateScoreBoard(String userName, String score, String lvlReached) {
-        String query = "INSERT INTO score_board VALUES('" + userName + "'," + "'" + score + "'," + lvlReached + "," + 1 + ");";
-        System.out.println(query);
-
-        try {
-            return isDatabaseUpdated = dbCon.inUpdateDelete(query);
-        }  catch (SQLException e) {
-            e.printStackTrace();
+        String query = "insert into scoreBoard values('" + userName + "', " + "'" + score + "', " + "'" + lvlReached+ "'" + ")";
+        if(dbConnectionCheck()) {
+            try {
+                return isDatabaseUpdated = dbCon.inUpdateDelete(query);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return 420;
     }
@@ -34,7 +33,7 @@ public class DBService {
     }
 
     public String pastScore(String username) {
-        String query = "SELECT score FROM `score_board` WHERE name='" + username + "';";
+        String query = "SELECT score FROM scoreBoard WHERE name='" + username + "'";
         System.out.println(query);
         try {
             ResultSet rs = dbCon.selectQuery(query);
@@ -51,7 +50,7 @@ public class DBService {
 
 
     public ArrayList<ScoreBoard> getScoreList() {
-        String query="SELECT name,score,lvlReached FROM `scoretable` WHERE score > 0 ORDER By score DESC";
+        String query="SELECT name,score,lvlReached FROM scoreBoard WHERE score > 0 ORDER By score DESC";
         System.out.println(query);
 
         ArrayList<ScoreBoard> scoreList = new ArrayList<>();
