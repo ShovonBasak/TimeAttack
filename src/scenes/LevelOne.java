@@ -39,21 +39,21 @@ public class LevelOne implements Runnable {
         group = new Group(player);
 
         enemy = new Enemy1[3];
-        enemy[0] = new Enemy1(1300, 600, 15);
+        enemy[0] = new Enemy1(800, 600, 15);
         enemy[0].setSpeed(.1);
         enemy[0].setHorizontalDirection(false);
         enemy[0].setVerticalDirection(true);
 
-        enemy[1] = new Enemy1(1300, 600, 15);
+        enemy[1] = new Enemy1(800, 600, 15);
         enemy[1].setVerticalDirection(false);
         enemy[1].setSpeed(.3);
-        enemy[2] = new Enemy1(1300, 600, 15);
+        enemy[2] = new Enemy1(800, 600, 15);
         enemy[1].setVerticalDirection(true);
         enemy[2].setSpeed(.3);
 
         group.getChildren().addAll(enemy[0],enemy[1],enemy[2]);
 
-        coin = new Coin(28 + randomPosition.nextInt(1200), 28 + randomPosition.nextInt(500), 28);
+        coin = new Coin(28 + randomPosition.nextInt(800), 28 + randomPosition.nextInt(600), 28);
         group.getChildren().addAll(coin,coin.getTimeLabel());
 
         scene = new Scene(group, 800, 600);
