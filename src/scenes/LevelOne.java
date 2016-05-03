@@ -2,6 +2,7 @@ package scenes;
 
 
 import Application.Main;
+import UserInterface.ScoreLabel;
 import gameObjects.*;
 import javafx.application.Platform;
 import javafx.scene.Group;

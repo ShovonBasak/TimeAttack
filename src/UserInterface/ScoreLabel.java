@@ -1,5 +1,7 @@
-package gameObjects;
+package UserInterface;
 
+import gameObjects.Coin;
+import gameObjects.Player;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
