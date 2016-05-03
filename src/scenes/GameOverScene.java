@@ -4,6 +4,7 @@ package scenes;
 import Application.Main;
 import Application.ScoreBoard;
 import UserInterface.CustomButton;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -34,7 +35,11 @@ public class GameOverScene {
 
 
         Exit = new CustomButton("Exit");
-        Exit.setOnAction(event -> mainMenu.getWindow().close());
+        Exit.setOnAction(event -> {
+            Platform.exit();
+            System.exit(0);
+            mainMenu.getWindow().close();
+        });
 
 
         gameOver = new Text("Game Over");

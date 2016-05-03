@@ -12,38 +12,39 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
-public class highScoreScene {
+public class HighScoreScene {
     Stage window;
     Scene scene;
     VBox layout;
     CustomButton backButton;
     TableView<ScoreBoard> highScoreBoard;
 
-    public highScoreScene(Main mainMenu) {
+    public HighScoreScene(Main mainMenu) {
         window = new Stage();
         layout = new VBox(10);
         layout.setStyle("-fx-background-color: #4d004d;");
+
+        //button with action to return to scene
         backButton = new CustomButton("Back");
-        backButton.setOnAction(event -> {
-            //do something
-        });
+        backButton.setOnAction(event -> mainMenu.getWindow().setScene(mainMenu.getScene()));
 
 
         highScoreBoard = new TableView<>();
         highScoreBoard.setStyle("-fx-background-color: #4d004d;");
         highScoreBoard.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         setTable();
+        setScene();
 
     }
 
-    public void show() {
-
+    public void setScene() {
         layout.getChildren().addAll(backButton, highScoreBoard);
         scene = new Scene(layout, 800, 600);
-        window.setScene(scene);
 
+    }
 
-        window.show();
+    public Scene getScene() {
+        return this.scene;
     }
 
 

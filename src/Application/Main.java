@@ -2,6 +2,7 @@ package Application;
 
 import UserInterface.CustomButton;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -56,7 +57,11 @@ public class Main extends Application{
 
         });
         Exit = new CustomButton("Exit");
-        Exit.setOnAction(event -> window.close());
+        Exit.setOnAction(event -> {
+            Platform.exit();
+            System.exit(0);
+
+        });
 
 
         HighScore = new CustomButton("High Score");
@@ -82,6 +87,12 @@ public class Main extends Application{
         scene = new Scene(layout, 800, 600);
 
         window.show();
+
+        window.setOnCloseRequest(event -> {
+                    Platform.exit();
+                    System.exit(0);
+                }
+        );
 
 
     }
