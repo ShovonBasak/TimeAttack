@@ -50,7 +50,7 @@ public class DBService {
     }
 
 
-    public ArrayList<ScoreBoard> playerScore() {
+    public ArrayList<ScoreBoard> getScoreList() {
         String query="SELECT name,score,lvlReached FROM `scoretable` WHERE score > 0 ORDER By score DESC";
         System.out.println(query);
 

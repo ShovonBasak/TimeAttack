@@ -4,12 +4,15 @@ package scenes;
 import Application.Main;
 import Application.ScoreBoard;
 import UserInterface.CustomButton;
+import database.DBService;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
 
 
 public class highScoreScene {
@@ -72,7 +75,13 @@ public class highScoreScene {
     public void updateTable() {
         //fetch data from database and get and array and update like this code from a loop.
         //1 row = 1 scoreboard object get and arraylist from the database and create objects from those.
-        highScoreBoard.getItems().addAll(new ScoreBoard("1", "1", "1"));
+
+        DBService x = new DBService();
+        ArrayList<ScoreBoard> b = x.getScoreList();
+
+        for (ScoreBoard scoreBoard : b) {
+            highScoreBoard.getItems().addAll(b);
+        }
     }
 
 
