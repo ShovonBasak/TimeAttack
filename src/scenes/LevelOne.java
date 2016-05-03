@@ -57,7 +57,7 @@ public class LevelOne implements Runnable {
         enemy[1].setVerticalDirection(true);
         enemy[2].setSpeed(.6);
 
-        enemy2 = new Enemy2(15, player);
+        enemy2 = new Enemy2(100, 100, 15, player, coin);
 
 
         group.getChildren().addAll(enemy[0],enemy[1],enemy[2], enemy2, scoreLabel, scoreLabel.getScoreText());

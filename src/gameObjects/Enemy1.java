@@ -55,13 +55,6 @@ public class Enemy1 extends Enemy implements Runnable{
         }
     }
 
-    public void setSpeed(double x) {
-        speed = x;
-    }
-
-    public double getSpeed() {
-        return speed;
-    }
 
     public void run() {
         while(!Player.dead){
