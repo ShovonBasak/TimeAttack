@@ -67,7 +67,7 @@ public class LevelOne implements Runnable {
         scene = new Scene(group, 800, 600);
 
 
-        gameOverScene = new GameOverScene(mainMenu);
+
 
         mainThread = new Thread(this);
         mainThread.start();
@@ -91,7 +91,11 @@ public class LevelOne implements Runnable {
         }
 
         //runs when player is dead
-        Platform.runLater(() -> mainMenu.getWindow().setScene(gameOverScene.getScene()));
+        Platform.runLater(() ->
+        {
+            gameOverScene = new GameOverScene(mainMenu, scoreLabel);
+            mainMenu.getWindow().setScene(gameOverScene.getScene());
+        });
     }
 }
 
