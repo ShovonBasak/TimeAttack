@@ -5,7 +5,7 @@ import javafx.application.Platform;
 import javafx.scene.input.MouseEvent;
 
 public class Player extends movableObject {
-    public static boolean dead = false;
+    public static boolean dead = true;
 
     public boolean isDead() {
         return dead;

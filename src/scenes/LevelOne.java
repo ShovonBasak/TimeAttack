@@ -55,7 +55,6 @@ public class LevelOne implements Runnable {
 
         group.getChildren().addAll(enemy[0],enemy[1],enemy[2]);
 
-
         group.getChildren().addAll(coin,coin.getTimeLabel());
 
         scene = new Scene(group, 800, 600);
@@ -86,10 +85,6 @@ public class LevelOne implements Runnable {
 
         //runs when player is dead
         Platform.runLater(() -> mainMenu.getWindow().setScene(gameOverScene.getScene()));
-
-
-
-
     }
 }
 
