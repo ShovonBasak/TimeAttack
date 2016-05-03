@@ -43,7 +43,7 @@ public class Enemy1 extends Enemy implements Runnable{
 
                 if (intersect(player)) {
                     System.out.println("Player Intersect");
-                    player.setDead(true);
+                    // player.setDead(true);
                 }
 
                 if (intersect(coin)) {
