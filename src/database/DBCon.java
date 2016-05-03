@@ -21,11 +21,21 @@ public class DBCon {
         } catch (Exception ex) {
             connectionCheck = false;
         }
+        createTable();
+    }
+
+    public void createTable(){
+        if(connectionCheck()){
+            try {
+                inUpdateDelete("CREATE TABLE score_board (name varchar(255), score varchar(255), lvlReached varchar (255));");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public boolean connectionCheck(){
         return connectionCheck;
-
     }
 
     public int inUpdateDelete(String sql) throws SQLException {

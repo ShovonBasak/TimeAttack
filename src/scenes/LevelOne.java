@@ -30,7 +30,7 @@ public class LevelOne implements Runnable {
         window = new Stage();
         window.setTitle("Time Attack");
 
-
+        Player.dead = false;
         randomPosition = new Random();
 
         player = new Player(50, 500, 20);

@@ -34,7 +34,6 @@ public class HighScoreScene {
         highScoreBoard.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         setTable();
         setScene();
-
     }
 
     public void setScene() {
