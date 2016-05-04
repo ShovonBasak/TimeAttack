@@ -34,9 +34,14 @@ public class GameOverScene {
 
         Next = new CustomButton("Next");
         Next.setOnAction(event1 -> {
-
+            ScoreBoard SB;
             String name = NameField.getText();
-            ScoreBoard SB = new ScoreBoard(name, String.valueOf(scoreLabel.getScore()), "1");
+            if (name != null) {
+                SB = new ScoreBoard(name, String.valueOf(scoreLabel.getScore()), "1");
+            } else {
+                SB = new ScoreBoard("NameLessWonder", String.valueOf(scoreLabel.getScore()), "1");
+            }
+
             updateDatabase(SB);
             mainMenu.getWindow().setScene(mainMenu.getHighScoreScene());
         });
