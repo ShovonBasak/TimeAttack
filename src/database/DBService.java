@@ -14,6 +14,7 @@ public class DBService {
 
     public DBService(){
         dbCon = new DBCon();
+        dbCon.createTable();
     }
 
     public int updateScoreBoard(String userName, String score, String lvlReached) {
@@ -34,12 +35,12 @@ public class DBService {
 
     public String pastScore(String username) {
         String query = "SELECT score FROM scoreBoard WHERE name='" + username + "'";
+
         System.out.println(query);
         try {
             ResultSet rs = dbCon.selectQuery(query);
             if (rs.next()) {
                 String score = rs.getString("score");
-
                 return score;
             }
         } catch (SQLException e) {
@@ -51,7 +52,6 @@ public class DBService {
 
     public ArrayList<ScoreBoard> getScoreList() {
         String query="SELECT name,score,lvlReached FROM scoreBoard WHERE score > 0 ORDER By score DESC";
-        System.out.println(query);
 
         ArrayList<ScoreBoard> scoreList = new ArrayList<>();
         try {

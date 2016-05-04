@@ -17,12 +17,13 @@ public class LevelOne implements Runnable {
     private Group group;
     private Player player;
     private Enemy1[] enemy;
-    Enemy2 enemy2;
+    private Enemy2 enemy2;
     private Coin coin;
     private Random randomPosition;
-    GameOverScene gameOverScene;
-    Main mainMenu;
-    ScoreLabel scoreLabel;
+    private GameOverScene gameOverScene;
+    private Main mainMenu;
+    private ScoreLabel scoreLabel;
+    private boolean paused = false;
     private Thread mainThread;
 
 
@@ -68,12 +69,10 @@ public class LevelOne implements Runnable {
 
         scene = new Scene(group, 800, 600);
 
-
-
-
         mainThread = new Thread(this);
         mainThread.start();
     }
+
 
     public Scene getScene() {
         return this.scene;

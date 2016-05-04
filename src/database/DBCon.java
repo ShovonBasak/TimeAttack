@@ -22,12 +22,10 @@ public class DBCon {
             //step3 create the statement object
             stmt = con.createStatement();
 
-            sqlQuery = "select  table_name from user_tables where table_name = 'scoreBoard'";
-            //createTable();
-
         } catch (Exception ex) {
             connectionCheck = false;
         }
+
     }
 
     public void createTable(){
@@ -35,8 +33,6 @@ public class DBCon {
             try {
                 inUpdateDelete("CREATE TABLE scoreBoard (name varchar(255), score number(10), lvlReached varchar (255))");
             } catch (SQLException e) {
-                System.out.print("SQL");
-                e.printStackTrace();
             }
         }
     }
