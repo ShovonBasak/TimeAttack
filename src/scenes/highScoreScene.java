@@ -42,16 +42,9 @@ public class highScoreScene {
         backButton = new CustomButton("Back");
         backButton.setOnAction(event -> mainMenu.getWindow().setScene(mainMenu.getScene()));
 
-
-        setScene();
-
     }
 
     public void setScene() {
-
-
-        setTable();
-
         HBox hBox = new HBox(backButton, text);
         hBox.setStyle("-fx-background-color: #276EB1;");
 
@@ -62,6 +55,7 @@ public class highScoreScene {
 
     public Scene getScene() {
         updateTable();
+        setScene();
         return this.scene;
     }
 
