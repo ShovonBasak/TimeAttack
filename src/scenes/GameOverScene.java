@@ -2,7 +2,7 @@ package scenes;
 
 
 import Application.Main;
-import Application.ScoreBoard;
+import UserInterface.ScoreBoard;
 import UserInterface.CustomButton;
 import UserInterface.ScoreLabel;
 import database.DBService;

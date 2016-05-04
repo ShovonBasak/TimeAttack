@@ -1,4 +1,4 @@
-package Application;
+package UserInterface;
 
 
 public class ScoreBoard {

@@ -2,7 +2,7 @@ package scenes;
 
 
 import Application.Main;
-import Application.ScoreBoard;
+import UserInterface.ScoreBoard;
 import UserInterface.CustomButton;
 import database.DBService;
 import javafx.scene.Scene;
@@ -15,9 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 
