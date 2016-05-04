@@ -6,7 +6,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import scenes.LevelOne;
+import scenes.gameScene;
 
 import java.util.Random;
 import java.util.Timer;
@@ -77,7 +77,7 @@ public class Coin extends movableObject {
     }
 
     public synchronized void resume() {
-        LevelOne.isPaused = false;
+        gameScene.isPaused = false;
         notify();
     }
 
@@ -123,12 +123,7 @@ public class Coin extends movableObject {
     }
 
     public boolean isCoinVisible(){
-        if(time == visibilityTime){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return time == visibilityTime;
     }
 
     private void setTimeLabelAdjustment(){
@@ -213,7 +208,7 @@ public class Coin extends movableObject {
             try {
                 thisThread.sleep(1);
                 synchronized (this) {
-                    while (LevelOne.isPaused) {
+                    while (gameScene.isPaused) {
                         wait();
                     }
                 }

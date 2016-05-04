@@ -3,17 +3,16 @@ package gameObjects;
 
 import javafx.application.Platform;
 import javafx.scene.input.MouseEvent;
-import scenes.LevelOne;
+import scenes.gameScene;
 
 public class Player extends movableObject {
     public static boolean dead = false;
-    public static int levelReached = 1;
 
     public boolean isDead() {
         return dead;
     }
     public synchronized void resume() {
-        LevelOne.isPaused = false;
+        gameScene.isPaused = false;
         notify();
     }
 
@@ -40,14 +39,12 @@ public class Player extends movableObject {
 
     public void run() {
         while (!isDead()) {
-            Platform.runLater(() ->
-                movePlayer()
-            );
+            Platform.runLater(this::movePlayer);
 
             try {
                 thisThread.sleep(1);
                 synchronized (this) {
-                    while (LevelOne.isPaused) {
+                    while (gameScene.isPaused) {
                         wait();
                     }
                 }

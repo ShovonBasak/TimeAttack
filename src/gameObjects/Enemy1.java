@@ -2,10 +2,7 @@ package gameObjects;
 
 
 import javafx.application.Platform;
-import gameObjects.Player;
-import scenes.LevelOne;
-
-import static sun.audio.AudioPlayer.player;
+import scenes.gameScene;
 
 public class Enemy1 extends Enemy implements Runnable{
     private double rightBound;
@@ -26,7 +23,7 @@ public class Enemy1 extends Enemy implements Runnable{
     }
 
     public synchronized void resume() {
-        LevelOne.isPaused = false;
+        gameScene.isPaused = false;
         notify();
     }
 
@@ -84,7 +81,7 @@ public class Enemy1 extends Enemy implements Runnable{
             try{
                 thisThread.sleep(1);
                 synchronized (this) {
-                    while (LevelOne.isPaused) {
+                    while (gameScene.isPaused) {
                         wait();
                     }
                 }

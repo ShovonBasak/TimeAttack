@@ -1,9 +1,7 @@
 package gameObjects;
 
 import javafx.application.Platform;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Circle;
-import scenes.LevelOne;
+import scenes.gameScene;
 
 
 public class Enemy2 extends Enemy {
@@ -24,7 +22,7 @@ public class Enemy2 extends Enemy {
     }
 
     public synchronized void resume() {
-        LevelOne.isPaused = false;
+        gameScene.isPaused = false;
         notify();
     }
 
@@ -81,7 +79,7 @@ public class Enemy2 extends Enemy {
             try {
                 thisThread.sleep(1);
                 synchronized (this) {
-                    while (LevelOne.isPaused) {
+                    while (gameScene.isPaused) {
                         wait();
                     }
                 }

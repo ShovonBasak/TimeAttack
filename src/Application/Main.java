@@ -12,7 +12,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import scenes.highScoreScene;
-import scenes.LevelOne;
+import scenes.gameScene;
 import scenes.LoadingScreen;
 import scenes.instructionsScene;
 
@@ -34,7 +34,7 @@ public class Main extends Application{
     instructionsScene instructionsScene;
 
     //Level
-    LevelOne levelOne;
+    gameScene gameScene;
 
 
     public Stage getWindow() {
@@ -60,10 +60,7 @@ public class Main extends Application{
 
         //initialize buttons
         startGame = new CustomButton("Start Game");
-        startGame.setOnAction(event1 -> {
-            window.setScene(new LevelOne(this).getScene());
-
-        });
+        startGame.setOnAction(event1 -> window.setScene(new gameScene(this).getScene()));
         exit = new CustomButton("Exit");
         exit.setOnAction(event -> {
             Platform.exit();
@@ -78,9 +75,7 @@ public class Main extends Application{
 
 
         highScore = new CustomButton("High Score");
-        highScore.setOnAction(event -> {
-            window.setScene(new highScoreScene(this).getScene());
-        });
+        highScore.setOnAction(event -> window.setScene(new highScoreScene(this).getScene()));
 
         gameName = new Text("Time Attack");
         gameName.setFont(Font.font("Blackadder ITC", FontWeight.BOLD, 60));

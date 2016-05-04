@@ -30,7 +30,7 @@ public class GameOverScene {
     private Text Score;
     private Text nameLable;
 
-    public GameOverScene(Main mainMenu, ScoreLabel scoreLabel) {
+    public GameOverScene(Main mainMenu, ScoreLabel scoreLabel, int levelReached) {
         this.scoreLabel = scoreLabel;
 
         Next = new CustomButton("Next");
@@ -38,9 +38,9 @@ public class GameOverScene {
             ScoreBoard SB;
             String name = NameField.getText();
             if (!name.isEmpty()) {
-                SB = new ScoreBoard(name, String.valueOf(scoreLabel.getScore()), String.valueOf(Player.levelReached));
+                SB = new ScoreBoard(name, String.valueOf(scoreLabel.getScore()), String.valueOf(levelReached));
             } else {
-                SB = new ScoreBoard("NameLessWonder", String.valueOf(scoreLabel.getScore()), String.valueOf(Player.levelReached));
+                SB = new ScoreBoard("NameLessWonder", String.valueOf(scoreLabel.getScore()), String.valueOf(levelReached));
             }
 
             updateDatabase(SB);
