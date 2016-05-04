@@ -49,7 +49,7 @@ public class highScoreScene {
         highScoreBoard.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         setTable();
         setScene();
-        updateTable();
+
     }
 
     public void setScene() {
@@ -62,6 +62,7 @@ public class highScoreScene {
     }
 
     public Scene getScene() {
+        updateTable();
         return this.scene;
     }
 
@@ -98,6 +99,7 @@ public class highScoreScene {
         for (ScoreBoard scoreBoard : sb) {
             highScoreBoard.getItems().addAll(scoreBoard);
         }
+        highScoreBoard.refresh();
     }
 
 
