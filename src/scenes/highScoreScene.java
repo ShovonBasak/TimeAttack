@@ -43,15 +43,15 @@ public class highScoreScene {
         backButton.setOnAction(event -> mainMenu.getWindow().setScene(mainMenu.getScene()));
 
 
-        highScoreBoard = new TableView<>();
-        highScoreBoard.setStyle("-fx-background-color: #27B1AF;");
-        highScoreBoard.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        setTable();
         setScene();
 
     }
 
     public void setScene() {
+
+
+        setTable();
+
         HBox hBox = new HBox(backButton, text);
         hBox.setStyle("-fx-background-color: #276EB1;");
 
@@ -70,6 +70,11 @@ public class highScoreScene {
         //Takes an scoreBoardObject
         //columns
         //title
+        highScoreBoard = new TableView<>();
+        highScoreBoard.setStyle("-fx-background-color: #27B1AF;");
+        highScoreBoard.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+
         TableColumn<ScoreBoard, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 
@@ -94,6 +99,7 @@ public class highScoreScene {
         //fetch data from database and get and array and update like this code from a loop.
         //1 row = 1 scoreboard object get and arraylist from the database and create objects from those.
         try {
+            setTable();
             DBService x = new DBService();
             ArrayList<ScoreBoard> sb = x.getScoreList();
 
