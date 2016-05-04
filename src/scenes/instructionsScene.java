@@ -25,7 +25,7 @@ public class instructionsScene {
         text = new Text("INSTRUCTIONS");
         text.setFont(Font.font("Monotype Corsiva", FontWeight.BOLD, 25));
         text.setCache(true);
-        text.setFill(Color.YELLOWGREEN);
+        text.setFill(Color.BLANCHEDALMOND);
         text.setTranslateX(text.getTranslateX() + 230);
 
 
@@ -43,7 +43,7 @@ public class instructionsScene {
 
     public void setScene() {
         HBox hBox = new HBox(backButton, text);
-        hBox.setStyle("-fx-background-color: #276EB1;");
+        hBox.setStyle("-fx-background-color: #00cccc;");
         layout.setTop(hBox);
 
 

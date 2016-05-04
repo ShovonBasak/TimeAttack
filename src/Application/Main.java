@@ -64,7 +64,7 @@ public class Main extends Application{
             window.setScene(new LevelOne(this).getScene());
 
         });
-        exit = new CustomButton("exit");
+        exit = new CustomButton("Exit");
         exit.setOnAction(event -> {
             Platform.exit();
             System.exit(0);
