@@ -16,8 +16,8 @@ public class Player extends movableObject {
         super(centerX, centerY, radius, "green");
         setSpeed(1);
 
-        thisTherad = new Thread(this);
-        thisTherad.start();
+        thisThread = new Thread(this);
+        thisThread.start();
     }
 
 
@@ -40,7 +40,7 @@ public class Player extends movableObject {
             );
 
             try {
-                Thread.sleep(1);
+                thisThread.sleep(1);
             } catch (Exception ignored) {
             }
         }

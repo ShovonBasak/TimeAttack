@@ -20,8 +20,8 @@ public class Enemy1 extends Enemy implements Runnable{
         upperBound = getCenterY() - getRadius();
         lowerBound = upperBound + (getRadius() * 2);
 
-        thisTherad = new Thread(this);
-        thisTherad.start();
+        thisThread = new Thread(this);
+        thisThread.start();
     }
 
     public void collidesWithWall(){
@@ -75,7 +75,7 @@ public class Enemy1 extends Enemy implements Runnable{
                 collidesWithWall();
             });
             try{
-                thisTherad.sleep(1);
+                thisThread.sleep(1);
             }catch (Exception ignored){}
         }
     }

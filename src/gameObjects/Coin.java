@@ -64,8 +64,8 @@ public class Coin extends movableObject {
         upperBound = centerY - radius;
         lowerBound = centerY + radius;
 
-        thisTherad = new Thread(this);
-        thisTherad.start();
+        thisThread = new Thread(this);
+        thisThread.start();
 
 
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -205,7 +205,7 @@ public class Coin extends movableObject {
                 }
             });
             try {
-                thisTherad.sleep(1);
+                thisThread.sleep(1);
             } catch (Exception ignored) {
             }
         }

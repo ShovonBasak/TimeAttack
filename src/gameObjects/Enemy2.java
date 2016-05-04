@@ -18,8 +18,8 @@ public class Enemy2 extends Enemy {
         this.coin = coin;
 
         setSpeed(.1);
-        enemy2Thread = new Thread(this);
-        enemy2Thread.start();
+        thisThread = new Thread(this);
+        thisThread.start();
     }
 
     public void followPlayer(){
@@ -73,8 +73,8 @@ public class Enemy2 extends Enemy {
                 }
             });
             try {
-                enemy2Thread.sleep(1);
-            } catch (Exception e) {
+                thisThread.sleep(1);
+            } catch (Exception ignored) {
             }
         }
 

@@ -64,7 +64,6 @@ public class Main extends Application{
         Exit.setOnAction(event -> {
             Platform.exit();
             System.exit(0);
-
         });
 
 
