@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 
 public class DBService {
-    private DBCon dbCon ;
+    public DBCon dbCon ;
     private int isDatabaseUpdated;
 
     public DBService(){

@@ -7,6 +7,7 @@ import UserInterface.CustomButton;
 import UserInterface.ScoreLabel;
 import database.DBService;
 
+import gameObjects.Player;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
@@ -19,15 +20,15 @@ import javafx.scene.text.Text;
 
 public class GameOverScene {
     public Scene scene;
-    VBox layout;
-    CustomButton Next;
-    ScoreLabel scoreLabel;
-    TextField NameField;
+    private VBox layout;
+    private CustomButton Next;
+    private ScoreLabel scoreLabel;
+    private TextField NameField;
 
 
-    Text gameOver;
-    Text Score;
-    Text nameLable;
+    private Text gameOver;
+    private Text Score;
+    private Text nameLable;
 
     public GameOverScene(Main mainMenu, ScoreLabel scoreLabel) {
         this.scoreLabel = scoreLabel;
@@ -36,10 +37,10 @@ public class GameOverScene {
         Next.setOnAction(event1 -> {
             ScoreBoard SB;
             String name = NameField.getText();
-            if (name != null) {
-                SB = new ScoreBoard(name, String.valueOf(scoreLabel.getScore()), "1");
+            if (!name.isEmpty()) {
+                SB = new ScoreBoard(name, String.valueOf(scoreLabel.getScore()), String.valueOf(Player.levelReached));
             } else {
-                SB = new ScoreBoard("NameLessWonder", String.valueOf(scoreLabel.getScore()), "1");
+                SB = new ScoreBoard("NameLessWonder", String.valueOf(scoreLabel.getScore()), String.valueOf(Player.levelReached));
             }
 
             updateDatabase(SB);
@@ -94,6 +95,7 @@ public class GameOverScene {
         try {
             DBService ds = new DBService();
             ds.updateScoreBoard(sb.getName(), sb.getScore(), sb.getLvlReached());
+            ds.dbCon.con.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

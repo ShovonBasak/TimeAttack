@@ -7,6 +7,7 @@ import scenes.LevelOne;
 
 public class Player extends movableObject {
     public static boolean dead = false;
+    public static int levelReached = 1;
 
     public boolean isDead() {
         return dead;

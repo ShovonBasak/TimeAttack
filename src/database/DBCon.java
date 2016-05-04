@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class DBCon {
     private  String sqlQuery;
-    private  Connection con;
+    public   Connection con;
     private  Statement stmt;
     private  ResultSet result;
     private boolean connectionCheck=true;

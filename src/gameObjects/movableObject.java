@@ -21,11 +21,6 @@ public abstract class movableObject extends Circle implements Runnable {
         this.speed = speed;
     }
 
-    public movableObject(double radius, String color) {
-        super(radius, Paint.valueOf(color));
-        setSpeed(.1);
-    }
-
     public boolean intersect(movableObject object) {
         if ((object.intersects(this.getBoundsInParent()))) {
             return true;

@@ -95,7 +95,8 @@ public class highScoreScene {
         try {
             setTable();
             DBService x = new DBService();
-            ArrayList<ScoreBoard> sb = x.getScoreList();
+            ArrayList<ScoreBoard> sb = new ArrayList<>();
+            sb = x.getScoreList();
 
             for (ScoreBoard scoreBoard : sb) {
                 highScoreBoard.getItems().addAll(scoreBoard);

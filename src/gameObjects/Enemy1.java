@@ -70,15 +70,16 @@ public class Enemy1 extends Enemy implements Runnable{
                 upperBound = getCenterY() - getRadius();
                 lowerBound = upperBound + (getRadius() * 2);
 
-                if (this.intersect(player)) {
-                    Player.dead = true;
-                }
+                if(this.isVisible()){
+                    collidesWithWall();
+                    if (this.intersect(player)) {
+                        Player.dead = true;
+                    }
 
-                if (this.intersect(coin)) {
-                    coin.collides(this);
+                    if (this.intersect(coin)) {
+                        coin.collides(this);
+                    }
                 }
-
-                collidesWithWall();
             });
             try{
                 thisThread.sleep(1);

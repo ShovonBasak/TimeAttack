@@ -45,7 +45,7 @@ public class Coin extends movableObject {
 
         randomNumber = new Random();
         this.setSpeed(15);
-        time = 15;
+        time = 7;
         adjustTimeLabelX = -8;
         adjustTimeLabelY = 6;
 
@@ -187,7 +187,7 @@ public class Coin extends movableObject {
         if(!Player.dead){
             scoreLabel.setScore(scoreLabel.getScore() + time);
             hideCoin();
-            setTimeAndPosition(0,15);
+            setTimeAndPosition(0,7);
         }
     }
 
@@ -201,13 +201,13 @@ public class Coin extends movableObject {
                     if(isCoinVisible()){
                         this.showCoin();
                     }
-                    else if(time > 15){
+                    else if(time > 7){
                         time--;
                     }
                     timeLabel.setText("" + time);
                 }else {
                     this.hideCoin();
-                    this.setTimeAndPosition(0,15);
+                    this.setTimeAndPosition(0,7);
                 }
             });
             try {
