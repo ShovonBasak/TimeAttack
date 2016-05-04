@@ -43,7 +43,7 @@ public class GameOverScene {
             }
 
             updateDatabase(SB);
-            mainMenu.getWindow().setScene(mainMenu.getHighScoreScene());
+            mainMenu.getWindow().setScene(new highScoreScene(mainMenu).getScene());
         });
 
         NameField = new TextField();

@@ -53,7 +53,7 @@ public class Main extends Application{
     public Main() {
         //initialize scenes
         loadingScreen = new LoadingScreen(this);
-        highScoreScene = new highScoreScene(this);
+
 
         //Levels
 
@@ -79,7 +79,7 @@ public class Main extends Application{
 
         highScore = new CustomButton("High Score");
         highScore.setOnAction(event -> {
-            window.setScene(highScoreScene.getScene());
+            window.setScene(new highScoreScene(this).getScene());
         });
 
         gameName = new Text("Time Attack");
