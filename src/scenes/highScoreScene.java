@@ -9,23 +9,35 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
 
 public class highScoreScene {
-    Stage window;
+
     Scene scene;
     VBox layout;
+    Text text;
     CustomButton backButton;
     TableView<ScoreBoard> highScoreBoard;
 
     public highScoreScene(Main mainMenu) {
-        window = new Stage();
+
+        text = new Text("High Score");
+        text.setFont(Font.font("Old English Text MT", FontWeight.BOLD, 30));
+        text.setCache(true);
+        text.setFill(Color.YELLOWGREEN);
+        text.setTranslateX(text.getTranslateX() + 250);
+
         layout = new VBox(10);
-        layout.setStyle("-fx-background-color: #4d004d;");
+        layout.setStyle("-fx-background-color: #276EB1;");
 
         //button with action to return to scene
         backButton = new CustomButton("Back");
@@ -33,7 +45,7 @@ public class highScoreScene {
 
 
         highScoreBoard = new TableView<>();
-        highScoreBoard.setStyle("-fx-background-color: #4d004d;");
+        highScoreBoard.setStyle("-fx-background-color: #27B1AF;");
         highScoreBoard.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         setTable();
         setScene();
@@ -41,7 +53,10 @@ public class highScoreScene {
     }
 
     public void setScene() {
-        layout.getChildren().addAll(backButton, highScoreBoard);
+        HBox hBox = new HBox(backButton, text);
+        hBox.setStyle("-fx-background-color: #276EB1;");
+
+        layout.getChildren().addAll(hBox, highScoreBoard);
         scene = new Scene(layout, 800, 600);
 
     }

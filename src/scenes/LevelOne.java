@@ -44,6 +44,7 @@ public class LevelOne implements Runnable {
 
         group = new Group(player);
 
+
         enemy = new Enemy1[3];
         enemy[0] = new Enemy1(800, 600, 15, player, coin);
         enemy[0].setSpeed(.1);
@@ -63,6 +64,7 @@ public class LevelOne implements Runnable {
         group.getChildren().addAll(enemy[0],enemy[1],enemy[2], enemy2, scoreLabel, scoreLabel.getScoreText());
 
         group.getChildren().addAll(coin,coin.getTimeLabel());
+
 
         scene = new Scene(group, 800, 600);
 
