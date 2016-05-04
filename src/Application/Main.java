@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import scenes.highScoreScene;
 import scenes.LevelOne;
 import scenes.LoadingScreen;
+import scenes.instructionsScene;
 
 
 public class Main extends Application{
@@ -21,14 +22,16 @@ public class Main extends Application{
     Stage window;
     Scene scene;
     VBox layout;
-    CustomButton StartGame;
-    CustomButton Exit;
-    CustomButton HighScore;
+    CustomButton startGame;
+    CustomButton exit;
+    CustomButton highScore;
+    CustomButton instructions;
     Text gameName;
 
     //scenes
     LoadingScreen loadingScreen;
     highScoreScene highScoreScene;
+    instructionsScene instructionsScene;
 
     //Level
     LevelOne levelOne;
@@ -53,30 +56,37 @@ public class Main extends Application{
         highScoreScene = new highScoreScene(this);
 
         //Levels
-        //levelOne = new LevelOne(this);
 
-        StartGame = new CustomButton("Start Game");
-        StartGame.setOnAction(event1 -> {
+
+        //initialize buttons
+        startGame = new CustomButton("Start Game");
+        startGame.setOnAction(event1 -> {
             window.setScene(new LevelOne(this).getScene());
 
         });
-        Exit = new CustomButton("Exit");
-        Exit.setOnAction(event -> {
+        exit = new CustomButton("exit");
+        exit.setOnAction(event -> {
             Platform.exit();
             System.exit(0);
         });
 
+        instructions = new CustomButton("Instructions");
+        instructions.setOnAction(event1 -> {
+            instructionsScene = new instructionsScene(this);
+            window.setScene(instructionsScene.getScene());
+        });
 
-        HighScore = new CustomButton("High Score");
-        HighScore.setOnAction(event -> {
+
+        highScore = new CustomButton("High Score");
+        highScore.setOnAction(event -> {
             window.setScene(highScoreScene.getScene());
         });
 
         gameName = new Text("Time Attack");
-        gameName.setFont(Font.font("Verdana", FontWeight.BOLD, 50));
+        gameName.setFont(Font.font("Blackadder ITC", FontWeight.BOLD, 60));
         gameName.setCache(true);
-        gameName.setFill(Color.DARKBLUE);
-        gameName.setTranslateY(gameName.getTranslateY() - 10);
+        gameName.setFill(Color.MAROON);
+        gameName.setTranslateY(gameName.getTranslateY() - 20);
     }
 
 
@@ -84,9 +94,9 @@ public class Main extends Application{
         this.window = window;
         window.setScene(loadingScreen.getScene());
         //setup MainMenu
-        layout = new VBox(20, gameName, StartGame, HighScore, Exit);
+        layout = new VBox(20, gameName, startGame, highScore, instructions, exit);
         layout.setAlignment(Pos.CENTER);
-        layout.setStyle("-fx-background-color: #663300;");
+        layout.setStyle("-fx-background-color: #B4EEB4;");
         scene = new Scene(layout, 800, 600);
 
         window.show();

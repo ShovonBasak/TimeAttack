@@ -42,25 +42,30 @@ public class GameOverScene {
         });
 
         NameField = new TextField();
-        NameField.setMaxWidth(200);
+
+        NameField.setMaxSize(200, 100);
+        NameField.setFont(Font.font("Informal Roman", FontWeight.BOLD, 30));
+        NameField.setStyle("-fx-background-color: #CBC6AF;");
+
 
         nameLable = new Text("ENTER YOUR NAME");
-        nameLable.setFont(Font.font("Verdana", FontWeight.BOLD, 60));
+        nameLable.setFont(Font.font("Informal Roman", FontWeight.BOLD, 30));
         nameLable.setCache(true);
-        nameLable.setFill(Color.AZURE);
+        nameLable.setFill(Color.web("#FF915B"));
 
 
         gameOver = new Text("Game Over");
-        gameOver.setFont(Font.font("Verdana", FontWeight.BOLD, 60));
+        gameOver.setFont(Font.font("Chiller", FontWeight.BOLD, 60));
         gameOver.setCache(true);
         gameOver.setFill(Color.RED);
         gameOver.setTranslateY(gameOver.getTranslateY() - 20);
 
 
         Score = new Text("Score:" + String.valueOf(scoreLabel.getScore()));
-        Score.setFont(Font.font("Verdana", FontWeight.BOLD, 50));
+        Score.setFont(Font.font("Harrington", FontWeight.BOLD, 50));
         Score.setCache(true);
-        Score.setFill(Color.AQUA);
+        Score.setFill(Color.web("#C8A780"));
+        Score.setTranslateY(Score.getTranslateY() - 20);
 
 
         setScene();
