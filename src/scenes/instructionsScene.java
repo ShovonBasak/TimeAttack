@@ -3,6 +3,7 @@ package scenes;
 
 import Application.Main;
 import UserInterface.CustomButton;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -27,13 +28,13 @@ public class instructionsScene {
         centerText = new Text("Objective:" +
                 "\nCollect coin's without touching enemies." +
                 "\nControls:\n" +
-                "Use mouse movement to control the player" +
+                "Use mouse movement to control the player." +
                 "\nEnemies:\n" +
                 "Blue will follow you and Red is like a bounce ball.");
 
 
         centerText.setFont(Font.font("Monotype Corsiva", FontWeight.BOLD, 30));
-        centerText.setFill(Color.BLACK);
+        centerText.setFill(Color.WHEAT);
 
 
 
@@ -54,27 +55,28 @@ public class instructionsScene {
 
     public void setScene() {
         HBox top = new HBox(backButton, text);
-        top.setStyle("-fx-background-color: #00cccc;");
+        top.setStyle("-fx-background-color: #33001a;");
         top.setPrefSize(50, 50);
         layout.setTop(top);
 
         VBox left = new VBox();
-        left.setStyle("-fx-background-color: #00cccc;");
+        left.setStyle("-fx-background-color: #33001a;");
         left.setPrefSize(100, 100);
         layout.setLeft(left);
 
         VBox right = new VBox();
-        right.setStyle("-fx-background-color: #00cccc;");
+        right.setStyle("-fx-background-color: #33001a;");
         right.setPrefSize(100, 100);
         layout.setRight(right);
 
         VBox bot = new VBox();
-        bot.setStyle("-fx-background-color: #00cccc;");
+        bot.setStyle("-fx-background-color: #33001a;");
         bot.setPrefSize(50, 50);
         layout.setBottom(bot);
 
         VBox center = new VBox(centerText);
-        center.setStyle("-fx-background-color: #d5a761;");
+        center.setAlignment(Pos.CENTER);
+        center.setStyle("-fx-background-color: #660033;");
 
         layout.setCenter(center);
 
