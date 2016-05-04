@@ -3,6 +3,7 @@ package gameObjects;
 import javafx.application.Platform;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import scenes.LevelOne;
 
 
 public class Enemy2 extends Enemy {
@@ -20,6 +21,11 @@ public class Enemy2 extends Enemy {
         setSpeed(.1);
         thisThread = new Thread(this);
         thisThread.start();
+    }
+
+    public synchronized void resume() {
+        LevelOne.isPaused = false;
+        notify();
     }
 
     public void followPlayer(){
@@ -74,7 +80,16 @@ public class Enemy2 extends Enemy {
             });
             try {
                 thisThread.sleep(1);
-            } catch (Exception ignored) {
+                synchronized (this) {
+                    while (LevelOne.isPaused) {
+                        wait();
+                    }
+                }
+            }
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            catch (Exception ignored) {
             }
         }
 

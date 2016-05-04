@@ -7,9 +7,14 @@ import gameObjects.*;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.util.Random;
+
+import static javafx.scene.input.KeyCode.ENTER;
+import static javafx.scene.input.KeyCode.SPACE;
 
 public class LevelOne implements Runnable {
     private Stage window;
@@ -23,7 +28,7 @@ public class LevelOne implements Runnable {
     private GameOverScene gameOverScene;
     private Main mainMenu;
     private ScoreLabel scoreLabel;
-    private boolean paused = false;
+    public static boolean isPaused = false;
     private Thread mainThread;
 
 
@@ -62,9 +67,9 @@ public class LevelOne implements Runnable {
         enemy2 = new Enemy2(100, 100, 15, player, coin);
 
 
-        group.getChildren().addAll(enemy[0],enemy[1],enemy[2], enemy2, scoreLabel, scoreLabel.getScoreText());
+        group.getChildren().addAll(enemy[0], enemy[1], enemy[2], enemy2, scoreLabel, scoreLabel.getScoreText());
 
-        group.getChildren().addAll(coin,coin.getTimeLabel());
+        group.getChildren().addAll(coin, coin.getTimeLabel());
 
 
         scene = new Scene(group, 800, 600);
@@ -73,6 +78,28 @@ public class LevelOne implements Runnable {
         mainThread.start();
     }
 
+    public synchronized void resume() {
+        isPaused = false;
+        notify();
+        player.resume();
+        coin.resume();
+        enemy2.resume();
+        for(int i=0; i<3; i++){
+            enemy[i].resume();
+        }
+    }
+
+
+    public void controlScene(){
+        getScene().addEventFilter(KeyEvent.KEY_PRESSED, e -> {
+            if(e.getCode() == ENTER){
+                resume();
+            }
+            if(e.getCode() == SPACE){
+                isPaused = true;
+            }
+        });
+    }
 
     public Scene getScene() {
         return this.scene;
@@ -83,14 +110,15 @@ public class LevelOne implements Runnable {
         while (!player.isDead()) {
             Platform.runLater(() -> {
                 //do anything
+                controlScene();
             });
+
 
             try {
                 Thread.sleep(1);
-            } catch (Exception ignored) {
+            }  catch (Exception ignored) {
             }
         }
-
         //runs when player is dead
         Platform.runLater(() ->
         {
@@ -99,5 +127,4 @@ public class LevelOne implements Runnable {
         });
     }
 }
-
 

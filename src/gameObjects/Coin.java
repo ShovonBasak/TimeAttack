@@ -6,6 +6,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import scenes.LevelOne;
 
 import java.util.Random;
 import java.util.Timer;
@@ -73,6 +74,11 @@ public class Coin extends movableObject {
                 time = setInterval();
             }
         }, delay, period);
+    }
+
+    public synchronized void resume() {
+        LevelOne.isPaused = false;
+        notify();
     }
 
     public void showCoin(){
@@ -206,7 +212,16 @@ public class Coin extends movableObject {
             });
             try {
                 thisThread.sleep(1);
-            } catch (Exception ignored) {
+                synchronized (this) {
+                    while (LevelOne.isPaused) {
+                        wait();
+                    }
+                }
+            }
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            catch (Exception ignored) {
             }
         }
     }

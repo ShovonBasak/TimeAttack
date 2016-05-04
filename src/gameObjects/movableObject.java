@@ -6,7 +6,7 @@ import javafx.scene.shape.Circle;
 
 public abstract class movableObject extends Circle implements Runnable {
     double speed;
-    Thread thisThread;
+    public Thread thisThread;
 
     public movableObject(double centerX, double centerY, double radius, String color) {
         super(centerX, centerY, radius, Paint.valueOf(color));

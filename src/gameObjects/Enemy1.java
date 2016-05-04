@@ -3,6 +3,7 @@ package gameObjects;
 
 import javafx.application.Platform;
 import gameObjects.Player;
+import scenes.LevelOne;
 
 import static sun.audio.AudioPlayer.player;
 
@@ -22,6 +23,11 @@ public class Enemy1 extends Enemy implements Runnable{
 
         thisThread = new Thread(this);
         thisThread.start();
+    }
+
+    public synchronized void resume() {
+        LevelOne.isPaused = false;
+        notify();
     }
 
     public void collidesWithWall(){
@@ -76,6 +82,11 @@ public class Enemy1 extends Enemy implements Runnable{
             });
             try{
                 thisThread.sleep(1);
+                synchronized (this) {
+                    while (LevelOne.isPaused) {
+                        wait();
+                    }
+                }
             }catch (Exception ignored){}
         }
     }

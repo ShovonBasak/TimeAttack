@@ -17,6 +17,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -88,6 +89,8 @@ public class highScoreScene {
         highScoreBoard.getColumns().add(levelColumn);
 
     }
+
+
 
     public void updateTable() {
         //fetch data from database and get and array and update like this code from a loop.

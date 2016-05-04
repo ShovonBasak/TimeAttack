@@ -3,14 +3,18 @@ package gameObjects;
 
 import javafx.application.Platform;
 import javafx.scene.input.MouseEvent;
+import scenes.LevelOne;
 
 public class Player extends movableObject {
-    public static boolean dead = true;
+    public static boolean dead = false;
 
     public boolean isDead() {
         return dead;
     }
-
+    public synchronized void resume() {
+        LevelOne.isPaused = false;
+        notify();
+    }
 
     public Player(double centerX, double centerY, double radius) {
         super(centerX, centerY, radius, "green");
@@ -41,10 +45,17 @@ public class Player extends movableObject {
 
             try {
                 thisThread.sleep(1);
-            } catch (Exception ignored) {
+                synchronized (this) {
+                    while (LevelOne.isPaused) {
+                        wait();
+                    }
+                }
+            }
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            catch (Exception ignored) {
             }
         }
     }
-
-
 }
