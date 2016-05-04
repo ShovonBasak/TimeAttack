@@ -86,8 +86,13 @@ public class GameOverScene {
 
     public void updateDatabase(ScoreBoard sb) {
         //send queries from the data of the given scoreboard object.
-        DBService ds = new DBService();
-        ds.updateScoreBoard(sb.getName(), sb.getScore(), sb.getLvlReached());
+        try {
+            DBService ds = new DBService();
+            ds.updateScoreBoard(sb.getName(), sb.getScore(), sb.getLvlReached());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 

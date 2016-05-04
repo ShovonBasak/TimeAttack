@@ -92,14 +92,18 @@ public class highScoreScene {
     public void updateTable() {
         //fetch data from database and get and array and update like this code from a loop.
         //1 row = 1 scoreboard object get and arraylist from the database and create objects from those.
+        try {
+            DBService x = new DBService();
+            ArrayList<ScoreBoard> sb = x.getScoreList();
 
-        DBService x = new DBService();
-        ArrayList<ScoreBoard> sb = x.getScoreList();
-
-        for (ScoreBoard scoreBoard : sb) {
-            highScoreBoard.getItems().addAll(scoreBoard);
+            for (ScoreBoard scoreBoard : sb) {
+                highScoreBoard.getItems().addAll(scoreBoard);
+            }
+            highScoreBoard.refresh();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        highScoreBoard.refresh();
+
     }
 
 
