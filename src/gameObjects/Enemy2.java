@@ -1,7 +1,7 @@
 package gameObjects;
 
 import javafx.application.Platform;
-import scenes.gameScene;
+import scenes.GameScene;
 
 
 public class Enemy2 extends Enemy {
@@ -16,13 +16,13 @@ public class Enemy2 extends Enemy {
         this.player = player;
         this.coin = coin;
 
-        setSpeed(.1);
+        setSpeed(1);
         thisThread = new Thread(this);
         thisThread.start();
     }
 
     public synchronized void resume() {
-        gameScene.isPaused = false;
+        GameScene.isPaused = false;
         notify();
     }
 
@@ -77,9 +77,9 @@ public class Enemy2 extends Enemy {
                 }
             });
             try {
-                thisThread.sleep(1);
+                thisThread.sleep(10);
                 synchronized (this) {
-                    while (gameScene.isPaused) {
+                    while (GameScene.isPaused) {
                         wait();
                     }
                 }

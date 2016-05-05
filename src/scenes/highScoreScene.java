@@ -19,7 +19,7 @@ import javafx.scene.text.Text;
 import java.util.ArrayList;
 
 
-public class highScoreScene {
+public class HighScoreScene {
 
     Scene scene;
     VBox layout;
@@ -27,7 +27,7 @@ public class highScoreScene {
     CustomButton backButton;
     TableView<ScoreBoard> highScoreBoard;
 
-    public highScoreScene(Main mainMenu) {
+    public HighScoreScene(Main mainMenu) {
 
         text = new Text("High Score");
         text.setFont(Font.font("Old English Text MT", FontWeight.BOLD, 30));

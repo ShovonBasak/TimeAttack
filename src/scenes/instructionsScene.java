@@ -14,14 +14,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-public class instructionsScene {
+public class InstructionsScene {
     Scene scene;
     BorderPane layout;
     Text text;
     CustomButton backButton;
     Text centerText;
 
-    public instructionsScene(Main mainMenu) {
+    public InstructionsScene(Main mainMenu) {
 
         layout = new BorderPane();
 

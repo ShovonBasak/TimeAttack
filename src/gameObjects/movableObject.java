@@ -4,11 +4,11 @@ package gameObjects;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
-public abstract class movableObject extends Circle implements Runnable {
+public abstract class MovableObject extends Circle implements Runnable {
     double speed;
     public Thread thisThread;
 
-    public movableObject(double centerX, double centerY, double radius, String color) {
+    public MovableObject(double centerX, double centerY, double radius, String color) {
         super(centerX, centerY, radius, Paint.valueOf(color));
         setSpeed(1);
     }
@@ -21,7 +21,7 @@ public abstract class movableObject extends Circle implements Runnable {
         this.speed = speed;
     }
 
-    public boolean intersect(movableObject object) {
+    public boolean intersect(MovableObject object) {
         if ((object.intersects(this.getBoundsInParent()))) {
             return true;
         }

@@ -1,6 +1,6 @@
 package gameObjects;
 
-public abstract class Enemy extends movableObject{
+public abstract class Enemy extends MovableObject {
     protected boolean horizontalDirection;
     protected boolean verticalDirection;
     Player player;

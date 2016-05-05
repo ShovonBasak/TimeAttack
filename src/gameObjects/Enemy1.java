@@ -2,7 +2,7 @@ package gameObjects;
 
 
 import javafx.application.Platform;
-import scenes.gameScene;
+import scenes.GameScene;
 
 public class Enemy1 extends Enemy implements Runnable{
     private double rightBound;
@@ -23,7 +23,7 @@ public class Enemy1 extends Enemy implements Runnable{
     }
 
     public synchronized void resume() {
-        gameScene.isPaused = false;
+        GameScene.isPaused = false;
         notify();
     }
 
@@ -79,13 +79,15 @@ public class Enemy1 extends Enemy implements Runnable{
                 }
             });
             try{
-                thisThread.sleep(1);
+                thisThread.sleep(10);
                 synchronized (this) {
-                    while (gameScene.isPaused) {
+                    while (GameScene.isPaused) {
                         wait();
                     }
                 }
-            }catch (Exception ignored){}
+            }catch (Exception ignored){
+                ignored.printStackTrace();
+            }
         }
     }
 }

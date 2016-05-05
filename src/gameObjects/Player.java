@@ -3,16 +3,16 @@ package gameObjects;
 
 import javafx.application.Platform;
 import javafx.scene.input.MouseEvent;
-import scenes.gameScene;
+import scenes.GameScene;
 
-public class Player extends movableObject {
+public class Player extends MovableObject {
     public static boolean dead = false;
 
     public boolean isDead() {
         return dead;
     }
     public synchronized void resume() {
-        gameScene.isPaused = false;
+        GameScene.isPaused = false;
         notify();
     }
 
@@ -44,7 +44,7 @@ public class Player extends movableObject {
             try {
                 thisThread.sleep(1);
                 synchronized (this) {
-                    while (gameScene.isPaused) {
+                    while (GameScene.isPaused) {
                         wait();
                     }
                 }
@@ -53,6 +53,7 @@ public class Player extends movableObject {
                 e.printStackTrace();
             }
             catch (Exception ignored) {
+                ignored.printStackTrace();
             }
         }
     }

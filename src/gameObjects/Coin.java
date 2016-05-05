@@ -6,14 +6,14 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import scenes.gameScene;
+import scenes.GameScene;
 
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class Coin extends movableObject {
+public class Coin extends MovableObject {
     private Timer timer;
     private int period;
     private int delay;
@@ -77,7 +77,7 @@ public class Coin extends movableObject {
     }
 
     public synchronized void resume() {
-        gameScene.isPaused = false;
+        GameScene.isPaused = false;
         notify();
     }
 
@@ -208,7 +208,7 @@ public class Coin extends movableObject {
             try {
                 thisThread.sleep(1);
                 synchronized (this) {
-                    while (gameScene.isPaused) {
+                    while (GameScene.isPaused) {
                         wait();
                     }
                 }
@@ -217,6 +217,7 @@ public class Coin extends movableObject {
                 e.printStackTrace();
             }
             catch (Exception ignored) {
+                ignored.printStackTrace();
             }
         }
     }

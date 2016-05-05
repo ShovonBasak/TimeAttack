@@ -11,10 +11,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import scenes.highScoreScene;
-import scenes.gameScene;
+import scenes.HighScoreScene;
+import scenes.GameScene;
 import scenes.LoadingScreen;
-import scenes.instructionsScene;
+import scenes.InstructionsScene;
 
 
 public class Main extends Application{
@@ -30,11 +30,11 @@ public class Main extends Application{
 
     //scenes
     LoadingScreen loadingScreen;
-    highScoreScene highScoreScene;
-    instructionsScene instructionsScene;
+    HighScoreScene HighScoreScene;
+    InstructionsScene InstructionsScene;
 
     //Level
-    gameScene gameScene;
+    GameScene GameScene;
 
 
     public Stage getWindow() {
@@ -46,7 +46,7 @@ public class Main extends Application{
     }
 
     public Scene getHighScoreScene() {
-        return highScoreScene.getScene();
+        return HighScoreScene.getScene();
     }
 
     //constructor
@@ -60,7 +60,7 @@ public class Main extends Application{
 
         //initialize buttons
         startGame = new CustomButton("Start Game");
-        startGame.setOnAction(event1 -> window.setScene(new gameScene(this).getScene()));
+        startGame.setOnAction(event1 -> window.setScene(new GameScene(this).getScene()));
         exit = new CustomButton("Exit");
         exit.setOnAction(event -> {
             Platform.exit();
@@ -69,13 +69,13 @@ public class Main extends Application{
 
         instructions = new CustomButton("Instructions");
         instructions.setOnAction(event1 -> {
-            instructionsScene = new instructionsScene(this);
-            window.setScene(instructionsScene.getScene());
+            InstructionsScene = new InstructionsScene(this);
+            window.setScene(InstructionsScene.getScene());
         });
 
 
         highScore = new CustomButton("High Score");
-        highScore.setOnAction(event -> window.setScene(new highScoreScene(this).getScene()));
+        highScore.setOnAction(event -> window.setScene(new HighScoreScene(this).getScene()));
 
         gameName = new Text("Time Attack");
         gameName.setFont(Font.font("Blackadder ITC", FontWeight.BOLD, 60));

@@ -7,7 +7,6 @@ import UserInterface.CustomButton;
 import UserInterface.ScoreLabel;
 import database.DBService;
 
-import gameObjects.Player;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
@@ -44,7 +43,7 @@ public class GameOverScene {
             }
 
             updateDatabase(SB);
-            mainMenu.getWindow().setScene(new highScoreScene(mainMenu).getScene());
+            mainMenu.getWindow().setScene(new HighScoreScene(mainMenu).getScene());
         });
 
         NameField = new TextField();

@@ -16,12 +16,14 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 import static javafx.scene.input.KeyCode.ENTER;
 import static javafx.scene.input.KeyCode.SPACE;
 
-public class gameScene implements Runnable {
+public class GameScene implements Runnable {
     private Scene scene;
     private Group group;
     private Player player;
@@ -31,23 +33,26 @@ public class gameScene implements Runnable {
     private Main mainMenu;
     private ScoreLabel scoreLabel;
     private Text levelLable;
-    private int Level;
+    private int level;
     private int enemyCounter;
+    private int scoreLevelCounter;
+    ArrayList<Enemy1> enemies;
     public static boolean isPaused = false;
     private Thread mainThread;
 
 
-    public gameScene(Main mainMenu) {
+    public GameScene(Main mainMenu) {
         enemyCounter = 0;
-        Level = 1;
+        level = 0;
+        scoreLevelCounter = 50;
 
 
-        levelLable = new Text("Level:" + String.valueOf(Level));
+        levelLable = new Text("Level:" + String.valueOf(level));
         levelLable.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
         levelLable.setFill(Paint.valueOf("RED"));
 
 
-
+        enemies = new ArrayList<>();
 
         this.mainMenu = mainMenu;
 
@@ -82,8 +87,9 @@ public class gameScene implements Runnable {
         notify();
         player.resume();
         coin.resume();
-
-
+        for(Enemy1 enemy:enemies){
+            enemy.resume();
+        }
     }
 
 
@@ -103,43 +109,25 @@ public class gameScene implements Runnable {
     }
 
     public void checkLevel() {
-        if (scoreLabel.getScore() >= 50 && Level < 2) {
-            Level++;
+        if (scoreLabel.getScore() >= scoreLevelCounter && level < level+1) {
+            level++;
+            scoreLevelCounter += 50;
+
+            for(Enemy1 enemy:enemies){
+                enemy.setSpeed(enemy.getSpeed()+0.2);
+            }
+
+            Enemy1 enemy = new Enemy1(0, 0, 10, player, coin);
+            enemies.add(enemy);
+            enemy.setSpeed(enemy.getSpeed()+.2);
+            group.getChildren().addAll(enemy);
+            if(level == 3){
+                Enemy2 enemy2 = new Enemy2(800, 0, 10, player, coin);
+                enemy.setSpeed(1);
+                group.getChildren().addAll(enemy2);
+            }
+
         }
-
-        if (scoreLabel.getScore() >= 100 && Level < 3) {
-            Level++;
-        }
-
-        if (scoreLabel.getScore() >= 150 && Level < 4) {
-            Level++;
-        }
-
-        if (scoreLabel.getScore() >= 200 && Level < 5) {
-            Level++;
-        }
-
-        if (scoreLabel.getScore() >= 250 && Level < 6) {
-            Level++;
-        }
-
-        if (scoreLabel.getScore() >= 300 && Level < 7) {
-            Level++;
-        }
-
-        if (scoreLabel.getScore() >= 400 && Level < 8) {
-            Level++;
-        }
-
-        if (scoreLabel.getScore() >= 500 && Level < 9) {
-            Level++;
-        }
-
-        if (scoreLabel.getScore() >= 550 && Level < 10) {
-            Level++;
-        }
-
-
     }
 
     public void run() {
@@ -148,49 +136,21 @@ public class gameScene implements Runnable {
                 //do anything
                 controlScene();
                 checkLevel();
-                if (Level == 2 && enemyCounter < 2) {
-                    Enemy enemy = new Enemy1(0, 0, 10, player, coin);
-                    enemy.setSpeed(.4);
-                    enemyCounter++;
-                    group.getChildren().addAll(enemy);
-                }
 
-                if (Level == 3 && enemyCounter < 3) {
-                    Enemy enemy = new Enemy1(0, 0, 10, player, coin);
-                    enemy.setSpeed(.4);
-                    enemyCounter++;
-                    group.getChildren().addAll(enemy);
-                }
-
-                if (Level == 4 && enemyCounter < 4) {
-                    Enemy enemy = new Enemy1(0, 0, 10, player, coin);
-                    enemy.setSpeed(.4);
-                    enemyCounter++;
-                    group.getChildren().addAll(enemy);
-                }
-
-                if (Level == 5 && enemyCounter < 5) {
-                    Enemy enemy = new Enemy2(0, 0, 10, player, coin);
-                    enemy.setSpeed(.2);
-                    enemyCounter++;
-                    group.getChildren().addAll(enemy);
-                }
-
-
-                levelLable.setText("Level:" + String.valueOf(Level));
-
+                levelLable.setText("Level:" + String.valueOf(level));
             });
 
 
             try {
                 Thread.sleep(1);
             }  catch (Exception ignored) {
+                ignored.printStackTrace();
             }
         }
         //runs when player is dead
         Platform.runLater(() ->
         {
-            gameOverScene = new GameOverScene(mainMenu, scoreLabel, Level);
+            gameOverScene = new GameOverScene(mainMenu, scoreLabel, level);
             mainMenu.getWindow().setScene(gameOverScene.getScene());
         });
     }
