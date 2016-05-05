@@ -33,10 +33,10 @@ public class HighScoreScene {
         text.setFont(Font.font("Old English Text MT", FontWeight.BOLD, 30));
         text.setCache(true);
         text.setFill(Color.YELLOWGREEN);
-        text.setTranslateX(text.getTranslateX() + 250);
+        text.setTranslateX(mainMenu.getWindow().getWidth()/2-40);
 
-        layout = new VBox(10);
-        layout.setStyle("-fx-background-color: #276EB1;");
+        layout = new VBox();
+        layout.setStyle("-fx-background-color: #2F4F4F;");
 
         //button with action to return to scene
         backButton = new CustomButton("Back");
@@ -46,9 +46,11 @@ public class HighScoreScene {
 
     public void setScene() {
         HBox hBox = new HBox(backButton, text);
-        hBox.setStyle("-fx-background-color: #276EB1;");
+        hBox.setStyle("-fx-background-color: #2F4F4F;");
+
 
         layout.getChildren().addAll(hBox, highScoreBoard);
+
         scene = new Scene(layout, 800, 600);
 
     }
@@ -65,8 +67,11 @@ public class HighScoreScene {
         //columns
         //title
         highScoreBoard = new TableView<>();
-        highScoreBoard.setStyle("-fx-background-color: #27B1AF;");
+        highScoreBoard.setStyle("-fx-background-color: linear-gradient(#e2ecfe, #99bcfd);" +
+                "-fx-background-color: linear-gradient(from 0% 0% to 50% 50%,#3278fa,#99bcfd);" +
+                "-fx-border-width: 2px;");
         highScoreBoard.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
 
 
         TableColumn<ScoreBoard, String> nameColumn = new TableColumn<>("Name");

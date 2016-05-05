@@ -125,7 +125,7 @@ public class GameScene implements Runnable {
                 enemy.setSpeed(1);
                 enemyCounter++;
             }
-            if(level == 5 || level == 15){
+            if(level == 5){
                 Enemy enemy = new Enemy2(800, 0, 10, player, coin);
                 enemy.setSpeed(1);
                 group.getChildren().addAll(enemy);

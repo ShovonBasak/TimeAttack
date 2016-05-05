@@ -28,7 +28,8 @@ public class InstructionsScene {
         centerText = new Text("Objective:" +
                 "\nCollect coin's without touching enemies." +
                 "\nControls:\n" +
-                "Use mouse movement to control the player." +
+                "Use mouse movement to control the player.\n" +
+                "SpaceBar to Pause and Enter to Resume." +
                 "\nEnemies:\n" +
                 "Blue will follow you and Red is like a bounce ball.");
 
