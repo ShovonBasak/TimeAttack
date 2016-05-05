@@ -71,7 +71,7 @@ public class HighScoreScene {
         highScoreBoard.setStyle("-fx-background-color: linear-gradient(#e2ecfe, #99bcfd);" +
                 "-fx-background-color: linear-gradient(from 0% 0% to 50% 50%,#3278fa,#99bcfd);" +
                 "-fx-border-width: 2px;" +
-                "-fx-alignment: CENTER-RIGHT;");
+                "-fx-alignment: CENTER;");
         highScoreBoard.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 
