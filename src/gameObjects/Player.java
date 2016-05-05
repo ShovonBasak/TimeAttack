@@ -44,7 +44,7 @@ public class Player extends MovableObject {
             Platform.runLater(this::movePlayer);
 
             try {
-                thisThread.sleep(1);
+                thisThread.sleep(20);
                 synchronized (this) {
                     while (GameScene.isPaused) {
                         wait();

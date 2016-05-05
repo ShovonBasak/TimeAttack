@@ -52,7 +52,7 @@ public class Coin extends MovableObject {
         timer = new Timer();
         delay = 1000;
         period = 1000;
-        interval = 15;
+        interval = 7;
         timeLabel = new Text("" + time);
         timeLabel.setX(getCenterX() + adjustTimeLabelX);
         timeLabel.setY(getCenterY() + adjustTimeLabelY);
@@ -69,11 +69,11 @@ public class Coin extends MovableObject {
         thisThread.start();
 
 
-        /*timer.scheduleAtFixedRate(new TimerTask() {
+        timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 time = setInterval();
             }
-        }, delay, period);*/
+        }, delay, period);
     }
 
     public synchronized void resume() {
@@ -110,8 +110,8 @@ public class Coin extends MovableObject {
     }
 
     public void setTimeAndPosition(int waitingTime, int visibilityTime){
-        this.setCoinCenterX(28 + randomNumber.nextInt((int) getScene().getWidth() - 28));
-        this.setCoinCenterY(28 + randomNumber.nextInt((int) getScene().getHeight() - 28));
+        this.setCoinCenterX(getRadius()*2 + randomNumber.nextInt((int) getScene().getWidth() - (int)getRadius()*2 ));
+        this.setCoinCenterY(getRadius()*2 + randomNumber.nextInt((int) getScene().getHeight() - (int)getRadius()*2 ));
         this.time = waitingTime + visibilityTime;
         this.interval = this.time;
         this.setVisibilityTime(visibilityTime);
@@ -206,7 +206,7 @@ public class Coin extends MovableObject {
                 }
             });
             try {
-                thisThread.sleep(1);
+                thisThread.sleep(40);
                 synchronized (this) {
                     while (GameScene.isPaused) {
                         wait();

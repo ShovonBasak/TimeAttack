@@ -87,7 +87,7 @@ public class GameScene implements Runnable {
         notify();
         player.resume();
         coin.resume();
-        for(Enemy1 enemy:enemies){
+        for(Enemy enemy:enemies){
             enemy.resume();
         }
     }
@@ -113,20 +113,23 @@ public class GameScene implements Runnable {
             level++;
             scoreLevelCounter += 50;
 
+
             for(Enemy1 enemy:enemies){
-                enemy.setSpeed(enemy.getSpeed()+0.2);
+                enemy.setSpeed(enemy.getSpeed()+.2);
             }
 
-            Enemy1 enemy = new Enemy1(0, 0, 10, player, coin);
-            enemies.add(enemy);
-            enemy.setSpeed(enemy.getSpeed()+.2);
-            group.getChildren().addAll(enemy);
-            if(level == 3){
-                Enemy2 enemy2 = new Enemy2(800, 0, 10, player, coin);
+            if(enemyCounter < 3){
+                Enemy1 enemy = new Enemy1(0, 0, 10, player, coin);
+                enemies.add(enemy);
+                group.getChildren().addAll(enemy);
                 enemy.setSpeed(1);
-                group.getChildren().addAll(enemy2);
+                enemyCounter++;
             }
-
+            if(level == 5 || level == 15){
+                Enemy enemy = new Enemy2(800, 0, 10, player, coin);
+                enemy.setSpeed(1);
+                group.getChildren().addAll(enemy);
+            }
         }
     }
 
@@ -142,7 +145,7 @@ public class GameScene implements Runnable {
 
 
             try {
-                Thread.sleep(1);
+                Thread.sleep(30);
             }  catch (Exception ignored) {
                 ignored.printStackTrace();
             }
