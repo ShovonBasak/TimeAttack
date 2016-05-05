@@ -22,10 +22,6 @@ public class Enemy1 extends Enemy implements Runnable{
         thisThread.start();
     }
 
-    public synchronized void resume() {
-        GameScene.isPaused = false;
-        notify();
-    }
 
     public void collidesWithWall(){
         if (horizontalDirection) {

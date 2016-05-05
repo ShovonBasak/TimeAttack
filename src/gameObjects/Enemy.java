@@ -1,5 +1,7 @@
 package gameObjects;
 
+import scenes.GameScene;
+
 public abstract class Enemy extends MovableObject {
     protected boolean horizontalDirection;
     protected boolean verticalDirection;
@@ -10,6 +12,11 @@ public abstract class Enemy extends MovableObject {
         super(centerX, centerY, radius, color);
         this.player = player;
         this.coin = coin;
+    }
+
+    public synchronized void resume() {
+        GameScene.isPaused = false;
+        notify();
     }
 
 

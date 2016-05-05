@@ -21,11 +21,6 @@ public class Enemy2 extends Enemy {
         thisThread.start();
     }
 
-    public synchronized void resume() {
-        GameScene.isPaused = false;
-        notify();
-    }
-
     public void followPlayer(){
         if(player.getCenterY() == this.getCenterY()){
             if(player.getCenterX() < this.getCenterX()){

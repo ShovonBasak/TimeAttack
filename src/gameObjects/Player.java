@@ -27,12 +27,15 @@ public class Player extends MovableObject {
 
     public void movePlayer(){
         getScene().addEventFilter(MouseEvent.MOUSE_MOVED, e -> {
-            if(e.getSceneX() < getScene().getWidth() && e.getSceneX() > getScene().getX()){
-                this.setCenterX(e.getSceneX());
+            if (!GameScene.isPaused) {
+                if (e.getSceneX() < getScene().getWidth() && e.getSceneX() > getScene().getX()) {
+                    this.setCenterX(e.getSceneX());
+                }
+                if (e.getSceneY() < getScene().getHeight() && e.getSceneY() > getScene().getY()) {
+                    this.setCenterY(e.getSceneY());
+                }
             }
-            if(e.getSceneY() < getScene().getHeight() && e.getSceneY() > getScene().getY()){
-                this.setCenterY(e.getSceneY());
-            }
+
 
         });
     }
