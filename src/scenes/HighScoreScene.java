@@ -34,7 +34,7 @@ public class HighScoreScene {
         text.setFont(Font.font("Old English Text MT", FontWeight.BOLD, 30));
         text.setCache(true);
         text.setFill(Color.YELLOWGREEN);
-        text.setTranslateX(mainMenu.getScene().getWidth()/2-80);
+        text.setTranslateX(mainMenu.getWindow().getWidth()/2-40);
 
         layout = new VBox();
         layout.setStyle("-fx-background-color: #2F4F4F;");
@@ -42,7 +42,7 @@ public class HighScoreScene {
         //button with action to return to scene
         backButton = new CustomButton("Back");
         backButton.setOnAction(event -> mainMenu.getWindow().setScene(mainMenu.getScene()));
-        mainMenu.getWindow().resizableProperty().setValue(false);
+
     }
 
     public void setScene() {

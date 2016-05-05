@@ -59,7 +59,11 @@ public class Main extends Application{
 
         //initialize buttons
         startGame = new CustomButton("Start Game");
-        startGame.setOnAction(event1 -> window.setScene(new GameScene(this).getScene()));
+        startGame.setOnAction(event1 -> {
+            window.setScene(new GameScene(this).getScene());
+            window.setFullScreen(true);
+            window.setFullScreenExitHint("");
+        });
         exit = new CustomButton("Exit");
         exit.setOnAction(event -> {
             Platform.exit();
@@ -70,11 +74,18 @@ public class Main extends Application{
         instructions.setOnAction(event1 -> {
             InstructionsScene = new InstructionsScene(this);
             window.setScene(InstructionsScene.getScene());
+            window.setFullScreen(true);
+            window.setFullScreenExitHint("");
         });
 
 
         highScore = new CustomButton("High Score");
-        highScore.setOnAction(event -> window.setScene(new HighScoreScene(this).getScene()));
+        highScore.setOnAction(event -> {
+
+            window.setScene(new HighScoreScene(this).getScene());
+            window.setFullScreen(true);
+            window.setFullScreenExitHint("");
+        });
 
         gameName = new Text("Time Attack");
         gameName.setFont(Font.font("Blackadder ITC", FontWeight.BOLD, 60));
@@ -93,6 +104,9 @@ public class Main extends Application{
         layout.setAlignment(Pos.CENTER);
         layout.setStyle("-fx-background-color: #B4EEB4;");
         scene = new Scene(layout, 800, 600);
+        //window.setFullScreen(true);
+        //window.setFullScreenExitHint("");
+        window.setTitle("Time Attack");
 
         window.setResizable(false);
         window.show();
