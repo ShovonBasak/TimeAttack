@@ -18,7 +18,6 @@ public class Player extends MovableObject {
 
     public Player(double centerX, double centerY, double radius) {
         super(centerX, centerY, radius, "green");
-        setSpeed(1);
 
         thisThread = new Thread(this);
         thisThread.start();

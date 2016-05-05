@@ -69,11 +69,11 @@ public class Coin extends MovableObject {
         thisThread.start();
 
 
-        timer.scheduleAtFixedRate(new TimerTask() {
+        /*timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 time = setInterval();
             }
-        }, delay, period);
+        }, delay, period);*/
     }
 
     public synchronized void resume() {

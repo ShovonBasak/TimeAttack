@@ -49,6 +49,14 @@ public class DBService {
         return null;
     }
 
+    public boolean tableDrop(){
+        String query = "DROP table scoreBoard";
+        try{
+            dbCon.inUpdateDelete(query);
+        }
+        catch (Exception e){return false;}
+        return true;
+    }
 
     public ArrayList<ScoreBoard> getScoreList() {
         String query="SELECT name,score,lvlReached FROM scoreBoard WHERE score > 0 ORDER By score DESC";
