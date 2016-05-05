@@ -20,7 +20,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class LoadingScreen {
-    public Stage window;
     public Scene scene;
     Text companyName;
     Text presents;
@@ -65,10 +64,14 @@ public class LoadingScreen {
 
         scene.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
             mainMenu.getWindow().setScene(mainMenu.getScene());
+            //mainMenu.getWindow().setFullScreen(true);
+            //mainMenu.getWindow().setFullScreenExitHint("");
         });
 
         scene.addEventFilter(KeyEvent.ANY, event -> {
             mainMenu.getWindow().setScene(mainMenu.getScene());
+            //mainMenu.getWindow().setFullScreen(true);
+            //mainMenu.getWindow().setFullScreenExitHint("");
         });
 
 

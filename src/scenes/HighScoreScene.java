@@ -41,7 +41,11 @@ public class HighScoreScene {
 
         //button with action to return to scene
         backButton = new CustomButton("Back");
-        backButton.setOnAction(event -> mainMenu.getWindow().setScene(mainMenu.getScene()));
+        backButton.setOnAction(event -> {
+            mainMenu.getWindow().setScene(mainMenu.getScene());
+            //mainMenu.getWindow().setFullScreen(true);
+            //mainMenu.getWindow().setFullScreenExitHint("");
+        });
 
     }
 
