@@ -59,13 +59,13 @@ public class DBService {
     }
 
     public ArrayList<ScoreBoard> getScoreList() {
-        String query="SELECT name,score,lvlReached FROM scoreBoard ORDER By score DESC";
+        String query="SELECT DISTINCT name,score,lvlReached FROM scoreBoard WHERE score in(SELECT MAX(score) FROM scoreBoard GROUP BY name) ORDER BY score DESC";
 
         ArrayList<ScoreBoard> scoreList = new ArrayList<>();
         try {
             ResultSet rs = dbCon.selectQuery(query);
             while (rs.next()) {
-                scoreList.add(new ScoreBoard(rs.getString("name").toUpperCase(), rs.getString("score"), rs.getString("lvlReached") ));
+                scoreList.add(new ScoreBoard(rs.getString("name"), rs.getString("score"), rs.getString("lvlReached") ));
             }
         } catch (SQLException e) {
             e.printStackTrace();

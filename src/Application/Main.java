@@ -94,6 +94,7 @@ public class Main extends Application{
         layout.setStyle("-fx-background-color: #B4EEB4;");
         scene = new Scene(layout, 800, 600);
 
+        window.setResizable(false);
         window.show();
 
         window.setOnCloseRequest(event -> {

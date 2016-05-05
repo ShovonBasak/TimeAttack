@@ -14,6 +14,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -75,9 +76,11 @@ public class GameScene implements Runnable {
 
         scene = new Scene(group, 800, 600);
 
+        levelLable.setTextAlignment(TextAlignment.CENTER);
         levelLable.setX(getScene().getWidth() / 2 - 55);
         levelLable.setY(levelLable.getTranslateY() + 30);
 
+        mainMenu.getWindow().resizableProperty().setValue(true);
         mainThread = new Thread(this);
         mainThread.start();
     }
@@ -118,7 +121,7 @@ public class GameScene implements Runnable {
                 enemy.setSpeed(enemy.getSpeed()+.2);
             }
 
-            if(enemyCounter < 3){
+            if(level % 3 == 0 || level == 1 ){
                 Enemy1 enemy = new Enemy1(0, 0, 10, player, coin);
                 enemies.add(enemy);
                 group.getChildren().addAll(enemy);

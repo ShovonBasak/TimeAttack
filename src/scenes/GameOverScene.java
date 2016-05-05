@@ -72,9 +72,8 @@ public class GameOverScene {
         Score.setFill(Color.web("#C8A780"));
         Score.setTranslateY(Score.getTranslateY() - 20);
 
-
         setScene();
-
+        mainMenu.getWindow().resizableProperty().setValue(false);
     }
 
     public void setScene() {
