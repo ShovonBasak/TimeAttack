@@ -59,7 +59,7 @@ public class DBService {
     }
 
     public ArrayList<ScoreBoard> getScoreList() {
-        String query="SELECT name,score,lvlReached FROM scoreBoard WHERE score > 0 ORDER By score DESC";
+        String query="SELECT name,score,lvlReached FROM scoreBoard ORDER By score DESC";
 
         ArrayList<ScoreBoard> scoreList = new ArrayList<>();
         try {
