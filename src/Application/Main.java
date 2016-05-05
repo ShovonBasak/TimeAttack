@@ -19,6 +19,7 @@ import scenes.InstructionsScene;
 
 public class Main extends Application{
     //Class variables
+
     Stage window;
     Scene scene;
     VBox layout;
@@ -33,8 +34,6 @@ public class Main extends Application{
     HighScoreScene HighScoreScene;
     InstructionsScene InstructionsScene;
 
-    //Level
-    GameScene GameScene;
 
 
     public Stage getWindow() {
@@ -55,7 +54,7 @@ public class Main extends Application{
         loadingScreen = new LoadingScreen(this);
 
 
-        //Levels
+
 
 
         //initialize buttons
@@ -89,6 +88,7 @@ public class Main extends Application{
         this.window = window;
         window.setScene(loadingScreen.getScene());
         //setup MainMenu
+
         layout = new VBox(20, gameName, startGame, highScore, instructions, exit);
         layout.setAlignment(Pos.CENTER);
         layout.setStyle("-fx-background-color: #B4EEB4;");
