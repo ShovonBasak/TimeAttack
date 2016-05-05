@@ -59,7 +59,7 @@ public class DBService {
     }
 
     public ArrayList<ScoreBoard> getScoreList() {
-        String query="SELECT DISTINCT name,score,lvlReached FROM scoreBoard WHERE score in(SELECT MAX(score) FROM scoreBoard GROUP BY name) ORDER BY score DESC";
+        String query="SELECT name,score,lvlReached FROM scoreBoard WHERE score > 0 ORDER BY score DESC";
 
         ArrayList<ScoreBoard> scoreList = new ArrayList<>();
         try {

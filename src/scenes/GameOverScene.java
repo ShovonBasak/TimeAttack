@@ -73,7 +73,6 @@ public class GameOverScene {
         Score.setTranslateY(Score.getTranslateY() - 20);
 
         setScene();
-        mainMenu.getWindow().resizableProperty().setValue(false);
     }
 
     public void setScene() {
