@@ -26,9 +26,10 @@ public class HighScoreScene {
     Text text;
     CustomButton backButton;
     TableView<ScoreBoard> highScoreBoard;
+    Main mainMenu;
 
     public HighScoreScene(Main mainMenu) {
-
+        this.mainMenu=mainMenu;
         text = new Text("High Score");
         text.setFont(Font.font("Old English Text MT", FontWeight.BOLD, 30));
         text.setCache(true);
@@ -69,26 +70,33 @@ public class HighScoreScene {
         highScoreBoard = new TableView<>();
         highScoreBoard.setStyle("-fx-background-color: linear-gradient(#e2ecfe, #99bcfd);" +
                 "-fx-background-color: linear-gradient(from 0% 0% to 50% 50%,#3278fa,#99bcfd);" +
-                "-fx-border-width: 2px;");
+                "-fx-border-width: 2px;" +
+                "-fx-alignment: CENTER-RIGHT;");
         highScoreBoard.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 
 
         TableColumn<ScoreBoard, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        nameColumn.setStyle("-fx-background-color: linear-gradient(#6725DE, #03BBC4);");
 
         //Value
         TableColumn<ScoreBoard, ScoreBoard> scoreColumn = new TableColumn<>("Score");
         scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
+        scoreColumn.setStyle("-fx-background-color: linear-gradient(#6725DE, #03BBC4);");
 
         //comment
         TableColumn<ScoreBoard, String> levelColumn = new TableColumn<>("Max Level Reached");
         levelColumn.setCellValueFactory(new PropertyValueFactory<>("lvlReached"));
+        levelColumn.setStyle("-fx-background-color: linear-gradient(#6725DE, #03BBC4);");
 
         //addColumns on table
         highScoreBoard.getColumns().add(nameColumn);
         highScoreBoard.getColumns().add(scoreColumn);
         highScoreBoard.getColumns().add(levelColumn);
+
+
+        highScoreBoard.setMinHeight(mainMenu.getWindow().getHeight());
 
     }
 
@@ -100,8 +108,7 @@ public class HighScoreScene {
         try {
             setTable();
             DBService x = new DBService();
-            ArrayList<ScoreBoard> sb = new ArrayList<>();
-            sb = x.getScoreList();
+            ArrayList<ScoreBoard> sb = x.getScoreList();
 
             for (ScoreBoard scoreBoard : sb) {
                 highScoreBoard.getItems().addAll(scoreBoard);
