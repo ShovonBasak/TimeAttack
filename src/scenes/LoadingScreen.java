@@ -70,8 +70,6 @@ public class LoadingScreen {
 
         scene.addEventFilter(KeyEvent.ANY, event -> {
             mainMenu.getWindow().setScene(mainMenu.getScene());
-            //mainMenu.getWindow().setFullScreen(true);
-            //mainMenu.getWindow().setFullScreenExitHint("");
         });
 
 

@@ -74,8 +74,6 @@ public class Main extends Application{
         instructions.setOnAction(event1 -> {
             InstructionsScene = new InstructionsScene(this);
             window.setScene(InstructionsScene.getScene());
-            window.setFullScreen(true);
-            window.setFullScreenExitHint("");
         });
 
 
@@ -83,8 +81,7 @@ public class Main extends Application{
         highScore.setOnAction(event -> {
 
             window.setScene(new HighScoreScene(this).getScene());
-            window.setFullScreen(true);
-            window.setFullScreenExitHint("");
+
         });
 
         gameName = new Text("Time Attack");
@@ -104,8 +101,7 @@ public class Main extends Application{
         layout.setAlignment(Pos.CENTER);
         layout.setStyle("-fx-background-color: #B4EEB4;");
         scene = new Scene(layout, 800, 600);
-        //window.setFullScreen(true);
-        //window.setFullScreenExitHint("");
+
         window.setTitle("Time Attack");
 
         window.setResizable(false);

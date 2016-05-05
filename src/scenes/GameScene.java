@@ -51,6 +51,7 @@ public class GameScene implements Runnable {
         levelLable = new Text("Level:" + String.valueOf(level));
         levelLable.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
         levelLable.setFill(Paint.valueOf("RED"));
+        levelLable.setLayoutX(mainMenu.getWindow().getWidth()/2-100);
 
 
         enemies = new ArrayList<>();

@@ -34,7 +34,7 @@ public class HighScoreScene {
         text.setFont(Font.font("Old English Text MT", FontWeight.BOLD, 30));
         text.setCache(true);
         text.setFill(Color.YELLOWGREEN);
-        text.setTranslateX(mainMenu.getWindow().getWidth()/2-40);
+        text.setTranslateX(300);
 
         layout = new VBox();
         layout.setStyle("-fx-background-color: #2F4F4F;");
@@ -71,24 +71,27 @@ public class HighScoreScene {
         highScoreBoard.setStyle("-fx-background-color: linear-gradient(#e2ecfe, #99bcfd);" +
                 "-fx-background-color: linear-gradient(from 0% 0% to 50% 50%,#3278fa,#99bcfd);" +
                 "-fx-border-width: 2px;" +
-                "-fx-alignment: CENTER;");
+                "-fx-alignment:CENTER;");
         highScoreBoard.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 
 
         TableColumn<ScoreBoard, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        nameColumn.setStyle("-fx-background-color: linear-gradient(#6725DE, #03BBC4);");
+        nameColumn.setStyle("-fx-alignment:CENTER;");
+
 
         //Value
         TableColumn<ScoreBoard, ScoreBoard> scoreColumn = new TableColumn<>("Score");
         scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
-        scoreColumn.setStyle("-fx-background-color: linear-gradient(#6725DE, #03BBC4);");
+        scoreColumn.setStyle("-fx-alignment:CENTER;");
+
 
         //comment
         TableColumn<ScoreBoard, String> levelColumn = new TableColumn<>("Max Level Reached");
         levelColumn.setCellValueFactory(new PropertyValueFactory<>("lvlReached"));
-        levelColumn.setStyle("-fx-background-color: linear-gradient(#6725DE, #03BBC4);");
+        levelColumn.setStyle("-fx-alignment:CENTER;");
+
 
         //addColumns on table
         highScoreBoard.getColumns().add(nameColumn);

@@ -10,6 +10,8 @@ import database.DBService;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -28,22 +30,19 @@ public class GameOverScene {
     private Text gameOver;
     private Text Score;
     private Text nameLable;
+    Main mainMenu;
+    int levelReached;
 
     public GameOverScene(Main mainMenu, ScoreLabel scoreLabel, int levelReached) {
         this.scoreLabel = scoreLabel;
+        this.mainMenu=mainMenu;
+        this.levelReached=levelReached;
+
+
 
         Next = new CustomButton("Next");
         Next.setOnAction(event1 -> {
-            ScoreBoard SB;
-            String name = NameField.getText();
-            if (!name.isEmpty()) {
-                SB = new ScoreBoard(name, String.valueOf(scoreLabel.getScore()), String.valueOf(levelReached));
-            } else {
-                SB = new ScoreBoard("NameLessWonder", String.valueOf(scoreLabel.getScore()), String.valueOf(levelReached));
-            }
-
-            updateDatabase(SB);
-            mainMenu.getWindow().setScene(new HighScoreScene(mainMenu).getScene());
+               query(mainMenu,levelReached);
         });
 
         NameField = new TextField();
@@ -80,6 +79,14 @@ public class GameOverScene {
         layout.setAlignment(Pos.CENTER);
         scene = new Scene(layout, 800, 600);
         layout.setStyle("-fx-background-color: #000000;");
+
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if(event.getCode().equals(KeyCode.ENTER)){
+                query(mainMenu,levelReached);
+            }
+        });
+
+
     }
 
     public Scene getScene() {
@@ -98,6 +105,20 @@ public class GameOverScene {
         }
 
     }
+
+    public void query(Main mainMenu,int levelReached){
+        ScoreBoard SB;
+        String name = NameField.getText();
+        if (!name.isEmpty()) {
+            SB = new ScoreBoard(name, String.valueOf(scoreLabel.getScore()), String.valueOf(levelReached));
+        } else {
+            SB = new ScoreBoard("NameLessWonder", String.valueOf(scoreLabel.getScore()), String.valueOf(levelReached));
+        }
+
+        updateDatabase(SB);
+        mainMenu.getWindow().setScene(new HighScoreScene(mainMenu).getScene());
+    }
+
 
 
 }
