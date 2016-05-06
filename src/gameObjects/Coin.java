@@ -202,7 +202,7 @@ public class Coin extends MovableObject {
                     timeLabel.setText("" + time);
                 }else {
                     this.hideCoin();
-                    this.setTimeAndPosition(0,7);
+                    Player.dead = true;
                 }
             });
             try {

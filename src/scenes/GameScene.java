@@ -90,6 +90,7 @@ public class GameScene implements Runnable {
         scene = new Scene(group, Color.web("#00ff99",.30));
 
 
+
         levelLable.setTextAlignment(TextAlignment.CENTER);
         levelLable.setX(getScene().getWidth() / 2 - 55);
         levelLable.setY(levelLable.getTranslateY() + 30);
@@ -143,8 +144,9 @@ public class GameScene implements Runnable {
                 enemyCounter++;
             }
             if(level == 5){
-                Enemy enemy = new Enemy2(800, 0, 10, player, coin);
+                Enemy enemy = new Enemy2(1024, 0, 10, player, coin);
                 enemy.setSpeed(1);
+                enemies.add(enemy);
                 group.getChildren().addAll(enemy);
             }
         }
@@ -172,7 +174,6 @@ public class GameScene implements Runnable {
         //runs when player is dead
         Platform.runLater(() ->
         {
-
             gameOverScene = new GameOverScene(mainMenu, scoreLabel, level);
             mainMenu.getWindow().setScene(gameOverScene.getScene());
         });
