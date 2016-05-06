@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -37,12 +38,22 @@ public class GameScene implements Runnable {
     private int level;
     private int enemyCounter;
     private int scoreLevelCounter;
-    ArrayList<Enemy1> enemies;
+    ArrayList<Enemy> enemies;
     public static boolean isPaused = false;
     private Thread mainThread;
+    private Text pauseText;
 
 
     public GameScene(Main mainMenu) {
+        pauseText=new Text("Paused");
+        pauseText.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
+        pauseText.setFill(Paint.valueOf("BLUE"));
+        pauseText.setVisible(false);
+
+
+
+
+
         enemyCounter = 0;
         level = 0;
         scoreLevelCounter = 50;
@@ -51,7 +62,7 @@ public class GameScene implements Runnable {
         levelLable = new Text("Level:" + String.valueOf(level));
         levelLable.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
         levelLable.setFill(Paint.valueOf("RED"));
-        levelLable.setLayoutX(mainMenu.getWindow().getWidth()/2-100);
+
 
 
         enemies = new ArrayList<>();
@@ -70,12 +81,14 @@ public class GameScene implements Runnable {
         group = new Group(player);
 
 
-        group.getChildren().addAll(scoreLabel, scoreLabel.getScoreText(), levelLable);
+        group.getChildren().addAll(scoreLabel, scoreLabel.getScoreText(), levelLable,pauseText);
 
         group.getChildren().addAll(coin, coin.getTimeLabel());
 
 
-        scene = new Scene(group, 800, 600);
+
+        scene = new Scene(group, Color.web("#00ff99",.30));
+
 
         levelLable.setTextAlignment(TextAlignment.CENTER);
         levelLable.setX(getScene().getWidth() / 2 - 55);
@@ -91,19 +104,19 @@ public class GameScene implements Runnable {
         notify();
         player.resume();
         coin.resume();
-        for(Enemy enemy:enemies){
-            enemy.resume();
-        }
+        enemies.forEach(Enemy::resume);
     }
 
 
     public void controlScene(){
         getScene().addEventFilter(KeyEvent.KEY_PRESSED, e -> {
             if(e.getCode() == ENTER){
+                pauseText.setVisible(false);
                 resume();
             }
             if(e.getCode() == SPACE){
                 isPaused = true;
+                pauseText.setVisible(true);
             }
         });
     }
@@ -118,7 +131,7 @@ public class GameScene implements Runnable {
             scoreLevelCounter += 50;
 
 
-            for(Enemy1 enemy:enemies){
+            for(Enemy enemy:enemies){
                 enemy.setSpeed(enemy.getSpeed()+.2);
             }
 
@@ -143,8 +156,10 @@ public class GameScene implements Runnable {
                 //do anything
                 controlScene();
                 checkLevel();
-
+                pauseText.setLayoutX(getScene().getWindow().getWidth()/2-30);
+                pauseText.setLayoutY(getScene().getWindow().getHeight()/2-30);
                 levelLable.setText("Level:" + String.valueOf(level));
+                levelLable.setLayoutX(getScene().getWindow().getWidth()/2-30);
             });
 
 
@@ -157,6 +172,7 @@ public class GameScene implements Runnable {
         //runs when player is dead
         Platform.runLater(() ->
         {
+
             gameOverScene = new GameOverScene(mainMenu, scoreLabel, level);
             mainMenu.getWindow().setScene(gameOverScene.getScene());
         });
