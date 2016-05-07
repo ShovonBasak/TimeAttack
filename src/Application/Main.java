@@ -1,6 +1,6 @@
-package Application;
+package application;
 
-import UserInterface.CustomButton;
+import userInterface.CustomButton;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -17,20 +17,20 @@ import scenes.LoadingScreen;
 import scenes.InstructionsScene;
 
 
-public class Main extends Application{
+public class Main{
     //Class variables
 
-    Stage window;
-    Scene scene;
-    VBox layout;
-    CustomButton startGame;
-    CustomButton exit;
-    CustomButton highScore;
-    CustomButton instructions;
-    Text gameName;
+    public Stage window;
+    public Scene scene;
+    public VBox layout;
+    public CustomButton startGame;
+    public CustomButton exit;
+    public CustomButton highScore;
+    public CustomButton instructions;
+    public Text gameName;
 
     //scenes
-    LoadingScreen loadingScreen;
+    public LoadingScreen loadingScreen;
     HighScoreScene HighScoreScene;
     InstructionsScene InstructionsScene;
 
@@ -89,36 +89,6 @@ public class Main extends Application{
         gameName.setCache(true);
         gameName.setFill(Color.MAROON);
         gameName.setTranslateY(gameName.getTranslateY() - 20);
-    }
-
-
-    public void start(Stage window) throws Exception {
-        this.window = window;
-        window.setScene(loadingScreen.getScene());
-        //setup MainMenu
-
-        layout = new VBox(20, gameName, startGame, highScore, instructions, exit);
-        layout.setAlignment(Pos.CENTER);
-        layout.setStyle("-fx-background-color: #B4EEB4;");
-        scene = new Scene(layout, 800, 600);
-
-        window.setTitle("Time Attack");
-
-        window.setResizable(false);
-        window.show();
-
-        window.setOnCloseRequest(event -> {
-                    Platform.exit();
-                    System.exit(0);
-                }
-        );
-
-
-    }
-
-
-    public static void main(String[] args) {
-        launch(args);
     }
 
 }

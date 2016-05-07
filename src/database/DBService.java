@@ -1,7 +1,7 @@
 package database;
 
 
-import UserInterface.ScoreBoard;
+import userInterface.ScoreBoard;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

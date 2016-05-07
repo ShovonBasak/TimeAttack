@@ -1,10 +1,10 @@
 package scenes;
 
 
-import Application.Main;
-import UserInterface.ScoreBoard;
-import UserInterface.CustomButton;
-import UserInterface.ScoreLabel;
+import application.Main;
+import userInterface.ScoreBoard;
+import userInterface.CustomButton;
+import userInterface.ScoreLabel;
 import database.DBService;
 
 import javafx.geometry.Pos;

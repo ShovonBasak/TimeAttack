@@ -1,9 +1,9 @@
 package scenes;
 
 
-import Application.Main;
-import UserInterface.ScoreBoard;
-import UserInterface.CustomButton;
+import application.Main;
+import userInterface.ScoreBoard;
+import userInterface.CustomButton;
 import database.DBService;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
@@ -21,12 +21,12 @@ import java.util.ArrayList;
 
 public class HighScoreScene {
 
-    Scene scene;
-    VBox layout;
-    Text text;
-    CustomButton backButton;
-    TableView<ScoreBoard> highScoreBoard;
-    Main mainMenu;
+    private Scene scene;
+    private VBox layout;
+    private Text text;
+    private CustomButton backButton;
+    private TableView<ScoreBoard> highScoreBoard;
+    private Main mainMenu;
 
     public HighScoreScene(Main mainMenu) {
         this.mainMenu=mainMenu;
@@ -45,7 +45,7 @@ public class HighScoreScene {
 
     }
 
-    public void setScene() {
+    private void setScene() {
         HBox hBox = new HBox(backButton, text);
         hBox.setStyle("-fx-background-color: #2F4F4F;");
 
@@ -53,7 +53,6 @@ public class HighScoreScene {
         layout.getChildren().addAll(hBox, highScoreBoard);
 
         scene = new Scene(layout, 800, 600);
-
     }
 
     public Scene getScene() {
@@ -63,7 +62,7 @@ public class HighScoreScene {
     }
 
 
-    public void setTable() {
+    private void setTable() {
         //Takes an scoreBoardObject
         //columns
         //title
@@ -105,7 +104,7 @@ public class HighScoreScene {
 
 
 
-    public void updateTable() {
+    private void updateTable() {
         //fetch data from database and get and array and update like this code from a loop.
         //1 row = 1 scoreboard object get and arraylist from the database and create objects from those.
         try {

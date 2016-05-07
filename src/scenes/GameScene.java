@@ -1,14 +1,12 @@
 package scenes;
 
 
-import Application.Main;
-import UserInterface.ScoreLabel;
+import application.Main;
+import userInterface.ScoreLabel;
 import gameObjects.*;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -16,10 +14,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Random;
 
 import static javafx.scene.input.KeyCode.ENTER;

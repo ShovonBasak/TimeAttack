@@ -1,6 +1,6 @@
 package gameObjects;
 
-import UserInterface.ScoreLabel;
+import userInterface.ScoreLabel;
 import javafx.application.Platform;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
