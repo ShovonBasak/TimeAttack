@@ -21,10 +21,12 @@ import javafx.util.Duration;
 public class LoadingScreen {
     public Scene scene;
     private ImageView loadingScreen;
+    Main mainmenu;
+    Image loadingImage= new Image("Resources/image/loadingScreen.jpg");
 
     public LoadingScreen(Main mainMenu) {
-        Image image= new Image("Resources/image/loadingScreen.jpg");
-        loadingScreen= new ImageView(image);
+        this.mainmenu=mainMenu;
+        loadingScreen= new ImageView(loadingImage);
         loadingScreen.setFitWidth(800);
         loadingScreen.setFitHeight(600);
         loadingScreen.setPreserveRatio(true);
@@ -47,11 +49,11 @@ public class LoadingScreen {
 
 
         scene.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
-            mainMenu.getWindow().setScene(mainMenu.getScene());
+            mainMenu.getWindow().setScene(new TitleScreen(mainMenu).getScene());
         });
 
         scene.addEventFilter(KeyEvent.ANY, event -> {
-            mainMenu.getWindow().setScene(mainMenu.getScene());
+            mainMenu.getWindow().setScene(new TitleScreen(mainMenu).getScene());
         });
 
 

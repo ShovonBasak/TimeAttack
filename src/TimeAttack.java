@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import scenes.LoadingScreen;
 
 public class TimeAttack extends Application{
     public Main main;
@@ -13,7 +14,7 @@ public class TimeAttack extends Application{
         main = new Main();
 
         main.window = window;
-        window.setScene(main.loadingScreen.getScene());
+        window.setScene(new LoadingScreen(main).getScene());
 
         //setup MainMenu
         main.layout = new VBox(20, main.gameName, main.startGame, main.highScore, main.instructions, main.exit);

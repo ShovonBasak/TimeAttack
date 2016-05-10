@@ -30,9 +30,6 @@ public class Main{
     public Text gameName;
 
     //scenes
-    public LoadingScreen loadingScreen;
-    HighScoreScene HighScoreScene;
-    InstructionsScene InstructionsScene;
 
 
 
@@ -44,17 +41,7 @@ public class Main{
         return scene;
     }
 
-    public Scene getHighScoreScene() {
-        return HighScoreScene.getScene();
-    }
-
-    //constructor
     public Main() {
-        //initialize scenes
-        loadingScreen = new LoadingScreen(this);
-
-
-
 
 
         //initialize buttons
@@ -62,7 +49,6 @@ public class Main{
         startGame.setOnAction(event1 -> {
             window.setScene(new GameScene(this).getScene());
             window.setFullScreen(true);
-            window.setFullScreenExitHint("");
         });
         exit = new CustomButton("Exit");
         exit.setOnAction(event -> {
@@ -72,8 +58,7 @@ public class Main{
 
         instructions = new CustomButton("Instructions");
         instructions.setOnAction(event1 -> {
-            InstructionsScene = new InstructionsScene(this);
-            window.setScene(InstructionsScene.getScene());
+            window.setScene(new InstructionsScene(this).getScene());
         });
 
 
