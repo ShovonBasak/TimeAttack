@@ -82,6 +82,7 @@ public class GameOverScene {
 
         scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if(event.getCode().equals(KeyCode.ENTER)){
+                event.consume();
                 query(mainMenu,levelReached);
             }
         });
