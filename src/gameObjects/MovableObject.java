@@ -1,6 +1,8 @@
 package gameObjects;
 
 
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
@@ -12,6 +14,10 @@ public abstract class MovableObject extends Circle implements Runnable {
         super(centerX, centerY, radius, Paint.valueOf(color));
         setSpeed(1);
     }
+
+
+
+
 
     public double getSpeed() {
         return speed;

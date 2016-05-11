@@ -68,7 +68,7 @@ public class GameScene implements Runnable {
         Player.dead = false;
         randomPosition = new Random();
 
-        player = new Player(50, 500, 20);
+        player = new Player(50, 500, 30);
 
         scoreLabel = new ScoreLabel();
 
@@ -83,7 +83,7 @@ public class GameScene implements Runnable {
 
 
 
-        scene = new Scene(group, Color.web("#00ff99",.30));
+        scene = new Scene(group,800,600, Color.web("#00ff99",.30));
 
 
 
@@ -157,7 +157,8 @@ public class GameScene implements Runnable {
                 pauseText.setLayoutX(getScene().getWindow().getWidth()/2-30);
                 pauseText.setLayoutY(getScene().getWindow().getHeight()/2-30);
                 levelLable.setText("Level:" + String.valueOf(level));
-                levelLable.setLayoutX(getScene().getWindow().getWidth()/2-30);
+                levelLable.setLayoutX(getScene().getWindow().getWidth()/2-400);
+
             });
 
 

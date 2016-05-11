@@ -2,11 +2,16 @@ package gameObjects;
 
 
 import javafx.application.Platform;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.ImagePattern;
 import scenes.GameScene;
 
 public class Player extends MovableObject {
     public static boolean dead = false;
+
+    //Image image= new Image("Resources/image/Player.png");
+
 
     public boolean isDead() {
         return dead;
@@ -18,7 +23,7 @@ public class Player extends MovableObject {
 
     public Player(double centerX, double centerY, double radius) {
         super(centerX, centerY, radius, "green");
-
+        //setFill(new ImagePattern(image));
         thisThread = new Thread(this);
         thisThread.start();
     }

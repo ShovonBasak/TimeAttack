@@ -1,5 +1,7 @@
 package gameObjects;
 
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import userInterface.ScoreLabel;
 import javafx.application.Platform;
 import javafx.scene.paint.Paint;
@@ -40,6 +42,7 @@ public class Coin extends MovableObject {
 
     public Coin(double centerX, double centerY, double radius, Player player, ScoreLabel scoreLabel){
         super(centerX, centerY, radius, "Yellow");
+        setFill(new ImagePattern(new Image("Resources/image/Coin.png")));
         this.player = player;
         this.scoreLabel = scoreLabel;
 
@@ -206,17 +209,13 @@ public class Coin extends MovableObject {
                 }
             });
             try {
-                thisThread.sleep(40);
+                Thread.sleep(40);
                 synchronized (this) {
                     while (GameScene.isPaused) {
                         wait();
                     }
                 }
-            }
-            catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            catch (Exception ignored) {
+            } catch (Exception ignored) {
                 ignored.printStackTrace();
             }
         }
