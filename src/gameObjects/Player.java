@@ -10,7 +10,7 @@ import scenes.GameScene;
 public class Player extends MovableObject {
     public static boolean dead = false;
 
-    //Image image= new Image("Resources/image/Player.png");
+
 
 
     public boolean isDead() {
@@ -23,7 +23,7 @@ public class Player extends MovableObject {
 
     public Player(double centerX, double centerY, double radius) {
         super(centerX, centerY, radius, "green");
-        //setFill(new ImagePattern(image));
+        setFill(new ImagePattern(new Image("Resources/image/Duck-UFO.gif")));
         thisThread = new Thread(this);
         thisThread.start();
     }

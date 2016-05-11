@@ -68,7 +68,7 @@ public class GameScene implements Runnable {
         Player.dead = false;
         randomPosition = new Random();
 
-        player = new Player(50, 500, 15);
+        player = new Player(50, 500, 30);
 
         scoreLabel = new ScoreLabel();
 
