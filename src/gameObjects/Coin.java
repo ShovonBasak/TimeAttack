@@ -42,7 +42,7 @@ public class Coin extends MovableObject {
 
     public Coin(double centerX, double centerY, double radius, Player player, ScoreLabel scoreLabel){
         super(centerX, centerY, radius, "Yellow");
-        setFill(new ImagePattern(new Image("Resources/image/Coin.png")));
+        setFill(new ImagePattern(new Image("Resources/image/Coin.gif")));
         this.player = player;
         this.scoreLabel = scoreLabel;
 

@@ -68,11 +68,11 @@ public class GameScene implements Runnable {
         Player.dead = false;
         randomPosition = new Random();
 
-        player = new Player(50, 500, 30);
+        player = new Player(50, 500, 15);
 
         scoreLabel = new ScoreLabel();
 
-        coin = new Coin(28 + randomPosition.nextInt(800), 28 + randomPosition.nextInt(600), 28, player, scoreLabel);
+        coin = new Coin(28 + randomPosition.nextInt(800), 28 + randomPosition.nextInt(600), 35, player, scoreLabel);
 
         group = new Group(player);
 
@@ -133,14 +133,14 @@ public class GameScene implements Runnable {
             }
 
             if(level % 3 == 0 || level == 1 ){
-                Enemy1 enemy = new Enemy1(0, 0, 10, player, coin);
+                Enemy1 enemy = new Enemy1(0, 0, 35, player, coin);
                 enemies.add(enemy);
                 group.getChildren().addAll(enemy);
                 enemy.setSpeed(1);
                 enemyCounter++;
             }
             if(level == 5){
-                Enemy enemy = new Enemy2(1024, 0, 10, player, coin);
+                Enemy enemy = new Enemy2(1024, 0, 35, player, coin);
                 enemy.setSpeed(1);
                 enemies.add(enemy);
                 group.getChildren().addAll(enemy);

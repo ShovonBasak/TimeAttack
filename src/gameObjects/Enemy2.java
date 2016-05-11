@@ -1,6 +1,8 @@
 package gameObjects;
 
 import javafx.application.Platform;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import scenes.GameScene;
 
 
@@ -8,11 +10,11 @@ public class Enemy2 extends Enemy {
 
     private Player player;
     private Coin coin;
-    private Thread enemy2Thread;
-    private double m;
+
 
     public Enemy2(double centerX, double centerY,double radius, Player player, Coin coin) {
         super(centerX, centerY, radius, "Blue", player, coin);
+        setFill(new ImagePattern(new Image("Resources/image/redBall2.gif")));
         this.player = player;
         this.coin = coin;
 
@@ -72,7 +74,7 @@ public class Enemy2 extends Enemy {
                 }
             });
             try {
-                thisThread.sleep(10);
+                Thread.sleep(10);
                 synchronized (this) {
                     while (GameScene.isPaused) {
                         wait();
