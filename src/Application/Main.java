@@ -1,5 +1,7 @@
 package application;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import userInterface.CustomButton;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -15,6 +17,8 @@ import scenes.HighScoreScene;
 import scenes.GameScene;
 import scenes.LoadingScreen;
 import scenes.InstructionsScene;
+
+import java.util.Optional;
 
 
 public class Main{
@@ -52,22 +56,24 @@ public class Main{
         });
         exit = new CustomButton("Exit");
         exit.setOnAction(event -> {
-            Platform.exit();
-            System.exit(0);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("ALERT!");
+            alert.setHeaderText("Are you ok with this?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                Platform.exit();
+                System.exit(0);
+            }
+
         });
 
         instructions = new CustomButton("Instructions");
-        instructions.setOnAction(event1 -> {
-            window.setScene(new InstructionsScene(this).getScene());
-        });
+        instructions.setOnAction(event1 -> window.setScene(new InstructionsScene(this).getScene()));
 
 
         highScore = new CustomButton("High Score");
-        highScore.setOnAction(event -> {
-
-            window.setScene(new HighScoreScene(this).getScene());
-
-        });
+        highScore.setOnAction(event -> window.setScene(new HighScoreScene(this).getScene()));
 
         gameName = new Text("Time Attack");
         gameName.setFont(Font.font("Blackadder ITC", FontWeight.BOLD, 60));
