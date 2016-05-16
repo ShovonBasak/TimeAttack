@@ -2,8 +2,8 @@ package scenes;
 
 
 import application.Main;
-import userInterface.ScoreBoard;
-import userInterface.CustomButton;
+import UserInterface.ScoreBoard;
+import UserInterface.CustomButton;
 import database.DBService;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;

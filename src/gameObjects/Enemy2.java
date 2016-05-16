@@ -5,6 +5,9 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import scenes.GameScene;
 
+import static java.lang.Math.abs;
+import static oracle.net.aso.C00.m;
+
 
 public class Enemy2 extends Enemy {
 
@@ -23,37 +26,53 @@ public class Enemy2 extends Enemy {
         thisThread.start();
     }
 
-    public void followPlayer(){
-        if(player.getCenterY() == this.getCenterY()){
-            if(player.getCenterX() < this.getCenterX()){
-                moveLeft();
+    private void followPlayer(){
+        double dx = player.getCenterX() - this.getCenterX();
+        double dy = player.getCenterY() - this.getCenterY();
+        double m = dy/dx;
+
+        if(player.getCenterX() < this.getCenterX()){
+            if(player.getCenterY() > this.getCenterY()){
+                if(abs(dx) > abs(dy)){
+                    this.setCenterX(this.getCenterX() - this.getSpeed());
+                    this.setCenterY(this.getCenterY() - (this.getSpeed()*m));
+                }
+                else{
+                    this.setCenterX(this.getCenterX() + (this.getSpeed()*(1/m)));
+                    this.setCenterY(this.getCenterY() + this.getSpeed());
+                }
             }
             else{
-                moveRight();
+                if(abs(dx) > abs(dy)){
+                    this.setCenterX(this.getCenterX() - this.getSpeed());
+                    this.setCenterY(this.getCenterY() - (this.getSpeed()*m));
+                }
+                else{
+                    this.setCenterX(this.getCenterX() - (this.getSpeed()*(1/m)));
+                    this.setCenterY(this.getCenterY() - this.getSpeed());
+                }
             }
         }
-        else if(player.getCenterX() == this.getCenterX()){
+        else if(player.getCenterX() > this.getCenterX()){
             if(player.getCenterY() < this.getCenterY()){
-                moveUp();
+                if(abs(dx) > abs(dy)){
+                    this.setCenterX(this.getCenterX() + this.getSpeed());
+                    this.setCenterY(this.getCenterY() + (this.getSpeed()*m));
+                }
+                else{
+                    this.setCenterX(this.getCenterX() - (this.getSpeed()*(1/m)));
+                    this.setCenterY(this.getCenterY() - this.getSpeed());
+                }
             }
             else{
-                moveDown();
-            }
-        }
-        else{
-            if (player.getCenterX() < this.getCenterX()) {
-                moveLeft();
-            }
-            if (player.getCenterX() > this.getCenterX()) {
-                moveRight();
-            }
-
-            if (player.getCenterY() < this.getCenterY()) {
-                moveUp();
-            }
-
-            if (player.getCenterY() > this.getCenterY()) {
-                moveDown();
+                if(abs(dx) > abs(dy)){
+                    this.setCenterX(this.getCenterX() + this.getSpeed());
+                    this.setCenterY(this.getCenterY() + (this.getSpeed()*m));
+                }
+                else{
+                    this.setCenterX(this.getCenterX() + (this.getSpeed()*(1/m)));
+                    this.setCenterY(this.getCenterY() + this.getSpeed());
+                }
             }
         }
     }
@@ -74,7 +93,7 @@ public class Enemy2 extends Enemy {
                 }
             });
             try {
-                Thread.sleep(10);
+                Thread.sleep(20);
                 synchronized (this) {
                     while (GameScene.isPaused) {
                         wait();
@@ -84,10 +103,7 @@ public class Enemy2 extends Enemy {
             catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            catch (Exception ignored) {
-            }
+            catch (Exception ignored) {}
         }
-
-
     }
 }

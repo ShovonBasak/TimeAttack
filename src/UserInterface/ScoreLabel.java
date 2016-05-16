@@ -1,4 +1,4 @@
-package userInterface;
+package UserInterface;
 
 import gameObjects.Coin;
 import gameObjects.Player;

@@ -2,7 +2,7 @@ package scenes;
 
 
 import application.Main;
-import userInterface.ScoreLabel;
+import UserInterface.ScoreLabel;
 import gameObjects.*;
 import javafx.application.Platform;
 import javafx.scene.Group;
@@ -30,7 +30,7 @@ public class GameScene implements Runnable {
     private GameOverScene gameOverScene;
     private Main mainMenu;
     private ScoreLabel scoreLabel;
-    private Text levelLable;
+    private Text levelLabel;
     private int level;
     private int enemyCounter;
     private int scoreLevelCounter;
@@ -55,9 +55,9 @@ public class GameScene implements Runnable {
         scoreLevelCounter = 50;
 
 
-        levelLable = new Text("Level:" + String.valueOf(level));
-        levelLable.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
-        levelLable.setFill(Paint.valueOf("RED"));
+        levelLabel = new Text("Level:" + String.valueOf(level));
+        levelLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
+        levelLabel.setFill(Paint.valueOf("RED"));
 
 
 
@@ -77,19 +77,17 @@ public class GameScene implements Runnable {
         group = new Group(player);
 
 
-        group.getChildren().addAll(scoreLabel, scoreLabel.getScoreText(), levelLable,pauseText);
+        group.getChildren().addAll(scoreLabel, scoreLabel.getScoreText(), levelLabel, pauseText);
 
-        group.getChildren().addAll(coin, coin.getTimeLabel());
-
-
+        group.getChildren().addAll(coin.getCoin());
 
         scene = new Scene(group,800,600, Color.web("#00ff99",.30));
 
 
 
-        levelLable.setTextAlignment(TextAlignment.CENTER);
-        levelLable.setX(getScene().getWidth() / 2 - 55);
-        levelLable.setY(levelLable.getTranslateY() + 30);
+        levelLabel.setTextAlignment(TextAlignment.CENTER);
+        levelLabel.setX(getScene().getWidth() / 2 - 55);
+        levelLabel.setY(levelLabel.getTranslateY() + 30);
 
         mainMenu.getWindow().resizableProperty().setValue(true);
         mainThread = new Thread(this);
@@ -156,8 +154,8 @@ public class GameScene implements Runnable {
                 checkLevel();
                 pauseText.setLayoutX(getScene().getWindow().getWidth()/2-30);
                 pauseText.setLayoutY(getScene().getWindow().getHeight()/2-30);
-                levelLable.setText("Level:" + String.valueOf(level));
-                levelLable.setLayoutX(getScene().getWindow().getWidth()/2-400);
+                levelLabel.setText("Level:" + String.valueOf(level));
+                levelLabel.setLayoutX(getScene().getWindow().getWidth()/2-400);
 
             });
 

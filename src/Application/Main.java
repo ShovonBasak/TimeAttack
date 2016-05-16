@@ -1,27 +1,29 @@
 package application;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import userInterface.CustomButton;
+import UserInterface.CustomButton;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import scenes.HighScoreScene;
 import scenes.GameScene;
-import scenes.LoadingScreen;
+import scenes.HighScoreScene;
 import scenes.InstructionsScene;
+import scenes.LoadingScreen;
 
 import java.util.Optional;
 
+import static javafx.application.Application.launch;
 
-public class Main{
+
+public class Main extends Application {
     //Class variables
 
     public Stage window;
@@ -32,6 +34,7 @@ public class Main{
     public CustomButton highScore;
     public CustomButton instructions;
     public Text gameName;
+
 
     //scenes
 
@@ -80,6 +83,41 @@ public class Main{
         gameName.setCache(true);
         gameName.setFill(Color.MAROON);
         gameName.setTranslateY(gameName.getTranslateY() - 20);
+    }
+    public void start(Stage window) throws Exception {
+        this.window = window;
+        window.setScene(new LoadingScreen(this).getScene());
+
+        //setup MainMenu
+        layout = new VBox(20, gameName, startGame, highScore, instructions, exit);
+        layout.setAlignment(Pos.CENTER);
+        layout.setStyle("-fx-background-color: #B4EEB4;");
+        scene = new Scene(layout, 800, 600);
+
+        window.setTitle("Time Attack");
+
+        window.setResizable(false);
+        window.show();
+
+        window.setOnCloseRequest(event -> {
+                    event.consume();
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("ALERT!");
+                    alert.setHeaderText("Are you ok with this?");
+
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.get() == ButtonType.OK){
+                        Platform.exit();
+                        System.exit(0);
+                    }
+
+
+                }
+        );
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 
 }

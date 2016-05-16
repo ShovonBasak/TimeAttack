@@ -2,7 +2,7 @@ package scenes;
 
 
 import application.Main;
-import userInterface.CustomButton;
+import UserInterface.CustomButton;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;

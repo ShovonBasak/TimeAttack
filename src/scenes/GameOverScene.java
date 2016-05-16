@@ -2,9 +2,9 @@ package scenes;
 
 
 import application.Main;
-import userInterface.ScoreBoard;
-import userInterface.CustomButton;
-import userInterface.ScoreLabel;
+import UserInterface.ScoreBoard;
+import UserInterface.CustomButton;
+import UserInterface.ScoreLabel;
 import database.DBService;
 
 import javafx.geometry.Pos;
