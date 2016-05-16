@@ -147,7 +147,7 @@ public class GameScene implements Runnable {
     }
 
     public void run() {
-        while (!player.isDead()) {
+        while (!Player.dead) {
             Platform.runLater(() -> {
                 //do anything
                 controlScene();
