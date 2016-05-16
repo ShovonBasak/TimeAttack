@@ -10,12 +10,6 @@ import scenes.GameScene;
 public class Player extends MovableObject {
     public static boolean dead = false;
 
-
-
-
-    public boolean isDead() {
-        return dead;
-    }
     public synchronized void resume() {
         GameScene.isPaused = false;
         notify();
@@ -29,7 +23,7 @@ public class Player extends MovableObject {
     }
 
 
-    public void movePlayer(){
+    private void movePlayer(){
         getScene().addEventFilter(MouseEvent.MOUSE_MOVED, e -> {
             if (!GameScene.isPaused) {
                 if (e.getSceneX() < getScene().getWidth() && e.getSceneX() > getScene().getX()) {
@@ -45,21 +39,17 @@ public class Player extends MovableObject {
     }
 
     public void run() {
-        while (!isDead()) {
+        while (!dead) {
             Platform.runLater(this::movePlayer);
 
             try {
-                thisThread.sleep(20);
+                Thread.sleep(20);
                 synchronized (this) {
                     while (GameScene.isPaused) {
                         wait();
                     }
                 }
-            }
-            catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            catch (Exception ignored) {
+            } catch (Exception ignored) {
                 ignored.printStackTrace();
             }
         }

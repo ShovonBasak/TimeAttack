@@ -25,7 +25,7 @@ public class Enemy1 extends Enemy implements Runnable{
     }
 
 
-    public void collidesWithWall(){
+    private void collidesWithWall(){
         if (horizontalDirection) {
             if (this.rightBound < getScene().getWidth()) {
                 this.moveRight();

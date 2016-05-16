@@ -7,15 +7,15 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
 public abstract class MovableObject extends Circle implements Runnable {
-    double speed;
-    public Thread thisThread;
+    private double speed;
+    Thread thisThread;
 
-    protected double leftBound;
-    protected double rightBound;
-    protected double lowerBound;
-    protected double upperBound;
+    double leftBound;
+    double rightBound;
+    double lowerBound;
+    double upperBound;
 
-    public MovableObject(double centerX, double centerY, double radius, String color) {
+    MovableObject(double centerX, double centerY, double radius, String color) {
         super(centerX, centerY, radius, Paint.valueOf(color));
         setSpeed(1);
     }
@@ -28,33 +28,30 @@ public abstract class MovableObject extends Circle implements Runnable {
         this.speed = speed;
     }
 
-    public boolean intersect(MovableObject object) {
-        if ((object.intersects(this.getBoundsInParent()))) {
-            return true;
-        }
-        return false;
+    boolean intersect(MovableObject object) {
+        return (object.intersects(this.getBoundsInParent()));
     }
 
-    public void setBounds(){
+    void setBounds(){
         lowerBound = this.getCenterY() + this.getRadius();
         upperBound = this.getCenterX() - this.getRadius();
         leftBound = this.getCenterX() - this.getRadius();
         rightBound = this.getCenterX() + this.getRadius();
     }
 
-    public void moveRight() {
+    void moveRight() {
         this.setCenterX(this.getCenterX() + speed);
     }
 
-    public void moveLeft() {
+    void moveLeft() {
         this.setCenterX(this.getCenterX() - speed);
     }
 
-    public void moveDown() {
+    void moveDown() {
         this.setCenterY(this.getCenterY() + speed);
     }
 
-    public void moveUp() {
+    void moveUp() {
         this.setCenterY(this.getCenterY() - speed);
     }
 }
