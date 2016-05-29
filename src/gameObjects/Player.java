@@ -17,7 +17,7 @@ public class Player extends MovableObject {
 
     public Player(double centerX, double centerY, double radius) {
         super(centerX, centerY, radius, "green");
-        setFill(new ImagePattern(new Image("Resources/image/Duck-UFO.gif")));
+        setFill(new ImagePattern(new Image("Resources/image/Player.gif")));
         thisThread = new Thread(this);
         thisThread.start();
     }

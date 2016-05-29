@@ -6,7 +6,7 @@ import javafx.scene.paint.ImagePattern;
 import scenes.GameScene;
 
 import static java.lang.Math.abs;
-import static oracle.net.aso.C00.m;
+
 
 
 public class Enemy2 extends Enemy {
@@ -17,7 +17,7 @@ public class Enemy2 extends Enemy {
 
     public Enemy2(double centerX, double centerY,double radius, Player player, Coin coin) {
         super(centerX, centerY, radius, "Blue", player, coin);
-        setFill(new ImagePattern(new Image("Resources/image/redBall2.gif")));
+        setFill(new ImagePattern(new Image("Resources/image/enemy2.gif")));
         this.player = player;
         this.coin = coin;
 

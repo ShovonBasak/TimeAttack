@@ -5,6 +5,7 @@ import application.Main;
 import UserInterface.ScoreLabel;
 import gameObjects.*;
 import javafx.application.Platform;
+import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
@@ -34,7 +35,7 @@ public class GameScene implements Runnable {
     private int level;
     private int enemyCounter;
     private int scoreLevelCounter;
-    ArrayList<Enemy> enemies;
+    private ArrayList<Enemy> enemies;
     public static boolean isPaused = false;
     private Thread mainThread;
     private Text pauseText;
@@ -94,7 +95,7 @@ public class GameScene implements Runnable {
         mainThread.start();
     }
 
-    public synchronized void resume() {
+    private synchronized void resume() {
         isPaused = false;
         notify();
         player.resume();
@@ -103,7 +104,7 @@ public class GameScene implements Runnable {
     }
 
 
-    public void controlScene(){
+    private void controlScene(){
         getScene().addEventFilter(KeyEvent.KEY_PRESSED, e -> {
             if(e.getCode() == ENTER){
                 pauseText.setVisible(false);
@@ -120,7 +121,7 @@ public class GameScene implements Runnable {
         return this.scene;
     }
 
-    public void checkLevel() {
+    private void checkLevel() {
         if (scoreLabel.getScore() >= scoreLevelCounter && level < level+1) {
             level++;
             scoreLevelCounter += 50;

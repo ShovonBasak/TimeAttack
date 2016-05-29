@@ -15,7 +15,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import scenes.GameScene;
 import scenes.HighScoreScene;
-import scenes.InstructionsScene;
+import scenes.helpScene;
 import scenes.LoadingScreen;
 
 import java.util.Optional;
@@ -26,14 +26,14 @@ import static javafx.application.Application.launch;
 public class Main extends Application {
     //Class variables
 
-    public Stage window;
-    public Scene scene;
-    public VBox layout;
-    public CustomButton startGame;
-    public CustomButton exit;
-    public CustomButton highScore;
-    public CustomButton instructions;
-    public Text gameName;
+    private Stage window;
+    private Scene scene;
+    private VBox layout;
+    private CustomButton startGame;
+    private CustomButton exit;
+    private CustomButton highScore;
+    private CustomButton helpButton;
+    private Text gameName;
 
 
     //scenes
@@ -71,8 +71,8 @@ public class Main extends Application {
 
         });
 
-        instructions = new CustomButton("Instructions");
-        instructions.setOnAction(event1 -> window.setScene(new InstructionsScene(this).getScene()));
+        helpButton = new CustomButton("Help");
+        helpButton.setOnAction(event1 -> window.setScene(new helpScene(this).getScene()));
 
 
         highScore = new CustomButton("High Score");
@@ -89,7 +89,7 @@ public class Main extends Application {
         window.setScene(new LoadingScreen(this).getScene());
 
         //setup MainMenu
-        layout = new VBox(20, gameName, startGame, highScore, instructions, exit);
+        layout = new VBox(20, gameName, startGame, highScore, helpButton, exit);
         layout.setAlignment(Pos.CENTER);
         layout.setStyle("-fx-background-color: #B4EEB4;");
         scene = new Scene(layout, 800, 600);
@@ -103,7 +103,7 @@ public class Main extends Application {
                     event.consume();
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setTitle("ALERT!");
-                    alert.setHeaderText("Are you ok with this?");
+                    alert.setHeaderText("Are you sure?");
 
                     Optional<ButtonType> result = alert.showAndWait();
                     if (result.get() == ButtonType.OK){
