@@ -74,6 +74,7 @@ public class Enemy1 extends Enemy implements Runnable{
                     if (this.intersect(coin)) {
                         coin.collides(this);
                     }
+
                 }
             });
             try{

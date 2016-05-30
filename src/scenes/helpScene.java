@@ -139,13 +139,22 @@ public class helpScene {
     private void setObjectiveScene(){
         //Controls Scene
         VBox ObjectiveScene=new VBox();
+        ObjectiveScene.setAlignment(Pos.TOP_CENTER);
         ObjectiveScene.setStyle("-fx-background-color: #114569;");
         Text groupTitleC=new Text("Objective");
         groupTitleC.setFont(Font.font("Chiller", FontWeight.BOLD, 30));
         groupTitleC.setCache(true);
         groupTitleC.setFill(Color.web("#05FFB8"));
-        groupTitleC.setTranslateX(ObjectiveScene.getLayoutX()+275);
-        ObjectiveScene.getChildren().addAll(groupTitleC);
+
+        Text objectiveText=new Text("Collect Coins And survive the Guardians.\n" +
+                "Collect the conis before timer runs out.");
+        objectiveText.setFill(Color.web("#99ccff"));
+        objectiveText.setFont(Font.font("Chiller", FontWeight.BOLD, 25));
+
+
+
+
+        ObjectiveScene.getChildren().addAll(groupTitleC,objectiveText);
         layout.setCenter(ObjectiveScene);
     }
 
