@@ -16,11 +16,11 @@ import javafx.util.Duration;
 public class LoadingScreen {
     public Scene scene;
     private ImageView loadingScreen;
-    Main mainmenu;
-    Image loadingImage= new Image("Resources/image/loadingScreen.jpg");
+    private Main mainMenu;
 
     public LoadingScreen(Main mainMenu) {
-        this.mainmenu=mainMenu;
+        this.mainMenu=mainMenu;
+        Image loadingImage = new Image("Resources/image/loadingScreen.jpg");
         loadingScreen= new ImageView(loadingImage);
         loadingScreen.setFitWidth(800);
         loadingScreen.setFitHeight(600);

@@ -32,6 +32,7 @@ public class Main extends Application {
     private CustomButton startGame;
     private CustomButton exit;
     private CustomButton highScore;
+    private CustomButton instructions;
     private CustomButton helpButton;
     private Text gameName;
 

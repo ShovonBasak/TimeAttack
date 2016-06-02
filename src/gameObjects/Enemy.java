@@ -1,5 +1,8 @@
 package gameObjects;
 
+import gameObjects.Coin;
+import gameObjects.MovableObject;
+import gameObjects.Player;
 import scenes.GameScene;
 
 public abstract class Enemy extends MovableObject {

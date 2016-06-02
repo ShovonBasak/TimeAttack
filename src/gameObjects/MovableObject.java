@@ -15,7 +15,7 @@ public abstract class MovableObject extends Circle implements Runnable {
     double lowerBound;
     double upperBound;
 
-    MovableObject(double centerX, double centerY, double radius, String color) {
+    protected MovableObject(double centerX, double centerY, double radius, String color) {
         super(centerX, centerY, radius, Paint.valueOf(color));
         setSpeed(1);
     }

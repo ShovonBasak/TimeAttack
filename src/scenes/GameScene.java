@@ -4,8 +4,8 @@ package scenes;
 import application.Main;
 import UserInterface.ScoreLabel;
 import gameObjects.*;
+import gameObjects.Enemy;
 import javafx.application.Platform;
-import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
@@ -27,7 +27,6 @@ public class GameScene implements Runnable {
     private Group group;
     private Player player;
     private Coin coin;
-    private Random randomPosition;
     private GameOverScene gameOverScene;
     private Main mainMenu;
     private ScoreLabel scoreLabel;
@@ -37,7 +36,6 @@ public class GameScene implements Runnable {
     private int scoreLevelCounter;
     private ArrayList<Enemy> enemies;
     public static boolean isPaused = false;
-    private Thread mainThread;
     private Text pauseText;
 
 
@@ -47,27 +45,20 @@ public class GameScene implements Runnable {
         pauseText.setFill(Paint.valueOf("BLUE"));
         pauseText.setVisible(false);
 
-
-
-
-
         enemyCounter = 0;
         level = 0;
         scoreLevelCounter = 50;
 
-
         levelLabel = new Text("Level:" + String.valueOf(level));
         levelLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
         levelLabel.setFill(Paint.valueOf("RED"));
-
-
 
         enemies = new ArrayList<>();
 
         this.mainMenu = mainMenu;
 
         Player.dead = false;
-        randomPosition = new Random();
+        Random randomPosition = new Random();
 
         player = new Player(50, 500, 30);
 
@@ -76,22 +67,17 @@ public class GameScene implements Runnable {
         coin = new Coin(28 + randomPosition.nextInt(800), 28 + randomPosition.nextInt(600), 35, player, scoreLabel);
 
         group = new Group(player);
-
-
         group.getChildren().addAll(scoreLabel, scoreLabel.getScoreText(), levelLabel, pauseText);
-
         group.getChildren().addAll(coin.getCoin());
 
         scene = new Scene(group,800,600, Color.web("#00ff99",.30));
-
-
 
         levelLabel.setTextAlignment(TextAlignment.CENTER);
         levelLabel.setX(getScene().getWidth() / 2 - 55);
         levelLabel.setY(levelLabel.getTranslateY() + 30);
 
         mainMenu.getWindow().resizableProperty().setValue(true);
-        mainThread = new Thread(this);
+        Thread mainThread = new Thread(this);
         mainThread.start();
     }
 

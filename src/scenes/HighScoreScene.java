@@ -5,6 +5,7 @@ import application.Main;
 import UserInterface.ScoreBoard;
 import UserInterface.CustomButton;
 import database.DBService;
+import gameData.XMLService;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -109,7 +110,7 @@ public class HighScoreScene {
         //1 row = 1 scoreboard object get and arraylist from the database and create objects from those.
         try {
             setTable();
-            DBService x = new DBService();
+            XMLService x = new XMLService();
             ArrayList<ScoreBoard> sb = x.getScoreList();
 
             for (ScoreBoard scoreBoard : sb) {

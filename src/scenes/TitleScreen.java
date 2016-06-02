@@ -16,22 +16,22 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-public class TitleScreen {
+class TitleScreen {
     public Scene scene;
     private ImageView titleScreen;
-    Main mainmenu;
-    Text prompt;
+    private Main mainMenu;
+    private Text prompt;
 
-    Image titleImage= new Image("Resources/image/Time Attack.jpg");
+    private Image titleImage= new Image("Resources/image/Time Attack.jpg");
 
-    public TitleScreen(Main mainMenu) {
+    TitleScreen(Main mainMenu) {
         prompt= new Text("Press Any Key");
         prompt.setFont(Font.font("Blackadder ITC", FontWeight.BOLD, 60));
         prompt.setCache(true);
         prompt.setFill(Color.CORAL);
         prompt.setTranslateY(prompt.getTranslateY() - 50);
 
-        this.mainmenu=mainMenu;
+        this.mainMenu = mainMenu;
 
         setScene(mainMenu);
 
@@ -68,15 +68,6 @@ public class TitleScreen {
             mainMenu.getWindow().setScene(mainMenu.getScene());
             ft.stop();
         });
-
-
-
-
-
-
-
-
-
     }
 
     public Scene getScene() {

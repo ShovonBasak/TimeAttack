@@ -121,7 +121,7 @@ public class Coin extends MovableObject {
         timeLabel.setY(this.getCenterY() + adjustTimeLabelY);
     }
 
-    public void collides(Enemy enemy){
+    void collides(Enemy enemy){
         scoreLabel.setScore(scoreLabel.getScore());
         this.setSpeed(enemy.getSpeed());
 

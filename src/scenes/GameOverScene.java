@@ -7,6 +7,7 @@ import UserInterface.CustomButton;
 import UserInterface.ScoreLabel;
 import database.DBService;
 
+import gameData.XMLService;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
@@ -19,9 +20,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 
-public class GameOverScene {
+class GameOverScene {
     public Scene scene;
-    private VBox layout;
     private CustomButton Next;
     private ScoreLabel scoreLabel;
     private TextField NameField;
@@ -30,10 +30,10 @@ public class GameOverScene {
     private Text gameOver;
     private Text Score;
     private Text nameLable;
-    Main mainMenu;
-    int levelReached;
+    private Main mainMenu;
+    private int levelReached;
 
-    public GameOverScene(Main mainMenu, ScoreLabel scoreLabel, int levelReached) {
+    GameOverScene(Main mainMenu, ScoreLabel scoreLabel, int levelReached) {
         this.scoreLabel = scoreLabel;
         this.mainMenu=mainMenu;
         this.levelReached=levelReached;
@@ -74,8 +74,8 @@ public class GameOverScene {
         setScene();
     }
 
-    public void setScene() {
-        layout = new VBox(20, gameOver, Score, nameLable, NameField, Next);
+    private void setScene() {
+        VBox layout = new VBox(20, gameOver, Score, nameLable, NameField, Next);
         layout.setAlignment(Pos.CENTER);
         scene = new Scene(layout, 800, 600);
         layout.setStyle("-fx-background-color: #000000;");
@@ -95,7 +95,7 @@ public class GameOverScene {
     }
 
 
-    public void updateDatabase(ScoreBoard sb) {
+    /*private void updateDatabase(ScoreBoard sb) {
         //send queries from the data of the given scoreboard object.
         try {
             DBService ds = new DBService();
@@ -105,9 +105,20 @@ public class GameOverScene {
             e.printStackTrace();
         }
 
+    }*/
+
+    private void updateData(ScoreBoard sb) {
+        //send queries from the data of the given scoreboard object.
+        try {
+            XMLService xs = new XMLService();
+            xs.updateScoreBoard(sb.getName(), sb.getScore(), sb.getLvlReached());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
-    public void query(Main mainMenu,int levelReached){
+    private void query(Main mainMenu, int levelReached){
         ScoreBoard SB;
         String name = NameField.getText();
         if (!name.isEmpty()) {
@@ -116,7 +127,7 @@ public class GameOverScene {
             SB = new ScoreBoard("NameLessWonder", String.valueOf(scoreLabel.getScore()), String.valueOf(levelReached));
         }
 
-        updateDatabase(SB);
+        updateData(SB);
         mainMenu.getWindow().setScene(new HighScoreScene(mainMenu).getScene());
     }
 
