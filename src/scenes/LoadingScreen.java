@@ -1,7 +1,7 @@
 package scenes;
 
 
-import application.Main;
+import Application.Main;
 import javafx.animation.FadeTransition;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -43,13 +43,9 @@ public class LoadingScreen {
         scene = new Scene(layout, 800, 600);
 
 
-        scene.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
-            mainMenu.getWindow().setScene(new TitleScreen(mainMenu).getScene());
-        });
+        scene.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> mainMenu.getWindow().setScene(new TitleScreen(mainMenu).getScene()));
 
-        scene.addEventFilter(KeyEvent.ANY, event -> {
-            mainMenu.getWindow().setScene(new TitleScreen(mainMenu).getScene());
-        });
+        scene.addEventFilter(KeyEvent.ANY, event -> mainMenu.getWindow().setScene(new TitleScreen(mainMenu).getScene()));
 
 
 

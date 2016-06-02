@@ -1,8 +1,15 @@
 package gameObjects;
+/**
+ @author Tazim
+ Class Description:
+ Inherits Circle class and implements Runnable as All movable objects will have a Thread attatched.
+ Funcions:
+ MoveDirections(); common in most movable objects
+ intersect():Bool; to test if this object intersects with something
 
 
-import javafx.scene.image.Image;
-import javafx.scene.paint.ImagePattern;
+
+ */
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
@@ -15,7 +22,7 @@ public abstract class MovableObject extends Circle implements Runnable {
     double lowerBound;
     double upperBound;
 
-    protected MovableObject(double centerX, double centerY, double radius, String color) {
+    MovableObject(double centerX, double centerY, double radius, String color) {
         super(centerX, centerY, radius, Paint.valueOf(color));
         setSpeed(1);
     }

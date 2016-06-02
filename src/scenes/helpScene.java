@@ -2,7 +2,7 @@ package scenes;
 
 
 import UserInterface.CustomButton;
-import application.Main;
+import Application.Main;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -95,7 +95,7 @@ public class helpScene {
         VBox enemyGroup=new VBox();
         enemyGroup.setStyle("-fx-background-color: #114569;");
         Text groupTitle=new Text("Enemies");
-        groupTitle.setFont(Font.font("Chiller", FontWeight.BOLD, 30));
+        groupTitle.setFont(Font.font("Chiller", FontWeight.BOLD, 40));
         groupTitle.setCache(true);
         groupTitle.setFill(Color.web("#05FFB8"));
         groupTitle.setTranslateX(groupTitle.getLayoutX()+275);
@@ -103,7 +103,7 @@ public class helpScene {
         //enemy1info
         ImageView enemy1Image=new ImageView(new Image("Resources/image/enemy1.gif"));
         Text enemy1Text=new Text("They will bounce off walls and the coins even among other enemies.");
-        enemy1Text.setFont(Font.font("Chiller", FontWeight.EXTRA_BOLD, 18));
+        enemy1Text.setFont(Font.font("Harrington", FontWeight.EXTRA_BOLD, 19));
         enemy1Text.setFill(Color.web("#FF054C"));
         enemy1Text.setTranslateX(enemy1Text.getLayoutX()+60);
         enemy1Text.setTranslateY(enemy1Text.getLayoutY()-20);
@@ -112,7 +112,7 @@ public class helpScene {
         enemy2Image.setFitHeight(50);
         enemy2Image.setFitWidth(50);
         Text enemy2Text=new Text("Don't Fall for it's cute outlook. They will follow you to your death.");
-        enemy2Text.setFont(Font.font("Chiller", FontWeight.EXTRA_BOLD, 18));
+        enemy2Text.setFont(Font.font("Harrington", FontWeight.EXTRA_BOLD, 19));
         enemy2Text.setFill(Color.web("#FF054C"));
         enemy2Text.setTranslateX(enemy1Text.getLayoutX()+60);
         enemy2Text.setTranslateY(enemy1Text.getLayoutY()-20);
@@ -127,7 +127,7 @@ public class helpScene {
         VBox conrtolsMenu=new VBox();
         conrtolsMenu.setStyle("-fx-background-color: #114569;");
         Text groupTitleC=new Text("Controls");
-        groupTitleC.setFont(Font.font("Chiller", FontWeight.BOLD, 30));
+        groupTitleC.setFont(Font.font("Chiller", FontWeight.BOLD, 40));
         groupTitleC.setCache(true);
         groupTitleC.setFill(Color.web("#05FFB8"));
         groupTitleC.setTranslateX(conrtolsMenu.getLayoutX()+275);
@@ -142,14 +142,14 @@ public class helpScene {
         ObjectiveScene.setAlignment(Pos.TOP_CENTER);
         ObjectiveScene.setStyle("-fx-background-color: #114569;");
         Text groupTitleC=new Text("Objective");
-        groupTitleC.setFont(Font.font("Chiller", FontWeight.BOLD, 30));
+        groupTitleC.setFont(Font.font("Chiller", FontWeight.BOLD, 40));
         groupTitleC.setCache(true);
         groupTitleC.setFill(Color.web("#05FFB8"));
 
-        Text objectiveText=new Text("Collect Coins And survive the Guardians.\n" +
-                "Collect the conis before timer runs out.");
+        Text objectiveText=new Text("Collect coins and evade the guardians.\n" +
+                "Collect the coins before timer runs out.");
         objectiveText.setFill(Color.web("#99ccff"));
-        objectiveText.setFont(Font.font("Chiller", FontWeight.BOLD, 25));
+        objectiveText.setFont(Font.font("Monotype Corsiva", FontWeight.BOLD, 40));
 
 
 

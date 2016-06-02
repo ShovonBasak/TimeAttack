@@ -1,6 +1,6 @@
 package scenes;
 
-import application.Main;
+import Application.Main;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.geometry.Pos;

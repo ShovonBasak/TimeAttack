@@ -1,10 +1,9 @@
 package scenes;
 
 
-import application.Main;
 import UserInterface.ScoreLabel;
+import Application.Main;
 import gameObjects.*;
-import gameObjects.Enemy;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;

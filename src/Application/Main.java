@@ -1,4 +1,4 @@
-package application;
+package Application;
 
 import UserInterface.CustomButton;
 import javafx.application.Application;
@@ -62,7 +62,7 @@ public class Main extends Application {
         exit.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("ALERT!");
-            alert.setHeaderText("Are you ok with this?");
+            alert.setHeaderText("Are you sure?");
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){

@@ -1,12 +1,10 @@
 package scenes;
 
 
-import application.Main;
-import UserInterface.ScoreBoard;
 import UserInterface.CustomButton;
+import UserInterface.ScoreBoard;
 import UserInterface.ScoreLabel;
-import database.DBService;
-
+import Application.Main;
 import gameData.XMLService;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -41,9 +39,7 @@ class GameOverScene {
 
 
         Next = new CustomButton("Next");
-        Next.setOnAction(event1 -> {
-               query(mainMenu,levelReached);
-        });
+        Next.setOnAction(event1 -> query(mainMenu,levelReached));
 
         NameField = new TextField();
 
