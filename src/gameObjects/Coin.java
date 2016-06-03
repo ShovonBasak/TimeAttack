@@ -2,6 +2,8 @@ package gameObjects;
 
 import javafx.scene.Group;
 import javafx.scene.image.Image;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.ImagePattern;
 import UserInterface.ScoreLabel;
 import javafx.application.Platform;
@@ -72,7 +74,7 @@ public class Coin extends MovableObject {
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 Platform.runLater(()->{
-                    time = --interval;;
+                    time = --interval;
                 });
                 if(time == 7 ){
                     showCoin();
@@ -148,6 +150,7 @@ public class Coin extends MovableObject {
 
     private void collidesWithPlayer(){
         if(!Player.dead){
+
             scoreLabel.setScore(scoreLabel.getScore() + time);
             this.hideCoin();
             this.setTime(1,7);

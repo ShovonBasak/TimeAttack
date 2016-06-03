@@ -8,6 +8,8 @@ import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
@@ -39,6 +41,14 @@ public class GameScene implements Runnable {
 
 
     public GameScene(Main mainMenu) {
+
+        Media audioClip = new Media("file:///" +
+                System.getProperty("user.dir").replace("\\","//")+
+                "//src//Resources//AudioClip//1.mp3");
+
+        MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
+        mediaPlayer.play();
+
         pauseText=new Text("Paused");
         pauseText.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
         pauseText.setFill(Paint.valueOf("BLUE"));
@@ -69,7 +79,9 @@ public class GameScene implements Runnable {
         group.getChildren().addAll(scoreLabel, scoreLabel.getScoreText(), levelLabel, pauseText);
         group.getChildren().addAll(coin.getCoin());
 
-        scene = new Scene(group,800,600, Color.web("#00ff99",.30));
+        scene = new Scene(group,800,600,Color.CYAN);
+
+
 
         levelLabel.setTextAlignment(TextAlignment.CENTER);
         levelLabel.setX(getScene().getWidth() / 2 - 55);

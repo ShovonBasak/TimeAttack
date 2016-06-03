@@ -8,7 +8,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Path;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -18,6 +22,7 @@ import scenes.HighScoreScene;
 import scenes.helpScene;
 import scenes.LoadingScreen;
 
+import java.io.File;
 import java.util.Optional;
 
 public class Main extends Application {
@@ -34,7 +39,6 @@ public class Main extends Application {
 
 
     //scenes
-
 
 
     public Stage getWindow() {
@@ -82,9 +86,12 @@ public class Main extends Application {
     public void start(Stage window) throws Exception {
         this.window = window;
         window.setScene(new LoadingScreen(this).getScene());
+        
+
 
         //setup MainMenu
         layout = new VBox(20, gameName, startGame, highScore, helpButton, exit);
+
         layout.setAlignment(Pos.CENTER);
         layout.setStyle("-fx-background-color: linear-gradient(#368fb4, #7ad3f8);");
         scene = new Scene(layout, 800, 600);
