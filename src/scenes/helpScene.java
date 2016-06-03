@@ -31,7 +31,7 @@ public class helpScene {
 
         HBox top=new HBox();
         top.setMinHeight(40);
-        top.setStyle("-fx-background-color: #88409C;");
+        top.setStyle("-fx-background-color: linear-gradient(#780bde, #062f42);");
         CustomButton backButton=new CustomButton("Back");
         backButton.setOnAction(event -> mainMenu.getWindow().setScene(mainMenu.getScene()));
         top.getChildren().addAll(backButton);
@@ -40,17 +40,17 @@ public class helpScene {
         VBox left=new VBox(30);
         left.setAlignment(Pos.CENTER);
         left.getChildren().addAll(controlButton,enemyButton,objectiveButton);
-        left.setStyle("-fx-background-color: #88409C;");
+        left.setStyle("-fx-background-color: linear-gradient(#780bde, #062f42);");
         layout.setLeft(left);
 
         VBox right=new VBox();
-        right.setStyle("-fx-background-color: #88409C;");
+        right.setStyle("-fx-background-color: linear-gradient(#780bde, #062f42);");
         right.setFillWidth(true);
         right.setMinWidth(75);
         layout.setRight(right);
 
         VBox bot=new VBox();
-        bot.setStyle("-fx-background-color: #88409C;");
+        bot.setStyle("-fx-background-color: linear-gradient(#780bde, #062f42);");
         bot.setFillWidth(true);
         bot.setMinHeight(40);
         layout.setBottom(bot);
@@ -93,7 +93,7 @@ public class helpScene {
     private void setEnemyScene(){
         //enemyButton scene
         VBox enemyGroup=new VBox();
-        enemyGroup.setStyle("-fx-background-color: #114569;");
+        enemyGroup.setStyle("-fx-background-color: linear-gradient(#020300, #14b897);");
         Text groupTitle=new Text("Enemies");
         groupTitle.setFont(Font.font("Chiller", FontWeight.BOLD, 40));
         groupTitle.setCache(true);
@@ -125,7 +125,7 @@ public class helpScene {
     private void setControlScene(){
         //Controls Scene
         VBox conrtolsMenu=new VBox();
-        conrtolsMenu.setStyle("-fx-background-color: #114569;");
+        conrtolsMenu.setStyle("-fx-background-color: linear-gradient(#020300, #14b897);");
         Text groupTitleC=new Text("Controls");
         groupTitleC.setFont(Font.font("Chiller", FontWeight.BOLD, 40));
         groupTitleC.setCache(true);
@@ -140,13 +140,13 @@ public class helpScene {
         //Controls Scene
         VBox ObjectiveScene=new VBox();
         ObjectiveScene.setAlignment(Pos.TOP_CENTER);
-        ObjectiveScene.setStyle("-fx-background-color: #114569;");
+        ObjectiveScene.setStyle("-fx-background-color: linear-gradient(#020300, #14b897);");
         Text groupTitleC=new Text("Objective");
         groupTitleC.setFont(Font.font("Chiller", FontWeight.BOLD, 40));
         groupTitleC.setCache(true);
         groupTitleC.setFill(Color.web("#05FFB8"));
 
-        Text objectiveText=new Text("Collect coins and evade the guardians.\n" +
+        Text objectiveText=new Text("Collect coins and evade the enemies.\n" +
                 "Collect the coins before timer runs out.");
         objectiveText.setFill(Color.web("#99ccff"));
         objectiveText.setFont(Font.font("Monotype Corsiva", FontWeight.BOLD, 40));

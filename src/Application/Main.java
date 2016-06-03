@@ -20,9 +20,6 @@ import scenes.LoadingScreen;
 
 import java.util.Optional;
 
-import static javafx.application.Application.launch;
-
-
 public class Main extends Application {
     //Class variables
 
@@ -32,7 +29,6 @@ public class Main extends Application {
     private CustomButton startGame;
     private CustomButton exit;
     private CustomButton highScore;
-    private CustomButton instructions;
     private CustomButton helpButton;
     private Text gameName;
 
@@ -50,8 +46,6 @@ public class Main extends Application {
     }
 
     public Main() {
-
-
         //initialize buttons
         startGame = new CustomButton("Start Game");
         startGame.setOnAction(event1 -> {
@@ -92,7 +86,7 @@ public class Main extends Application {
         //setup MainMenu
         layout = new VBox(20, gameName, startGame, highScore, helpButton, exit);
         layout.setAlignment(Pos.CENTER);
-        layout.setStyle("-fx-background-color: #B4EEB4;");
+        layout.setStyle("-fx-background-color: linear-gradient(#368fb4, #7ad3f8);");
         scene = new Scene(layout, 800, 600);
 
         window.setTitle("Time Attack");
