@@ -1,3 +1,10 @@
+/**
+How this works?
+ This is The main Menu.It handles other game scenes.Other scenes transit into and out of this.
+ Main Function creates an instance of main menu and it's components.
+ Whenever scene transition happens this object is passed so that this scene can be called back.
+ */
+
 package Application;
 
 import UserInterface.CustomButton;
@@ -22,8 +29,9 @@ import scenes.HighScoreScene;
 import scenes.helpScene;
 import scenes.LoadingScreen;
 
-import java.io.File;
 import java.util.Optional;
+
+
 
 public class Main extends Application {
     //Class variables
@@ -86,7 +94,7 @@ public class Main extends Application {
     public void start(Stage window) throws Exception {
         this.window = window;
         window.setScene(new LoadingScreen(this).getScene());
-        
+
 
 
         //setup MainMenu

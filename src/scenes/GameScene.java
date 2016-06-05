@@ -38,15 +38,18 @@ public class GameScene implements Runnable {
     private ArrayList<Enemy> enemies;
     public static boolean isPaused = false;
     private Text pauseText;
-
+    private MediaPlayer mediaPlayer;
 
     public GameScene(Main mainMenu) {
 
         Media audioClip = new Media("file:///" +
                 System.getProperty("user.dir").replace("\\","//")+
-                "//src//Resources//AudioClip//1.mp3");
+               "//src//Resources//AudioClip//GameBGM.mp3");
 
-        MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
+
+
+        mediaPlayer= new MediaPlayer(audioClip);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
 
         pauseText=new Text("Paused");

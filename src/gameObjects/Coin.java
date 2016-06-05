@@ -17,6 +17,8 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static javafx.scene.media.AudioClip.INDEFINITE;
+
 
 public class Coin extends MovableObject {
     private Timer timer;
@@ -73,9 +75,7 @@ public class Coin extends MovableObject {
     private void countDown(){
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
-                Platform.runLater(()->{
-                    time = --interval;
-                });
+                Platform.runLater(()-> time = --interval);
                 if(time == 7 ){
                     showCoin();
                 }
@@ -150,7 +150,6 @@ public class Coin extends MovableObject {
 
     private void collidesWithPlayer(){
         if(!Player.dead){
-
             scoreLabel.setScore(scoreLabel.getScore() + time);
             this.hideCoin();
             this.setTime(1,7);

@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class CustomButton extends Button {
-    public CustomButton(double x, double y, String text) {
+    private CustomButton(double x, double y, String text) {
         super.setLayoutX(x);
         super.setLayoutY(y);
         super.setText(text);
@@ -27,4 +27,6 @@ public class CustomButton extends Button {
         super.setTextFill(Color.WHITE);
         this.setFont(Font.font("Harrington", 15));
     }
+
+
 }

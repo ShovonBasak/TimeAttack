@@ -11,14 +11,21 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
+import sun.awt.SunToolkit;
+
+import static javafx.scene.media.AudioClip.INDEFINITE;
 
 public class LoadingScreen {
     public Scene scene;
     private ImageView loadingScreen;
     private Main mainMenu;
-
+    private MediaPlayer mediaPlayer;
     public LoadingScreen(Main mainMenu) {
+
+
         this.mainMenu=mainMenu;
         Image loadingImage = new Image("Resources/image/loadingScreen.jpg");
         loadingScreen= new ImageView(loadingImage);
@@ -43,9 +50,15 @@ public class LoadingScreen {
         scene = new Scene(layout, 800, 600);
 
 
-        scene.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> mainMenu.getWindow().setScene(new TitleScreen(mainMenu).getScene()));
+        scene.addEventFilter(MouseEvent.MOUSE_CLICKED, e ->{
+            mainMenu.getWindow().setScene(new TitleScreen(mainMenu).getScene());
+            mediaPlayer.stop();
+        });
 
-        scene.addEventFilter(KeyEvent.ANY, event -> mainMenu.getWindow().setScene(new TitleScreen(mainMenu).getScene()));
+        scene.addEventFilter(KeyEvent.ANY, event -> {
+            mainMenu.getWindow().setScene(new TitleScreen(mainMenu).getScene());
+            mediaPlayer.stop();
+        });
 
 
 
@@ -55,7 +68,12 @@ public class LoadingScreen {
         ft.setCycleCount(1);
 
         ft.play();
+        Media audioClip = new Media("file:///" +
+                System.getProperty("user.dir").replace("\\","//")+
+                "//src//Resources//AudioClip//LoadingScreen.mp3");
 
+        mediaPlayer= new MediaPlayer(audioClip);
+        mediaPlayer.play();
 
 
 

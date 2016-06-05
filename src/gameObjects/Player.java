@@ -4,6 +4,8 @@ package gameObjects;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.ImagePattern;
 import scenes.GameScene;
 
@@ -16,10 +18,19 @@ public class Player extends MovableObject {
     }
 
     public Player(double centerX, double centerY, double radius) {
+
         super(centerX, centerY, radius, "green");
         setFill(new ImagePattern(new Image("Resources/image/Player.gif")));
         thisThread = new Thread(this);
         thisThread.start();
+        Media audioClip = new Media("file:///" +
+                System.getProperty("user.dir").replace("\\","//")+
+                "//src//Resources//AudioClip//GameBGM.mp3");
+
+
+
+        MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
+        mediaPlayer.play();
     }
 
 
