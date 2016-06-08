@@ -68,9 +68,9 @@ public class LoadingScreen {
         ft.setCycleCount(1);
 
         ft.play();
-        Media audioClip = new Media("file:///" +
+        Media audioClip = new Media("\"file:///" +
                 System.getProperty("user.dir").replace("\\","//")+
-                "//src//Resources//AudioClip//LoadingScreen.mp3");
+                "//src//Resources//AudioClip//LoadingScreen.mp3\"");
 
         mediaPlayer= new MediaPlayer(audioClip);
         mediaPlayer.play();
