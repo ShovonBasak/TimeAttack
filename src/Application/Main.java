@@ -11,6 +11,7 @@ import UserInterface.CustomButton;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -62,6 +63,7 @@ public class Main extends Application {
         startGame = new CustomButton("Start Game");
         startGame.setOnAction(event1 -> {
             window.setScene(new GameScene(this).getScene());
+
             window.setFullScreen(true);
         });
         exit = new CustomButton("Exit");

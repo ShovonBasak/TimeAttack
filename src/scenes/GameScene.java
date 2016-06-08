@@ -5,6 +5,7 @@ import UserInterface.ScoreLabel;
 import Application.Main;
 import gameObjects.*;
 import javafx.application.Platform;
+import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
@@ -33,7 +34,6 @@ public class GameScene implements Runnable {
     private ScoreLabel scoreLabel;
     private Text levelLabel;
     private int level;
-    private int enemyCounter;
     private int scoreLevelCounter;
     private ArrayList<Enemy> enemies;
     public static boolean isPaused = false;
@@ -57,7 +57,7 @@ public class GameScene implements Runnable {
         pauseText.setFill(Paint.valueOf("BLUE"));
         pauseText.setVisible(false);
 
-        enemyCounter = 0;
+
         level = 0;
         scoreLevelCounter = 50;
 
@@ -83,7 +83,7 @@ public class GameScene implements Runnable {
         group.getChildren().addAll(coin.getCoin());
 
         scene = new Scene(group,800,600,Color.CYAN);
-
+        scene.setCursor(Cursor.NONE);
 
 
         levelLabel.setTextAlignment(TextAlignment.CENTER);
@@ -136,7 +136,7 @@ public class GameScene implements Runnable {
                 enemies.add(enemy);
                 group.getChildren().addAll(enemy);
                 enemy.setSpeed(1);
-                enemyCounter++;
+
             }
             if(level == 5){
                 Enemy enemy = new Enemy2(1024, 0, 35, player, coin);
@@ -170,6 +170,7 @@ public class GameScene implements Runnable {
         //runs when player is dead
         Platform.runLater(() ->
         {
+            mediaPlayer.stop();
             gameOverScene = new GameOverScene(mainMenu, scoreLabel, level);
             mainMenu.getWindow().setScene(gameOverScene.getScene());
         });

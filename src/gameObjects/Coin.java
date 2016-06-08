@@ -83,6 +83,18 @@ public class Coin extends MovableObject {
         }, delay, period);
     }
 
+    private void PlaySound(){
+        Media audioClip = new Media("file:///" +
+                System.getProperty("user.dir").replace("\\","//")+
+                "//src//Resources//AudioClip//Coin.mp3");
+
+
+
+        MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
+        mediaPlayer.setVolume(.2);
+        mediaPlayer.play();
+    }
+
     public synchronized void resume() {
         GameScene.isPaused = false;
         notify();
@@ -151,6 +163,7 @@ public class Coin extends MovableObject {
     private void collidesWithPlayer(){
         if(!Player.dead){
             scoreLabel.setScore(scoreLabel.getScore() + time);
+            PlaySound();
             this.hideCoin();
             this.setTime(1,7);
             this.setPosition();
