@@ -86,6 +86,20 @@ public class XMLService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        removeAll(document, root.ELEMENT_NODE, "ScoreBoard");
         return scoreList;
+    }
+
+    public void removeAll(Node node, short nodeType, String name) {
+        //System.out.print(node.getNodeName());
+        if (node.getNodeType() == nodeType && (name == null || node.getNodeName().equals(name))) {
+            node.getParentNode().removeChild(node);
+        } else {
+            NodeList list = node.getChildNodes();
+            for (int i = 0; i < list.getLength(); i++) {
+                removeAll(list.item(i), nodeType, name);
+                System.out.print(list.item(i));
+            }
+        }
     }
 }

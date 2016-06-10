@@ -41,16 +41,21 @@ public class GameScene implements Runnable {
     public MediaPlayer mediaPlayer;
 
     public GameScene(Main mainMenu) {
+        try{
+            Media audioClip = new Media("file:///" +
+                    System.getProperty("user.dir").replace("\\","//")+
+                    "//src//Resources//AudioClip//GameBGM.mp3");
 
-        Media audioClip = new Media("file:///" +
-                System.getProperty("user.dir").replace("\\","//")+
-               "//src//Resources//AudioClip//GameBGM.mp3");
 
 
+            mediaPlayer= new MediaPlayer(audioClip);
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.play();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
 
-        mediaPlayer= new MediaPlayer(audioClip);
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.play();
 
         pauseText=new Text("Paused");
         pauseText.setFont(Font.font("Verdana", FontWeight.BOLD, 30));

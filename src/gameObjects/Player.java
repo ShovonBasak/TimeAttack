@@ -23,14 +23,20 @@ public class Player extends MovableObject {
         setFill(new ImagePattern(new Image("Resources/image/Player.gif")));
         thisThread = new Thread(this);
         thisThread.start();
-        Media audioClip = new Media("file:///" +
-                System.getProperty("user.dir").replace("\\","//")+
-                "//src//Resources//AudioClip//GameBGM.mp3");
+        try {
+            Media audioClip = new Media("file:///" +
+                    System.getProperty("user.dir").replace("\\","//")+
+                    "//src//Resources//AudioClip//GameBGM.mp3");
 
 
 
-        MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
-        mediaPlayer.play();
+            MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
+            mediaPlayer.play();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 
