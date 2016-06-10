@@ -157,6 +157,7 @@ public class Main extends Application {
 
             mediaPlayer= new MediaPlayer(audioClip);
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+
             mediaPlayer.play();
         }catch (Exception e){
             e.printStackTrace();

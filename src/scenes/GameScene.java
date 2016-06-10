@@ -18,6 +18,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -41,16 +42,8 @@ public class GameScene implements Runnable {
     public MediaPlayer mediaPlayer;
 
     public GameScene(Main mainMenu) {
+        backgroundAudio();
 
-        Media audioClip = new Media("file:///" +
-                System.getProperty("user.dir").replace("\\","//")+
-               "//src//Resources//AudioClip//GameBGM.mp3");
-
-
-
-        mediaPlayer= new MediaPlayer(audioClip);
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.play();
 
         pauseText=new Text("Paused");
         pauseText.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
@@ -103,6 +96,20 @@ public class GameScene implements Runnable {
         enemies.forEach(Enemy::resume);
     }
 
+    public void backgroundAudio(){
+        try{
+            Media audioClip = new Media("file:///" +
+                    System.getProperty("user.dir").replace("\\","//")+
+                    "//src//Resources//AudioClip//GameBGM.mp3");
+
+            mediaPlayer= new MediaPlayer(audioClip);
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.play();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 
     private void controlScene(){
         getScene().addEventFilter(KeyEvent.KEY_PRESSED, e -> {
@@ -139,11 +146,13 @@ public class GameScene implements Runnable {
 
             }
             if(level == 5){
+
                 Enemy enemy = new Enemy2(1024, 0, 35, player, coin);
                 enemy.setSpeed(1);
                 enemies.add(enemy);
                 group.getChildren().addAll(enemy);
             }
+
         }
     }
 
@@ -153,6 +162,7 @@ public class GameScene implements Runnable {
                 //do anything
                 controlScene();
                 checkLevel();
+
                 pauseText.setLayoutX(getScene().getWindow().getWidth()/2-30);
                 pauseText.setLayoutY(getScene().getWindow().getHeight()/2-30);
                 levelLabel.setText("Level:" + String.valueOf(level));
@@ -162,7 +172,7 @@ public class GameScene implements Runnable {
 
 
             try {
-                Thread.sleep(30);
+                Thread.sleep(1);
             }  catch (Exception ignored) {
                 ignored.printStackTrace();
             }
@@ -171,7 +181,7 @@ public class GameScene implements Runnable {
         Platform.runLater(() ->
         {
             mediaPlayer.stop();
-            gameOverScene = new GameOverScene(mainMenu, scoreLabel, level);
+            gameOverScene = new GameOverScene(mainMenu,scoreLabel, level);
             mainMenu.getWindow().setScene(gameOverScene.getScene());
         });
     }

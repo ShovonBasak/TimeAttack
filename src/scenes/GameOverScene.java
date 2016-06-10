@@ -12,6 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -30,9 +32,10 @@ class GameOverScene {
     private Text nameLable;
     private Main mainMenu;
     private int levelReached;
+    public MediaPlayer mediaPlayer;
 
     GameOverScene(Main mainMenu, ScoreLabel scoreLabel, int levelReached) {
-
+        backgroundAudio();
         this.scoreLabel = scoreLabel;
         this.mainMenu=mainMenu;
         this.levelReached=levelReached;
@@ -72,6 +75,7 @@ class GameOverScene {
     }
 
     private void setScene() {
+
         VBox layout = new VBox(20, gameOver, Score, nameLable, NameField, Next);
         layout.setAlignment(Pos.CENTER);
         scene = new Scene(layout, 800, 600);
@@ -84,6 +88,21 @@ class GameOverScene {
             }
         });
 
+
+    }
+
+
+    public void backgroundAudio(){
+        try{
+            Media audioClip = new Media("file:///" +
+                    System.getProperty("user.dir").replace("\\","//")+
+                    "//src//Resources//AudioClip//GameOver.mp3");
+
+            mediaPlayer= new MediaPlayer(audioClip);
+            mediaPlayer.play();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 
