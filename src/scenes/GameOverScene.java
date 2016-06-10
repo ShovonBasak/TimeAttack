@@ -32,6 +32,7 @@ class GameOverScene {
     private int levelReached;
 
     GameOverScene(Main mainMenu, ScoreLabel scoreLabel, int levelReached) {
+
         this.scoreLabel = scoreLabel;
         this.mainMenu=mainMenu;
         this.levelReached=levelReached;
@@ -125,6 +126,7 @@ class GameOverScene {
 
         updateData(SB);
         mainMenu.getWindow().setScene(new HighScoreScene(mainMenu).getScene());
+        mainMenu.backgroundAudio();
     }
 
 

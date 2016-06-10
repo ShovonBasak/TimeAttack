@@ -84,15 +84,18 @@ public class Coin extends MovableObject {
     }
 
     private void PlaySound(){
-        Media audioClip = new Media("file:///" +
-                System.getProperty("user.dir").replace("\\","//")+
-                "//src//Resources//AudioClip//Coin.mp3");
+        try{
+            Media audioClip = new Media("file:///" +
+                    System.getProperty("user.dir").replace("\\","//")+
+                    "//src//Resources//AudioClip//Coin.mp3");
 
 
 
-        MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
-        mediaPlayer.setVolume(.2);
-        mediaPlayer.play();
+            MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
+            mediaPlayer.setVolume(.2);
+            mediaPlayer.play();
+        }catch (Exception e){e.printStackTrace();}
+
     }
 
     public synchronized void resume() {

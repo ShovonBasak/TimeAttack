@@ -10,6 +10,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -21,10 +23,12 @@ class TitleScreen {
     private ImageView titleScreen;
     private Main mainMenu;
     private Text prompt;
+    public MediaPlayer mediaPlayer;
 
     private Image titleImage= new Image("Resources/image/Time Attack.jpg");
 
     TitleScreen(Main mainMenu) {
+        backgroundAudio();
         prompt= new Text("Press Any Key");
         prompt.setFont(Font.font("Blackadder ITC", FontWeight.BOLD, 60));
         prompt.setCache(true);
@@ -60,12 +64,18 @@ class TitleScreen {
 
 
         scene.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
+            mediaPlayer.stop();
+            keyPressAudio();
             mainMenu.getWindow().setScene(mainMenu.getScene());
+            mainMenu.backgroundAudio();
             ft.stop();
         });
 
         scene.addEventFilter(KeyEvent.ANY, event -> {
+            mediaPlayer.stop();
+            keyPressAudio();
             mainMenu.getWindow().setScene(mainMenu.getScene());
+            mainMenu.backgroundAudio();
             ft.stop();
         });
     }
@@ -74,4 +84,34 @@ class TitleScreen {
 
         return this.scene;
     }
+
+    public void backgroundAudio(){
+        try{
+            Media audioClip = new Media("file:///" +
+                    System.getProperty("user.dir").replace("\\","//")+
+                    "//src//Resources//AudioClip//TitleScreenAudio.mp3");
+
+            mediaPlayer= new MediaPlayer(audioClip);
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.play();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void keyPressAudio(){
+        try{
+            Media audioClip = new Media("file:///" +
+                    System.getProperty("user.dir").replace("\\","//")+
+                    "//src//Resources//AudioClip//TitleClickSound.mp3");
+
+            MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
+            mediaPlayer.play();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
 }

@@ -11,16 +11,14 @@ import UserInterface.CustomButton;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
-import javafx.scene.Cursor;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Path;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -45,6 +43,7 @@ public class Main extends Application {
     private CustomButton highScore;
     private CustomButton helpButton;
     private Text gameName;
+    private MediaPlayer mediaPlayer;
 
 
     //scenes
@@ -60,14 +59,17 @@ public class Main extends Application {
 
     public Main() {
         //initialize buttons
+
         startGame = new CustomButton("Start Game");
         startGame.setOnAction(event1 -> {
+            buttonAudio();
+            mediaPlayer.stop();
             window.setScene(new GameScene(this).getScene());
-
             window.setFullScreen(true);
         });
         exit = new CustomButton("Exit");
         exit.setOnAction(event -> {
+            buttonAudio();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("ALERT!");
             alert.setHeaderText("Are you sure?");
@@ -81,11 +83,17 @@ public class Main extends Application {
         });
 
         helpButton = new CustomButton("Help");
-        helpButton.setOnAction(event1 -> window.setScene(new helpScene(this).getScene()));
+        helpButton.setOnAction(event1 -> {
+            buttonAudio();
+            window.setScene(new helpScene(this).getScene());
+        });
 
 
         highScore = new CustomButton("High Score");
-        highScore.setOnAction(event -> window.setScene(new HighScoreScene(this).getScene()));
+        highScore.setOnAction(event ->{
+            buttonAudio();
+            window.setScene(new HighScoreScene(this).getScene());
+        } );
 
         gameName = new Text("Time Attack");
         gameName.setFont(Font.font("Blackadder ITC", FontWeight.BOLD, 60));
@@ -126,6 +134,34 @@ public class Main extends Application {
 
                 }
         );
+    }
+    public void buttonAudio(){
+        try{
+            Media audioClip = new Media("file:///" +
+                    System.getProperty("user.dir").replace("\\","//")+
+                    "//src//Resources//AudioClip//Button01.wav");
+
+            MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
+            mediaPlayer.play();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void backgroundAudio(){
+        try{
+            Media audioClip = new Media("file:///" +
+                    System.getProperty("user.dir").replace("\\","//")+
+                    "//src//Resources//AudioClip//MainMenu.mp3");
+
+            mediaPlayer= new MediaPlayer(audioClip);
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.play();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     public static void main(String[] args) {

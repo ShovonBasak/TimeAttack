@@ -14,19 +14,15 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
-import sun.awt.SunToolkit;
 
-import static javafx.scene.media.AudioClip.INDEFINITE;
 
 public class LoadingScreen {
     public Scene scene;
     private ImageView loadingScreen;
-    private Main mainMenu;
     private MediaPlayer mediaPlayer;
     public LoadingScreen(Main mainMenu) {
 
 
-        this.mainMenu=mainMenu;
         Image loadingImage = new Image("Resources/image/loadingScreen.jpg");
         loadingScreen= new ImageView(loadingImage);
         loadingScreen.setFitWidth(800);
@@ -51,13 +47,15 @@ public class LoadingScreen {
 
 
         scene.addEventFilter(MouseEvent.MOUSE_CLICKED, e ->{
-            mainMenu.getWindow().setScene(new TitleScreen(mainMenu).getScene());
             mediaPlayer.stop();
+            mainMenu.getWindow().setScene(new TitleScreen(mainMenu).getScene());
+
         });
 
         scene.addEventFilter(KeyEvent.ANY, event -> {
-            mainMenu.getWindow().setScene(new TitleScreen(mainMenu).getScene());
             mediaPlayer.stop();
+            mainMenu.getWindow().setScene(new TitleScreen(mainMenu).getScene());
+
         });
 
 

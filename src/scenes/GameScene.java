@@ -38,7 +38,7 @@ public class GameScene implements Runnable {
     private ArrayList<Enemy> enemies;
     public static boolean isPaused = false;
     private Text pauseText;
-    private MediaPlayer mediaPlayer;
+    public MediaPlayer mediaPlayer;
 
     public GameScene(Main mainMenu) {
 
