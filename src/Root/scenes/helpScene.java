@@ -1,12 +1,10 @@
-package scenes;
+package Root.scenes;
 
 
-import UserInterface.CustomButton;
-import Application.Main;
+import Root.UserInterface.CustomButton;
+import Root.Application.Main;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;

@@ -1,7 +1,7 @@
-package scenes;
+package Root.scenes;
 
 
-import Application.Main;
+import Root.Application.Main;
 import javafx.animation.FadeTransition;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -66,16 +66,25 @@ public class LoadingScreen {
         ft.setCycleCount(1);
 
         ft.play();
-        Media audioClip = new Media("file:///" +
-                System.getProperty("user.dir").replace("\\","//")+
-                "//src//Resources//AudioClip//LoadingScreen.mp3");
-
-        mediaPlayer= new MediaPlayer(audioClip);
-        mediaPlayer.play();
+        playAudio();
 
 
 
 
+    }
+
+    private void playAudio(){
+        try{
+            Media audioClip = new Media("file:///" +
+                    System.getProperty("user.dir").replace("\\","//")+
+                    "//src//Resources//AudioClip//LoadingScreen.mp3");
+
+            mediaPlayer= new MediaPlayer(audioClip);
+            mediaPlayer.play();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public Scene getScene() {

@@ -1,10 +1,10 @@
-package gameObjects;
+package Root.gameObjects;
 
 
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
-import scenes.GameScene;
+import Root.scenes.GameScene;
 
 public class Enemy1 extends Enemy implements Runnable{
     private double rightBound;

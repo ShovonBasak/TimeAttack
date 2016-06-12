@@ -1,9 +1,9 @@
-package scenes;
+package Root.scenes;
 
 
-import UserInterface.ScoreLabel;
-import Application.Main;
-import gameObjects.*;
+import Root.UserInterface.ScoreLabel;
+import Root.Application.Main;
+import Root.gameObjects.*;
 import javafx.application.Platform;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
@@ -18,7 +18,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -39,7 +38,7 @@ public class GameScene implements Runnable {
     private ArrayList<Enemy> enemies;
     public static boolean isPaused = false;
     private Text pauseText;
-    public MediaPlayer mediaPlayer;
+    private MediaPlayer mediaPlayer;
 
     public GameScene(Main mainMenu) {
         backgroundAudio();
@@ -96,7 +95,7 @@ public class GameScene implements Runnable {
         enemies.forEach(Enemy::resume);
     }
 
-    public void backgroundAudio(){
+    private void backgroundAudio(){
         try{
             Media audioClip = new Media("file:///" +
                     System.getProperty("user.dir").replace("\\","//")+

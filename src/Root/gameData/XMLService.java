@@ -1,6 +1,6 @@
-package gameData;
+package Root.gameData;
 
-import UserInterface.ScoreBoard;
+import Root.UserInterface.ScoreBoard;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -19,10 +19,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class XMLService {
-    DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-    DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-    Document document = documentBuilder.parse("src/gameData/GameData.xml");
-    Element root = document.getDocumentElement();
+    private DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+    private DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+    private Document document = documentBuilder.parse("src/Root.gameData/GameData.xml");
+    private Element root = document.getDocumentElement();
     public XMLService() throws ParserConfigurationException, IOException, SAXException {
 
     }
@@ -49,7 +49,7 @@ public class XMLService {
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
-        StreamResult result = new StreamResult("src/gameData/GameData.xml");
+        StreamResult result = new StreamResult("src/Root.gameData/GameData.xml");
         transformer.transform(source, result);
     }
 

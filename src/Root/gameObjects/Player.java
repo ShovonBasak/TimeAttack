@@ -1,4 +1,4 @@
-package gameObjects;
+package Root.gameObjects;
 
 
 import javafx.application.Platform;
@@ -7,7 +7,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.ImagePattern;
-import scenes.GameScene;
+import Root.scenes.GameScene;
 
 public class Player extends MovableObject {
     public static boolean dead = false;

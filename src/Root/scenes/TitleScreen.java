@@ -1,6 +1,6 @@
-package scenes;
+package Root.scenes;
 
-import Application.Main;
+import Root.Application.Main;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.geometry.Pos;
@@ -23,7 +23,7 @@ class TitleScreen {
     private ImageView titleScreen;
     private Main mainMenu;
     private Text prompt;
-    public MediaPlayer mediaPlayer;
+    private MediaPlayer mediaPlayer;
 
     private Image titleImage= new Image("Resources/image/Time Attack.jpg");
 
@@ -85,7 +85,7 @@ class TitleScreen {
         return this.scene;
     }
 
-    public void backgroundAudio(){
+    private void backgroundAudio(){
         try{
             Media audioClip = new Media("file:///" +
                     System.getProperty("user.dir").replace("\\","//")+
@@ -100,7 +100,7 @@ class TitleScreen {
 
     }
 
-    public void keyPressAudio(){
+    private void keyPressAudio(){
         try{
             Media audioClip = new Media("file:///" +
                     System.getProperty("user.dir").replace("\\","//")+

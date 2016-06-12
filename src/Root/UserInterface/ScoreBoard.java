@@ -1,10 +1,10 @@
-package UserInterface;
+package Root.UserInterface;
 
 
 public class ScoreBoard {
-    String name;
-    String score;
-    String lvlReached;
+    private String name;
+    private String score;
+    private String lvlReached;
 
     public String getName() {
         return name;

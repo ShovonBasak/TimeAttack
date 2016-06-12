@@ -1,11 +1,11 @@
-package scenes;
+package Root.scenes;
 
 
-import UserInterface.CustomButton;
-import UserInterface.ScoreBoard;
-import UserInterface.ScoreLabel;
-import Application.Main;
-import gameData.XMLService;
+import Root.UserInterface.CustomButton;
+import Root.UserInterface.ScoreBoard;
+import Root.UserInterface.ScoreLabel;
+import Root.Application.Main;
+import Root.gameData.XMLService;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
@@ -32,7 +32,7 @@ class GameOverScene {
     private Text nameLable;
     private Main mainMenu;
     private int levelReached;
-    public MediaPlayer mediaPlayer;
+    private MediaPlayer mediaPlayer;
 
     GameOverScene(Main mainMenu, ScoreLabel scoreLabel, int levelReached) {
         backgroundAudio();
@@ -92,7 +92,7 @@ class GameOverScene {
     }
 
 
-    public void backgroundAudio(){
+    private void backgroundAudio(){
         try{
             Media audioClip = new Media("file:///" +
                     System.getProperty("user.dir").replace("\\","//")+

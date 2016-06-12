@@ -1,18 +1,18 @@
-package database;
+package Root.database;
 
 import java.sql.*;
 
-public class DBCon {
+class DBCon {
     private  String sqlQuery;
-    public   Connection con;
+    private Connection con;
     private  Statement stmt;
     private  ResultSet result;
     private boolean connectionCheck=true;
-    public  DBCon() {
+    DBCon() {
         try {
             //step1 load the driver class
             Class.forName("oracle.jdbc.driver.OracleDriver");
-        }catch(ClassNotFoundException e) {
+        }catch(ClassNotFoundException ignored) {
         }
         try{
 
@@ -28,24 +28,24 @@ public class DBCon {
 
     }
 
-    public void createTable(){
+    void createTable(){
         if(connectionCheck()){
             try {
                 inUpdateDelete("CREATE TABLE scoreBoard (name varchar(255), score number(10), lvlReached varchar (255))");
-            } catch (SQLException e) {
+            } catch (SQLException ignored) {
             }
         }
     }
 
-    public boolean connectionCheck(){
+    boolean connectionCheck(){
         return connectionCheck;
     }
 
-    public int inUpdateDelete(String sql) throws SQLException {
+    int inUpdateDelete(String sql) throws SQLException {
         return stmt.executeUpdate(sql);
     }
 
-    public ResultSet selectQuery(String sql) throws SQLException {
+    ResultSet selectQuery(String sql) throws SQLException {
         return   result = stmt.executeQuery(sql);
     }
 

@@ -1,23 +1,21 @@
-package gameObjects;
+package Root.gameObjects;
 
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.ImagePattern;
-import UserInterface.ScoreLabel;
+import Root.UserInterface.ScoreLabel;
 import javafx.application.Platform;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import scenes.GameScene;
+import Root.scenes.GameScene;
 
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import static javafx.scene.media.AudioClip.INDEFINITE;
 
 
 public class Coin extends MovableObject {

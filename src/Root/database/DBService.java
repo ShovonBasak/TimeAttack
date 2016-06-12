@@ -1,8 +1,7 @@
-package database;
+package Root.database;
 
 
-import UserInterface.ScoreBoard;
-import UserInterface.ScoreBoard;
+import Root.UserInterface.ScoreBoard;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 
 
 public class DBService {
-    public DBCon dbCon ;
+    private DBCon dbCon ;
     private int isDatabaseUpdated;
 
     public DBService(){
@@ -30,7 +29,7 @@ public class DBService {
         return 420;
     }
 
-    public boolean dbConnectionCheck() {
+    private boolean dbConnectionCheck() {
         return dbCon.connectionCheck();
     }
 
@@ -41,8 +40,7 @@ public class DBService {
         try {
             ResultSet rs = dbCon.selectQuery(query);
             if (rs.next()) {
-                String score = rs.getString("score");
-                return score;
+                return rs.getString("score");
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,4 +1,4 @@
-package gameObjects;
+package Root.gameObjects;
 /**
  @author Tazim
  Class Description:

@@ -1,13 +1,13 @@
 /**
 How this works?
- This is The main Menu.It handles other game scenes.Other scenes transit into and out of this.
+ This is The main Menu.It handles other game Root.scenes.Other Root.scenes transit into and out of this.
  Main Function creates an instance of main menu and it's components.
  Whenever scene transition happens this object is passed so that this scene can be called back.
  */
 
-package Application;
+package Root.Application;
 
-import UserInterface.CustomButton;
+import Root.UserInterface.CustomButton;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -23,10 +23,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import scenes.GameScene;
-import scenes.HighScoreScene;
-import scenes.helpScene;
-import scenes.LoadingScreen;
+import Root.scenes.GameScene;
+import Root.scenes.HighScoreScene;
+import Root.scenes.helpScene;
+import Root.scenes.LoadingScreen;
 
 import java.util.Optional;
 
@@ -46,7 +46,7 @@ public class Main extends Application {
     private MediaPlayer mediaPlayer;
 
 
-    //scenes
+    //Root.scenes
 
 
     public Stage getWindow() {
@@ -135,7 +135,7 @@ public class Main extends Application {
                 }
         );
     }
-    public void buttonAudio(){
+    private void buttonAudio(){
         try{
             Media audioClip = new Media("file:///" +
                     System.getProperty("user.dir").replace("\\","//")+

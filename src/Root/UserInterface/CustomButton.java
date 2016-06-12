@@ -1,4 +1,4 @@
-package UserInterface;
+package Root.UserInterface;
 
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;

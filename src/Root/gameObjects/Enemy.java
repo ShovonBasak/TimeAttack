@@ -1,9 +1,6 @@
-package gameObjects;
+package Root.gameObjects;
 
-import gameObjects.Coin;
-import gameObjects.MovableObject;
-import gameObjects.Player;
-import scenes.GameScene;
+import Root.scenes.GameScene;
 
 public abstract class Enemy extends MovableObject {
     boolean horizontalDirection;

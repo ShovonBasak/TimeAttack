@@ -1,11 +1,10 @@
-package scenes;
+package Root.scenes;
 
 
-import Application.Main;
-import UserInterface.ScoreBoard;
-import UserInterface.CustomButton;
-import database.DBService;
-import gameData.XMLService;
+import Root.Application.Main;
+import Root.UserInterface.ScoreBoard;
+import Root.UserInterface.CustomButton;
+import Root.gameData.XMLService;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -106,8 +105,8 @@ public class HighScoreScene {
 
 
     private void updateTable() {
-        //fetch data from database and get and array and update like this code from a loop.
-        //1 row = 1 scoreboard object get and arraylist from the database and create objects from those.
+        //fetch data from Root.database and get and array and update like this code from a loop.
+        //1 row = 1 scoreboard object get and arraylist from the Root.database and create objects from those.
         try {
             setTable();
             XMLService x = new XMLService();

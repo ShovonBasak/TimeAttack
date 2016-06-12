@@ -1,7 +1,7 @@
-package UserInterface;
+package Root.UserInterface;
 
-import gameObjects.Coin;
-import gameObjects.Player;
+import Root.gameObjects.Coin;
+import Root.gameObjects.Player;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -19,7 +19,7 @@ public class ScoreLabel extends Rectangle implements Runnable{
         return scoreText;
     }
 
-    Thread thisThread;
+    private Thread thisThread;
 
     Coin coin;
 
@@ -51,9 +51,7 @@ public class ScoreLabel extends Rectangle implements Runnable{
     @Override
     public void run() {
         while (!Player.dead) {
-            Platform.runLater(() -> {
-                scoreText.setText("Score: "+ score);
-            });
+            Platform.runLater(() -> scoreText.setText("Score: "+ score));
 
             try {
                 Thread.sleep(1);
