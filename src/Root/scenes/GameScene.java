@@ -171,7 +171,7 @@ public class GameScene implements Runnable {
 
 
             try {
-                Thread.sleep(1);
+                Thread.sleep(40);
             }  catch (Exception ignored) {
                 ignored.printStackTrace();
             }
