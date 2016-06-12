@@ -25,7 +25,7 @@ class TitleScreen {
     private Text prompt;
     private MediaPlayer mediaPlayer;
 
-    private Image titleImage= new Image("Root/Resources/image/Time Attack.jpg");
+    private Image titleImage= new Image("image/Time Attack.jpg");
 
     TitleScreen(Main mainMenu) {
         backgroundAudio();
@@ -89,7 +89,7 @@ class TitleScreen {
         try{
             Media audioClip = new Media("file:///" +
                     System.getProperty("user.dir").replace("\\","//")+
-                    "//src//Root//Resources//AudioClip//TitleScreenAudio.mp3");
+                    "//Resources//AudioClip//TitleScreenAudio.mp3");
 
             mediaPlayer= new MediaPlayer(audioClip);
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
@@ -104,7 +104,7 @@ class TitleScreen {
         try{
             Media audioClip = new Media("file:///" +
                     System.getProperty("user.dir").replace("\\","//")+
-                    "//src//Root//Resources//AudioClip//TitleClickSound.mp3");
+                    "//Resources//AudioClip//TitleClickSound.mp3");
 
             MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
             mediaPlayer.play();

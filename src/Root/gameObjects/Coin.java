@@ -37,7 +37,7 @@ public class Coin extends MovableObject {
 
     public Coin(double centerX, double centerY, double radius, Player player, ScoreLabel scoreLabel){
         super(centerX, centerY, radius, "Yellow");
-        setFill(new ImagePattern(new Image("Root/Resources/image/Coin.gif")));
+        setFill(new ImagePattern(new Image("image/Coin.gif")));
         this.player = player;
         this.scoreLabel = scoreLabel;
 
@@ -85,7 +85,7 @@ public class Coin extends MovableObject {
         try{
             Media audioClip = new Media("file:///" +
                     System.getProperty("user.dir").replace("\\","//")+
-                    "//src//Root//Resources//AudioClip//Coin.mp3");
+                    "//Resources//AudioClip//Coin.mp3");
 
 
 

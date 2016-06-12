@@ -17,7 +17,7 @@ public class Enemy2 extends Enemy {
 
     public Enemy2(double centerX, double centerY,double radius, Player player, Coin coin) {
         super(centerX, centerY, radius, "Blue", player, coin);
-        setFill(new ImagePattern(new Image("Root/Resources/image/enemy2.gif")));
+        setFill(new ImagePattern(new Image("image/enemy2.gif")));
         this.player = player;
         this.coin = coin;
 

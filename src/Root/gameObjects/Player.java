@@ -4,8 +4,6 @@ package Root.gameObjects;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.ImagePattern;
 import Root.scenes.GameScene;
 
@@ -20,7 +18,7 @@ public class Player extends MovableObject {
     public Player(double centerX, double centerY, double radius) {
 
         super(centerX, centerY, radius, "green");
-        setFill(new ImagePattern(new Image("Root/Resources/image/Player.gif")));
+        setFill(new ImagePattern(new Image("image/Player.gif")));
         thisThread = new Thread(this);
         thisThread.start();
     }

@@ -96,7 +96,7 @@ class GameOverScene {
         try{
             Media audioClip = new Media("file:///" +
                     System.getProperty("user.dir").replace("\\","//")+
-                    "//src//Root//Resources//AudioClip//GameOver.mp3");
+                    "//Resources//AudioClip//GameOver.mp3");
 
             mediaPlayer= new MediaPlayer(audioClip);
             mediaPlayer.play();

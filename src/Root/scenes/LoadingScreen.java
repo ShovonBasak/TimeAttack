@@ -23,7 +23,7 @@ public class LoadingScreen {
     public LoadingScreen(Main mainMenu) {
 
 
-        Image loadingImage = new Image("Root/Resources/image/loadingScreen.jpg");
+        Image loadingImage = new Image("image/loadingScreen.jpg");
         loadingScreen= new ImageView(loadingImage);
         loadingScreen.setFitWidth(800);
         loadingScreen.setFitHeight(600);
@@ -77,7 +77,7 @@ public class LoadingScreen {
         try{
             Media audioClip = new Media("file:///" +
                     System.getProperty("user.dir").replace("\\","//")+
-                    "//src//Root//Resources//AudioClip//LoadingScreen.mp3");
+                    "//Resources//AudioClip//LoadingScreen.mp3");
 
             mediaPlayer= new MediaPlayer(audioClip);
             mediaPlayer.play();

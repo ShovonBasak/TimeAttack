@@ -99,7 +99,7 @@ public class GameScene implements Runnable {
         try{
             Media audioClip = new Media("file:///" +
                     System.getProperty("user.dir").replace("\\","//")+
-                    "//src//Root//Resources//AudioClip//GameBGM.mp3");
+                    "//Resources//AudioClip//GameBGM.mp3");
 
             mediaPlayer= new MediaPlayer(audioClip);
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
