@@ -23,14 +23,6 @@ public class Player extends MovableObject {
         setFill(new ImagePattern(new Image("Root/Resources/image/Player.gif")));
         thisThread = new Thread(this);
         thisThread.start();
-        Media audioClip = new Media("file:///" +
-                System.getProperty("user.dir").replace("\\","//")+
-                "//src//Root.Resources//AudioClip//GameBGM.mp3");
-
-
-
-        MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
-        mediaPlayer.play();
     }
 
 

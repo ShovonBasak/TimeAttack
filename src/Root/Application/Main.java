@@ -139,7 +139,7 @@ public class Main extends Application {
         try{
             Media audioClip = new Media("file:///" +
                     System.getProperty("user.dir").replace("\\","//")+
-                    "//src//Root.Resources//AudioClip//Button01.wav");
+                    "//src//Root//Resources//AudioClip//Button01.wav");
 
             MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
             mediaPlayer.play();
@@ -153,7 +153,7 @@ public class Main extends Application {
         try{
             Media audioClip = new Media("file:///" +
                     System.getProperty("user.dir").replace("\\","//")+
-                    "//src//Root.Resources//AudioClip//MainMenu.mp3");
+                    "//src//Root//Resources//AudioClip//MainMenu.mp3");
 
             mediaPlayer= new MediaPlayer(audioClip);
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);

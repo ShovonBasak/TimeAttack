@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class XMLService {
     private DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
     private DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-    private Document document = documentBuilder.parse("src/Root.gameData/GameData.xml");
+    private Document document = documentBuilder.parse("src/Root/gameData/GameData.xml");
     private Element root = document.getDocumentElement();
     public XMLService() throws ParserConfigurationException, IOException, SAXException {
 

@@ -85,7 +85,7 @@ public class Coin extends MovableObject {
         try{
             Media audioClip = new Media("file:///" +
                     System.getProperty("user.dir").replace("\\","//")+
-                    "//src//Root.Resources//AudioClip//Coin.mp3");
+                    "//src//Root//Resources//AudioClip//Coin.mp3");
 
 
 
