@@ -12,7 +12,7 @@ This package holds the character classes in the game.One Movable object class th
 <H3> Scenes:</H3> 
 This Class holds the GUI.
 
-<H3> Resources:</H3> 
+<H3> Root.Resources:</H3>
 This class holds all the resources such as image and audioClip
 
 <h3>GameData</h3>

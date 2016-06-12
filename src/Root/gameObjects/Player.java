@@ -20,12 +20,12 @@ public class Player extends MovableObject {
     public Player(double centerX, double centerY, double radius) {
 
         super(centerX, centerY, radius, "green");
-        setFill(new ImagePattern(new Image("Resources/image/Player.gif")));
+        setFill(new ImagePattern(new Image("Root/Resources/image/Player.gif")));
         thisThread = new Thread(this);
         thisThread.start();
         Media audioClip = new Media("file:///" +
                 System.getProperty("user.dir").replace("\\","//")+
-                "//src//Resources//AudioClip//GameBGM.mp3");
+                "//src//Root.Resources//AudioClip//GameBGM.mp3");
 
 
 
