@@ -23,7 +23,7 @@ public class LoadingScreen {
     public LoadingScreen(Main mainMenu) {
 
 
-        Image loadingImage = new Image("image/loadingScreen.jpg");
+        Image loadingImage = new Image("image/loadingBGI.jpg");
         loadingScreen= new ImageView(loadingImage);
         loadingScreen.setFitWidth(800);
         loadingScreen.setFitHeight(600);
