@@ -4,6 +4,9 @@ package Root.scenes;
 import Root.UserInterface.ScoreLabel;
 import Root.Application.Main;
 import Root.gameObjects.*;
+import Root.gameObjects.Coin;
+import Root.gameObjects.PickUps.Pickup;
+import Root.gameObjects.PickUps.SpeedUp;
 import javafx.application.Platform;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
@@ -143,12 +146,15 @@ public class GameScene implements Runnable {
                 group.getChildren().addAll(enemy);
                 enemy.setSpeed(1);
 
+
             }
             if(level == 5){
 
                 Enemy enemy = new Enemy2(1024, 0, 35, player, coin);
                 enemy.setSpeed(1);
                 enemies.add(enemy);
+
+
                 group.getChildren().addAll(enemy);
             }
 

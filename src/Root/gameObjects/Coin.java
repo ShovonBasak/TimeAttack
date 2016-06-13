@@ -11,11 +11,13 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import Root.scenes.GameScene;
+
 
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static Root.scenes.GameScene.isPaused;
 
 
 public class Coin extends MovableObject {
@@ -42,11 +44,10 @@ public class Coin extends MovableObject {
         this.scoreLabel = scoreLabel;
 
         randomNumber = new Random();
-        this.setSpeed(15);
         this.setBounds();
         time = 7;
         adjustTimeLabelX = -8;
-        adjustTimeLabelY = 6;
+        adjustTimeLabelY = -35;
 
         timer = new Timer();
         delay = 1000;
@@ -54,8 +55,8 @@ public class Coin extends MovableObject {
         interval = 7;
         timeLabel = new Text("" + time);
         timeLabel.setVisible(true);
-        timeLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
-        timeLabel.setFill(Paint.valueOf("grey"));
+        timeLabel.setFont(Font.font("Edwardian Script ITC", FontWeight.BOLD, 20));
+
         adjustTimeLabelPosition();
 
         coin = new Group(this, timeLabel);
@@ -63,7 +64,7 @@ public class Coin extends MovableObject {
         thisThread = new Thread(this);
         thisThread.start();
 
-        this.countDown();
+        countDown();
     }
 
     public Group getCoin(){
@@ -73,7 +74,16 @@ public class Coin extends MovableObject {
     private void countDown(){
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
-                Platform.runLater(()-> time = --interval);
+                Platform.runLater(()-> {
+                    if(!isPaused)
+                        time = --interval;
+                });
+
+                if(time<=4){
+                    timeLabel.setFill(Paint.valueOf("RED"));
+                }else {
+                    timeLabel.setFill(Paint.valueOf("GREEN"));
+                }
                 if(time == 7 ){
                     showCoin();
                 }
@@ -97,7 +107,7 @@ public class Coin extends MovableObject {
     }
 
     public synchronized void resume() {
-        GameScene.isPaused = false;
+        isPaused = false;
         notify();
     }
 
@@ -190,7 +200,7 @@ public class Coin extends MovableObject {
             try {
                 Thread.sleep(30);
                 synchronized (this) {
-                    while (GameScene.isPaused) {
+                    while (isPaused) {
                         wait();
                     }
                 }
