@@ -9,6 +9,7 @@ import Root.scenes.GameScene;
 
 public class Player extends MovableObject {
     public static boolean dead = false;
+    private int healthPoint=100;
 
     public synchronized void resume() {
         GameScene.isPaused = false;
@@ -22,6 +23,19 @@ public class Player extends MovableObject {
         thisThread = new Thread(this);
         thisThread.start();
     }
+
+    public int getHealthPoint() {
+        return healthPoint;
+    }
+
+    public void addHealth(int healthPoint) {
+        this.healthPoint += healthPoint;
+    }
+
+    public void substractHealth(int healthPoint) {
+        this.healthPoint -= healthPoint;
+    }
+
 
 
     private void movePlayer(){

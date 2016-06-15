@@ -21,7 +21,6 @@ public class ScoreLabel extends Rectangle implements Runnable{
 
     private Thread thisThread;
 
-    Coin coin;
 
     public ScoreLabel(){
         super(0, 0, 100, 20);
@@ -44,9 +43,6 @@ public class ScoreLabel extends Rectangle implements Runnable{
         this.score = score;
     }
 
-    public void setScorePosition(){
-        this.scoreText.setAlignment(Pos.TOP_LEFT);
-    }
 
     @Override
     public void run() {

@@ -5,7 +5,10 @@ import Root.Application.Main;
 import Root.UserInterface.ScoreBoard;
 import Root.UserInterface.CustomButton;
 import Root.gameData.XMLService;
+import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -17,6 +20,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 
 public class HighScoreScene {
@@ -25,11 +29,19 @@ public class HighScoreScene {
     private VBox layout;
     private Text text;
     private CustomButton backButton;
+    private CustomButton clearButton;
     private TableView<ScoreBoard> highScoreBoard;
     private Main mainMenu;
-
+    private  XMLService x;
     public HighScoreScene(Main mainMenu) {
         this.mainMenu=mainMenu;
+        try{x= new XMLService();}
+        catch (Exception e){
+            //Failed to get Data
+        }
+        highScoreBoard = new TableView<>();
+        setTable();
+
         text = new Text("High Score");
         text.setFont(Font.font("Old English Text MT", FontWeight.BOLD, 30));
         text.setCache(true);
@@ -42,11 +54,28 @@ public class HighScoreScene {
         //button with action to return to scene
         backButton = new CustomButton("Back");
         backButton.setOnAction(event -> mainMenu.getWindow().setScene(mainMenu.getScene()));
+        clearButton= new CustomButton("Clear");
+        clearButton.setTranslateX(545);
+        clearButton.setOnAction(event -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("WARNING!");
+            alert.setHeaderText("Are you sure you wish to clear the Table?");
+            alert.setContentText("You can't Undo this process");
+
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                x.clearScoreBoard();
+
+            }
+
+        });
+
 
     }
 
     private void setScene() {
-        HBox hBox = new HBox(backButton, text);
+        HBox hBox = new HBox(backButton, text,clearButton);
         hBox.setStyle("-fx-background-color: #2F4F4F;");
 
 
@@ -66,7 +95,7 @@ public class HighScoreScene {
         //Takes an scoreBoardObject
         //columns
         //title
-        highScoreBoard = new TableView<>();
+
         highScoreBoard.setStyle("-fx-background-color: linear-gradient(#e2ecfe, #99bcfd);" +
                 "-fx-background-color: linear-gradient(from 0% 0% to 50% 50%,#3278fa,#99bcfd);" +
                 "-fx-border-width: 2px;" +
@@ -108,13 +137,12 @@ public class HighScoreScene {
         //fetch data from Root.database and get and array and update like this code from a loop.
         //1 row = 1 scoreboard object get and arraylist from the Root.database and create objects from those.
         try {
-            setTable();
-            XMLService x = new XMLService();
             ArrayList<ScoreBoard> sb = x.getScoreList();
 
-            for (ScoreBoard scoreBoard : sb) {
-                highScoreBoard.getItems().addAll(scoreBoard);
-            }
+                for (ScoreBoard scoreBoard : sb) {
+                    highScoreBoard.getItems().addAll(scoreBoard);
+                }
+
             highScoreBoard.refresh();
         } catch (Exception e) {
             e.printStackTrace();

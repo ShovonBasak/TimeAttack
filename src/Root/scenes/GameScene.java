@@ -5,8 +5,6 @@ import Root.UserInterface.ScoreLabel;
 import Root.Application.Main;
 import Root.gameObjects.*;
 import Root.gameObjects.Coin;
-import Root.gameObjects.PickUps.Pickup;
-import Root.gameObjects.PickUps.SpeedUp;
 import javafx.application.Platform;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
