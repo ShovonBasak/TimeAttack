@@ -15,7 +15,10 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class XMLService {
@@ -49,7 +52,7 @@ public class XMLService {
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
-        StreamResult result = new StreamResult("src/Root.gameData/GameData.xml");
+        StreamResult result = new StreamResult("src/Root/gameData/GameData.xml");
         transformer.transform(source, result);
     }
 
@@ -87,5 +90,18 @@ public class XMLService {
             e.printStackTrace();
         }
         return scoreList;
+    }
+
+    public void clearScoreBoard(){
+        PrintWriter writer = null;
+        try {
+            writer = new PrintWriter("src/Root/gameData/GameData.xml");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        writer.print("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
+                "<ScoresBoard>\n" +
+                "</ScoresBoard>");
+        writer.close();
     }
 }
