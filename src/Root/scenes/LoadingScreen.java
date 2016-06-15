@@ -1,6 +1,7 @@
 package Root.scenes;
 
 
+import Root.Application.AudioManager;
 import Root.Application.Main;
 import javafx.animation.FadeTransition;
 import javafx.geometry.Pos;
@@ -47,13 +48,13 @@ public class LoadingScreen {
 
 
         scene.addEventFilter(MouseEvent.MOUSE_CLICKED, e ->{
-            mediaPlayer.stop();
+            AudioManager.mediaPlayer.stop();
             mainMenu.getWindow().setScene(new TitleScreen(mainMenu).getScene());
 
         });
 
         scene.addEventFilter(KeyEvent.ANY, event -> {
-            mediaPlayer.stop();
+            AudioManager.mediaPlayer.stop();
             mainMenu.getWindow().setScene(new TitleScreen(mainMenu).getScene());
 
         });
@@ -66,26 +67,14 @@ public class LoadingScreen {
         ft.setCycleCount(1);
 
         ft.play();
-        playAudio();
+        AudioManager.LoadingScreenAudio();
 
 
 
 
     }
 
-    private void playAudio(){
-        try{
-            Media audioClip = new Media("file:///" +
-                    System.getProperty("user.dir").replace("\\","//")+
-                    "//Resources//AudioClip//LoadingScreen.mp3");
 
-            mediaPlayer= new MediaPlayer(audioClip);
-            mediaPlayer.play();
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
 
     public Scene getScene() {
 

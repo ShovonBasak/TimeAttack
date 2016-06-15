@@ -1,6 +1,7 @@
 package Root.scenes;
 
 
+import Root.Application.AudioManager;
 import Root.Application.Main;
 import Root.UserInterface.ScoreBoard;
 import Root.UserInterface.CustomButton;
@@ -14,6 +15,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -53,10 +56,14 @@ public class HighScoreScene {
 
         //button with action to return to scene
         backButton = new CustomButton("Back");
-        backButton.setOnAction(event -> mainMenu.getWindow().setScene(mainMenu.getScene()));
+        backButton.setOnAction(event -> {
+            AudioManager.buttonAudio();
+            mainMenu.getWindow().setScene(mainMenu.getScene());
+        });
         clearButton= new CustomButton("Clear");
         clearButton.setTranslateX(545);
         clearButton.setOnAction(event -> {
+            AudioManager.buttonAudio();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("WARNING!");
             alert.setHeaderText("Are you sure you wish to clear the Table?");
@@ -66,7 +73,7 @@ public class HighScoreScene {
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
                 x.clearScoreBoard();
-
+                mainMenu.getWindow().setScene(new HighScoreScene(mainMenu).getScene());
             }
 
         });
@@ -149,6 +156,8 @@ public class HighScoreScene {
         }
 
     }
+
+
 
 
 }

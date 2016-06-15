@@ -1,6 +1,7 @@
 package Root.scenes;
 
 
+import Root.Application.AudioManager;
 import Root.UserInterface.CustomButton;
 import Root.UserInterface.ScoreBoard;
 import Root.UserInterface.ScoreLabel;
@@ -145,7 +146,7 @@ class GameOverScene {
 
         updateData(SB);
         mainMenu.getWindow().setScene(new HighScoreScene(mainMenu).getScene());
-        mainMenu.backgroundAudio();
+        AudioManager.MainMenuAudio();
     }
 
 

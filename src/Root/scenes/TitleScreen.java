@@ -1,5 +1,6 @@
 package Root.scenes;
 
+import Root.Application.AudioManager;
 import Root.Application.Main;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
@@ -28,7 +29,7 @@ class TitleScreen {
     private Image titleImage= new Image("image/Time Attack.jpg");
 
     TitleScreen(Main mainMenu) {
-        backgroundAudio();
+        AudioManager.TitleScreenAudio();
         prompt= new Text("Press Any Key");
         prompt.setFont(Font.font("Blackadder ITC", FontWeight.BOLD, 60));
         prompt.setCache(true);
@@ -64,10 +65,10 @@ class TitleScreen {
 
 
         scene.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
-            mediaPlayer.stop();
+            AudioManager.mediaPlayer.stop();
             keyPressAudio();
             mainMenu.getWindow().setScene(mainMenu.getScene());
-            mainMenu.backgroundAudio();
+            AudioManager.MainMenuAudio();
             ft.stop();
         });
 
@@ -75,7 +76,7 @@ class TitleScreen {
             mediaPlayer.stop();
             keyPressAudio();
             mainMenu.getWindow().setScene(mainMenu.getScene());
-            mainMenu.backgroundAudio();
+            AudioManager.MainMenuAudio();
             ft.stop();
         });
     }
@@ -85,20 +86,7 @@ class TitleScreen {
         return this.scene;
     }
 
-    private void backgroundAudio(){
-        try{
-            Media audioClip = new Media("file:///" +
-                    System.getProperty("user.dir").replace("\\","//")+
-                    "//Resources//AudioClip//TitleScreenAudio.mp3");
 
-            mediaPlayer= new MediaPlayer(audioClip);
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-            mediaPlayer.play();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
 
     private void keyPressAudio(){
         try{

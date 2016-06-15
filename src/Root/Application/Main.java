@@ -62,14 +62,14 @@ public class Main extends Application {
 
         startGame = new CustomButton("Start Game");
         startGame.setOnAction(event1 -> {
-            buttonAudio();
-            mediaPlayer.stop();
+            AudioManager.buttonAudio();
+            AudioManager.mediaPlayer.stop();
             window.setScene(new GameScene(this).getScene());
             window.setFullScreen(true);
         });
         exit = new CustomButton("Exit");
         exit.setOnAction(event -> {
-            buttonAudio();
+            AudioManager.buttonAudio();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("ALERT!");
             alert.setHeaderText("Are you sure?");
@@ -84,14 +84,14 @@ public class Main extends Application {
 
         helpButton = new CustomButton("Help");
         helpButton.setOnAction(event1 -> {
-            buttonAudio();
+            AudioManager.buttonAudio();
             window.setScene(new helpScene(this).getScene());
         });
 
 
         highScore = new CustomButton("High Score");
         highScore.setOnAction(event ->{
-            buttonAudio();
+            AudioManager.buttonAudio();
             window.setScene(new HighScoreScene(this).getScene());
         } );
 
@@ -135,35 +135,9 @@ public class Main extends Application {
                 }
         );
     }
-    private void buttonAudio(){
-        try{
-            Media audioClip = new Media("file:///" +
-                    System.getProperty("user.dir").replace("\\","//")+
-                    "//Resources//AudioClip//Button01.wav");
 
-            MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
-            mediaPlayer.play();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
 
-    }
 
-    public void backgroundAudio(){
-        try{
-            Media audioClip = new Media("file:///" +
-                    System.getProperty("user.dir").replace("\\","//")+
-                    "//Resources//AudioClip//MainMenu.mp3");
-
-            mediaPlayer= new MediaPlayer(audioClip);
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-
-            mediaPlayer.play();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
 
     public static void main(String[] args) {
         launch(args);

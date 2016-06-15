@@ -1,6 +1,7 @@
 package Root.scenes;
 
 
+import Root.Application.AudioManager;
 import Root.UserInterface.ScoreLabel;
 import Root.Application.Main;
 import Root.gameObjects.*;
@@ -10,8 +11,6 @@ import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
@@ -39,10 +38,9 @@ public class GameScene implements Runnable {
     private ArrayList<Enemy> enemies;
     public static boolean isPaused = false;
     private Text pauseText;
-    private MediaPlayer mediaPlayer;
 
     public GameScene(Main mainMenu) {
-        backgroundAudio();
+        AudioManager.GameBGM();
 
 
         pauseText=new Text("Paused");
@@ -96,20 +94,7 @@ public class GameScene implements Runnable {
         enemies.forEach(Enemy::resume);
     }
 
-    private void backgroundAudio(){
-        try{
-            Media audioClip = new Media("file:///" +
-                    System.getProperty("user.dir").replace("\\","//")+
-                    "//Resources//AudioClip//GameBGM.mp3");
 
-            mediaPlayer= new MediaPlayer(audioClip);
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-            mediaPlayer.play();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
 
     private void controlScene(){
         getScene().addEventFilter(KeyEvent.KEY_PRESSED, e -> {
@@ -183,7 +168,7 @@ public class GameScene implements Runnable {
         //runs when player is dead
         Platform.runLater(() ->
         {
-            mediaPlayer.stop();
+            AudioManager.mediaPlayer.stop();
             gameOverScene = new GameOverScene(mainMenu,scoreLabel, level);
             mainMenu.getWindow().setScene(gameOverScene.getScene());
         });

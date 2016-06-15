@@ -1,6 +1,7 @@
 package Root.scenes;
 
 
+import Root.Application.AudioManager;
 import Root.UserInterface.CustomButton;
 import Root.Application.Main;
 import javafx.geometry.Pos;
@@ -10,6 +11,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -31,7 +34,10 @@ public class helpScene {
         top.setMinHeight(40);
         top.setStyle("-fx-background-color: linear-gradient(#780bde, #062f42);");
         CustomButton backButton=new CustomButton("Back");
-        backButton.setOnAction(event -> mainMenu.getWindow().setScene(mainMenu.getScene()));
+        backButton.setOnAction(event ->{
+            AudioManager.buttonAudio();
+            mainMenu.getWindow().setScene(mainMenu.getScene());
+        } );
         top.getChildren().addAll(backButton);
         layout.setTop(top);
 
@@ -155,6 +161,8 @@ public class helpScene {
         ObjectiveScene.getChildren().addAll(groupTitleC,objectiveText);
         layout.setCenter(ObjectiveScene);
     }
+
+
 
 
 }
