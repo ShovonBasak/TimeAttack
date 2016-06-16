@@ -68,7 +68,9 @@ public class Enemy1 extends Enemy implements Runnable{
                 if(this.isVisible()){
                     collidesWithWall();
                     if (this.intersect(player)) {
-                        Player.dead = true;
+                        player.substractHealth(5);
+                        verticalDirection=!verticalDirection;
+                        horizontalDirection=!horizontalDirection;
                     }
 
                     if (this.intersect(coin)) {
@@ -78,7 +80,7 @@ public class Enemy1 extends Enemy implements Runnable{
                 }
             });
             try{
-                Thread.sleep(10);
+                Thread.sleep(25);
                 synchronized (this) {
                     while (GameScene.isPaused) {
                         wait();

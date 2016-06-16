@@ -34,6 +34,7 @@ public class GameScene implements Runnable {
     private Main mainMenu;
     private CustomLable ScoreLable;
     private CustomLable LevelLable;
+    private CustomLable Hp;
     private int level;
     private int scoreLevelCounter;
     private ArrayList<Enemy> enemies;
@@ -67,14 +68,14 @@ public class GameScene implements Runnable {
 
         ScoreLable = new CustomLable("Score",0,Color.PALEVIOLETRED,Font.font("Verdana", FontWeight.BOLD, 20));
         LevelLable=new CustomLable("Level",level,Color.RED,Font.font("Verdana", FontWeight.BOLD, 20));
-
+        Hp=new CustomLable("HP",player.getHealthPoint(),Color.VIOLET,Font.font("Verdana", FontWeight.BOLD, 20));
 
 
 
         coin = new Coin(28 + randomPosition.nextInt(800), 28 + randomPosition.nextInt(600), 35, player, ScoreLable);
 
         group = new Group(player);
-        group.getChildren().addAll(ScoreLable,LevelLable, pauseText);
+        group.getChildren().addAll(ScoreLable,LevelLable, pauseText,Hp);
         group.getChildren().addAll(coin.getCoin());
 
         scene = new Scene(group,800,600,Color.CYAN);
@@ -128,7 +129,7 @@ public class GameScene implements Runnable {
                 Enemy1 enemy = new Enemy1(0, 0, 35, player, coin);
                 enemies.add(enemy);
                 group.getChildren().addAll(enemy);
-                enemy.setSpeed(1);
+                enemy.setSpeed(2);
 
 
             }
@@ -157,7 +158,9 @@ public class GameScene implements Runnable {
                 ScoreLable.setText(ScoreLable.getTextAsString());
                 LevelLable.setText(LevelLable.getTextAsString());
                 LevelLable.setLayoutX(getScene().getWindow().getWidth()/2-20);
-
+                Hp.setLayoutX(getScene().getWindow().getWidth()-110);
+                Hp.setValue(player.getHealthPoint());
+                Hp.setText(Hp.getTextAsString());
             });
 
 

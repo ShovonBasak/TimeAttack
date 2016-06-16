@@ -85,7 +85,7 @@ public class Enemy2 extends Enemy {
                 this.followPlayer();
 
                 if (this.intersect(player)) {
-                    Player.dead = true;
+                    player.substractHealth(1);
                 }
 
                 if (this.intersect(coin)) {

@@ -33,7 +33,11 @@ public class Player extends MovableObject {
     }
 
     public void substractHealth(int healthPoint) {
-        this.healthPoint -= healthPoint;
+        if(this.healthPoint-healthPoint>0){
+            this.healthPoint -= healthPoint;
+        }
+        else dead=true;
+
     }
 
 
@@ -56,7 +60,6 @@ public class Player extends MovableObject {
     public void run() {
         while (!dead) {
             Platform.runLater(this::movePlayer);
-
             try {
                 Thread.sleep(20);
                 synchronized (this) {
