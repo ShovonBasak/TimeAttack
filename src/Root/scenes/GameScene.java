@@ -2,7 +2,8 @@ package Root.scenes;
 
 
 import Root.Application.AudioManager;
-import Root.UserInterface.ScoreLabel;
+
+import Root.UserInterface.CustomLable;
 import Root.Application.Main;
 import Root.gameObjects.*;
 import Root.gameObjects.Coin;
@@ -16,7 +17,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
+
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -31,8 +32,8 @@ public class GameScene implements Runnable {
     private Coin coin;
     private GameOverScene gameOverScene;
     private Main mainMenu;
-    private ScoreLabel scoreLabel;
-    private Text levelLabel;
+    private CustomLable ScoreLable;
+    private CustomLable LevelLable;
     private int level;
     private int scoreLevelCounter;
     private ArrayList<Enemy> enemies;
@@ -52,9 +53,8 @@ public class GameScene implements Runnable {
         level = 0;
         scoreLevelCounter = 50;
 
-        levelLabel = new Text("Level:" + String.valueOf(level));
-        levelLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
-        levelLabel.setFill(Paint.valueOf("RED"));
+
+
 
         enemies = new ArrayList<>();
 
@@ -65,21 +65,21 @@ public class GameScene implements Runnable {
 
         player = new Player(50, 500, 30);
 
-        scoreLabel = new ScoreLabel();
+        ScoreLable = new CustomLable("Score",0,Color.PALEVIOLETRED,Font.font("Verdana", FontWeight.BOLD, 20));
+        LevelLable=new CustomLable("Level",level,Color.RED,Font.font("Verdana", FontWeight.BOLD, 20));
 
-        coin = new Coin(28 + randomPosition.nextInt(800), 28 + randomPosition.nextInt(600), 35, player, scoreLabel);
+
+
+
+        coin = new Coin(28 + randomPosition.nextInt(800), 28 + randomPosition.nextInt(600), 35, player, ScoreLable);
 
         group = new Group(player);
-        group.getChildren().addAll(scoreLabel, scoreLabel.getScoreText(), levelLabel, pauseText);
+        group.getChildren().addAll(ScoreLable,LevelLable, pauseText);
         group.getChildren().addAll(coin.getCoin());
 
         scene = new Scene(group,800,600,Color.CYAN);
         scene.setCursor(Cursor.NONE);
 
-
-        levelLabel.setTextAlignment(TextAlignment.CENTER);
-        levelLabel.setX(getScene().getWidth() / 2 - 55);
-        levelLabel.setY(levelLabel.getTranslateY() + 30);
 
         mainMenu.getWindow().resizableProperty().setValue(true);
         Thread mainThread = new Thread(this);
@@ -114,9 +114,10 @@ public class GameScene implements Runnable {
     }
 
     private void checkLevel() {
-        if (scoreLabel.getScore() >= scoreLevelCounter && level < level+1) {
+        if (ScoreLable.getValue() >= scoreLevelCounter && level < level+1) {
             level++;
             scoreLevelCounter += 50;
+            LevelLable.setValue(level);
 
 
             for(Enemy enemy:enemies){
@@ -153,8 +154,9 @@ public class GameScene implements Runnable {
 
                 pauseText.setLayoutX(getScene().getWindow().getWidth()/2-30);
                 pauseText.setLayoutY(getScene().getWindow().getHeight()/2-30);
-                levelLabel.setText("Level:" + String.valueOf(level));
-                levelLabel.setLayoutX(getScene().getWindow().getWidth()/2-400);
+                ScoreLable.setText(ScoreLable.getTextAsString());
+                LevelLable.setText(LevelLable.getTextAsString());
+                LevelLable.setLayoutX(getScene().getWindow().getWidth()/2-20);
 
             });
 
@@ -169,7 +171,7 @@ public class GameScene implements Runnable {
         Platform.runLater(() ->
         {
             AudioManager.mediaPlayer.stop();
-            gameOverScene = new GameOverScene(mainMenu,scoreLabel, level);
+            gameOverScene = new GameOverScene(mainMenu, ScoreLable, level);
             mainMenu.getWindow().setScene(gameOverScene.getScene());
         });
     }

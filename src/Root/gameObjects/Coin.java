@@ -1,11 +1,10 @@
 package Root.gameObjects;
 
+import Root.Application.AudioManager;
+import Root.UserInterface.CustomLable;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.ImagePattern;
-import Root.UserInterface.ScoreLabel;
 import javafx.application.Platform;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
@@ -31,17 +30,17 @@ public class Coin extends MovableObject {
 
     private Random randomNumber;
     private Player player;
-    private ScoreLabel scoreLabel;
+    private CustomLable ScoreLable;
     private Group coin;
 
     private double adjustTimeLabelX;
     private double adjustTimeLabelY;
 
-    public Coin(double centerX, double centerY, double radius, Player player, ScoreLabel scoreLabel){
+    public Coin(double centerX, double centerY, double radius, Player player, CustomLable ScoreLable){
         super(centerX, centerY, radius, "Yellow");
         setFill(new ImagePattern(new Image("image/Coin.gif")));
         this.player = player;
-        this.scoreLabel = scoreLabel;
+        this.ScoreLable = ScoreLable;
 
         randomNumber = new Random();
         this.setBounds();
@@ -91,20 +90,7 @@ public class Coin extends MovableObject {
         }, delay, period);
     }
 
-    private void PlaySound(){
-        try{
-            Media audioClip = new Media("file:///" +
-                    System.getProperty("user.dir").replace("\\","//")+
-                    "//Resources//AudioClip//Coin.mp3");
 
-
-
-            MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
-            mediaPlayer.setVolume(.2);
-            mediaPlayer.play();
-        }catch (Exception e){e.printStackTrace();}
-
-    }
 
     public synchronized void resume() {
         isPaused = false;
@@ -173,8 +159,8 @@ public class Coin extends MovableObject {
 
     private void collidesWithPlayer(){
         if(!Player.dead){
-            scoreLabel.setScore(scoreLabel.getScore() + time);
-            PlaySound();
+            ScoreLable.setValue(ScoreLable.getValue() + time);
+            AudioManager.CoinAudio();
             this.hideCoin();
             this.setTime(1,7);
             this.setPosition();

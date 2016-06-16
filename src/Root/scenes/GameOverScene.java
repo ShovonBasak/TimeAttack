@@ -3,8 +3,8 @@ package Root.scenes;
 
 import Root.Application.AudioManager;
 import Root.UserInterface.CustomButton;
+import Root.UserInterface.CustomLable;
 import Root.UserInterface.ScoreBoard;
-import Root.UserInterface.ScoreLabel;
 import Root.Application.Main;
 import Root.gameData.XMLService;
 import javafx.geometry.Pos;
@@ -24,7 +24,7 @@ import javafx.scene.text.Text;
 class GameOverScene {
     public Scene scene;
     private CustomButton Next;
-    private ScoreLabel scoreLabel;
+    private CustomLable scoreLable;
     private TextField NameField;
 
 
@@ -35,9 +35,9 @@ class GameOverScene {
     private int levelReached;
     private MediaPlayer mediaPlayer;
 
-    GameOverScene(Main mainMenu, ScoreLabel scoreLabel, int levelReached) {
+    GameOverScene(Main mainMenu, CustomLable scoreLable, int levelReached) {
         backgroundAudio();
-        this.scoreLabel = scoreLabel;
+        this.scoreLable = scoreLable;
         this.mainMenu=mainMenu;
         this.levelReached=levelReached;
 
@@ -66,7 +66,7 @@ class GameOverScene {
         gameOver.setTranslateY(gameOver.getTranslateY() - 20);
 
 
-        Score = new Text("Score:" + String.valueOf(scoreLabel.getScore()));
+        Score = new Text("Score:" + String.valueOf(scoreLable.getValue()));
         Score.setFont(Font.font("Harrington", FontWeight.BOLD, 50));
         Score.setCache(true);
         Score.setFill(Color.web("#C8A780"));
@@ -116,7 +116,7 @@ class GameOverScene {
         //send queries from the data of the given scoreboard object.
         try {
             DBService ds = new DBService();
-            ds.updateScoreBoard(sb.getName(), sb.getScore(), sb.getLvlReached());
+            ds.updateScoreBoard(sb.getName(), sb.getValue(), sb.getLvlReached());
             ds.dbCon.con.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -139,9 +139,9 @@ class GameOverScene {
         ScoreBoard SB;
         String name = NameField.getText();
         if (!name.isEmpty()) {
-            SB = new ScoreBoard(name, String.valueOf(scoreLabel.getScore()), String.valueOf(levelReached));
+            SB = new ScoreBoard(name, String.valueOf(scoreLable.getValue()), String.valueOf(levelReached));
         } else {
-            SB = new ScoreBoard("NameLessWonder", String.valueOf(scoreLabel.getScore()), String.valueOf(levelReached));
+            SB = new ScoreBoard("NameLessWonder", String.valueOf(scoreLable.getValue()), String.valueOf(levelReached));
         }
 
         updateData(SB);

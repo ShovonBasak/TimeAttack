@@ -83,6 +83,20 @@ public class AudioManager {
         }
 
     }
+    public static void CoinAudio(){
+        try{
+            Media audioClip = new Media("file:///" +
+                    System.getProperty("user.dir").replace("\\","//")+
+                    "//Resources//AudioClip//Coin.mp3");
+
+
+
+            MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
+            mediaPlayer.setVolume(.2);
+            mediaPlayer.play();
+        }catch (Exception e){e.printStackTrace();}
+
+    }
 
 
 
