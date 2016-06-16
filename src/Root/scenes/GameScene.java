@@ -7,6 +7,8 @@ import Root.UserInterface.CustomLable;
 import Root.Application.Main;
 import Root.gameObjects.*;
 import Root.gameObjects.Coin;
+import Root.gameObjects.PickUps.Pickup;
+import Root.gameObjects.PickUps.SpeedUp;
 import javafx.application.Platform;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
@@ -40,7 +42,7 @@ public class GameScene implements Runnable {
     private ArrayList<Enemy> enemies;
     public static boolean isPaused = false;
     private Text pauseText;
-
+    //public SpeedUp speedUp;
     public GameScene(Main mainMenu) {
         AudioManager.GameBGM();
 
@@ -73,6 +75,10 @@ public class GameScene implements Runnable {
 
 
         coin = new Coin(28 + randomPosition.nextInt(800), 28 + randomPosition.nextInt(600), 35, player, ScoreLable);
+        //speedUp=new SpeedUp(50,50,player);
+        //speedUp.setLayoutX(100);
+        //speedUp.setLayoutY(100);
+        //speedUp.setVisible(true);
 
         group = new Group(player);
         group.getChildren().addAll(ScoreLable,LevelLable, pauseText,Hp);
@@ -126,8 +132,10 @@ public class GameScene implements Runnable {
             }
 
             if(level % 3 == 0 || level == 1 ){
+
                 Enemy1 enemy = new Enemy1(0, 0, 35, player, coin);
                 enemies.add(enemy);
+                //speedUp.setEnemies(enemies);
                 group.getChildren().addAll(enemy);
                 enemy.setSpeed(2);
 

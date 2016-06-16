@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class SpeedUp extends Pickup {
 
-    List<Enemy> enemies=new ArrayList<Enemy>();
+    List<Enemy> enemies=new ArrayList<>();
 
     public SpeedUp(int height, int width, Player player){
         setPlayer(player);
@@ -41,12 +41,11 @@ public class SpeedUp extends Pickup {
 
     @Override
     public void run() {
-        while (!isDead) {
+        while (isVisible()) {
 
             try {
                 if(intersect(player)){
                     Trigger();
-                    isDead=true;
                     this.setVisible(false);
                 }
                 Thread.sleep(20);

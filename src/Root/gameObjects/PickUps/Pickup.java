@@ -11,9 +11,8 @@ import java.util.Random;
 import static Root.scenes.GameScene.isPaused;
 
 public abstract class Pickup extends Rectangle implements Runnable {
-    boolean isDead=false;
     Player player;
-    Random randomPostion;
+    Random randomPostion=new Random();
     Image fillImage;//image to fill the object
 
 
@@ -26,9 +25,9 @@ public abstract class Pickup extends Rectangle implements Runnable {
     }
 
     public void setRandomPosition(){
-        randomPostion=new Random();
-        this.setX(this.getWidth()*2 + randomPostion.nextInt((int) getScene().getWidth() - (int)this.getWidth()*2 ));
-        this.setY(this.getHeight()*2 + randomPostion.nextInt((int) getScene().getHeight() - (int)this.getHeight()*2 ));
+
+        this.setX(100);
+        this.setY(100);
     }
 
     public abstract void Trigger();

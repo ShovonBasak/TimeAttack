@@ -66,7 +66,7 @@ class TitleScreen {
 
         scene.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
             AudioManager.mediaPlayer.stop();
-            keyPressAudio();
+            AudioManager.TitleKeyPress();
             mainMenu.getWindow().setScene(mainMenu.getScene());
             AudioManager.MainMenuAudio();
             ft.stop();
@@ -74,7 +74,7 @@ class TitleScreen {
 
         scene.addEventFilter(KeyEvent.ANY, event -> {
             mediaPlayer.stop();
-            keyPressAudio();
+            AudioManager.TitleKeyPress();
             mainMenu.getWindow().setScene(mainMenu.getScene());
             AudioManager.MainMenuAudio();
             ft.stop();
@@ -88,18 +88,6 @@ class TitleScreen {
 
 
 
-    private void keyPressAudio(){
-        try{
-            Media audioClip = new Media("file:///" +
-                    System.getProperty("user.dir").replace("\\","//")+
-                    "//Resources//AudioClip//TitleClickSound.mp3");
 
-            MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
-            mediaPlayer.play();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
 
 }

@@ -3,6 +3,8 @@ package Root.Application;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+import java.security.PublicKey;
+
 /**
  * Created by tazim on 6/16/2016.
  */
@@ -45,6 +47,20 @@ public class AudioManager {
 
             mediaPlayer= new MediaPlayer(audioClip);
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.play();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void TitleKeyPress(){
+        try{
+            Media audioClip = new Media("file:///" +
+                    System.getProperty("user.dir").replace("\\","//")+
+                    "//Resources//AudioClip//TitleClickSound.mp3");
+
+            MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
             mediaPlayer.play();
         }catch (Exception e){
             e.printStackTrace();
@@ -98,6 +114,19 @@ public class AudioManager {
 
     }
 
+    public static void gameOverMusic(){
+        try{
+            Media audioClip = new Media("file:///" +
+                    System.getProperty("user.dir").replace("\\","//")+
+                    "//Resources//AudioClip//GameOver.mp3");
+
+            mediaPlayer= new MediaPlayer(audioClip);
+            mediaPlayer.play();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
 
 
 }

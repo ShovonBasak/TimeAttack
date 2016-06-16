@@ -36,7 +36,7 @@ class GameOverScene {
     private MediaPlayer mediaPlayer;
 
     GameOverScene(Main mainMenu, CustomLable scoreLable, int levelReached) {
-        backgroundAudio();
+        AudioManager.gameOverMusic();
         this.scoreLable = scoreLable;
         this.mainMenu=mainMenu;
         this.levelReached=levelReached;
@@ -93,19 +93,7 @@ class GameOverScene {
     }
 
 
-    private void backgroundAudio(){
-        try{
-            Media audioClip = new Media("file:///" +
-                    System.getProperty("user.dir").replace("\\","//")+
-                    "//Resources//AudioClip//GameOver.mp3");
 
-            mediaPlayer= new MediaPlayer(audioClip);
-            mediaPlayer.play();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
 
     public Scene getScene() {
         return this.scene;
