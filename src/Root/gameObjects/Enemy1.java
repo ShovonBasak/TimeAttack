@@ -1,4 +1,4 @@
-package Root.gameObjects;
+package Root.GameObjects;
 
 
 import javafx.application.Platform;

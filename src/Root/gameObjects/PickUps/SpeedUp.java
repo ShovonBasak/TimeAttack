@@ -1,8 +1,7 @@
-package Root.gameObjects.PickUps;
+package Root.GameObjects.PickUps;
 
-import Root.gameObjects.Enemy;
-import Root.gameObjects.Player;
-import Root.scenes.GameScene;
+import Root.GameObjects.Enemy;
+import Root.GameObjects.Player;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
@@ -20,11 +19,11 @@ public class SpeedUp extends Pickup {
     List<Enemy> enemies=new ArrayList<>();
 
     public SpeedUp(int height, int width, Player player){
+        setVisible(false);
         setPlayer(player);
         setHeight(height);
         setWidth(width);
         setFill(new ImagePattern(new Image("image/SpeedUp.png")));
-        setRandomPosition();
         thisThread = new Thread(this);
         thisThread.start();
     }
@@ -42,14 +41,19 @@ public class SpeedUp extends Pickup {
 
     @Override
     public void run() {
-        while (isVisible()) {
+        while (!player.dead) {
+            Platform.runLater(() -> {
 
-            try {
-                if(this.intersect(player)){
+                if(this.intersect(player) && isVisible()){
                     Trigger();
+                    setRandomPosition();
                     collidesWithPlayer();
                     this.setVisible(false);
                 }
+            });
+
+
+            try {
                 Thread.sleep(20);
 
             } catch (Exception ignored) {

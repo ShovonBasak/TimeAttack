@@ -1,4 +1,4 @@
-package Root.gameObjects;
+package Root.GameObjects;
 
 import Root.Application.AudioManager;
 import Root.UserInterface.CustomLable;
