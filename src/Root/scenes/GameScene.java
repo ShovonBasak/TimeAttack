@@ -5,6 +5,7 @@ import Root.Application.AudioManager;
 
 import Root.GameObjects.PickUps.Health;
 import Root.GameObjects.PickUps.Pickup;
+import Root.GameObjects.PickUps.SpeedDown;
 import Root.UserInterface.CustomLable;
 import Root.Application.Main;
 import Root.GameObjects.*;
@@ -43,7 +44,10 @@ public class GameScene implements Runnable {
     private ArrayList<Pickup> pickups;
     public static boolean isPaused = false;
     private Text pauseText;
-    public SpeedUp speedUp;
+    private SpeedUp speedUp;
+    private SpeedDown speedDown;
+    private Health health;
+
     public GameScene(Main mainMenu) {
         AudioManager.GameBGM();
 
@@ -88,17 +92,17 @@ public class GameScene implements Runnable {
         scene.setCursor(Cursor.NONE);
 
         //Pickups
-        speedUp=new SpeedUp(50,50,player);
-        speedUp.setX(100);
-        speedUp.setY(100);
 
-        Health health=new Health(50,50,player);
-        health.setX(100);
-        health.setY(100);
 
-        group.getChildren().addAll(speedUp,health);
+        health = new Health(50,50,player);
+        speedDown = new SpeedDown(50,50,player);
+        speedUp = new SpeedUp(50,50,player);
+
+
+        group.getChildren().addAll(speedUp,health,speedDown);
         pickups.add(speedUp);
         pickups.add(health);
+        pickups.add(speedDown);
 
 
 
@@ -141,7 +145,9 @@ public class GameScene implements Runnable {
         if (ScoreLable.getValue() >= scoreLevelCounter && level < level+1) {
             level++;
             Pickup pickup = pickups.get(new Random().nextInt(pickups.size()));
+            pickup.setRandomPosition();
             pickup.setVisible(true);
+
             scoreLevelCounter += 50;
             LevelLable.setValue(level);
 
@@ -155,6 +161,7 @@ public class GameScene implements Runnable {
                 Enemy1 enemy = new Enemy1(0, 0, 35, player, coin);
                 enemies.add(enemy);
                 speedUp.setEnemies(enemies);
+                speedDown.setEnemies(enemies);
                 group.getChildren().addAll(enemy);
                 enemy.setSpeed(2);
 
@@ -165,8 +172,8 @@ public class GameScene implements Runnable {
                 Enemy enemy = new Enemy2(1024, 0, 35, player, coin);
                 enemy.setSpeed(1);
                 enemies.add(enemy);
-
-
+                speedUp.setEnemies(enemies);
+                speedDown.setEnemies(enemies);
                 group.getChildren().addAll(enemy);
             }
 

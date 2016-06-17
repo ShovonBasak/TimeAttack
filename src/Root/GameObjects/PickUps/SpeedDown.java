@@ -13,14 +13,14 @@ import java.util.List;
  * Created by tazim on 6/17/2016.
  */
 public class SpeedDown extends Pickup {
-    List<Enemy> enemies=new ArrayList<>();
+    private List<Enemy> enemies=new ArrayList<>();
 
     public SpeedDown(int height, int width, Player player){
         setVisible(false);
         setPlayer(player);
         setHeight(height);
         setWidth(width);
-        setFill(new ImagePattern(new Image("image/SpeedUp.png")));
+        setFill(new ImagePattern(new Image("image/SlowDown.gif")));
         thisThread = new Thread(this);
         thisThread.start();
     }
@@ -38,12 +38,11 @@ public class SpeedDown extends Pickup {
 
     @Override
     public void run() {
-        while (!player.dead) {
+        while (!Player.dead) {
             Platform.runLater(() -> {
 
                 if(this.intersect(player) && isVisible()){
                     Trigger();
-                    setRandomPosition();
                     collidesWithPlayer();
                     this.setVisible(false);
                 }

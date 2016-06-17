@@ -6,8 +6,7 @@ import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * Created by tazim on 6/17/2016.
@@ -38,7 +37,6 @@ public class Health extends Pickup {
 
                 if(this.intersect(player) && isVisible()){
                     Trigger();
-                    setRandomPosition();
                     collidesWithPlayer();
                     this.setVisible(false);
                 }
