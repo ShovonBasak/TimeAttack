@@ -3,6 +3,7 @@ package Root.scenes;
 
 import Root.Application.AudioManager;
 
+import Root.GameObjects.PickUps.Health;
 import Root.GameObjects.PickUps.Pickup;
 import Root.UserInterface.CustomLable;
 import Root.Application.Main;
@@ -90,8 +91,15 @@ public class GameScene implements Runnable {
         speedUp=new SpeedUp(50,50,player);
         speedUp.setX(100);
         speedUp.setY(100);
-        group.getChildren().addAll(speedUp);
+
+        Health health=new Health(50,50,player);
+        health.setX(100);
+        health.setY(100);
+
+        group.getChildren().addAll(speedUp,health);
         pickups.add(speedUp);
+        pickups.add(health);
+
 
 
 
