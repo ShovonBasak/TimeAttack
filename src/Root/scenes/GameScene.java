@@ -42,7 +42,7 @@ public class GameScene implements Runnable {
     private ArrayList<Enemy> enemies;
     public static boolean isPaused = false;
     private Text pauseText;
-    //public SpeedUp speedUp;
+    public SpeedUp speedUp;
     public GameScene(Main mainMenu) {
         AudioManager.GameBGM();
 
@@ -75,13 +75,13 @@ public class GameScene implements Runnable {
 
 
         coin = new Coin(28 + randomPosition.nextInt(800), 28 + randomPosition.nextInt(600), 35, player, ScoreLable);
-        //speedUp=new SpeedUp(50,50,player);
-        //speedUp.setLayoutX(100);
-        //speedUp.setLayoutY(100);
-        //speedUp.setVisible(true);
+        speedUp=new SpeedUp(50,50,player);
+        speedUp.setLayoutX(100);
+        speedUp.setLayoutY(100);
+        speedUp.setVisible(true);
 
         group = new Group(player);
-        group.getChildren().addAll(ScoreLable,LevelLable, pauseText,Hp);
+        group.getChildren().addAll(ScoreLable,LevelLable, pauseText,Hp,speedUp);
         group.getChildren().addAll(coin.getCoin());
 
         scene = new Scene(group,800,600,Color.CYAN);
@@ -135,7 +135,7 @@ public class GameScene implements Runnable {
 
                 Enemy1 enemy = new Enemy1(0, 0, 35, player, coin);
                 enemies.add(enemy);
-                //speedUp.setEnemies(enemies);
+                speedUp.setEnemies(enemies);
                 group.getChildren().addAll(enemy);
                 enemy.setSpeed(2);
 
