@@ -25,6 +25,8 @@ public class SpeedUp extends Pickup {
         setWidth(width);
         setFill(new ImagePattern(new Image("image/SpeedUp.png")));
         setRandomPosition();
+        thisThread = new Thread(this);
+        thisThread.start();
     }
 
     public void setEnemies(List<Enemy> enemies) {
@@ -36,7 +38,6 @@ public class SpeedUp extends Pickup {
         for (Enemy e:enemies) {
             e.setSpeed(e.getSpeed()+.2);
         }
-
     }
 
     @Override
@@ -44,8 +45,9 @@ public class SpeedUp extends Pickup {
         while (isVisible()) {
 
             try {
-                if(intersect(player)){
+                if(this.intersect(player)){
                     Trigger();
+                    collidesWithPlayer();
                     this.setVisible(false);
                 }
                 Thread.sleep(20);

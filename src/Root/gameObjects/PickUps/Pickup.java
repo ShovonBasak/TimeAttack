@@ -11,28 +11,30 @@ import java.util.Random;
 import static Root.scenes.GameScene.isPaused;
 
 public abstract class Pickup extends Rectangle implements Runnable {
+    boolean isDead=false;
     Player player;
-    Random randomPostion=new Random();
+    Random randomPostion;
+    Thread thisThread;
     Image fillImage;//image to fill the object
-
 
     boolean intersect(Player player) { //returns true if collides with player
         return (player.intersects(this.getBoundsInParent()));
+
     }
 
     public void setPlayer(Player player) {
+        randomPostion = new Random();
         this.player = player;
     }
 
     public void setRandomPosition(){
-
         this.setX(100);
         this.setY(100);
     }
 
     public abstract void Trigger();
 
-    private void collidesWithPlayer(){
+    void collidesWithPlayer(){
         if(!Player.dead){
             this.setVisible(false);
             this.setRandomPosition();
@@ -46,24 +48,16 @@ public abstract class Pickup extends Rectangle implements Runnable {
     }
 
     public void run() {
-        while(!Player.dead) {
-            Platform.runLater(() -> {
-                if (this.intersect(player)) {
-                    this.collidesWithPlayer();
-                }
-            });
+        while (isVisible()) {
             try {
-                Thread.sleep(30);
-                synchronized (this) {
-                    while (isPaused) {
-                        wait();
-                    }
+                if(this.intersect(player)){
+                    collidesWithPlayer();
                 }
+                Thread.sleep(30);
+
             } catch (Exception ignored) {
                 ignored.printStackTrace();
             }
         }
     }
-
-
 }
