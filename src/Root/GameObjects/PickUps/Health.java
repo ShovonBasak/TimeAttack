@@ -32,7 +32,7 @@ public class Health extends Pickup {
 
     @Override
     public void run() {
-        while (!player.dead) {
+        while (!Player.dead) {
             Platform.runLater(() -> {
 
                 if(this.intersect(player) && isVisible()){
