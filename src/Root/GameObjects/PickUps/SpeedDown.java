@@ -20,7 +20,7 @@ public class SpeedDown extends Pickup {
         setPlayer(player);
         setHeight(height);
         setWidth(width);
-        setFill(new ImagePattern(new Image("image/SlowDown.gif")));
+        setFill(new ImagePattern(new Image("image/SpeedDown.gif")));
         thisThread = new Thread(this);
         thisThread.start();
     }

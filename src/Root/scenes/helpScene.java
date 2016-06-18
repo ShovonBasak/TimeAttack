@@ -2,6 +2,7 @@ package Root.scenes;
 
 
 import Root.Application.AudioManager;
+import Root.GameObjects.PickUps.SpeedDown;
 import Root.UserInterface.CustomButton;
 import Root.Application.Main;
 import javafx.geometry.Pos;
@@ -11,8 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -22,7 +21,7 @@ import javafx.scene.text.Text;
 public class helpScene {
    private BorderPane layout;
     private Scene scene;
-    private CustomButton controlButton=new CustomButton("Controls");
+    private CustomButton pickUpsButton =new CustomButton("Power Up");
 
     private CustomButton enemyButton=new CustomButton("Enemies");
     private CustomButton objectiveButton=new CustomButton("Objective");
@@ -43,7 +42,7 @@ public class helpScene {
 
         VBox left=new VBox(30);
         left.setAlignment(Pos.CENTER);
-        left.getChildren().addAll(controlButton,enemyButton,objectiveButton);
+        left.getChildren().addAll(pickUpsButton,enemyButton,objectiveButton);
         left.setStyle("-fx-background-color: linear-gradient(#780bde, #062f42);");
         layout.setLeft(left);
 
@@ -65,7 +64,7 @@ public class helpScene {
         //set ButtonAction
         enemyButton.setOnAction(e->setEnemyScene());
 
-        controlButton.setOnAction(e->setControlScene());
+        pickUpsButton.setOnAction(e-> setPowerupScene());
 
         objectiveButton.setOnAction(e->setObjectiveScene());
 
@@ -126,17 +125,51 @@ public class helpScene {
         layout.setCenter(enemyGroup);
     }
 
-    private void setControlScene(){
+    private void setPowerupScene(){
         //Controls Scene
-        VBox conrtolsMenu=new VBox();
-        conrtolsMenu.setStyle("-fx-background-color: linear-gradient(#020300, #14b897);");
-        Text groupTitleC=new Text("Controls");
-        groupTitleC.setFont(Font.font("Chiller", FontWeight.BOLD, 40));
-        groupTitleC.setCache(true);
-        groupTitleC.setFill(Color.web("#05FFB8"));
-        groupTitleC.setTranslateX(conrtolsMenu.getLayoutX()+275);
-        conrtolsMenu.getChildren().addAll(groupTitleC);
-        layout.setCenter(conrtolsMenu);
+        //enemyButton scene
+        VBox powerUpGroup=new VBox();
+        powerUpGroup.setStyle("-fx-background-color: linear-gradient(#020300, #14b897);");
+        Text groupTitle=new Text("PowerUp's");
+        groupTitle.setFont(Font.font("Chiller", FontWeight.BOLD, 40));
+        groupTitle.setCache(true);
+        groupTitle.setFill(Color.web("#05FFB8"));
+        groupTitle.setTranslateX(groupTitle.getLayoutX()+275);
+
+        //HPinfo
+        ImageView HPImage=new ImageView(new Image("image/HP.gif-c200"));
+        HPImage.setFitHeight(25);
+        HPImage.setFitWidth(25);
+
+        Text HPText=new Text("Obviously it gives you Bonus Health");
+        HPText.setFont(Font.font("Harrington", FontWeight.EXTRA_BOLD, 19));
+        HPText.setFill(Color.DODGERBLUE);
+        HPText.setTranslateX(HPText.getLayoutX()+30);
+        HPText.setTranslateY(HPText.getLayoutY()-20);
+        //SpeedUP
+        ImageView SpeedUpImage=new ImageView(new Image("image/Speedup.gif"));
+        SpeedUpImage.setFitHeight(25);
+        SpeedUpImage.setFitWidth(25);
+        Text SpeedUpText=new Text("Enemeis get Bonus speed.");
+        SpeedUpText.setFont(Font.font("Harrington", FontWeight.EXTRA_BOLD, 19));
+        SpeedUpText.setFill(Color.DODGERBLUE);
+        SpeedUpText.setTranslateX(SpeedUpText.getLayoutX()+30);
+        SpeedUpText.setTranslateY(SpeedUpText.getLayoutY()-20);
+
+        //SpeedDown
+        ImageView SpeedDownImage=new ImageView(new Image("image/SpeedDown.gif"));
+        SpeedDownImage.setFitHeight(25);
+        SpeedDownImage.setFitWidth(25);
+        Text SpeedDownText=new Text("Enemeis Lose Bonus speed");
+        SpeedDownText.setFont(Font.font("Harrington", FontWeight.EXTRA_BOLD, 19));
+        SpeedDownText.setFill(Color.DODGERBLUE);
+        SpeedDownText.setTranslateX(SpeedDownText.getLayoutX()+30);
+        SpeedDownText.setTranslateY(SpeedDownText.getLayoutY()-20);
+
+
+        //setupEnemiesLayout
+        powerUpGroup.getChildren().addAll(groupTitle,HPImage,HPText,SpeedUpImage, SpeedUpText,SpeedDownImage,SpeedDownText);
+        layout.setCenter(powerUpGroup);
     }
 
 

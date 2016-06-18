@@ -23,7 +23,7 @@ public class SpeedUp extends Pickup {
         setPlayer(player);
         setHeight(height);
         setWidth(width);
-        setFill(new ImagePattern(new Image("image/SpeedUp.png")));
+        setFill(new ImagePattern(new Image("image/SpeedUp.gif")));
         thisThread = new Thread(this);
         thisThread.start();
     }
