@@ -5,11 +5,11 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
+
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -17,16 +17,48 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class XMLService {
-    private DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-    private DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-    private Document document = documentBuilder.parse("src/Root/gameData/GameData.xml");
-    private Element root = document.getDocumentElement();
-    public XMLService() throws ParserConfigurationException, IOException, SAXException {
+    private DocumentBuilderFactory documentBuilderFactory ;
+    private DocumentBuilder documentBuilder;
+    private Document document;
+    private Element root;
+    private String filePath;
+    private File DataFile;
+
+    public XMLService(){
+
+
+        filePath="C:Users/" +
+                System.getProperty("user.name") +
+                "/AppData/Local/TimeAttack/HighscoreData.xml";
+
+        Path pathToFile = Paths.get(filePath);
+        DataFile= new File(filePath);
+
+        try{
+            if (!DataFile.exists()){
+                Files.createDirectories(pathToFile.getParent());
+                Files.createFile(pathToFile);
+                clearFile();
+
+            }
+
+            documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            document = documentBuilder.parse(filePath);
+            root = document.getDocumentElement();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
 
     }
 
@@ -52,7 +84,7 @@ public class XMLService {
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
-        StreamResult result = new StreamResult("src/Root/gameData/GameData.xml");
+        StreamResult result = new StreamResult(filePath);
         transformer.transform(source, result);
     }
 
@@ -92,16 +124,18 @@ public class XMLService {
         return scoreList;
     }
 
-    public void clearScoreBoard(){
-        PrintWriter writer = null;
+    public void clearFile(){
+        PrintWriter writer ;
         try {
-            writer = new PrintWriter("src/Root/gameData/GameData.xml");
-        } catch (FileNotFoundException e) {
+            writer = new PrintWriter(filePath);
+            writer.print("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
+                    "<ScoresBoard>\n" +
+                    "</ScoresBoard>");
+            writer.close();
+        }catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        writer.print("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
-                "<ScoresBoard>\n" +
-                "</ScoresBoard>");
-        writer.close();
+
+
     }
 }

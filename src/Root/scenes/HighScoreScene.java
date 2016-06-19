@@ -6,7 +6,6 @@ import Root.Application.Main;
 import Root.UserInterface.ScoreBoard;
 import Root.UserInterface.CustomButton;
 import Root.gameData.XMLService;
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -15,13 +14,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.util.Callback;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -39,10 +35,8 @@ public class HighScoreScene {
     private  XMLService x;
     public HighScoreScene(Main mainMenu) {
         this.mainMenu=mainMenu;
-        try{x= new XMLService();}
-        catch (Exception e){
-            //Failed to get Data
-        }
+        x= new XMLService();
+
         highScoreBoard = new TableView<>();
         setTable();
 
@@ -73,7 +67,7 @@ public class HighScoreScene {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
-                x.clearScoreBoard();
+                x.clearFile();
                 mainMenu.getWindow().setScene(new HighScoreScene(mainMenu).getScene());
             }
 
@@ -146,7 +140,6 @@ public class HighScoreScene {
         //1 row = 1 scoreboard object get and arraylist from the Root.database and create objects from those.
         try {
             ArrayList<ScoreBoard> sb = x.getScoreList();
-
                 for (ScoreBoard scoreBoard : sb) {
                     highScoreBoard.getItems().addAll(scoreBoard);
                 }
