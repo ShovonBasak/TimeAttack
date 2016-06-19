@@ -24,6 +24,7 @@ public class CustomButton extends Button {
     public CustomButton(String text) {
         super.setText(text);
         super.setStyle("-fx-background-color: #009f8d; -fx-border-color: white;");
+
         super.setTextFill(Color.WHITE);
         this.setFont(Font.font("Harrington", 15));
     }

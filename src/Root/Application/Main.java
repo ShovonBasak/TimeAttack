@@ -8,6 +8,7 @@ How this works?
 package Root.Application;
 
 import Root.UserInterface.CustomButton;
+import Root.scenes.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -16,20 +17,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import Root.scenes.GameScene;
-import Root.scenes.HighScoreScene;
-import Root.scenes.helpScene;
-import Root.scenes.LoadingScreen;
 
 import java.util.Optional;
-
+import java.util.Set;
 
 
 public class Main extends Application {
@@ -42,8 +37,9 @@ public class Main extends Application {
     private CustomButton exit;
     private CustomButton highScore;
     private CustomButton helpButton;
+    private CustomButton SettingsButton;
     private Text gameName;
-    private MediaPlayer mediaPlayer;
+
 
 
     //Root.scenes
@@ -83,10 +79,18 @@ public class Main extends Application {
         });
 
         helpButton = new CustomButton("Help");
-        helpButton.setOnAction(event1 -> {
+        helpButton.setOnAction(event -> {
             AudioManager.buttonAudio();
             window.setScene(new helpScene(this).getScene());
         });
+
+        SettingsButton= new CustomButton("Settings");
+        SettingsButton.setOnAction(event -> {
+            AudioManager.buttonAudio();
+            window.setScene(new SettingsScene(this).getScene());
+        });
+
+
 
 
         highScore = new CustomButton("High Score");
@@ -108,7 +112,7 @@ public class Main extends Application {
 
 
         //setup MainMenu
-        layout = new VBox(20, gameName, startGame, highScore, helpButton, exit);
+        layout = new VBox(20, gameName, startGame, highScore,SettingsButton, helpButton, exit);
 
         layout.setAlignment(Pos.CENTER);
         layout.setStyle("-fx-background-color: linear-gradient(#368fb4, #7ad3f8);");
