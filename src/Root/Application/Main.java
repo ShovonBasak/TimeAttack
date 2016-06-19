@@ -119,7 +119,6 @@ public class Main extends Application {
         scene = new Scene(layout, 800, 600);
 
         window.setTitle("Time Attack");
-
         window.setResizable(false);
         window.show();
 

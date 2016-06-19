@@ -6,18 +6,21 @@ import Root.Application.Main;
 import Root.UserInterface.ScoreBoard;
 import Root.UserInterface.CustomButton;
 import Root.gameData.XMLService;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -44,7 +47,7 @@ public class HighScoreScene {
         text.setFont(Font.font("Old English Text MT", FontWeight.BOLD, 30));
         text.setCache(true);
         text.setFill(Color.YELLOWGREEN);
-        text.setTranslateX(300);
+        //text.setTranslateX(mainMenu.getScene().getWindow().getWidth()/2);
 
         layout = new VBox();
         layout.setStyle("-fx-background-color: #2F4F4F;");
@@ -56,7 +59,7 @@ public class HighScoreScene {
             mainMenu.getWindow().setScene(mainMenu.getScene());
         });
         clearButton= new CustomButton("Clear");
-        clearButton.setTranslateX(545);
+
         clearButton.setOnAction(event -> {
             AudioManager.buttonAudio();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -69,6 +72,7 @@ public class HighScoreScene {
             if (result.get() == ButtonType.OK){
                 x.clearFile();
                 mainMenu.getWindow().setScene(new HighScoreScene(mainMenu).getScene());
+
             }
 
         });
@@ -77,13 +81,19 @@ public class HighScoreScene {
     }
 
     private void setScene() {
-        HBox hBox = new HBox(backButton, text,clearButton);
+        BorderPane hBox = new BorderPane();
+        hBox.setLeft(backButton);
+        hBox.setCenter(text);
+        hBox.setRight(clearButton);
+
         hBox.setStyle("-fx-background-color: #2F4F4F;");
 
 
         layout.getChildren().addAll(hBox, highScoreBoard);
 
         scene = new Scene(layout, 800, 600);
+        clearButton.setAlignment(Pos.CENTER_RIGHT);
+        text.setTextAlignment(TextAlignment.CENTER);
     }
 
     public Scene getScene() {
