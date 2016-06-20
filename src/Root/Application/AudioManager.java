@@ -12,6 +12,12 @@ import java.security.PublicKey;
  */
 public class AudioManager {
     public static MediaPlayer mediaPlayer;
+    public static double volume=1;
+
+    public static void updateVolume(){
+        mediaPlayer.setVolume(volume);
+
+    }
 
     public static  void buttonAudio(){
         try{
@@ -20,6 +26,7 @@ public class AudioManager {
                     "//Resources//AudioClip//Button01.wav");
 
             MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
+            mediaPlayer.setVolume(volume);
             mediaPlayer.play();
         }catch (Exception e){
             e.printStackTrace();
