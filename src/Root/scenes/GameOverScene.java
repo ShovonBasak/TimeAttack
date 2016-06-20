@@ -133,6 +133,7 @@ class GameOverScene {
         }
 
         updateData(SB);
+
         mainMenu.getWindow().setScene(new HighScoreScene(mainMenu).getScene());
         AudioManager.MainMenuAudio();
     }

@@ -11,10 +11,11 @@ import Root.Application.Main;
 import Root.GameObjects.*;
 import Root.GameObjects.PickUps.SpeedUp;
 import javafx.application.Platform;
+import javafx.geometry.Insets;
 import javafx.scene.Cursor;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
@@ -30,7 +31,7 @@ import static javafx.scene.input.KeyCode.SPACE;
 
 public class GameScene implements Runnable {
     private Scene scene;
-    private Group group;
+    private Pane Pane;
     private Player player;
     private Coin coin;
     private GameOverScene gameOverScene;
@@ -84,11 +85,16 @@ public class GameScene implements Runnable {
         coin = new Coin(28 + randomPosition.nextInt(800), 28 + randomPosition.nextInt(600), 35, player, ScoreLable);
 
 
-        group = new Group(player);
-        group.getChildren().addAll(ScoreLable,LevelLable, pauseText,Hp);
-        group.getChildren().addAll(coin.getCoin());
+        Pane = new Pane(player);
+        Pane.getChildren().addAll(ScoreLable,LevelLable, pauseText,Hp);
+        Pane.getChildren().addAll(coin.getCoin());
 
-        scene = new Scene(group,800,600,Color.CYAN);
+        Background background = new Background(new BackgroundFill(Color.DARKSLATEGREY, CornerRadii.EMPTY, Insets.EMPTY));
+        Pane.setBackground(background);
+
+
+
+        scene = new Scene(Pane,800,600);
         scene.setCursor(Cursor.NONE);
 
         //Pickups
@@ -99,7 +105,7 @@ public class GameScene implements Runnable {
         speedUp = new SpeedUp(50,50,player);
 
 
-        group.getChildren().addAll(speedUp,health,speedDown);
+        Pane.getChildren().addAll(speedUp,health,speedDown);
         pickups.add(speedUp);
         pickups.add(health);
         pickups.add(speedDown);
@@ -162,7 +168,7 @@ public class GameScene implements Runnable {
                 enemies.add(enemy);
                 speedUp.setEnemies(enemies);
                 speedDown.setEnemies(enemies);
-                group.getChildren().addAll(enemy);
+                Pane.getChildren().addAll(enemy);
                 enemy.setSpeed(2);
 
 
@@ -174,7 +180,7 @@ public class GameScene implements Runnable {
                 enemies.add(enemy);
                 speedUp.setEnemies(enemies);
                 speedDown.setEnemies(enemies);
-                group.getChildren().addAll(enemy);
+                Pane.getChildren().addAll(enemy);
             }
 
         }
@@ -208,6 +214,7 @@ public class GameScene implements Runnable {
         Platform.runLater(() ->
         {
             AudioManager.mediaPlayer.stop();
+            mainMenu.getWindow().setResizable(false);
             gameOverScene = new GameOverScene(mainMenu, ScoreLable, level);
             mainMenu.getWindow().setScene(gameOverScene.getScene());
         });
