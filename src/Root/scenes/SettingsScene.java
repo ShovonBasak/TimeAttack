@@ -65,7 +65,7 @@ public class SettingsScene {
 
         //swappable middleLayout
 
-        //audio by default
+        //audiosettings by default
         AudioSettings();
 
 
@@ -75,6 +75,59 @@ public class SettingsScene {
 
         scene=new Scene(layout,800,600);
     }
+
+    //overloaded constructor to access settings from Pause menu This one is specilized for Pause menu.Update with the other one cautiously
+    public SettingsScene(Main mainMenu,PauseMenu gameScene) {
+        layout=new BorderPane();
+
+        HBox top=new HBox();
+        top.setMinHeight(40);
+        Text settingsText=new Text("Settings");
+        settingsText.setFont(Font.font("Chiller", FontWeight.BOLD, 40));
+        settingsText.setCache(true);
+        settingsText.setFill(Color.web("#05FFB8"));
+        settingsText.setTranslateX(settingsText.getLayoutX()+300);
+
+        top.setStyle("-fx-background-color: linear-gradient(#1F03B5, #121716);");
+        CustomButton backButton=new CustomButton("Back");
+        backButton.setOnAction(event ->{
+            AudioManager.buttonAudio();
+            mainMenu.getWindow().setScene(gameScene.getScene());
+            AudioManager.mediaPlayer.stop();
+        } );
+        top.getChildren().addAll(backButton,settingsText);
+        layout.setTop(top);
+
+        VBox left=new VBox(30);
+        left.setAlignment(Pos.CENTER);
+        left.setMinWidth(75);
+        left.setStyle("-fx-background-color: linear-gradient(#1F03B5, #121716);");
+        layout.setLeft(left);
+
+        VBox right=new VBox();
+        right.setStyle("-fx-background-color: linear-gradient(#1F03B5, #121716);");
+        right.setFillWidth(true);
+        right.setMinWidth(75);
+        layout.setRight(right);
+
+        VBox bot=new VBox();
+        bot.setStyle("-fx-background-color: linear-gradient(#1F03B5, #121716);");
+        bot.setFillWidth(true);
+        bot.setMinHeight(40);
+        layout.setBottom(bot);
+
+        //swappable middleLayout
+
+        //audiosettings by default
+        AudioSettings();
+
+
+
+
+
+        scene=new Scene(layout,800,600);
+    }
+
 
 
 

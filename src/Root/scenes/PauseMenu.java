@@ -34,6 +34,7 @@ class PauseMenu {
         AudioManager.mediaPlayer.stop();
 
 
+
     }
 
     private void setScene(){
@@ -55,12 +56,25 @@ class PauseMenu {
 
         restartButton=new CustomButton("Restart");
         restartButton.setOnAction(event -> {
-            GameScene.isPaused=false;
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Warning!");
+            alert.setHeaderText("Restart Game?");
+            alert.setContentText("All progress will be lost");
 
-            mainMenu.getWindow().setScene(new GameScene(mainMenu).getScene());
-            mainMenu.getWindow().setFullScreen(true);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                GameScene.isPaused=false;
+
+                mainMenu.getWindow().setScene(new GameScene(mainMenu).getScene());
+                mainMenu.getWindow().setFullScreen(true);
+            }
+
         });
         settingsButton=new CustomButton("Settings");
+        settingsButton.setOnAction(event -> {
+            mainMenu.getWindow().setScene(new SettingsScene(mainMenu,this).getScene());
+            AudioManager.mediaPlayer.play();
+        });
 
 
 
