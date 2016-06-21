@@ -89,7 +89,7 @@ public class GameScene implements Runnable {
         Pane.getChildren().addAll(ScoreLable,LevelLable, pauseText,Hp);
         Pane.getChildren().addAll(coin.getCoin());
 
-        Background background = new Background(new BackgroundFill(Color.DARKSLATEGREY, CornerRadii.EMPTY, Insets.EMPTY));
+        Background background = new Background(new BackgroundFill(Color.DEEPSKYBLUE, CornerRadii.EMPTY, Insets.EMPTY));
         Pane.setBackground(background);
 
 
@@ -134,10 +134,12 @@ public class GameScene implements Runnable {
         getScene().addEventFilter(KeyEvent.KEY_PRESSED, e -> {
             if(e.getCode() == ENTER){
                 pauseText.setVisible(false);
+
                 resume();
             }
             if(e.getCode() == SPACE){
                 isPaused = true;
+                mainMenu.getWindow().setScene(new PauseMenu(mainMenu,this).getScene());
                 pauseText.setVisible(true);
             }
         });
@@ -192,15 +194,19 @@ public class GameScene implements Runnable {
                 //do anything
                 controlScene();
                 checkLevel();
+                try{
+                    pauseText.setLayoutX(getScene().getWindow().getWidth()/2-30);
+                    pauseText.setLayoutY(getScene().getWindow().getHeight()/2-30);
+                    ScoreLable.setText(ScoreLable.getTextAsString());
+                    LevelLable.setText(LevelLable.getTextAsString());
+                    LevelLable.setLayoutX(getScene().getWindow().getWidth()/2-20);
+                    Hp.setLayoutX(getScene().getWindow().getWidth()-110);
+                    Hp.setValue(player.getHealthPoint());
+                    Hp.setText(Hp.getTextAsString());
+                }catch (Exception e){
 
-                pauseText.setLayoutX(getScene().getWindow().getWidth()/2-30);
-                pauseText.setLayoutY(getScene().getWindow().getHeight()/2-30);
-                ScoreLable.setText(ScoreLable.getTextAsString());
-                LevelLable.setText(LevelLable.getTextAsString());
-                LevelLable.setLayoutX(getScene().getWindow().getWidth()/2-20);
-                Hp.setLayoutX(getScene().getWindow().getWidth()-110);
-                Hp.setValue(player.getHealthPoint());
-                Hp.setText(Hp.getTextAsString());
+                }
+
             });
 
 

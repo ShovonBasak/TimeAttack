@@ -41,6 +41,7 @@ public class AudioManager {
                     "//Resources//AudioClip//LoadingScreen.mp3");
 
             mediaPlayer= new MediaPlayer(audioClip);
+            mediaPlayer.setVolume(volume);
             mediaPlayer.play();
 
         }catch (Exception e){
@@ -56,6 +57,7 @@ public class AudioManager {
 
             mediaPlayer= new MediaPlayer(audioClip);
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.setVolume(volume);
             mediaPlayer.play();
         }catch (Exception e){
             e.printStackTrace();
@@ -70,6 +72,7 @@ public class AudioManager {
                     "//Resources//AudioClip//TitleClickSound.mp3");
 
             MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
+            mediaPlayer.setVolume(volume);
             mediaPlayer.play();
         }catch (Exception e){
             e.printStackTrace();
@@ -86,6 +89,7 @@ public class AudioManager {
 
             mediaPlayer= new MediaPlayer(audioClip);
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.setVolume(volume);
             mediaPlayer.play();
         }catch (Exception e){
             e.printStackTrace();
@@ -100,6 +104,7 @@ public class AudioManager {
                     "//Resources//AudioClip//MainMenu.mp3");
 
             mediaPlayer= new MediaPlayer(audioClip);
+            mediaPlayer.setVolume(volume);
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 
             mediaPlayer.play();
@@ -117,7 +122,7 @@ public class AudioManager {
 
 
             MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
-            mediaPlayer.setVolume(.2);
+            mediaPlayer.setVolume(volume*0.2);
             mediaPlayer.play();
         }catch (Exception e){e.printStackTrace();}
 
@@ -130,6 +135,7 @@ public class AudioManager {
                     "//Resources//AudioClip//GameOver.mp3");
 
             mediaPlayer= new MediaPlayer(audioClip);
+            mediaPlayer.setVolume(volume);
             mediaPlayer.play();
         }catch (Exception e){
             e.printStackTrace();
