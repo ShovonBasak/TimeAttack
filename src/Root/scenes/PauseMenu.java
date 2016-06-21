@@ -49,7 +49,7 @@ public class PauseMenu {
 
         resumeButton=new CustomButton("Resume");
         resumeButton.setOnAction(event -> {
-
+            gameScene.resume();
             mainMenu.getWindow().setScene(gameScene.getScene());
             mainMenu.getWindow().setFullScreen(true);
             AudioManager.mediaPlayer.play();

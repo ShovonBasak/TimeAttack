@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import static javafx.scene.input.KeyCode.ENTER;
+import static javafx.scene.input.KeyCode.ESCAPE;
 import static javafx.scene.input.KeyCode.SPACE;
 
 public class GameScene implements Runnable {
@@ -44,7 +45,6 @@ public class GameScene implements Runnable {
     private ArrayList<Enemy> enemies;
     private ArrayList<Pickup> pickups;
     public static boolean isPaused = false;
-    private Text pauseText;
     private SpeedUp speedUp;
     private SpeedDown speedDown;
     private Health health;
@@ -55,10 +55,7 @@ public class GameScene implements Runnable {
         enemies = new ArrayList<>();
         pickups=new ArrayList<>();
 
-        pauseText=new Text("Paused");
-        pauseText.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
-        pauseText.setFill(Paint.valueOf("BLUE"));
-        pauseText.setVisible(false);
+
 
 
         level = 0;
@@ -86,7 +83,7 @@ public class GameScene implements Runnable {
 
 
         Pane = new Pane(player);
-        Pane.getChildren().addAll(ScoreLable,LevelLable, pauseText,Hp);
+        Pane.getChildren().addAll(ScoreLable,LevelLable,Hp);
         Pane.getChildren().addAll(coin.getCoin());
 
         Background background = new Background(new BackgroundFill(Color.DEEPSKYBLUE, CornerRadii.EMPTY, Insets.EMPTY));
@@ -96,6 +93,13 @@ public class GameScene implements Runnable {
 
         scene = new Scene(Pane,800,600);
         scene.setCursor(Cursor.NONE);
+
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
+            if(e.getCode() == ESCAPE){
+                isPaused = true;
+                mainMenu.getWindow().setScene(new PauseMenu(mainMenu,this).getScene());
+            }
+        });
 
         //Pickups
 
@@ -120,7 +124,7 @@ public class GameScene implements Runnable {
         mainThread.start();
     }
 
-    private synchronized void resume() {
+    public synchronized void resume() {
         isPaused = false;
         notify();
         player.resume();
@@ -130,20 +134,6 @@ public class GameScene implements Runnable {
 
 
 
-    private void controlScene(){
-        getScene().addEventFilter(KeyEvent.KEY_PRESSED, e -> {
-            if(e.getCode() == ENTER){
-                pauseText.setVisible(false);
-
-                resume();
-            }
-            if(e.getCode() == SPACE){
-                isPaused = true;
-                mainMenu.getWindow().setScene(new PauseMenu(mainMenu,this).getScene());
-                pauseText.setVisible(true);
-            }
-        });
-    }
 
     public Scene getScene() {
         return this.scene;
@@ -178,7 +168,7 @@ public class GameScene implements Runnable {
             if(level == 5){
 
                 Enemy enemy = new Enemy2(1024, 0, 35, player, coin);
-                enemy.setSpeed(1);
+                enemy.setSpeed(2);
                 enemies.add(enemy);
                 speedUp.setEnemies(enemies);
                 speedDown.setEnemies(enemies);
@@ -192,20 +182,21 @@ public class GameScene implements Runnable {
         while (!Player.dead) {
             Platform.runLater(() -> {
                 //do anything
-                controlScene();
-                checkLevel();
-                try{
-                    pauseText.setLayoutX(getScene().getWindow().getWidth()/2-30);
-                    pauseText.setLayoutY(getScene().getWindow().getHeight()/2-30);
+                if(!isPaused){
+
+                    checkLevel();
+
                     ScoreLable.setText(ScoreLable.getTextAsString());
                     LevelLable.setText(LevelLable.getTextAsString());
-                    LevelLable.setLayoutX(getScene().getWindow().getWidth()/2-20);
-                    Hp.setLayoutX(getScene().getWindow().getWidth()-110);
+                    LevelLable.setLayoutX(mainMenu.getWindow().getWidth()/2-20);
+                    Hp.setLayoutX(mainMenu.getWindow().getWidth()-110);
                     Hp.setValue(player.getHealthPoint());
                     Hp.setText(Hp.getTextAsString());
-                }catch (Exception e){
+
+
 
                 }
+
 
             });
 

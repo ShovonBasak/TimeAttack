@@ -16,6 +16,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -60,6 +61,7 @@ public class Main extends Application {
         startGame.setOnAction(event1 -> {
             AudioManager.buttonAudio();
             AudioManager.mediaPlayer.stop();
+            window.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
             window.setScene(new GameScene(this).getScene());
             window.setFullScreen(true);
         });
