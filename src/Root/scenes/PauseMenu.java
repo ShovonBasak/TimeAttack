@@ -17,10 +17,8 @@ import javafx.scene.text.Text;
 
 import java.util.Optional;
 
-/**
- * Created by Ehtesham on 6/21/2016.
- */
-public class PauseMenu {
+
+class PauseMenu {
     private Main mainMenu;
     private GameScene gameScene;
     private CustomButton resumeButton;
@@ -29,7 +27,7 @@ public class PauseMenu {
     private CustomButton quitButton;
     private Scene scene;
 
-    public PauseMenu( Main mainMenu,GameScene gameScene){
+    PauseMenu(Main mainMenu, GameScene gameScene){
         setScene();
         this.mainMenu=mainMenu;
         this.gameScene=gameScene;
@@ -38,7 +36,7 @@ public class PauseMenu {
 
     }
 
-    public void setScene(){
+    private void setScene(){
         VBox layout;
         Text MenuText=new Text("Pause Menu");
         MenuText.setFont(Font.font("Blackadder ITC", FontWeight.BOLD, 60));
@@ -86,7 +84,7 @@ public class PauseMenu {
 
 
         layout = new VBox(MenuText);
-        layout.getChildren().addAll(resumeButton,restartButton,quitButton);
+        layout.getChildren().addAll(resumeButton,restartButton,settingsButton,quitButton);
         layout.setSpacing(20);
         layout.setAlignment(Pos.CENTER);
         layout.setStyle("-fx-background-color: linear-gradient(#368fb4, #7ad3f8);");
