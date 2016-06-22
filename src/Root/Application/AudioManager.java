@@ -22,7 +22,7 @@ public class AudioManager {
     public static  void buttonAudio(){
         try{
             Media audioClip = new Media("file:///" +
-                    System.getProperty("user.dir").replace("\\","//")+
+                    System.getProperty("user.dir").replace("\\","//").replace(" ","%20")+
                     "//Resources//AudioClip//Button01.wav");
 
             MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
@@ -37,7 +37,7 @@ public class AudioManager {
     public static void LoadingScreenAudio(){
         try{
             Media audioClip = new Media("file:///" +
-                    System.getProperty("user.dir").replace("\\","//")+
+                    System.getProperty("user.dir").replace("\\","//").replace(" ","%20")+
                     "//Resources//AudioClip//LoadingScreen.mp3");
 
             mediaPlayer= new MediaPlayer(audioClip);
@@ -52,7 +52,7 @@ public class AudioManager {
     public static void TitleScreenAudio(){
         try{
             Media audioClip = new Media("file:///" +
-                    System.getProperty("user.dir").replace("\\","//")+
+                    System.getProperty("user.dir").replace("\\","//").replace(" ","%20")+
                     "//Resources//AudioClip//TitleScreenAudio.mp3");
 
             mediaPlayer= new MediaPlayer(audioClip);
@@ -68,7 +68,7 @@ public class AudioManager {
     public static void TitleKeyPress(){
         try{
             Media audioClip = new Media("file:///" +
-                    System.getProperty("user.dir").replace("\\","//")+
+                    System.getProperty("user.dir").replace("\\","//").replace(" ","%20")+
                     "//Resources//AudioClip//TitleClickSound.mp3");
 
             MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
@@ -84,7 +84,7 @@ public class AudioManager {
     public static void GameBGM(){
         try{
             Media audioClip = new Media("file:///" +
-                    System.getProperty("user.dir").replace("\\","//")+
+                    System.getProperty("user.dir").replace("\\","//").replace(" ","%20")+
                     "//Resources//AudioClip//GameBGM.mp3");
 
             mediaPlayer= new MediaPlayer(audioClip);
@@ -100,7 +100,7 @@ public class AudioManager {
     public static void MainMenuAudio(){
         try{
             Media audioClip = new Media("file:///" +
-                    System.getProperty("user.dir").replace("\\","//")+
+                    System.getProperty("user.dir").replace("\\","//").replace(" ","%20")+
                     "//Resources//AudioClip//MainMenu.mp3");
 
             mediaPlayer= new MediaPlayer(audioClip);
@@ -116,7 +116,7 @@ public class AudioManager {
     public static void CoinAudio(){
         try{
             Media audioClip = new Media("file:///" +
-                    System.getProperty("user.dir").replace("\\","//")+
+                    System.getProperty("user.dir").replace("\\","//").replace(" ","%20")+
                     "//Resources//AudioClip//Coin.mp3");
 
 
@@ -131,7 +131,7 @@ public class AudioManager {
     public static void gameOverMusic(){
         try{
             Media audioClip = new Media("file:///" +
-                    System.getProperty("user.dir").replace("\\","//")+
+                    System.getProperty("user.dir").replace("\\","//").replace(" ","%20")+
                     "//Resources//AudioClip//GameOver.mp3");
 
             mediaPlayer= new MediaPlayer(audioClip);
