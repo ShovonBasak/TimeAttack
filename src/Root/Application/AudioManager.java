@@ -15,15 +15,15 @@ public class AudioManager {
 
     }
 
-    public static String GetFilepPath(){
+    private static String GetFilepPath(){
         return "file:///" +
-                System.getProperty("user.dir").replace("\\","//").replace(" ","%20")+
-                "//Resources//";
+                System.getProperty("user.dir").replace("\\","/").replace(" ","%20")+
+                "/Resources/";
     }
 
     public static  void buttonAudio(){
         try{
-            Media audioClip = new Media(GetFilepPath()+"AudioClip//Button01.wav");
+            Media audioClip = new Media(GetFilepPath()+"AudioClip/Button01.wav");
 
             MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
             mediaPlayer.setVolume(volume);
@@ -36,7 +36,7 @@ public class AudioManager {
 
     public static void LoadingScreenAudio(){
         try{
-            Media audioClip = new Media(GetFilepPath()+"AudioClip//LoadingScreen.mp3");
+            Media audioClip = new Media(GetFilepPath()+"AudioClip/LoadingScreen.mp3");
 
             mediaPlayer= new MediaPlayer(audioClip);
             mediaPlayer.setVolume(volume);
@@ -49,7 +49,7 @@ public class AudioManager {
 
     public static void TitleScreenAudio(){
         try{
-            Media audioClip = new Media(GetFilepPath()+"//AudioClip//TitleScreenAudio.mp3");
+            Media audioClip = new Media(GetFilepPath()+"/AudioClip/TitleScreenAudio.mp3");
 
             mediaPlayer= new MediaPlayer(audioClip);
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
@@ -63,7 +63,7 @@ public class AudioManager {
 
     public static void TitleKeyPress(){
         try{
-            Media audioClip = new Media(GetFilepPath()+"AudioClip//TitleClickSound.mp3");
+            Media audioClip = new Media(GetFilepPath()+"AudioClip/TitleClickSound.mp3");
 
             MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
             mediaPlayer.setVolume(volume);
@@ -77,7 +77,7 @@ public class AudioManager {
 
     public static void GameBGM(){
         try{
-            Media audioClip = new Media(GetFilepPath()+"AudioClip//GameBGM.mp3");
+            Media audioClip = new Media(GetFilepPath()+"AudioClip/GameBGM.mp3");
 
             mediaPlayer= new MediaPlayer(audioClip);
             mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
@@ -91,7 +91,7 @@ public class AudioManager {
 
     public static void MainMenuAudio(){
         try{
-            Media audioClip = new Media(GetFilepPath()+"AudioClip//MainMenu.mp3");
+            Media audioClip = new Media(GetFilepPath()+"AudioClip/MainMenu.mp3");
 
             mediaPlayer= new MediaPlayer(audioClip);
             mediaPlayer.setVolume(volume);
@@ -105,7 +105,7 @@ public class AudioManager {
     }
     public static void CoinAudio(){
         try{
-            Media audioClip = new Media(GetFilepPath()+"AudioClip//Coin.mp3");
+            Media audioClip = new Media(GetFilepPath()+"AudioClip/Coin.mp3");
 
 
 
@@ -118,7 +118,7 @@ public class AudioManager {
 
     public static void gameOverMusic(){
         try{
-            Media audioClip = new Media(GetFilepPath()+"AudioClip//GameOver.mp3");
+            Media audioClip = new Media(GetFilepPath()+"AudioClip/GameOver.mp3");
 
             mediaPlayer= new MediaPlayer(audioClip);
             mediaPlayer.setVolume(volume);
