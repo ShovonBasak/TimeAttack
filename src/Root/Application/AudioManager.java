@@ -3,9 +3,7 @@ package Root.Application;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-/**
- * Created by tazim on 6/16/2016.
- */
+
 public class AudioManager {
     public static MediaPlayer mediaPlayer;
     public static double volume=1;
