@@ -5,9 +5,11 @@ import Root.Application.Main;
 import Root.UserInterface.CustomButton;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Menu;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
@@ -39,6 +41,7 @@ class PauseMenu {
 
     private void setScene(){
         VBox layout;
+        layout = new VBox();
         Text MenuText=new Text("Pause Menu");
         MenuText.setFont(Font.font("Blackadder ITC", FontWeight.BOLD, 60));
         MenuText.setCache(true);
@@ -48,14 +51,17 @@ class PauseMenu {
 
         resumeButton=new CustomButton("Resume");
         resumeButton.setOnAction(event -> {
+            AudioManager.buttonAudio();
             gameScene.resume();
             mainMenu.getWindow().setScene(gameScene.getScene());
             mainMenu.getWindow().setFullScreen(true);
+
             AudioManager.mediaPlayer.play();
         });
 
         restartButton=new CustomButton("Restart");
         restartButton.setOnAction(event -> {
+            AudioManager.buttonAudio();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Warning!");
             alert.setHeaderText("Restart Game?");
@@ -72,6 +78,7 @@ class PauseMenu {
         });
         settingsButton=new CustomButton("Settings");
         settingsButton.setOnAction(event -> {
+            AudioManager.buttonAudio();
             mainMenu.getWindow().setScene(new SettingsScene(mainMenu,this).getScene());
             AudioManager.mediaPlayer.play();
         });
@@ -81,7 +88,7 @@ class PauseMenu {
 
         quitButton=new CustomButton("Quit");
         quitButton.setOnAction(e->{
-
+            AudioManager.buttonAudio();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Warning!");
             alert.setHeaderText("Quit Game?");
@@ -97,12 +104,24 @@ class PauseMenu {
 
 
 
-        layout = new VBox(MenuText);
-        layout.getChildren().addAll(resumeButton,restartButton,settingsButton,quitButton);
+
+        layout.getChildren().addAll(MenuText,resumeButton,restartButton,settingsButton,quitButton);
         layout.setSpacing(20);
         layout.setAlignment(Pos.CENTER);
-        layout.setStyle("-fx-background-color: linear-gradient(#368fb4, #7ad3f8);");
+        layout.setStyle("fx-text-fill:PURPLE;\n" +
+                "    -fx-padding: 15 30 15 30;\n" +
+                "    -fx-font-family: \"Helvetica\";\n" +
+                "    -fx-font-size: 18px;\n" +
+                "    -fx-font-weight: bold;\n" +
+                "\n" +
+                "    -fx-background-color:\n" +
+                "    linear-gradient(#d0e4f7 0%, #73b1e7  25%, #0a77d5 75%, #539fe1 100%),\n" +
+                "    linear-gradient(#000000, #000000 ),\n" +
+                "    linear-gradient(from 25% 25% to 100% 100%, #8fc800 , #006e2e);\n" +
+                "    -fx-background-insets: 0,1,4;\n" +
+                "    -fx-background-radius: 9,8,5;");
         scene = new Scene(layout, 800, 600);
+
 
 
 

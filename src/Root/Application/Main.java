@@ -65,6 +65,8 @@ public class Main extends Application {
             window.setScene(new GameScene(this).getScene());
             window.setFullScreen(true);
         });
+
+
         exit = new CustomButton("Exit");
         exit.setOnAction(event -> {
             AudioManager.buttonAudio();
@@ -117,7 +119,18 @@ public class Main extends Application {
         layout = new VBox(20, gameName, startGame, highScore,SettingsButton, helpButton, exit);
 
         layout.setAlignment(Pos.CENTER);
-        layout.setStyle("-fx-background-color: linear-gradient(#368fb4, #7ad3f8);");
+        layout.setStyle("fx-text-fill:PURPLE;\n" +
+                "    -fx-padding: 15 30 15 30;\n" +
+                "    -fx-font-family: \"Helvetica\";\n" +
+                "    -fx-font-size: 18px;\n" +
+                "    -fx-font-weight: bold;\n" +
+                "\n" +
+                "    -fx-background-color:\n" +
+                "    linear-gradient(#d0e4f7 0%, #73b1e7  25%, #0a77d5 75%, #539fe1 100%),\n" +
+                "    linear-gradient(#000000, #000000 ),\n" +
+                "    linear-gradient(from 25% 25% to 100% 100%, #8fc800 , #006e2e);\n" +
+                "    -fx-background-insets: 0,1,4;\n" +
+                "    -fx-background-radius: 9,8,5;");
         scene = new Scene(layout, 800, 600);
 
         window.setTitle("Time Attack");

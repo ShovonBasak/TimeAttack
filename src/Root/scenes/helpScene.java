@@ -104,17 +104,19 @@ public class helpScene {
         groupTitle.setTranslateX(groupTitle.getLayoutX()+275);
 
         //enemy1info
-        ImageView enemy1Image=new ImageView(new Image("image/enemy1.gif"));
+        ImageView enemy1Image=new ImageView(new Image("image/Enemy1Alt.gif"));
+        enemy1Image.setFitWidth(50);
+        enemy1Image.setFitHeight(50);
         Text enemy1Text=new Text("They will bounce off walls and the coins even among other enemies.");
         enemy1Text.setFont(Font.font("Harrington", FontWeight.EXTRA_BOLD, 19));
         enemy1Text.setFill(Color.web("#FF054C"));
         enemy1Text.setTranslateX(enemy1Text.getLayoutX()+60);
         enemy1Text.setTranslateY(enemy1Text.getLayoutY()-20);
         //enemy2Info
-        ImageView enemy2Image=new ImageView(new Image("image/enemy2.gif"));
+        ImageView enemy2Image=new ImageView(new Image("image/Enemy2Alt.gif"));
         enemy2Image.setFitHeight(50);
         enemy2Image.setFitWidth(50);
-        Text enemy2Text=new Text("Don't Fall for it's cute outlook. They will follow you to your death.");
+        Text enemy2Text=new Text("Don't Fall for it's cute face. It will follow you to your death.");
         enemy2Text.setFont(Font.font("Harrington", FontWeight.EXTRA_BOLD, 19));
         enemy2Text.setFill(Color.web("#FF054C"));
         enemy2Text.setTranslateX(enemy1Text.getLayoutX()+60);

@@ -13,11 +13,12 @@ public class Enemy2 extends Enemy {
 
     private Player player;
     private Coin coin;
+    private boolean facingRight=true;
 
 
     public Enemy2(double centerX, double centerY,double radius, Player player, Coin coin) {
         super(centerX, centerY, radius, "Blue", player, coin);
-        setFill(new ImagePattern(new Image("image/enemy2.gif")));
+        setFill(new ImagePattern(new Image("image/Enemy2Alt.gif")));
         this.player = player;
         this.coin = coin;
 
@@ -31,9 +32,14 @@ public class Enemy2 extends Enemy {
         double dy = player.getCenterY() - this.getCenterY();
         double m = dy/dx;
 
-        if(player.getCenterX() < this.getCenterX()){
+        if(player.getCenterX() < this.getCenterX()){//goes left
+            if(facingRight){
+                this.setScaleX(getScaleX()*-1);
+                facingRight=!facingRight;
+            }
             if(player.getCenterY() > this.getCenterY()){
                 if(abs(dx) > abs(dy)){
+
                     this.setCenterX(this.getCenterX() - this.getSpeed());
                     this.setCenterY(this.getCenterY() - (this.getSpeed()*m));
                 }
@@ -53,7 +59,12 @@ public class Enemy2 extends Enemy {
                 }
             }
         }
-        else if(player.getCenterX() > this.getCenterX()){
+        else if(player.getCenterX() > this.getCenterX()){//goes right
+            if(!facingRight){
+                this.setScaleX(getScaleX()*-1);
+                facingRight=!facingRight;
+            }
+
             if(player.getCenterY() < this.getCenterY()){
                 if(abs(dx) > abs(dy)){
                     this.setCenterX(this.getCenterX() + this.getSpeed());

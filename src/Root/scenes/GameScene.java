@@ -86,9 +86,9 @@ public class GameScene implements Runnable {
         Pane.getChildren().addAll(ScoreLable,LevelLable,Hp);
         Pane.getChildren().addAll(coin.getCoin());
 
-        Background background = new Background(new BackgroundFill(Color.DEEPSKYBLUE, CornerRadii.EMPTY, Insets.EMPTY));
-        Pane.setBackground(background);
-
+        //Background background = new Background(new BackgroundFill(Color.DEEPSKYBLUE, CornerRadii.EMPTY, Insets.EMPTY));
+        //Pane.setBackground(background);
+        Pane.setStyle("-fx-background-color: linear-gradient(from 10% 25% to 100% 50%, #45484d , #661a33);");
 
 
         scene = new Scene(Pane,800,600);
