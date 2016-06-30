@@ -3,9 +3,7 @@ package Root.scenes;
 import Root.Application.AudioManager;
 import Root.Application.Main;
 import Root.UserInterface.CustomButton;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.geometry.Point3D;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -28,14 +26,20 @@ import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
 import static javafx.scene.input.KeyCode.ESCAPE;
 
 public class CreditsScene {
     Scene scene;
     BorderPane layout;
-
+    Stack<Text> credits;
     public CreditsScene(Main mainMenu){
 
+        credits= new Stack<>();
+        setupCredit();
         layout=new BorderPane();
 
         HBox top=new HBox();
@@ -73,29 +77,23 @@ public class CreditsScene {
         bot.setMinHeight(40);
         layout.setBottom(bot);
 
-
+        //Text part
         VBox vbox = new VBox();
-        for (int i = 0; i < 30; i++)
-            vbox.getChildren().add(new Text(" longer line of text " + i + " "));
-
-        //take a sideways picture to fit the cylinder
-        SnapshotParameters snapshotParameters = new SnapshotParameters();
-        snapshotParameters.setTransform(new Rotate(90));
-        WritableImage snapshot = vbox.snapshot(snapshotParameters, null);
-
-        //make sideways cyl with image
-        PhongMaterial material = new PhongMaterial();
+        vbox.setAlignment(Pos.CENTER);
+        vbox.setStyle("-fx-background-color:#000000");
 
 
-        Cylinder cylinder = new Cylinder(300, 650);
-        cylinder.setStyle("-fx-background-color: linear-gradient(#1F03B5, #121716);");
-        material.setDiffuseMap(snapshot);
-        cylinder.setMaterial(material);
-        cylinder.setRotate(-90);
-        cylinder.setLayoutX(500);
-        //lights camera show
-        Group root = new Group();
-        root.getChildren().add(cylinder);
+                Text show = credits.pop();
+                vbox.getChildren().add(show);
+
+                //FadeINout
+                FadeTransition ft = new FadeTransition(Duration.millis(10000), show);
+                ft.setFromValue(0);
+                ft.setToValue(1);
+                ft.setCycleCount(Animation.INDEFINITE);
+                ft.setAutoReverse(true);
+
+                ft.play();
 
 
 
@@ -103,20 +101,7 @@ public class CreditsScene {
 
 
 
-        //I'll spin bob
-        Rotate rx = new Rotate();
-        rx.setAxis(Rotate.Y_AXIS);
-        cylinder.getTransforms().add(rx);
-        Timeline timeline = new Timeline();
-        timeline.setCycleCount(1);
-         KeyValue kv = new KeyValue(rx.angleProperty(), -360);
-         KeyFrame kf = new KeyFrame(Duration.millis(10000), kv);
-        timeline.getKeyFrames().add(kf);
-        timeline.play();
-
-
-
-        layout.setCenter(root);
+        layout.setCenter(vbox);
         scene = new Scene(layout, 800,600);
 
         scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
@@ -132,5 +117,23 @@ public class CreditsScene {
     public Scene getScene(){
         return this.scene;
     }
+
+    public void setupCredit(){
+        Text text=new Text("Project Manager\n" +
+                "Khan,Tanimul Haque");
+        text.setFill(Color.LIMEGREEN);
+        text.setFont(Font.font("Wide Latin", FontWeight.BOLD, 30));
+        credits.push(text);
+
+        text.setText("Programmer\n" +
+                "Basak, Shovon");
+        credits.push(text);
+
+
+
+
+
+    }
+
 
 }
