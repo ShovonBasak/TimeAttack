@@ -3,38 +3,30 @@ package Root.scenes;
 
 import Root.Application.AudioManager;
 
-import Root.GameObjects.PickUps.Health;
-import Root.GameObjects.PickUps.Pickup;
-import Root.GameObjects.PickUps.SpeedDown;
+import Root.GameObjects.PickUps.*;
 import Root.UserInterface.CustomLable;
 import Root.Application.Main;
 import Root.GameObjects.*;
-import Root.GameObjects.PickUps.SpeedUp;
 import javafx.application.Platform;
-import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import static javafx.scene.input.KeyCode.ENTER;
 import static javafx.scene.input.KeyCode.ESCAPE;
-import static javafx.scene.input.KeyCode.SPACE;
 
 public class GameScene implements Runnable {
     private Scene scene;
     private Pane Pane;
     private Player player;
-    private Coin coin;
+    private CandyCane candyCane;
     private GameOverScene gameOverScene;
     private Main mainMenu;
     private CustomLable ScoreLable;
@@ -47,6 +39,7 @@ public class GameScene implements Runnable {
     public static boolean isPaused = false;
     private SpeedUp speedUp;
     private SpeedDown speedDown;
+    private Coin coin;
     private Health health;
 
     public GameScene(Main mainMenu) {
@@ -79,16 +72,16 @@ public class GameScene implements Runnable {
 
 
 
-        coin = new Coin(28 + randomPosition.nextInt(800), 28 + randomPosition.nextInt(600), 35, player, ScoreLable);
+        candyCane = new CandyCane(28 + randomPosition.nextInt(800), 28 + randomPosition.nextInt(600), 20, player, ScoreLable);
 
 
         Pane = new Pane(player);
         Pane.getChildren().addAll(ScoreLable,LevelLable,Hp);
-        Pane.getChildren().addAll(coin.getCoin());
+        Pane.getChildren().addAll(candyCane);
 
         //Background background = new Background(new BackgroundFill(Color.DEEPSKYBLUE, CornerRadii.EMPTY, Insets.EMPTY));
         //Pane.setBackground(background);
-        Pane.setStyle("-fx-background-color: linear-gradient(from 10% 25% to 100% 50%, #45484d , #661a33);");
+        Pane.setStyle("-fx-background-color: linear-gradient(from 10% 25% to 100% 50%, #050094 , #0057A7);");
 
 
         scene = new Scene(Pane,800,600);
@@ -107,12 +100,15 @@ public class GameScene implements Runnable {
         health = new Health(50,50,player);
         speedDown = new SpeedDown(50,50,player);
         speedUp = new SpeedUp(50,50,player);
+        coin= new Coin(50,50,player,ScoreLable);
 
 
-        Pane.getChildren().addAll(speedUp,health,speedDown);
+
+        Pane.getChildren().addAll(speedUp,health,speedDown,coin);
         pickups.add(speedUp);
         pickups.add(health);
         pickups.add(speedDown);
+        pickups.add(coin);
 
 
 
@@ -128,7 +124,7 @@ public class GameScene implements Runnable {
         isPaused = false;
         notify();
         player.resume();
-        coin.resume();
+        candyCane.resume();
         enemies.forEach(Enemy::resume);
     }
 
@@ -156,7 +152,7 @@ public class GameScene implements Runnable {
 
             if(level % 3 == 0 || level == 1 ){
 
-                Enemy1 enemy = new Enemy1(0, 0, 35, player, coin);
+                Enemy1 enemy = new Enemy1(0, 0, 35, player, candyCane);
                 enemies.add(enemy);
                 speedUp.setEnemies(enemies);
                 speedDown.setEnemies(enemies);
@@ -167,7 +163,7 @@ public class GameScene implements Runnable {
             }
             if(level == 5){
 
-                Enemy enemy = new Enemy2(1024, 0, 35, player, coin);
+                Enemy enemy = new Enemy2(1024, 0, 35, player, candyCane);
                 enemy.setSpeed(2);
                 enemies.add(enemy);
                 speedUp.setEnemies(enemies);

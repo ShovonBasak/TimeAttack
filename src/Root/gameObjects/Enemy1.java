@@ -1,6 +1,7 @@
 package Root.GameObjects;
 
 
+import Root.GameObjects.CandyCane;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
@@ -12,9 +13,9 @@ public class Enemy1 extends Enemy implements Runnable{
     private double upperBound;
     private double lowerBound;
 
-    public Enemy1(double centerX, double centerY, double radius, Player player, Coin coin) {
-        super(centerX, centerY, radius, "red", player, coin);
-        this.setFill(new ImagePattern(new Image("image/Enemy1Alt.gif")));
+    public Enemy1(double centerX, double centerY, double radius, Player player, CandyCane candyCane) {
+        super(centerX, centerY, radius, "red", player, candyCane);
+        this.setFill(new ImagePattern(new Image("image/enemy1.gif")));
         rightBound = getCenterX() + getRadius();
         leftBound = rightBound - (getRadius() * 2);
         upperBound = getCenterY() - getRadius();
@@ -73,8 +74,8 @@ public class Enemy1 extends Enemy implements Runnable{
                         horizontalDirection=!horizontalDirection;
                     }
 
-                    if (this.intersect(coin)) {
-                        coin.collides(this);
+                    if (this.intersect(candyCane)) {
+                        candyCane.collides(this);
                     }
 
                 }

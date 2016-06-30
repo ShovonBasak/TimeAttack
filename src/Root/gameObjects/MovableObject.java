@@ -10,6 +10,7 @@ package Root.GameObjects;
 
 
  */
+import Root.GameObjects.PickUps.Pickup;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
@@ -36,6 +37,9 @@ public abstract class MovableObject extends Circle implements Runnable {
     }
 
     boolean intersect(MovableObject object) {
+        return (object.intersects(this.getBoundsInParent()));
+    }
+    boolean intersect(Pickup object) {
         return (object.intersects(this.getBoundsInParent()));
     }
 

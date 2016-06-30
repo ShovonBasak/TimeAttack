@@ -2,6 +2,7 @@ package Root.GameObjects.PickUps;
 
 
 import Root.GameObjects.Player;
+import javafx.scene.control.Label;
 import javafx.scene.shape.Rectangle;
 
 import java.util.Random;
@@ -9,10 +10,14 @@ import java.util.Random;
 import static Root.scenes.GameScene.isPaused;
 
 public abstract class Pickup extends Rectangle implements Runnable {
-    boolean isDead=false;
+    boolean isDead;
     Player player;
     Random randomPostion;
     Thread thisThread;
+
+    protected Pickup() {
+        isDead = false;
+    }
 
     boolean intersect(Player player) { //returns true if collides with player
         return (player.intersects(this.getBoundsInParent()));
@@ -35,7 +40,7 @@ public abstract class Pickup extends Rectangle implements Runnable {
         if(!Player.dead){
             this.setVisible(false);
             this.setRandomPosition();
-            this.setVisible(true);
+
         }
     }
 

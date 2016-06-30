@@ -44,7 +44,7 @@ public class SpeedDown extends Pickup {
                 if(this.intersect(player) && isVisible()){
                     Trigger();
                     collidesWithPlayer();
-                    this.setVisible(false);
+
                 }
             });
 

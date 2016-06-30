@@ -46,9 +46,9 @@ public class SpeedUp extends Pickup {
 
                 if(this.intersect(player) && isVisible()){
                     Trigger();
-                    setRandomPosition();
+
                     collidesWithPlayer();
-                    this.setVisible(false);
+
                 }
             });
 

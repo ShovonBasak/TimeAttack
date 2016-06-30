@@ -1,5 +1,6 @@
 package Root.GameObjects;
 
+import Root.GameObjects.CandyCane;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
@@ -12,15 +13,15 @@ import static java.lang.Math.abs;
 public class Enemy2 extends Enemy {
 
     private Player player;
-    private Coin coin;
+    private CandyCane candyCane;
     private boolean facingRight=true;
 
 
-    public Enemy2(double centerX, double centerY,double radius, Player player, Coin coin) {
-        super(centerX, centerY, radius, "Blue", player, coin);
+    public Enemy2(double centerX, double centerY,double radius, Player player, CandyCane candyCane) {
+        super(centerX, centerY, radius, "Blue", player, candyCane);
         setFill(new ImagePattern(new Image("image/Enemy2Alt.gif")));
         this.player = player;
-        this.coin = coin;
+        this.candyCane = candyCane;
 
         setSpeed(1);
         thisThread = new Thread(this);
@@ -99,8 +100,8 @@ public class Enemy2 extends Enemy {
                     player.substractHealth(1);
                 }
 
-                if (this.intersect(coin)) {
-                    coin.collides(this);
+                if (this.intersect(candyCane)) {
+                    candyCane.collides(this);
                 }
             });
             try {

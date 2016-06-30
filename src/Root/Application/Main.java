@@ -39,6 +39,7 @@ public class Main extends Application {
     private CustomButton highScore;
     private CustomButton helpButton;
     private CustomButton SettingsButton;
+    private CustomButton  creditsButton;
     private Text gameName;
 
 
@@ -103,6 +104,13 @@ public class Main extends Application {
             window.setScene(new HighScoreScene(this).getScene());
         } );
 
+
+        creditsButton=new CustomButton("Credits");
+        creditsButton.setOnAction(event -> {
+            AudioManager.buttonAudio();
+            window.setScene(new CreditsScene(this).getScene());
+        });
+
         gameName = new Text("Time Attack");
         gameName.setFont(Font.font("Blackadder ITC", FontWeight.BOLD, 60));
         gameName.setCache(true);
@@ -116,7 +124,7 @@ public class Main extends Application {
 
 
         //setup MainMenu
-        layout = new VBox(20, gameName, startGame, highScore,SettingsButton, helpButton, exit);
+        layout = new VBox(20, gameName, startGame, highScore,SettingsButton, helpButton,creditsButton, exit);
 
         layout.setAlignment(Pos.CENTER);
         layout.setStyle("fx-text-fill:PURPLE;\n" +
