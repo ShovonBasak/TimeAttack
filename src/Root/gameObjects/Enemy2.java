@@ -1,6 +1,5 @@
 package Root.GameObjects;
 
-import Root.GameObjects.CandyCane;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
@@ -14,12 +13,12 @@ public class Enemy2 extends Enemy {
 
     private Player player;
     private CandyCane candyCane;
-    private boolean facingRight=true;
+    private boolean facingRight=false;
 
 
     public Enemy2(double centerX, double centerY,double radius, Player player, CandyCane candyCane) {
         super(centerX, centerY, radius, "Blue", player, candyCane);
-        setFill(new ImagePattern(new Image("image/Enemy2Alt.gif")));
+        setFill(new ImagePattern(new Image("image/EvilNyan.gif")));
         this.player = player;
         this.candyCane = candyCane;
 

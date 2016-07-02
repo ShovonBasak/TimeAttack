@@ -107,16 +107,16 @@ public class helpScene {
         ImageView enemy1Image=new ImageView(new Image("image/Enemy1Alt.gif"));
         enemy1Image.setFitWidth(50);
         enemy1Image.setFitHeight(50);
-        Text enemy1Text=new Text("They will bounce off walls and the coins even among other enemies.");
+        Text enemy1Text=new Text("They will bounce off walls and the candies.");
         enemy1Text.setFont(Font.font("Harrington", FontWeight.EXTRA_BOLD, 19));
         enemy1Text.setFill(Color.web("#FF054C"));
         enemy1Text.setTranslateX(enemy1Text.getLayoutX()+60);
         enemy1Text.setTranslateY(enemy1Text.getLayoutY()-20);
         //enemy2Info
-        ImageView enemy2Image=new ImageView(new Image("image/Enemy2Alt.gif"));
+        ImageView enemy2Image=new ImageView(new Image("image/EvilNyan.gif"));
         enemy2Image.setFitHeight(50);
         enemy2Image.setFitWidth(50);
-        Text enemy2Text=new Text("Don't Fall for it's cute face. It will follow you to your death.");
+        Text enemy2Text=new Text("HE will chase you to death.");
         enemy2Text.setFont(Font.font("Harrington", FontWeight.EXTRA_BOLD, 19));
         enemy2Text.setFill(Color.web("#FF054C"));
         enemy2Text.setTranslateX(enemy1Text.getLayoutX()+60);
@@ -185,10 +185,12 @@ public class helpScene {
         groupTitleC.setCache(true);
         groupTitleC.setFill(Color.web("#05FFB8"));
 
-        Text objectiveText=new Text("Collect coins and evade the enemies.\n" +
-                "Collect the coins before timer runs out.");
+        Text objectiveText=new Text("Evil Nyan Cat has Stolen all the candies from the world." +
+                "\nNow it's up to you to steal them back." +
+                "\nYou have to steal as much candies as you can." +
+                "\nEvil Nyancat and his minions will try to stop you." );
         objectiveText.setFill(Color.web("#99ccff"));
-        objectiveText.setFont(Font.font("Monotype Corsiva", FontWeight.BOLD, 40));
+        objectiveText.setFont(Font.font("Monotype Corsiva", FontWeight.BOLD, 30));
 
 
 

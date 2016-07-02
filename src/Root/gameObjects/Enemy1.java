@@ -15,7 +15,7 @@ public class Enemy1 extends Enemy implements Runnable{
 
     public Enemy1(double centerX, double centerY, double radius, Player player, CandyCane candyCane) {
         super(centerX, centerY, radius, "red", player, candyCane);
-        this.setFill(new ImagePattern(new Image("image/enemy1.gif")));
+        this.setFill(new ImagePattern(new Image("image/Enemy1Alt.gif")));
         rightBound = getCenterX() + getRadius();
         leftBound = rightBound - (getRadius() * 2);
         upperBound = getCenterY() - getRadius();
