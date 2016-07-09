@@ -179,7 +179,6 @@ public class GameScene implements Runnable {
             Platform.runLater(() -> {
                 //do anything
                 if(!isPaused){
-
                     checkLevel();
 
                     ScoreLable.setText(ScoreLable.getTextAsString());
@@ -198,7 +197,7 @@ public class GameScene implements Runnable {
 
 
             try {
-                Thread.sleep(40);
+                Thread.sleep(20);
             }  catch (Exception ignored) {
                 ignored.printStackTrace();
             }

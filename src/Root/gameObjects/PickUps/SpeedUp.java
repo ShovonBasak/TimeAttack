@@ -10,10 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
-/**
- * Created by tazim on 6/13/2016.
- */
 public class SpeedUp extends Pickup {
 
     List<Enemy> enemies=new ArrayList<>();
@@ -43,11 +39,12 @@ public class SpeedUp extends Pickup {
     public void run() {
         while (!player.dead) {
             Platform.runLater(() -> {
-
                 if(this.intersect(player) && isVisible()){
                     Trigger();
 
                     collidesWithPlayer();
+                    this.setVisible(false);
+                    //this.setVisible(false);
 
                 }
             });

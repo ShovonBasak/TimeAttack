@@ -104,7 +104,7 @@ public class Enemy2 extends Enemy {
                 }
             });
             try {
-                Thread.sleep(40);
+                Thread.sleep(25);
                 synchronized (this) {
                     while (GameScene.isPaused) {
                         wait();

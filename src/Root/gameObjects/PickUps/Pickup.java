@@ -2,6 +2,7 @@ package Root.GameObjects.PickUps;
 
 
 import Root.GameObjects.Player;
+import javafx.scene.image.Image;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Rectangle;
 
@@ -14,6 +15,7 @@ public abstract class Pickup extends Rectangle implements Runnable {
     Player player;
     Random randomPostion;
     Thread thisThread;
+    Image fillImage;//image to fill the object
 
     protected Pickup() {
         isDead = false;
@@ -21,7 +23,6 @@ public abstract class Pickup extends Rectangle implements Runnable {
 
     boolean intersect(Player player) { //returns true if collides with player
         return (player.intersects(this.getBoundsInParent()));
-
     }
 
     public void setPlayer(Player player) {
@@ -30,8 +31,8 @@ public abstract class Pickup extends Rectangle implements Runnable {
     }
 
     public void setRandomPosition(){
-        this.setX(randomPostion.nextInt((int) getScene().getWidth() - 1 + 1) + 1);
-        this.setY(randomPostion.nextInt((int) getScene().getHeight() - 1 + 1) + 1);
+        this.setX(100);
+        this.setY(100);
     }
 
     public abstract void Trigger();
@@ -49,4 +50,17 @@ public abstract class Pickup extends Rectangle implements Runnable {
         notify();
     }
 
+    public void run() {
+        while (isVisible()) {
+            try {
+                if(this.intersect(player)){
+                    collidesWithPlayer();
+                }
+                Thread.sleep(30);
+
+            } catch (Exception ignored) {
+                ignored.printStackTrace();
+            }
+        }
+    }
 }
