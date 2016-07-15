@@ -1,9 +1,6 @@
 package Root.GameObjects;
 
-import Root.GameObjects.CandyCane;
-import Root.GameObjects.PickUps.PauseEnemy;
 import Root.scenes.GameScene;
-import javafx.application.Platform;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,6 @@
 package Root.GameObjects;
 
-import Root.GameObjects.PickUps.PauseEnemy;
+import Root.GameObjects.PickUps.HourGlass;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
@@ -107,7 +107,7 @@ public class Enemy2 extends Enemy {
             try {
                 Thread.sleep(40);
                 synchronized (this) {
-                    while (GameScene.isPaused || PauseEnemy.isPaused()) {
+                    while (GameScene.isPaused || HourGlass.isPaused()) {
                         wait();
                     }
                 }
