@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import static javafx.scene.input.KeyCode.ESCAPE;
-import static javafx.scene.input.KeyCode.PLAY;
 
 public class GameScene implements Runnable {
     private Scene scene;
@@ -34,7 +33,7 @@ public class GameScene implements Runnable {
     private CustomLable LevelLable;
     private CustomLable Hp;
     private int level;
-    private int scoreLevelCounter;
+
     //private ArrayList<Enemy> enemies;
     private ArrayList<Pickup> pickups;
     public static boolean isPaused = false;
@@ -44,7 +43,7 @@ public class GameScene implements Runnable {
     private Health health;
     private ObjectTimer timer;
     private int levelFlag;
-    private PauseEnemy pauseEnemy;
+    private HourGlass hourGlass;
 
     public GameScene(Main mainMenu) {
         AudioManager.GameBGM();
@@ -54,8 +53,10 @@ public class GameScene implements Runnable {
 
         timer = new ObjectTimer();
 
+
+
         level = 0;
-        scoreLevelCounter = 50;
+
 
 
 
@@ -82,8 +83,7 @@ public class GameScene implements Runnable {
         Pane.getChildren().addAll(ScoreLable,LevelLable,Hp);
         Pane.getChildren().addAll(candyCane);
 
-        //Background background = new Background(new BackgroundFill(Color.DEEPSKYBLUE, CornerRadii.EMPTY, Insets.EMPTY));
-        //Pane.setBackground(background);
+
         Pane.setStyle("-fx-background-color: linear-gradient(from 10% 25% to 100% 50%, #050094 , #0057A7);");
 
 
@@ -103,17 +103,17 @@ public class GameScene implements Runnable {
         health = new Health(50,50,player);
         speedDown = new SpeedDown(50,50,player);
         speedUp = new SpeedUp(50,50,player);
-        pauseEnemy = new PauseEnemy(50,50,player);
         coin= new Coin(50,50,player,ScoreLable);
+        hourGlass = new HourGlass();
 
 
 
-        Pane.getChildren().addAll(speedUp,health,speedDown,coin);
+        Pane.getChildren().addAll(speedUp,health,speedDown,coin,hourGlass);
         pickups.add(speedUp);
         pickups.add(health);
         pickups.add(speedDown);
         pickups.add(coin);
-        pickups.add(pauseEnemy);
+        pickups.add(hourGlass);
 
 
 
@@ -141,14 +141,16 @@ public class GameScene implements Runnable {
     }
 
     private void checkLevel() {
-        if (timer.getTime() % 25 ==0 && levelFlag == 0) {
+
+
+        if (timer.getTime() % 15 ==0 && levelFlag == 0) {
             level++;
             levelFlag = 1;
             Pickup pickup = pickups.get(new Random().nextInt(pickups.size()));
             pickup.setRandomPosition();
             pickup.setVisible(true);
 
-            scoreLevelCounter += 50;
+
             LevelLable.setValue(level);
 
 
