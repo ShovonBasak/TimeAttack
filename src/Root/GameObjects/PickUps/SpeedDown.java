@@ -15,7 +15,6 @@ import java.util.List;
 public class SpeedDown extends Pickup {
 
     public SpeedDown(int height, int width, Player player){
-        setVisible(false);
         setPlayer(player);
         setHeight(height);
         setWidth(width);

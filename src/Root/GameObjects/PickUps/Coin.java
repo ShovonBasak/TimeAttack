@@ -16,7 +16,7 @@ public class Coin extends Pickup {
     CustomLable ScoreLable;//to update score
     ObjectTimer timer;
     public Coin(int height, int width, Player player, CustomLable ScoreLable){
-        setVisible(false);
+
         setPlayer(player);
         setHeight(height);
         setWidth(width);

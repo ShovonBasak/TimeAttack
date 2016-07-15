@@ -15,9 +15,9 @@ public abstract class Pickup extends Rectangle implements Runnable {
     Player player;
     Random randomPostion;
     Thread thisThread;
-    Image fillImage;//image to fill the object
 
-    protected Pickup() {
+    public Pickup() {
+        this.setVisible(false);
         isDead = false;
     }
 
@@ -31,8 +31,8 @@ public abstract class Pickup extends Rectangle implements Runnable {
     }
 
     public void setRandomPosition(){
-        this.setX(100);
-        this.setY(100);
+        this.setX(1+(int)(Math.random() * getScene().getWindow().getWidth()));
+        this.setY(1+(int)(Math.random() * getScene().getWindow().getHeight()));
     }
 
     public abstract void Trigger();
