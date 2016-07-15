@@ -13,10 +13,16 @@ public class HourGlass extends Pickup{
     private static boolean status;
     private ObjectTimer timer;
 
-    public HourGlass(){
+    public HourGlass(int height, int width, Player player){
         status = false;
-        this.setFill(new ImagePattern(new Image("image/HourGlass.gif-c200")));
+        setVisible(false);
+        setPlayer(player);
+        setHeight(height);
+        setWidth(width);
+        timer = new ObjectTimer();
+        this.setFill(new ImagePattern(new Image("image/HourGlass.gif")));
         thisThread = new Thread(this);
+        thisThread.start();
     }
 
     public static boolean isPaused(){
@@ -27,7 +33,6 @@ public class HourGlass extends Pickup{
     public void Trigger() {
         timer = new ObjectTimer();
         HourGlass.status = true;
-        thisThread.start();
     }
 
     public void resume(){
@@ -38,7 +43,12 @@ public class HourGlass extends Pickup{
     public void run() {
         while (!Player.dead) {
             Platform.runLater(() -> {
-                if(timer.getTime() == 5 && HourGlass.isPaused()){
+
+                if(this.intersect(player) && isVisible()) {
+                    Trigger();
+                    collidesWithPlayer();
+                }
+                else if(timer.getTime() == 5 && HourGlass.isPaused()){
                     HourGlass.status = false;
                     resume();
                 }

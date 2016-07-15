@@ -104,7 +104,7 @@ public class GameScene implements Runnable {
         speedDown = new SpeedDown(50,50,player);
         speedUp = new SpeedUp(50,50,player);
         coin= new Coin(50,50,player,ScoreLable);
-        hourGlass = new HourGlass();
+        hourGlass = new HourGlass(50,50,player);
 
 
 
