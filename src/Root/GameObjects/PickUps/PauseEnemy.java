@@ -3,6 +3,8 @@ package Root.GameObjects.PickUps;
 import Root.GameObjects.Enemy;
 import Root.GameObjects.Player;
 import javafx.application.Platform;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 
 /**
  * Created by SBS on 7/15/2016.
@@ -13,6 +15,7 @@ public class PauseEnemy extends Pickup{
 
     public PauseEnemy(){
         status = false;
+        this.setFill(new ImagePattern(new Image("image/HourGlass.gif-c200")));
         thisThread = new Thread(this);
         thisThread.start();
     }
