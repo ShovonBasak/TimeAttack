@@ -6,13 +6,9 @@ import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class SpeedUp extends Pickup {
-
-    List<Enemy> enemies=new ArrayList<>();
 
     public SpeedUp(int height, int width, Player player){
         setVisible(false);
@@ -24,13 +20,10 @@ public class SpeedUp extends Pickup {
         thisThread.start();
     }
 
-    public void setEnemies(List<Enemy> enemies) {
-        this.enemies = enemies;
-    }
 
     @Override
     public void Trigger() {
-        for (Enemy e:enemies) {
+        for (Enemy e:Enemy.list) {
             e.setSpeed(e.getSpeed()+.2);
         }
     }
@@ -44,7 +37,6 @@ public class SpeedUp extends Pickup {
 
                     collidesWithPlayer();
                     this.setVisible(false);
-                    //this.setVisible(false);
 
                 }
             });

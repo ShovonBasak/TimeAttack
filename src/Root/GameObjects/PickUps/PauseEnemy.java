@@ -17,7 +17,6 @@ public class PauseEnemy extends Pickup{
         status = false;
         this.setFill(new ImagePattern(new Image("image/HourGlass.gif-c200")));
         thisThread = new Thread(this);
-        thisThread.start();
     }
 
     public static boolean isPaused(){
@@ -28,6 +27,7 @@ public class PauseEnemy extends Pickup{
     public void Trigger() {
         timer = new ObjectTimer();
         PauseEnemy.status = true;
+        thisThread.start();
     }
 
     public void resume(){
