@@ -29,7 +29,7 @@ public class GameScene implements Runnable {
     private CandyCane candyCane;
     private GameOverScene gameOverScene;
     private Main mainMenu;
-    private CustomLable ScoreLable;
+    private CustomLable scoreLabel;
     private CustomLable LevelLable;
     private CustomLable Hp;
     private int level;
@@ -41,9 +41,18 @@ public class GameScene implements Runnable {
     private SpeedDown speedDown;
     private Coin coin;
     private Health health;
+    private ObjectTimer timer;
+
+    private int enemy1Flag;
+    private int enemy2Flag;
+    private int pickupFlag;
 
     public GameScene(Main mainMenu) {
         AudioManager.GameBGM();
+
+        enemy1Flag = 0;
+        enemy2Flag = 0;
+        pickupFlag = 0;
 
         enemies = new ArrayList<>();
         pickups=new ArrayList<>();
@@ -66,17 +75,17 @@ public class GameScene implements Runnable {
 
         player = new Player(50, 500, 30);
 
-        ScoreLable = new CustomLable("Score",0,Color.PALEVIOLETRED,Font.font("Verdana", FontWeight.BOLD, 20));
+        scoreLabel = new CustomLable("Score",0,Color.PALEVIOLETRED,Font.font("Verdana", FontWeight.BOLD, 20));
         LevelLable=new CustomLable("Level",level,Color.RED,Font.font("Verdana", FontWeight.BOLD, 20));
         Hp=new CustomLable("HP",player.getHealthPoint(),Color.VIOLET,Font.font("Verdana", FontWeight.BOLD, 20));
 
 
 
-        candyCane = new CandyCane(28 + randomPosition.nextInt(800), 28 + randomPosition.nextInt(600), 20, player, ScoreLable);
+        candyCane = new CandyCane(28 + randomPosition.nextInt(800), 28 + randomPosition.nextInt(600), 20, player, scoreLabel);
 
 
         Pane = new Pane(player);
-        Pane.getChildren().addAll(ScoreLable,LevelLable,Hp);
+        Pane.getChildren().addAll(scoreLabel,LevelLable,Hp);
         Pane.getChildren().addAll(candyCane);
 
         //Background background = new Background(new BackgroundFill(Color.DEEPSKYBLUE, CornerRadii.EMPTY, Insets.EMPTY));
@@ -100,7 +109,7 @@ public class GameScene implements Runnable {
         health = new Health(50,50,player);
         speedDown = new SpeedDown(50,50,player);
         speedUp = new SpeedUp(50,50,player);
-        coin= new Coin(50,50,player,ScoreLable);
+        coin= new Coin(50,50,player,scoreLabel);
 
 
 
@@ -118,6 +127,10 @@ public class GameScene implements Runnable {
         mainMenu.getWindow().resizableProperty().setValue(true);
         Thread mainThread = new Thread(this);
         mainThread.start();
+
+
+
+        timer = new ObjectTimer();
     }
 
     public synchronized void resume() {
@@ -136,42 +149,54 @@ public class GameScene implements Runnable {
     }
 
     private void checkLevel() {
-        if (ScoreLable.getValue() >= scoreLevelCounter && level < level+1) {
+        if (scoreLabel.getValue() >= scoreLevelCounter && level < level+1) {
             level++;
+
+
+            scoreLevelCounter += 50;
+            LevelLable.setValue(level);
+        }
+
+        if(timer.getTime() % 20 == 0 && pickupFlag == 0){
             Pickup pickup = pickups.get(new Random().nextInt(pickups.size()));
             pickup.setRandomPosition();
             pickup.setVisible(true);
 
-            scoreLevelCounter += 50;
-            LevelLable.setValue(level);
+            pickupFlag = 1;
+        }
+        else if(timer.getTime() % 10 == 1){
+            pickupFlag = 0;
+        }
 
-
+        if(timer.getTime() % 30 == 0 && enemy1Flag == 0){
             for(Enemy enemy:enemies){
                 enemy.setSpeed(enemy.getSpeed()+.2);
             }
 
-            if(level % 3 == 0 || level == 1 ){
+            Enemy1 enemy = new Enemy1(0, 0, 35, player, candyCane);
+            enemies.add(enemy);
+            speedUp.setEnemies(enemies);
+            speedDown.setEnemies(enemies);
+            Pane.getChildren().addAll(enemy);
+            enemy.setSpeed(2);
 
-                Enemy1 enemy = new Enemy1(0, 0, 35, player, candyCane);
-                enemies.add(enemy);
-                speedUp.setEnemies(enemies);
-                speedDown.setEnemies(enemies);
-                Pane.getChildren().addAll(enemy);
-                enemy.setSpeed(2);
-
-
-            }
-            if(level == 5){
-
-                Enemy enemy = new Enemy2(1024, 0, 35, player, candyCane);
-                enemy.setSpeed(2);
-                enemies.add(enemy);
-                speedUp.setEnemies(enemies);
-                speedDown.setEnemies(enemies);
-                Pane.getChildren().addAll(enemy);
-            }
-
+            enemy1Flag = 1;
         }
+        else if(timer.getTime() % 10 == 1){
+            enemy1Flag =0;
+        }
+
+        if(timer.getTime() == 60 && enemy2Flag == 0){
+
+            Enemy enemy = new Enemy2(1024, 0, 35, player, candyCane);
+            enemy.setSpeed(2);
+            enemies.add(enemy);
+            speedUp.setEnemies(enemies);
+            speedDown.setEnemies(enemies);
+            Pane.getChildren().addAll(enemy);
+            enemy2Flag = 1;
+        }
+
     }
 
     public void run() {
@@ -181,7 +206,7 @@ public class GameScene implements Runnable {
                 if(!isPaused){
                     checkLevel();
 
-                    ScoreLable.setText(ScoreLable.getTextAsString());
+                    scoreLabel.setText(scoreLabel.getTextAsString());
                     LevelLable.setText(LevelLable.getTextAsString());
                     LevelLable.setLayoutX(mainMenu.getWindow().getWidth()/2-20);
                     Hp.setLayoutX(mainMenu.getWindow().getWidth()-110);
@@ -197,7 +222,7 @@ public class GameScene implements Runnable {
 
 
             try {
-                Thread.sleep(20);
+                Thread.sleep(50);
             }  catch (Exception ignored) {
                 ignored.printStackTrace();
             }
@@ -207,7 +232,7 @@ public class GameScene implements Runnable {
         {
             AudioManager.mediaPlayer.stop();
             mainMenu.getWindow().setResizable(false);
-            gameOverScene = new GameOverScene(mainMenu, ScoreLable, level);
+            gameOverScene = new GameOverScene(mainMenu, scoreLabel, level);
             mainMenu.getWindow().setScene(gameOverScene.getScene());
         });
     }

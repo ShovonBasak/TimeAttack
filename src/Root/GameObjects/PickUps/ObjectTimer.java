@@ -1,10 +1,6 @@
 package Root.GameObjects.PickUps;
 
 import javafx.application.Platform;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -16,23 +12,22 @@ public class ObjectTimer extends java.util.Timer{
     private int period;
     private int delay;
     private int interval;
-    public int time;
+    private int time;
 
-    public ObjectTimer(int interval){
+    public ObjectTimer(){
         this.timer = new Timer();
         this.delay = 1000;
         this.period = 1000;
-        this.interval = interval;
 
-        countDown();
+        counter();
     }
 
-    private void countDown(){
+    private void counter(){
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 Platform.runLater(()-> {
                     if(!isPaused)
-                        time = interval--;
+                        time = interval++;
                 });
             }
         }, delay, period);

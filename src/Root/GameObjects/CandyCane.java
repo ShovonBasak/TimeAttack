@@ -107,7 +107,7 @@ public class CandyCane extends MovableObject {
                 }
             });
             try {
-                Thread.sleep(30);
+                Thread.sleep(40);
                 synchronized (this) {
                     while (isPaused) {
                         wait();
