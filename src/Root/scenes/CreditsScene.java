@@ -2,8 +2,11 @@ package Root.scenes;
 
 import Root.Application.AudioManager;
 import Root.Application.Main;
+import Root.GameObjects.PickUps.ObjectTimer;
+import Root.GameObjects.Player;
 import Root.UserInterface.CustomButton;
 import javafx.animation.*;
+import javafx.application.Platform;
 import javafx.geometry.Point3D;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -32,13 +35,16 @@ import java.util.Stack;
 
 import static javafx.scene.input.KeyCode.ESCAPE;
 
-public class CreditsScene {
+public class CreditsScene implements Runnable{
     Scene scene;
     BorderPane layout;
-    Stack<Text> credits;
+    List<Text> credits;
+    ObjectTimer timer;
+    Thread thisThread;
+    Text showCredit;
     public CreditsScene(Main mainMenu){
-
-        credits= new Stack<>();
+        timer=new ObjectTimer();
+        credits= new ArrayList<>();
         setupCredit();
         layout=new BorderPane();
 
@@ -83,11 +89,11 @@ public class CreditsScene {
         vbox.setStyle("-fx-background-color:#000000");
 
 
-                Text show = credits.pop();
-                vbox.getChildren().add(show);
+                showCredit = credits.get(0);
+                vbox.getChildren().add(showCredit);
 
                 //FadeINout
-                FadeTransition ft = new FadeTransition(Duration.millis(10000), show);
+                FadeTransition ft = new FadeTransition(Duration.millis(3000), showCredit);
                 ft.setFromValue(0);
                 ft.setToValue(1);
                 ft.setCycleCount(Animation.INDEFINITE);
@@ -110,7 +116,8 @@ public class CreditsScene {
             }
         });
 
-
+        thisThread=new Thread(this);
+        thisThread.start();
 
     }
 
@@ -119,15 +126,22 @@ public class CreditsScene {
     }
 
     public void setupCredit(){
-        Text text=new Text("Project Manager\n" +
-                "Khan,Tanimul Haque");
+        Text text=new Text();
         text.setFill(Color.LIMEGREEN);
         text.setFont(Font.font("Wide Latin", FontWeight.BOLD, 30));
-        credits.push(text);
+
+        text.setText("Project Manager\n" +
+                "Khan,Tanimul Haque");
+        credits.add(text);
+
+
+        Text text2=new Text();
+        text.setFill(Color.LIMEGREEN);
+        text.setFont(Font.font("Wide Latin", FontWeight.BOLD, 30));
 
         text.setText("Programmer\n" +
                 "Basak, Shovon");
-        credits.push(text);
+        credits.add(text2);
 
 
 
@@ -136,4 +150,21 @@ public class CreditsScene {
     }
 
 
+    @Override
+    public void run() {
+        while (!credits.isEmpty()) {
+            Platform.runLater(() -> {
+                int i=1;
+                System.out.println(timer.getTime());
+                if (timer.getTime() % 3 == 0) {
+                    showCredit=credits.get(i++);
+                }
+            });
+                try {
+                    Thread.sleep(25);
+
+                } catch (Exception e) {
+            }
+        }
+    }
 }
