@@ -157,9 +157,6 @@ public class GameScene implements Runnable {
                 Enemy.list.add(enemy);
                 Pane.getChildren().addAll(enemy);
                 enemy.setSpeed(2);
-                pauseEnemy.Trigger();
-
-
             }
             if(level == 3){
 
