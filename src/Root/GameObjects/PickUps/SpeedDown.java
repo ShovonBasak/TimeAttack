@@ -13,7 +13,6 @@ import java.util.List;
  * Created by tazim on 6/17/2016.
  */
 public class SpeedDown extends Pickup {
-    private List<Enemy> enemies=new ArrayList<>();
 
     public SpeedDown(int height, int width, Player player){
         setVisible(false);
@@ -25,13 +24,10 @@ public class SpeedDown extends Pickup {
         thisThread.start();
     }
 
-    public void setEnemies(List<Enemy> enemies) {
-        this.enemies = enemies;
-    }
 
     @Override
     public void Trigger() {
-        for (Enemy e:enemies) {
+        for (Enemy e:Enemy.list) {
             e.setSpeed(e.getSpeed()-.2);
         }
     }

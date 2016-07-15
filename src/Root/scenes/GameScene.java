@@ -34,7 +34,7 @@ public class GameScene implements Runnable {
     private CustomLable Hp;
     private int level;
     private int scoreLevelCounter;
-    private ArrayList<Enemy> enemies;
+    //private ArrayList<Enemy> enemies;
     private ArrayList<Pickup> pickups;
     public static boolean isPaused = false;
     private SpeedUp speedUp;
@@ -43,14 +43,16 @@ public class GameScene implements Runnable {
     private Health health;
     private ObjectTimer timer;
     private int levelFlag;
+    private PauseEnemy pauseEnemy;
 
     public GameScene(Main mainMenu) {
         AudioManager.GameBGM();
 
-        enemies = new ArrayList<>();
+        //enemies = new ArrayList<>();
         pickups=new ArrayList<>();
 
         timer = new ObjectTimer();
+        pauseEnemy = new PauseEnemy();
 
 
         level = 0;
@@ -127,7 +129,7 @@ public class GameScene implements Runnable {
         notify();
         player.resume();
         candyCane.resume();
-        enemies.forEach(Enemy::resume);
+        Enemy.list.forEach(Enemy::resume);
     }
 
 
@@ -149,18 +151,13 @@ public class GameScene implements Runnable {
             LevelLable.setValue(level);
 
 
-            for(Enemy enemy:enemies){
-                enemy.setSpeed(enemy.getSpeed()+.2);
-            }
-
             if(level % 1 == 0 || level == 1 ){
 
                 Enemy1 enemy = new Enemy1(0, 0, 35, player, candyCane);
-                enemies.add(enemy);
-                speedUp.setEnemies(enemies);
-                speedDown.setEnemies(enemies);
+                Enemy.list.add(enemy);
                 Pane.getChildren().addAll(enemy);
                 enemy.setSpeed(2);
+                pauseEnemy.Trigger();
 
 
             }
@@ -168,10 +165,12 @@ public class GameScene implements Runnable {
 
                 Enemy enemy = new Enemy2(1024, 0, 35, player, candyCane);
                 enemy.setSpeed(2);
-                enemies.add(enemy);
-                speedUp.setEnemies(enemies);
-                speedDown.setEnemies(enemies);
+                Enemy.list.add(enemy);
                 Pane.getChildren().addAll(enemy);
+            }
+
+            for(Enemy enemy:Enemy.list){
+                enemy.setSpeed(enemy.getSpeed()+.2);
             }
 
         }
