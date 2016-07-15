@@ -22,6 +22,10 @@ public class ObjectTimer extends java.util.Timer{
         counter();
     }
 
+    public void setTime(int time){
+        this.time = time;
+    }
+
     private void counter(){
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {

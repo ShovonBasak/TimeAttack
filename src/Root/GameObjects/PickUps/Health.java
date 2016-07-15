@@ -1,6 +1,5 @@
 package Root.GameObjects.PickUps;
 
-import Root.GameObjects.Enemy;
 import Root.GameObjects.Player;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
@@ -17,7 +16,7 @@ public class Health extends Pickup {
         setPlayer(player);
         setHeight(height);
         setWidth(width);
-        setFill(new ImagePattern(new Image("image/HP.gif-c200")));
+        setFill(new ImagePattern(new Image("image/HP.gif")));
         thisThread = new Thread(this);
         thisThread.start();
     }

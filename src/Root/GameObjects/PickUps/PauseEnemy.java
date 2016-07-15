@@ -2,6 +2,7 @@ package Root.GameObjects.PickUps;
 
 import Root.GameObjects.Enemy;
 import Root.GameObjects.Player;
+import Root.UserInterface.CustomLable;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
@@ -13,10 +14,16 @@ public class PauseEnemy extends Pickup{
     private static boolean status;
     private ObjectTimer timer;
 
-    public PauseEnemy(){
+    public PauseEnemy(int height, int width, Player player){
         status = false;
-        this.setFill(new ImagePattern(new Image("image/HourGlass.gif-c200")));
+        setVisible(false);
+        setPlayer(player);
+        setHeight(height);
+        setWidth(width);
+        timer = new ObjectTimer();
+        this.setFill(new ImagePattern(new Image("image/HourGlass.gif")));
         thisThread = new Thread(this);
+        thisThread.start();
     }
 
     public static boolean isPaused(){
@@ -27,7 +34,6 @@ public class PauseEnemy extends Pickup{
     public void Trigger() {
         timer = new ObjectTimer();
         PauseEnemy.status = true;
-        thisThread.start();
     }
 
     public void resume(){
@@ -39,7 +45,10 @@ public class PauseEnemy extends Pickup{
         while (!Player.dead) {
             Platform.runLater(() -> {
 
-                if(timer.getTime() == 5 && PauseEnemy.isPaused()){
+                if(this.intersect(player) && isVisible()) {
+                    Trigger();
+                }
+                else if(timer.getTime() == 5 && PauseEnemy.isPaused()){
                     PauseEnemy.status = false;
                     resume();
                 }

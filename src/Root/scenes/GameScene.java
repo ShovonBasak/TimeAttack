@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import static javafx.scene.input.KeyCode.ESCAPE;
+import static javafx.scene.input.KeyCode.PLAY;
 
 public class GameScene implements Runnable {
     private Scene scene;
@@ -52,8 +53,6 @@ public class GameScene implements Runnable {
         pickups=new ArrayList<>();
 
         timer = new ObjectTimer();
-        pauseEnemy = new PauseEnemy();
-
 
         level = 0;
         scoreLevelCounter = 50;
@@ -104,6 +103,7 @@ public class GameScene implements Runnable {
         health = new Health(50,50,player);
         speedDown = new SpeedDown(50,50,player);
         speedUp = new SpeedUp(50,50,player);
+        pauseEnemy = new PauseEnemy(50,50,player);
         coin= new Coin(50,50,player,ScoreLable);
 
 
@@ -113,6 +113,7 @@ public class GameScene implements Runnable {
         pickups.add(health);
         pickups.add(speedDown);
         pickups.add(coin);
+        pickups.add(pauseEnemy);
 
 
 

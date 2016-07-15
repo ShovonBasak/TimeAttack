@@ -2,7 +2,6 @@ package Root.scenes;
 
 
 import Root.Application.AudioManager;
-import Root.GameObjects.PickUps.SpeedDown;
 import Root.UserInterface.CustomButton;
 import Root.Application.Main;
 import javafx.geometry.Pos;
@@ -139,7 +138,7 @@ public class helpScene {
         groupTitle.setTranslateX(groupTitle.getLayoutX()+275);
 
         //HPinfo
-        ImageView HPImage=new ImageView(new Image("image/HP.gif-c200"));
+        ImageView HPImage=new ImageView(new Image("image/HP.gif"));
         HPImage.setFitHeight(25);
         HPImage.setFitWidth(25);
 
