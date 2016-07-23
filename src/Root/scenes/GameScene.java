@@ -92,11 +92,11 @@ public class GameScene implements Runnable {
         //Pickups
 
 
-        health = new Health(50,50,player);
-        speedDown = new SpeedDown(50,50,player);
-        speedUp = new SpeedUp(50,50,player);
+        health = new Health(50,50,player,ScoreLable);
+        speedDown = new SpeedDown(50,50,player,ScoreLable);
+        speedUp = new SpeedUp(50,50,player,ScoreLable);
         coin= new Coin(50,50,player,ScoreLable);
-        hourGlass = new HourGlass(50,50,player);
+        hourGlass = new HourGlass(50,50,player,ScoreLable);
 
 
 

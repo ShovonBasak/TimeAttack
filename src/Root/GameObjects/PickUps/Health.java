@@ -1,6 +1,7 @@
 package Root.GameObjects.PickUps;
 
 import Root.GameObjects.Player;
+import Root.UserInterface.CustomLable;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
@@ -11,7 +12,8 @@ import javafx.scene.paint.ImagePattern;
 public class Health extends Pickup {
 
 
-    public Health(int height, int width, Player player){
+    public Health(int height, int width, Player player, CustomLable ScoreLable){
+        super(ScoreLable);
         setVisible(false);
         setPlayer(player);
         setHeight(height);
@@ -24,6 +26,7 @@ public class Health extends Pickup {
 
     @Override
     public void Trigger() {
+        ScoreLable.setValue(ScoreLable.getValue()+10);
         player.addHealth(20);
     }
 

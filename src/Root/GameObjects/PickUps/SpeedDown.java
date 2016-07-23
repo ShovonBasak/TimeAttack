@@ -2,6 +2,7 @@ package Root.GameObjects.PickUps;
 
 import Root.GameObjects.Enemy;
 import Root.GameObjects.Player;
+import Root.UserInterface.CustomLable;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
@@ -14,7 +15,8 @@ import java.util.List;
  */
 public class SpeedDown extends Pickup {
 
-    public SpeedDown(int height, int width, Player player){
+    public SpeedDown(int height, int width, Player player, CustomLable ScoreLable){
+        super(ScoreLable);
         setPlayer(player);
         setHeight(height);
         setWidth(width);
@@ -26,6 +28,7 @@ public class SpeedDown extends Pickup {
 
     @Override
     public void Trigger() {
+        ScoreLable.setValue(ScoreLable.getValue()-40);
         for (Enemy e:Enemy.list) {
             e.setSpeed(e.getSpeed()-.2);
         }

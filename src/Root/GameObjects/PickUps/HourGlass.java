@@ -2,6 +2,7 @@ package Root.GameObjects.PickUps;
 
 import Root.GameObjects.Enemy;
 import Root.GameObjects.Player;
+import Root.UserInterface.CustomLable;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
@@ -13,7 +14,8 @@ public class HourGlass extends Pickup{
     private static boolean status;
     private ObjectTimer timer;
 
-    public HourGlass(int height, int width, Player player){
+    public HourGlass(int height, int width, Player player, CustomLable ScoreLable){
+        super(ScoreLable);
         status = false;
         setVisible(false);
         setPlayer(player);
@@ -26,11 +28,14 @@ public class HourGlass extends Pickup{
     }
 
     public static boolean isPaused(){
+
+
         return status;
     }
 
     @Override
     public void Trigger() {
+        ScoreLable.setValue(ScoreLable.getValue()-30);
         timer = new ObjectTimer();
         HourGlass.status = true;
     }

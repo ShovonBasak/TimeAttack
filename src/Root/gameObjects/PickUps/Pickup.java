@@ -2,6 +2,7 @@ package Root.GameObjects.PickUps;
 
 
 import Root.GameObjects.Player;
+import Root.UserInterface.CustomLable;
 import javafx.scene.image.Image;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Rectangle;
@@ -15,8 +16,10 @@ public abstract class Pickup extends Rectangle implements Runnable {
     Player player;
     Random randomPostion;
     Thread thisThread;
+    CustomLable ScoreLable;
 
-    public Pickup() {
+    public Pickup(CustomLable ScoreLable) {
+        this.ScoreLable=ScoreLable;
         this.setVisible(false);
         isDead = false;
     }
@@ -31,8 +34,8 @@ public abstract class Pickup extends Rectangle implements Runnable {
     }
 
     public void setRandomPosition(){
-        this.setX(1+(int)(Math.random() * getScene().getWindow().getWidth()));
-        this.setY(1+(int)(Math.random() * getScene().getWindow().getHeight()));
+        this.setX(1+(int)(Math.random() * 800));
+        this.setY(1+(int)(Math.random() * 600));
     }
 
     public abstract void Trigger();

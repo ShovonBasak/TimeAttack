@@ -121,8 +121,19 @@ public class helpScene {
         enemy2Text.setTranslateX(enemy1Text.getLayoutX()+60);
         enemy2Text.setTranslateY(enemy1Text.getLayoutY()-20);
 
+        //enemy3Info
+        ImageView enemy3Image=new ImageView(new Image("image/enemy3.gif"));
+        enemy3Image.setFitHeight(50);
+        enemy3Image.setFitWidth(50);
+        Text enemy3Text=new Text("They Come in Groups to kill you.Watch Out!");
+        enemy3Text.setFont(Font.font("Harrington", FontWeight.EXTRA_BOLD, 19));
+        enemy3Text.setFill(Color.web("#FF054C"));
+        enemy3Text.setTranslateX(enemy1Text.getLayoutX()+60);
+        enemy3Text.setTranslateY(enemy1Text.getLayoutY()-20);
+
+
         //setupEnemiesLayout
-        enemyGroup.getChildren().addAll(groupTitle,enemy1Image,enemy1Text,enemy2Image,enemy2Text);
+        enemyGroup.getChildren().addAll(groupTitle,enemy1Image,enemy1Text,enemy2Image,enemy2Text,enemy3Image,enemy3Text);
         layout.setCenter(enemyGroup);
     }
 
@@ -144,32 +155,65 @@ public class helpScene {
 
         Text HPText=new Text("Obviously it gives you Bonus Health");
         HPText.setFont(Font.font("Harrington", FontWeight.EXTRA_BOLD, 19));
-        HPText.setFill(Color.DODGERBLUE);
+        HPText.setFill(Color.WHITE);
         HPText.setTranslateX(HPText.getLayoutX()+30);
         HPText.setTranslateY(HPText.getLayoutY()-20);
         //SpeedUP
         ImageView SpeedUpImage=new ImageView(new Image("image/Speedup.gif"));
         SpeedUpImage.setFitHeight(25);
         SpeedUpImage.setFitWidth(25);
-        Text SpeedUpText=new Text("Enemeis get Bonus speed.");
+        Text SpeedUpText=new Text("Enemeis get Bonus speed." +
+                ".Player gains some Score");
         SpeedUpText.setFont(Font.font("Harrington", FontWeight.EXTRA_BOLD, 19));
-        SpeedUpText.setFill(Color.DODGERBLUE);
-        SpeedUpText.setTranslateX(SpeedUpText.getLayoutX()+30);
+        SpeedUpText.setFill(Color.WHITE);
+        SpeedUpText.setTranslateX(SpeedUpText.getLayoutX()+32);
         SpeedUpText.setTranslateY(SpeedUpText.getLayoutY()-20);
 
         //SpeedDown
         ImageView SpeedDownImage=new ImageView(new Image("image/SpeedDown.gif"));
         SpeedDownImage.setFitHeight(25);
         SpeedDownImage.setFitWidth(25);
-        Text SpeedDownText=new Text("Enemeis Lose Bonus speed");
+        Text SpeedDownText=new Text("Enemeis Lose Bonus speed" +
+                ".Player Loses some Score");
         SpeedDownText.setFont(Font.font("Harrington", FontWeight.EXTRA_BOLD, 19));
-        SpeedDownText.setFill(Color.DODGERBLUE);
-        SpeedDownText.setTranslateX(SpeedDownText.getLayoutX()+30);
+        SpeedDownText.setFill(Color.WHITE);
+        SpeedDownText.setTranslateX(SpeedDownText.getLayoutX()+32);
         SpeedDownText.setTranslateY(SpeedDownText.getLayoutY()-20);
 
 
-        //setupEnemiesLayout
-        powerUpGroup.getChildren().addAll(groupTitle,HPImage,HPText,SpeedUpImage, SpeedUpText,SpeedDownImage,SpeedDownText);
+        //Timer
+        ImageView hourGlass=new ImageView(new Image("image/HourGlass.gif"));
+        hourGlass.setFitHeight(25);
+        hourGlass.setFitWidth(25);
+        Text hourGlassText=new Text("Enemeis Are Frozen for Brief Time" +
+                ".Player Loses Some Score.");
+        hourGlassText.setFont(Font.font("Harrington", FontWeight.EXTRA_BOLD, 19));
+        hourGlassText.setFill(Color.WHITE);
+        hourGlassText.setTranslateX(SpeedDownText.getLayoutX()+32);
+        hourGlassText.setTranslateY(SpeedDownText.getLayoutY()-20);
+
+        //Coin
+        ImageView coin=new ImageView(new Image("image/Coin.gif"));
+        coin.setFitHeight(25);
+        coin.setFitWidth(25);
+        Text coinText=new Text("Gives Bonus Score");
+        coinText.setFont(Font.font("Harrington", FontWeight.EXTRA_BOLD, 19));
+        coinText.setFill(Color.WHITE);
+        coinText.setTranslateX(SpeedDownText.getLayoutX()+32);
+        coinText.setTranslateY(SpeedDownText.getLayoutY()-20);
+
+
+
+        //setupPowerUpsLayout
+        powerUpGroup.getChildren().addAll(groupTitle
+                ,HPImage,HPText,
+                SpeedUpImage, SpeedUpText,
+                SpeedDownImage,SpeedDownText,
+                hourGlass,hourGlassText,
+                coin,coinText
+        );
+
+
         layout.setCenter(powerUpGroup);
     }
 

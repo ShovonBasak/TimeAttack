@@ -13,44 +13,44 @@ import javafx.scene.paint.ImagePattern;
  */
 public class Coin extends Pickup {
 
-    CustomLable ScoreLable;//to update score
-    ObjectTimer timer;
-    public Coin(int height, int width, Player player, CustomLable ScoreLable){
 
-        setPlayer(player);
-        setHeight(height);
-        setWidth(width);
-        setFill(new ImagePattern(new Image("image/Coin.gif")));
-        thisThread = new Thread(this);
-        thisThread.start();
-        this.ScoreLable=ScoreLable;
+    ObjectTimer timer;
+
+    public Coin(int height, int width, Player player, CustomLable ScoreLable) {
+        super (ScoreLable);
+        setPlayer (player);
+        setHeight (height);
+        setWidth (width);
+        setFill (new ImagePattern (new Image ("image/Coin.gif")));
+        thisThread = new Thread (this);
+        thisThread.start ();
     }
 
 
     @Override
     public void Trigger() {
-        ScoreLable.setValue(ScoreLable.getValue()+50);
-        AudioManager.CoinAudio();
+        ScoreLable.setValue (ScoreLable.getValue () + 50);
+        AudioManager.CoinAudio ();
     }
 
     @Override
     public void run() {
         while (!Player.dead) {
-            Platform.runLater(() -> {
+            Platform.runLater (() -> {
 
-                if(this.intersect(player) && isVisible()){
-                    Trigger();
-                    collidesWithPlayer();
+                if (this.intersect (player) && isVisible ()) {
+                    Trigger ();
+                    collidesWithPlayer ();
 
                 }
             });
 
 
             try {
-                Thread.sleep(20);
+                Thread.sleep (20);
 
             } catch (Exception ignored) {
-                ignored.printStackTrace();
+                ignored.printStackTrace ();
             }
         }
     }
