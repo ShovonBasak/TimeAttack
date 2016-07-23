@@ -53,15 +53,7 @@ public class GameScene implements Runnable {
 
         timer = new ObjectTimer();
 
-
-
         level = 0;
-
-
-
-
-
-
 
         this.mainMenu = mainMenu;
 
@@ -155,11 +147,11 @@ public class GameScene implements Runnable {
                 Enemy1 enemy = new Enemy1(10, 300, 35, player, candyCane);
                 Enemy.list.add(enemy);
                 Pane.getChildren().addAll(enemy);
-                enemy.setSpeed(1);
+                enemy.setSpeed(2);
             }
 
             if(level % 3 == 0){
-                Enemy3 enemy3 = new Enemy3(0, 0, 15, "yellow", player, candyCane);
+                Enemy3 enemy3 = new Enemy3(0, 0, 25, "yellow", player, candyCane);
                 Enemy.list.add(enemy3);
                 Pane.getChildren().addAll(enemy3);
                 enemy3.setSpeed(2);

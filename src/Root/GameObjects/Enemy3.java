@@ -3,6 +3,9 @@ package Root.GameObjects;
 import Root.GameObjects.PickUps.HourGlass;
 import Root.scenes.GameScene;
 import javafx.application.Platform;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
 
 
 import static java.lang.Math.sin;
@@ -19,7 +22,7 @@ public class Enemy3 extends Enemy {
 
     public Enemy3(double centerX, double centerY, double radius, String color, Player player, CandyCane candyCane) {
         super(centerX, centerY, radius, color, player, candyCane);
-
+        this.setFill(new ImagePattern(new Image("image/enemy1.gif")));
         this.player = player;
         this.candyCane = candyCane;
 
