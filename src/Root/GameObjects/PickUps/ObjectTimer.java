@@ -24,6 +24,7 @@ public class ObjectTimer extends java.util.Timer{
 
     public void setTime(int time){
         this.time = time;
+        this.interval = time;
     }
 
     private void counter(){

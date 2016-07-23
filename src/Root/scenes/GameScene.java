@@ -117,9 +117,6 @@ public class GameScene implements Runnable {
 
 
 
-
-
-
         mainMenu.getWindow().resizableProperty().setValue(true);
         Thread mainThread = new Thread(this);
         mainThread.start();
@@ -154,13 +151,20 @@ public class GameScene implements Runnable {
             LevelLable.setValue(level);
 
 
-            if(level % 1 == 0 || level == 1 ){
-
-                Enemy1 enemy = new Enemy1(0, 0, 35, player, candyCane);
+            if(level % 1 == 0){
+                Enemy1 enemy = new Enemy1(10, 300, 35, player, candyCane);
                 Enemy.list.add(enemy);
                 Pane.getChildren().addAll(enemy);
-                enemy.setSpeed(2);
+                enemy.setSpeed(1);
             }
+
+            if(level % 3 == 0){
+                Enemy3 enemy3 = new Enemy3(0, 0, 15, "yellow", player, candyCane);
+                Enemy.list.add(enemy3);
+                Pane.getChildren().addAll(enemy3);
+                enemy3.setSpeed(2);
+            }
+
             if(level == 3){
 
                 Enemy enemy = new Enemy2(1024, 0, 35, player, candyCane);
@@ -202,7 +206,7 @@ public class GameScene implements Runnable {
 
 
             try {
-                Thread.sleep(20);
+                Thread.sleep(1);
             }  catch (Exception ignored) {
                 ignored.printStackTrace();
             }
