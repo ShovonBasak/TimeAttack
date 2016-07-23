@@ -13,6 +13,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -24,6 +25,8 @@ import javafx.scene.text.TextAlignment;
 
 import java.util.ArrayList;
 import java.util.Optional;
+
+import static javafx.scene.input.KeyCode.ESCAPE;
 
 
 public class HighScoreScene {
@@ -92,6 +95,13 @@ public class HighScoreScene {
         layout.getChildren().addAll(hBox, highScoreBoard);
 
         scene = new Scene(layout, 800, 600);
+
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
+            if(e.getCode() == ESCAPE){
+                mainMenu.getWindow().setScene(mainMenu.getScene());
+            }
+        });
+
         clearButton.setAlignment(Pos.CENTER_RIGHT);
         text.setTextAlignment(TextAlignment.CENTER);
     }

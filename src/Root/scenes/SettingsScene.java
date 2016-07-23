@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -18,6 +19,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+
+import static javafx.scene.input.KeyCode.ESCAPE;
 
 
 public class SettingsScene {
@@ -74,6 +77,11 @@ public class SettingsScene {
 
 
         scene=new Scene(layout,800,600);
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
+            if(e.getCode() == ESCAPE){
+                mainMenu.getWindow().setScene(mainMenu.getScene());
+            }
+        });
     }
 
     //overloaded constructor to access settings from Pause menu This one is specilized for Pause menu.Update with the other one cautiously
