@@ -80,7 +80,9 @@ class PauseMenu {
         settingsButton.setOnAction(event -> {
             AudioManager.buttonAudio();
             mainMenu.getWindow().setScene(new SettingsScene(mainMenu,this).getScene());
-            AudioManager.mediaPlayer.play();
+            if(AudioManager.BGM){
+                AudioManager.mediaPlayer.play ();
+            }
         });
 
 

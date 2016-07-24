@@ -83,7 +83,8 @@ public class CreditsScene{
         Text text=new Text ();
         text.setText ("Project Manager:Tanimul Haque Khan" +
                 "\nDeveloper:Shovon,Bashak" +
-                "\nResource Manager:Mahmudul Islam saky");
+                "\nResource Manager:Mahmudul Islam saky" +
+                "\nSpecial Thanks: Shovra,Das");
         text.setFont(Font.font("Chiller", FontWeight.BOLD, 40));
         text.setCache(true);
         text.setFill(Color.WHITE);

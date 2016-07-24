@@ -8,6 +8,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,6 +28,8 @@ public class SettingsScene {
    private BorderPane layout;
     private Scene scene;
     private  Slider slider;
+    private Button SFX;
+    private Button BGM;
 
     public SettingsScene(Main mainMenu) {
         layout=new BorderPane();
@@ -145,9 +148,9 @@ public class SettingsScene {
 
     private void AudioSettings(){
         //Controls Scene
-        VBox ObjectiveScene=new VBox(20);
-        ObjectiveScene.setAlignment(Pos.TOP_CENTER);
-        ObjectiveScene.setStyle("-fx-background-color: linear-gradient(#020300, #14b897);");
+        VBox AudioSettings=new VBox(20);
+        AudioSettings.setAlignment(Pos.TOP_CENTER);
+        AudioSettings.setStyle("-fx-background-color: linear-gradient(#020300, #14b897);");
         Text groupTitleC=new Text("Audio");
         groupTitleC.setFont(Font.font("Monotype Corsiva", FontWeight.BOLD, 40));
         groupTitleC.setCache(true);
@@ -181,10 +184,52 @@ public class SettingsScene {
 
         maxVolume.getChildren().addAll(maxVolText,slider);
 
+        //SFX
+        SFX=new Button ("SFX");
+        if(AudioManager.SFX){
+            SFX.setStyle ("-fx-background-color: #009f8d;");
+        }else {
+            SFX.setStyle ("-fx-background-color: #db1803;");
+        }
 
+        SFX.setOnAction (event -> {
+            AudioManager.SFX=!AudioManager.SFX;
 
-        ObjectiveScene.getChildren().addAll(groupTitleC,maxVolume);
-        layout.setCenter(ObjectiveScene);
+            if(AudioManager.SFX){
+                SFX.setStyle ("-fx-background-color: #009f8d;");
+                AudioManager.mediaPlayer.play ();
+            }else {
+                SFX.setStyle ("-fx-background-color: #db1803;");
+            }
+        });
+
+        //BGM
+        BGM=new Button ("BGM");
+        if(AudioManager.BGM){
+            BGM.setStyle ("-fx-background-color: #009f8d;");
+        }else {
+            BGM.setStyle ("-fx-background-color: #db1803;");
+        }
+
+        BGM.setOnAction (event -> {
+            AudioManager.BGM=!AudioManager.BGM;
+
+            if(AudioManager.BGM){
+                BGM.setStyle ("-fx-background-color: #009f8d;");
+                AudioManager.mediaPlayer.play ();
+            }else {
+                BGM.setStyle ("-fx-background-color: #db1803;");
+                AudioManager.mediaPlayer.stop ();
+            }
+        });
+
+        HBox boolButtons=new HBox (SFX,BGM);
+        boolButtons.setSpacing (10);
+        boolButtons.setAlignment (Pos.CENTER_LEFT);
+
+        AudioSettings.getChildren().addAll(groupTitleC,maxVolume,boolButtons);
+
+        layout.setCenter(AudioSettings);
     }
 
 

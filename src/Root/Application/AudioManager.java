@@ -6,6 +6,10 @@ import javafx.scene.media.MediaPlayer;
 
 public class AudioManager {
     public static MediaPlayer mediaPlayer;
+
+    //audio settings
+    public static boolean BGM=true;
+    public static boolean SFX=true;
     public static double volume=1;
 
     public static void updateVolume(){
@@ -20,15 +24,18 @@ public class AudioManager {
     }
 
     public static  void buttonAudio(){
-        try{
-            Media audioClip = new Media(GetFilepPath()+"AudioClip/Button01.wav");
+        if(SFX){
+            try{
+                Media audioClip = new Media(GetFilepPath()+"AudioClip/Button01.wav");
 
-            MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
-            mediaPlayer.setVolume(volume);
-            mediaPlayer.play();
-        }catch (Exception e){
-            e.printStackTrace();
+                MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
+                mediaPlayer.setVolume(volume);
+                mediaPlayer.play();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
+
 
     }
 
@@ -74,43 +81,51 @@ public class AudioManager {
 
 
     public static void GameBGM(){
-        try{
-            Media audioClip = new Media(GetFilepPath()+"AudioClip/GameBGM.mp3");
+        if(BGM){
+            try{
+                Media audioClip = new Media(GetFilepPath()+"AudioClip/GameBGM.mp3");
+                mediaPlayer= new MediaPlayer(audioClip);
+                mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+                mediaPlayer.setVolume(volume);
+                mediaPlayer.play();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
 
-            mediaPlayer= new MediaPlayer(audioClip);
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-            mediaPlayer.setVolume(volume);
-            mediaPlayer.play();
-        }catch (Exception e){
-            e.printStackTrace();
         }
 
     }
 
     public static void MainMenuAudio(){
-        try{
-            Media audioClip = new Media(GetFilepPath()+"AudioClip/MainMenu.mp3");
+        if(BGM){
+            try{
+                Media audioClip = new Media(GetFilepPath()+"AudioClip/MainMenu.mp3");
 
-            mediaPlayer= new MediaPlayer(audioClip);
-            mediaPlayer.setVolume(volume);
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+                mediaPlayer= new MediaPlayer(audioClip);
+                mediaPlayer.setVolume(volume);
+                mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 
-            mediaPlayer.play();
-        }catch (Exception e){
-            e.printStackTrace();
+                mediaPlayer.play();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
+
 
     }
     public static void CoinAudio(){
-        try{
-            Media audioClip = new Media(GetFilepPath()+"AudioClip/Coin.mp3");
+        if(SFX){
+            try{
+                Media audioClip = new Media(GetFilepPath()+"AudioClip/Coin.mp3");
 
 
 
-            MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
-            mediaPlayer.setVolume(volume*0.2);
-            mediaPlayer.play();
-        }catch (Exception e){e.printStackTrace();}
+                MediaPlayer mediaPlayer= new MediaPlayer(audioClip);
+                mediaPlayer.setVolume(volume*0.2);
+                mediaPlayer.play();
+            }catch (Exception e){e.printStackTrace();}
+        }
+
 
     }
 
