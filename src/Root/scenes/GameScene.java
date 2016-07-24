@@ -7,14 +7,20 @@ import Root.GameObjects.PickUps.*;
 import Root.UserInterface.CustomLable;
 import Root.Application.Main;
 import Root.GameObjects.*;
+import javafx.animation.Animation;
+import javafx.animation.Transition;
 import javafx.application.Platform;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
+import javafx.scene.effect.Bloom;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 
 import java.util.ArrayList;
@@ -34,7 +40,6 @@ public class GameScene implements Runnable {
     private CustomLable Hp;
     private int level;
 
-    //private ArrayList<Enemy> enemies;
     private ArrayList<Pickup> pickups;
     public static boolean isPaused = false;
     private SpeedUp speedUp;
@@ -45,10 +50,10 @@ public class GameScene implements Runnable {
     private int levelFlag;
     private HourGlass hourGlass;
 
+
     public GameScene(Main mainMenu) {
         AudioManager.GameBGM();
 
-        //enemies = new ArrayList<>();
         pickups=new ArrayList<>();
 
         timer = new ObjectTimer();
@@ -74,6 +79,8 @@ public class GameScene implements Runnable {
         Pane = new Pane(player);
         Pane.getChildren().addAll(ScoreLable,LevelLable,Hp);
         Pane.getChildren().addAll(candyCane);
+
+
 
 
         Pane.setStyle("-fx-background-color: linear-gradient(from 10% 25% to 100% 50%, #050094 , #0057A7);");
@@ -109,7 +116,6 @@ public class GameScene implements Runnable {
 
 
 
-        mainMenu.getWindow().resizableProperty().setValue(true);
         Thread mainThread = new Thread(this);
         mainThread.start();
     }
@@ -181,7 +187,6 @@ public class GameScene implements Runnable {
                 //do anything
                 if(!isPaused){
                     checkLevel();
-
                     ScoreLable.setText(ScoreLable.getTextAsString());
                     LevelLable.setText(LevelLable.getTextAsString());
                     LevelLable.setLayoutX(mainMenu.getWindow().getWidth()/2-20);

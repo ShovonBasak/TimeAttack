@@ -55,6 +55,7 @@ class PauseMenu {
             gameScene.resume();
             mainMenu.getWindow().setScene(gameScene.getScene());
             mainMenu.getWindow().setFullScreen(true);
+            mainMenu.getWindow ().getScene ().setCursor (Cursor.NONE);
 
             AudioManager.mediaPlayer.play();
         });

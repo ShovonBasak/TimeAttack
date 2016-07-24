@@ -2,6 +2,7 @@ package Root.GameObjects;
 
 
 import javafx.application.Platform;
+import javafx.scene.effect.Bloom;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
@@ -10,7 +11,6 @@ import Root.scenes.GameScene;
 public class Player extends MovableObject {
     public static boolean dead = false;
     private int healthPoint=100;
-
     public synchronized void resume() {
         GameScene.isPaused = false;
         notify();
@@ -35,6 +35,8 @@ public class Player extends MovableObject {
     public void substractHealth(int healthPoint) {
         if(this.healthPoint-healthPoint>0){
             this.healthPoint -= healthPoint;
+            //Give red effect on player
+            this.setEffect (new Bloom (0.3));
         }
         else dead=true;
 
@@ -44,6 +46,7 @@ public class Player extends MovableObject {
 
     private void movePlayer(){
         getScene().addEventFilter(MouseEvent.MOUSE_MOVED, e -> {
+            this.setEffect (new Bloom (1));
             if (!GameScene.isPaused) {
                 if (e.getSceneX() < getScene().getWidth() && e.getSceneX() > getScene().getX()) {
                     this.setCenterX(e.getSceneX());
@@ -59,7 +62,13 @@ public class Player extends MovableObject {
 
     public void run() {
         while (!dead) {
-            Platform.runLater(this::movePlayer);
+            Platform.runLater(() -> {
+                    movePlayer ();
+
+                }
+            );
+
+
             try {
                 Thread.sleep(20);
                 synchronized (this) {
