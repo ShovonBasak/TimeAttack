@@ -14,6 +14,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.effect.Bloom;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -65,7 +66,7 @@ public class GameScene implements Runnable {
         Player.dead = false;
         Random randomPosition = new Random();
 
-        player = new Player(50, 500, 30);
+        player = new Player(50, 500, mainMenu.getWindow().getScene ().getWidth ()/25);
 
         ScoreLable = new CustomLable("Score",0,Color.PALEVIOLETRED,Font.font("Verdana", FontWeight.BOLD, 20));
         LevelLable=new CustomLable("Level",level,Color.RED,Font.font("Verdana", FontWeight.BOLD, 20));
@@ -83,8 +84,12 @@ public class GameScene implements Runnable {
 
 
 
-        Pane.setStyle("-fx-background-color: linear-gradient(from 10% 25% to 100% 50%, #050094 , #0057A7);");
+       // Pane.setStyle("-fx-background-color: linear-gradient(from 10% 25% to 100% 50%, #050094 , #0057A7);");
 
+        BackgroundSize backgroundSize = new BackgroundSize(800, 600, true, true, true, true);
+        BackgroundImage backgroundImage = new BackgroundImage(new Image ("image/3.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.ROUND, BackgroundPosition.CENTER,backgroundSize);
+        Background background = new Background(backgroundImage);
+        Pane.setBackground (background);
 
         scene = new Scene(Pane,800,600);
         scene.setCursor(Cursor.NONE);
@@ -150,14 +155,14 @@ public class GameScene implements Runnable {
 
 
             if(level % 1 == 0){
-                Enemy1 enemy = new Enemy1(10, 300, 35, player, candyCane);
+                Enemy1 enemy = new Enemy1(10, 300, mainMenu.getWindow().getScene ().getWidth ()/40, player, candyCane);
                 Enemy.list.add(enemy);
                 Pane.getChildren().addAll(enemy);
                 enemy.setSpeed(2);
             }
 
             if(level % 3 == 0){
-                Enemy3 enemy3 = new Enemy3(0, 0, 25, "yellow", player, candyCane);
+                Enemy3 enemy3 = new Enemy3(0, 0, mainMenu.getWindow().getScene ().getWidth ()/40, "yellow", player, candyCane);
                 Enemy.list.add(enemy3);
                 Pane.getChildren().addAll(enemy3);
                 enemy3.setSpeed(2);
@@ -165,7 +170,7 @@ public class GameScene implements Runnable {
 
             if(level == 3){
 
-                Enemy enemy = new Enemy2(1024, 0, 35, player, candyCane);
+                Enemy enemy = new Enemy2(1024, 0, mainMenu.getWindow().getScene ().getWidth ()/40, player, candyCane);
                 enemy.setSpeed(2);
                 Enemy.list.add(enemy);
                 Pane.getChildren().addAll(enemy);
