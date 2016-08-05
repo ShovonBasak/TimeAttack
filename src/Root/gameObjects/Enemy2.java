@@ -13,15 +13,15 @@ import static java.lang.Math.abs;
 public class Enemy2 extends Enemy {
 
     private Player player;
-    private CandyCane candyCane;
+    private Gem gem;
     private boolean facingRight=false;
 
 
-    public Enemy2(double centerX, double centerY,double radius, Player player, CandyCane candyCane) {
-        super(centerX, centerY, radius, "Blue", player, candyCane);
-        setFill(new ImagePattern(new Image("image/EvilNyan.gif")));
+    public Enemy2(double centerX, double centerY,double radius, Player player, Gem gem) {
+        super(centerX, centerY, radius, "Blue", player, gem);
+        setFill(new ImagePattern(new Image("image/SkeletonMiner_walk.gif-c200")));
         this.player = player;
-        this.candyCane = candyCane;
+        this.gem = gem;
 
         setSpeed(1);
         thisThread = new Thread(this);
@@ -100,8 +100,8 @@ public class Enemy2 extends Enemy {
                     player.substractHealth(1);
                 }
 
-                if (this.intersect(candyCane)) {
-                    candyCane.collides(this);
+                if (this.intersect(gem)) {
+                    gem.collides(this);
                 }
             });
             try {

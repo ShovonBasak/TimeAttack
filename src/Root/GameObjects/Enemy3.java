@@ -16,16 +16,16 @@ import static java.lang.Math.sin;
 public class Enemy3 extends Enemy {
 
     private Player player;
-    private CandyCane candyCane;
+    private Gem gem;
     private int y;
     private String direction;
     private final double PI = 3.14159;
 
-    public Enemy3(double centerX, double centerY, double radius, String color, Player player, CandyCane candyCane) {
-        super(centerX, centerY, radius, color, player, candyCane);
+    public Enemy3(double centerX, double centerY, double radius, String color, Player player, Gem gem) {
+        super(centerX, centerY, radius, color, player, gem);
         this.setFill(new ImagePattern(new Image("image/enemy3.gif")));
         this.player = player;
-        this.candyCane = candyCane;
+        this.gem = gem;
 
         setSpeed(1);
         thisThread = new Thread(this);
@@ -62,8 +62,8 @@ public class Enemy3 extends Enemy {
                     player.substractHealth(1);
                 }
 
-                if (this.intersect(candyCane)) {
-                    candyCane.collides(this);
+                if (this.intersect(gem)) {
+                    gem.collides(this);
                 }
             });
             try {

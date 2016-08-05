@@ -115,7 +115,7 @@ public class helpScene {
         groupTitle.setTranslateX(groupTitle.getLayoutX()+275);
 
         //enemy1info
-        ImageView enemy1Image=new ImageView(new Image("image/Enemy1Alt.gif"));
+        ImageView enemy1Image=new ImageView(new Image("image/Enemy1.gif"));
         enemy1Image.setFitWidth(50);
         enemy1Image.setFitHeight(50);
         Text enemy1Text=new Text("They will bounce off walls and the candies.");

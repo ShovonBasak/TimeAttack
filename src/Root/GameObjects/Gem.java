@@ -13,7 +13,7 @@ import java.util.Random;
 import static Root.scenes.GameScene.isPaused;
 
 
-public class CandyCane extends MovableObject {
+public class Gem extends MovableObject {
 
     private Random randomNumber;
     private Player player;
@@ -22,9 +22,9 @@ public class CandyCane extends MovableObject {
 
 
 
-    public CandyCane(double centerX, double centerY, double radius, Player player, CustomLable ScoreLable){
+    public Gem(double centerX, double centerY, double radius, Player player, CustomLable ScoreLable){
         super(centerX, centerY, radius, "Yellow");
-        setFill(new ImagePattern(new Image("image/CandyCane.gif")));
+        setFill(new ImagePattern(new Image("image/Gem.gif")));
         this.player = player;
         this.ScoreLable = ScoreLable;
 
