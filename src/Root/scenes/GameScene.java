@@ -162,10 +162,24 @@ public class GameScene implements Runnable {
             }
 
             if(level % 3 == 0){
-                Enemy3 enemy3 = new Enemy3(0, 0, mainMenu.getWindow().getScene ().getWidth ()/40, "yellow", player, candyCane);
-                Enemy.list.add(enemy3);
-                Pane.getChildren().addAll(enemy3);
-                enemy3.setSpeed(2);
+                Enemy3 enemy3;
+                for(int i=0; i<5 ; i++)
+                {
+                    if(i<3){
+                        enemy3 = new Enemy3(0, 0, mainMenu.getWindow().getScene ().getWidth ()/40, "yellow", player, candyCane);
+                        enemy3.setRelativeY(200+i*150);
+                        enemy3.setDirection("right");
+                    }
+                    else{
+                        enemy3 = new Enemy3(scene.getWidth(), 0, mainMenu.getWindow().getScene ().getWidth ()/40, "yellow", player, candyCane);
+                        enemy3.setRelativeY(275+(i-3)*150);
+                        enemy3.setDirection("left");
+                    }
+                    Enemy.list.add(enemy3);
+                    Pane.getChildren().addAll(enemy3);
+                    enemy3.setSpeed(2);
+                }
+
             }
 
             if(level == 3){

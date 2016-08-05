@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 
 
+import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 
 /**
@@ -16,8 +17,9 @@ public class Enemy3 extends Enemy {
 
     private Player player;
     private CandyCane candyCane;
-    private boolean facingRight=false;
-    private double PI = 3.14159;
+    private int y;
+    private String direction;
+    private final double PI = 3.14159;
 
     public Enemy3(double centerX, double centerY, double radius, String color, Player player, CandyCane candyCane) {
         super(centerX, centerY, radius, color, player, candyCane);
@@ -30,9 +32,24 @@ public class Enemy3 extends Enemy {
         thisThread.start();
     }
 
+    public void setRelativeY(int y){
+        this.y = y;
+    }
+
+    public void setDirection(String direction){
+        this.direction = direction;
+    }
+
     public void move(){
-        super.moveRight();
-        this.setCenterY((70*sin(this.getCenterX()*PI/64))+350);
+        if(direction.equals("right")){
+            super.moveRight();
+            this.setCenterY((70*sin(this.getCenterX()*PI/64))+y);
+        }
+        else if(direction.equals("left")){
+            super.moveLeft();
+            this.setCenterY((70*cos(this.getCenterX()*PI/64))+y);
+        }
+
     }
 
     @Override
