@@ -2,16 +2,13 @@ package Root.scenes;
 
 import Root.Application.AudioManager;
 import Root.Application.Main;
-import Root.UserInterface.CustomButton;
-import javafx.application.Platform;
+import Root.CustomContol.CustomButton;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Menu;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;

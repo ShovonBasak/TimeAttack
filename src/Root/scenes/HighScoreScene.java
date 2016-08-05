@@ -3,8 +3,8 @@ package Root.scenes;
 
 import Root.Application.AudioManager;
 import Root.Application.Main;
-import Root.UserInterface.ScoreBoard;
-import Root.UserInterface.CustomButton;
+import Root.CustomContol.ScoreBoard;
+import Root.CustomContol.CustomButton;
 import Root.gameData.XMLService;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,7 +15,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;

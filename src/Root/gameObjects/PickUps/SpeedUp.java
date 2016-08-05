@@ -2,9 +2,11 @@ package Root.GameObjects.PickUps;
 
 import Root.GameObjects.Enemy;
 import Root.GameObjects.Player;
-import Root.UserInterface.CustomLable;
+import Root.CustomContol.CustomLable;
+import Root.scenes.GameScene;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 
 
@@ -26,6 +28,9 @@ public class SpeedUp extends Pickup {
     @Override
     public void Trigger() {
         ScoreLable.setValue(ScoreLable.getValue()+60);
+        GameScene.playerToolTip.setText("Enemies got Faster");
+        GameScene.playerToolTip.setTextFill(Color.RED);
+        GameScene.ft.playFromStart();
         for (Enemy e:Enemy.list) {
             e.setSpeed(e.getSpeed()+.2);
         }

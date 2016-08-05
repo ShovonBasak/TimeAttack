@@ -1,20 +1,14 @@
 package Root.GameObjects;
 
-import Root.Application.AudioManager;
-import Root.UserInterface.CustomLable;
-import javafx.scene.Group;
+import Root.CustomContol.CustomLable;
+import Root.scenes.GameScene;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.application.Platform;
 import javafx.scene.paint.Paint;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 
 
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import static Root.scenes.GameScene.isPaused;
 
@@ -95,6 +89,9 @@ public class CandyCane extends MovableObject {
     private void collidesWithPlayer(){
         if(!Player.dead){
             ScoreLable.setValue(ScoreLable.getValue() + 20);
+            GameScene.playerToolTip.setText("+20");
+            GameScene.playerToolTip.setTextFill(Paint.valueOf("White"));
+            GameScene.ft.playFromStart();
             this.setPosition();
         }
     }

@@ -2,9 +2,11 @@ package Root.GameObjects.PickUps;
 
 import Root.GameObjects.Enemy;
 import Root.GameObjects.Player;
-import Root.UserInterface.CustomLable;
+import Root.CustomContol.CustomLable;
+import Root.scenes.GameScene;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 
 /**
@@ -35,6 +37,9 @@ public class HourGlass extends Pickup{
 
     @Override
     public void Trigger() {
+        GameScene.playerToolTip.setText("Enemies Are Frozen");
+        GameScene.playerToolTip.setTextFill(Color.LIME);
+        GameScene.ft.playFromStart();
         ScoreLable.setValue(ScoreLable.getValue()-30);
         timer = new ObjectTimer();
         HourGlass.status = true;

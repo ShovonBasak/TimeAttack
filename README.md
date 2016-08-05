@@ -18,6 +18,6 @@ This class holds all the resources such as image and audioClip
 <h3>GameData</h3>
 Stores the highscore data to an XML file
 
-<h3>Root.UserInterface</h3>
+<h3>Root.CustomContol</h3>
 Custom UI designs
 

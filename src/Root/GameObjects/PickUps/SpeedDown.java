@@ -2,17 +2,15 @@ package Root.GameObjects.PickUps;
 
 import Root.GameObjects.Enemy;
 import Root.GameObjects.Player;
-import Root.UserInterface.CustomLable;
+import Root.CustomContol.CustomLable;
+import Root.scenes.GameScene;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.paint.Paint;
 
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * Created by tazim on 6/17/2016.
- */
 public class SpeedDown extends Pickup {
 
     public SpeedDown(int height, int width, Player player, CustomLable ScoreLable){
@@ -29,6 +27,11 @@ public class SpeedDown extends Pickup {
     @Override
     public void Trigger() {
         ScoreLable.setValue(ScoreLable.getValue()-40);
+        GameScene.playerToolTip.setText("Enemies got slower");
+        GameScene.playerToolTip.setTextFill(Color.LIME);
+        GameScene.ft.playFromStart();
+
+
         for (Enemy e:Enemy.list) {
             e.setSpeed(e.getSpeed()-.2);
         }

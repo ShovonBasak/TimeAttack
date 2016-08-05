@@ -4,23 +4,20 @@ package Root.scenes;
 import Root.Application.AudioManager;
 
 import Root.GameObjects.PickUps.*;
-import Root.UserInterface.CustomLable;
+import Root.CustomContol.CustomLable;
 import Root.Application.Main;
 import Root.GameObjects.*;
-import javafx.animation.Animation;
-import javafx.animation.Transition;
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
-import javafx.scene.effect.Bloom;
-import javafx.scene.effect.DropShadow;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 
@@ -30,6 +27,10 @@ import java.util.Random;
 import static javafx.scene.input.KeyCode.ESCAPE;
 
 public class GameScene implements Runnable {
+    public static boolean isPaused = false;
+    public static Label playerToolTip= new Label("");//Shows Status with player
+    public static FadeTransition ft = new FadeTransition(Duration.millis(1300), playerToolTip);
+
     private Scene scene;
     private Pane Pane;
     private Player player;
@@ -42,7 +43,7 @@ public class GameScene implements Runnable {
     private int level;
 
     private ArrayList<Pickup> pickups;
-    public static boolean isPaused = false;
+
     private SpeedUp speedUp;
     private SpeedDown speedDown;
     private Coin coin;
@@ -52,8 +53,11 @@ public class GameScene implements Runnable {
     private HourGlass hourGlass;
 
 
+
+
     public GameScene(Main mainMenu) {
         AudioManager.GameBGM();
+
 
         pickups=new ArrayList<>();
 
@@ -63,10 +67,20 @@ public class GameScene implements Runnable {
 
         this.mainMenu = mainMenu;
 
-        Player.dead = false;
+
         Random randomPosition = new Random();
 
         player = new Player(50, 500, mainMenu.getWindow().getScene ().getWidth ()/25);
+        playerToolTip.setFont(Font.font("Verdana", FontWeight.NORMAL, 15));
+
+        ft.setFromValue(1.0);
+        ft.setToValue(0);
+        ft.setCycleCount(1);
+
+
+
+        Player.dead = false;
+
 
         ScoreLable = new CustomLable("Score",0,Color.PALEVIOLETRED,Font.font("Verdana", FontWeight.BOLD, 20));
         LevelLable=new CustomLable("Level",level,Color.RED,Font.font("Verdana", FontWeight.BOLD, 20));
@@ -78,7 +92,7 @@ public class GameScene implements Runnable {
 
 
         Pane = new Pane(player);
-        Pane.getChildren().addAll(ScoreLable,LevelLable,Hp);
+        Pane.getChildren().addAll(ScoreLable,LevelLable,Hp,playerToolTip);
         Pane.getChildren().addAll(candyCane);
 
 
@@ -141,6 +155,7 @@ public class GameScene implements Runnable {
     }
 
     private void checkLevel() {
+
 
 
         if (timer.getTime() % 15 ==0 && levelFlag == 0) {

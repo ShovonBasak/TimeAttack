@@ -2,10 +2,12 @@ package Root.GameObjects.PickUps;
 
 import Root.Application.AudioManager;
 import Root.GameObjects.Player;
-import Root.UserInterface.CustomLable;
+import Root.CustomContol.CustomLable;
+import Root.scenes.GameScene;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.paint.Paint;
 
 
 /**
@@ -30,6 +32,9 @@ public class Coin extends Pickup {
     @Override
     public void Trigger() {
         ScoreLable.setValue (ScoreLable.getValue () + 50);
+        GameScene.playerToolTip.setText("+50");
+        GameScene.playerToolTip.setTextFill(Paint.valueOf("White"));
+        GameScene.ft.playFromStart();
         AudioManager.CoinAudio ();
     }
 
@@ -37,7 +42,6 @@ public class Coin extends Pickup {
     public void run() {
         while (!Player.dead) {
             Platform.runLater (() -> {
-
                 if (this.intersect (player) && isVisible ()) {
                     Trigger ();
                     collidesWithPlayer ();

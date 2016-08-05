@@ -1,7 +1,7 @@
 package Root.GameObjects.PickUps;
 
 import Root.GameObjects.Player;
-import Root.UserInterface.CustomLable;
+import Root.CustomContol.CustomLable;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;

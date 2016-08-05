@@ -3,35 +3,17 @@ package Root.scenes;
 import Root.Application.AudioManager;
 import Root.Application.Main;
 import Root.GameObjects.PickUps.ObjectTimer;
-import Root.GameObjects.Player;
-import Root.UserInterface.CustomButton;
-import javafx.animation.*;
-import javafx.application.Platform;
-import javafx.geometry.Point3D;
+import Root.CustomContol.CustomButton;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.PerspectiveCamera;
-import javafx.scene.PointLight;
 import javafx.scene.Scene;
-import javafx.scene.SnapshotParameters;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.PhongMaterial;
-import javafx.scene.shape.Cylinder;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.scene.transform.Rotate;
-import javafx.util.Duration;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
 
 import static javafx.scene.input.KeyCode.ESCAPE;
 

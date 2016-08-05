@@ -1,6 +1,6 @@
 package Root.gameData;
 
-import Root.UserInterface.ScoreBoard;
+import Root.CustomContol.ScoreBoard;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

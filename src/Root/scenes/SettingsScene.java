@@ -3,15 +3,11 @@ package Root.scenes;
 
 import Root.Application.AudioManager;
 import Root.Application.Main;
-import Root.UserInterface.CustomButton;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import Root.CustomContol.CustomButton;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;

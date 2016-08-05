@@ -2,9 +2,7 @@ package Root.GameObjects.PickUps;
 
 
 import Root.GameObjects.Player;
-import Root.UserInterface.CustomLable;
-import javafx.scene.image.Image;
-import javafx.scene.control.Label;
+import Root.CustomContol.CustomLable;
 import javafx.scene.shape.Rectangle;
 
 import java.util.Random;

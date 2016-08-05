@@ -2,7 +2,7 @@ package Root.scenes;
 
 
 import Root.Application.AudioManager;
-import Root.UserInterface.CustomButton;
+import Root.CustomContol.CustomButton;
 import Root.Application.Main;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

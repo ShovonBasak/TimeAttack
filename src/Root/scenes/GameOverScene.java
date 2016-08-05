@@ -2,9 +2,9 @@ package Root.scenes;
 
 
 import Root.Application.AudioManager;
-import Root.UserInterface.CustomButton;
-import Root.UserInterface.CustomLable;
-import Root.UserInterface.ScoreBoard;
+import Root.CustomContol.CustomButton;
+import Root.CustomContol.CustomLable;
+import Root.CustomContol.ScoreBoard;
 import Root.Application.Main;
 import Root.gameData.XMLService;
 import javafx.geometry.Pos;
@@ -13,7 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;

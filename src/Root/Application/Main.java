@@ -7,7 +7,7 @@ How this works?
 
 package Root.Application;
 
-import Root.UserInterface.CustomButton;
+import Root.CustomContol.CustomButton;
 import Root.scenes.*;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -25,7 +25,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.Optional;
-import java.util.Set;
 
 
 public class Main extends Application {
