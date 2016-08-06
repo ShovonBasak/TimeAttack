@@ -14,12 +14,12 @@ public class Enemy2 extends Enemy {
 
     private Player player;
     private Gem gem;
-    private boolean facingRight=false;
+    private boolean facingRight=true;
 
 
     public Enemy2(double centerX, double centerY,double radius, Player player, Gem gem) {
         super(centerX, centerY, radius, "Blue", player, gem);
-        setFill(new ImagePattern(new Image("image/SkeletonMiner_walk.gif-c200")));
+        setFill(new ImagePattern(new Image("image/Ghost.gif")));
         this.player = player;
         this.gem = gem;
 

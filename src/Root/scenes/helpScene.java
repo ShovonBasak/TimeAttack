@@ -124,7 +124,7 @@ public class helpScene {
         enemy1Text.setTranslateX(enemy1Text.getLayoutX()+60);
         enemy1Text.setTranslateY(enemy1Text.getLayoutY()-20);
         //enemy2Info
-        ImageView enemy2Image=new ImageView(new Image("image/EvilNyan.gif"));
+        ImageView enemy2Image=new ImageView(new Image("image/Ghost.gif"));
         enemy2Image.setFitHeight(50);
         enemy2Image.setFitWidth(50);
         Text enemy2Text=new Text("HE will chase you to death.");
@@ -134,7 +134,7 @@ public class helpScene {
         enemy2Text.setTranslateY(enemy1Text.getLayoutY()-20);
 
         //enemy3Info
-        ImageView enemy3Image=new ImageView(new Image("image/enemy3.gif"));
+        ImageView enemy3Image=new ImageView(new Image("image/Bat.gif"));
         enemy3Image.setFitHeight(50);
         enemy3Image.setFitWidth(50);
         Text enemy3Text=new Text("They Come in Groups to kill you.Watch Out!");
@@ -240,10 +240,11 @@ public class helpScene {
         groupTitleC.setCache(true);
         groupTitleC.setFill(Color.web("#05FFB8"));
 
-        Text objectiveText=new Text("Evil Nyan Cat has Stolen all the candies from the world." +
-                "\nNow it's up to you to steal them back." +
-                "\nYou have to steal as much candies as you can." +
-                "\nEvil Nyancat and his minions will try to stop you." );
+        Text objectiveText=new Text("Your a Gem collector." +
+                "\nWent in a abandoned mine to collect gems." +
+                "\nSeems like Your not alone here." +
+                "\nCollect as much gems as you can." +
+                "\nGood Luck." );
         objectiveText.setFill(Color.web("#99ccff"));
         objectiveText.setFont(Font.font("Monotype Corsiva", FontWeight.BOLD, 30));
 

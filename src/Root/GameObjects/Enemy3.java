@@ -10,9 +10,7 @@ import javafx.scene.paint.ImagePattern;
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 
-/**
- * Created by SBS on 7/23/2016.
- */
+
 public class Enemy3 extends Enemy {
 
     private Player player;
@@ -23,7 +21,7 @@ public class Enemy3 extends Enemy {
 
     public Enemy3(double centerX, double centerY, double radius, String color, Player player, Gem gem) {
         super(centerX, centerY, radius, color, player, gem);
-        this.setFill(new ImagePattern(new Image("image/enemy3.gif")));
+        this.setFill(new ImagePattern(new Image("image/Bat.gif")));
         this.player = player;
         this.gem = gem;
 
@@ -38,6 +36,8 @@ public class Enemy3 extends Enemy {
 
     public void setDirection(String direction){
         this.direction = direction;
+
+
     }
 
     public void move(){
@@ -48,6 +48,7 @@ public class Enemy3 extends Enemy {
         else if(direction.equals("left")){
             super.moveLeft();
             this.setCenterY((70*cos(this.getCenterX()*PI/64))+y);
+
         }
 
     }

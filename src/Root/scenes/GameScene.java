@@ -189,6 +189,8 @@ public class GameScene implements Runnable {
                         enemy3 = new Enemy3(scene.getWidth(), 0, mainMenu.getWindow().getScene ().getWidth ()/40, "yellow", player, gem);
                         enemy3.setRelativeY(275+(i-3)*150);
                         enemy3.setDirection("left");
+                        enemy3.setScaleX(enemy3.getScaleX()*-1);
+
                     }
                     Enemy.list.add(enemy3);
                     Pane.getChildren().addAll(enemy3);
