@@ -114,7 +114,7 @@ public class Main extends Application {
         gameName = new Text("Time Attack");
         gameName.setFont(Font.font("Blackadder ITC", FontWeight.BOLD, 60));
         gameName.setCache(true);
-        gameName.setFill(Color.MAROON);
+        gameName.setFill(Color.LEMONCHIFFON);
         gameName.setTranslateY(gameName.getTranslateY() - 20);
     }
     public void start(Stage window) throws Exception {
