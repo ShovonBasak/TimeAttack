@@ -21,10 +21,10 @@ import javafx.util.Duration;
 
 class TitleScreen {
     public Scene scene;
-    private ImageView titleScreen;
-    private Main mainMenu;
+
+    Main mainMenu;
     private Text prompt;
-    private MediaPlayer mediaPlayer;
+
 
     private Image titleImage= new Image("image/Time Attack.jpg");
 
@@ -36,7 +36,7 @@ class TitleScreen {
         prompt.setFill(Color.CORAL);
         prompt.setTranslateY(prompt.getTranslateY() - 50);
 
-        this.mainMenu = mainMenu;
+        this.mainMenu=mainMenu;
 
         setScene(mainMenu);
 
@@ -65,20 +65,21 @@ class TitleScreen {
 
 
         scene.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
-            AudioManager.mediaPlayer.stop();
-            AudioManager.TitleKeyPress();
-            mainMenu.getWindow().setScene(mainMenu.getScene());
-            AudioManager.MainMenuAudio();
+            Stop ();
             ft.stop();
         });
 
         scene.addEventFilter(KeyEvent.ANY, event -> {
-            mediaPlayer.stop();
-            AudioManager.TitleKeyPress();
-            mainMenu.getWindow().setScene(mainMenu.getScene());
-            AudioManager.MainMenuAudio();
+            Stop ();
             ft.stop();
         });
+    }
+
+    public void Stop(){
+        AudioManager.mediaPlayer.stop();
+        AudioManager.TitleKeyPress();
+        mainMenu.getWindow().setScene(mainMenu.getScene());
+        AudioManager.MainMenuAudio();
     }
 
     public Scene getScene() {

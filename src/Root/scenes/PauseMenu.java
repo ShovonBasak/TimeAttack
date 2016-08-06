@@ -8,7 +8,8 @@ import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -96,6 +97,7 @@ class PauseMenu {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
+                GameScene.isPaused=false;
                 mainMenu.getWindow().setScene(mainMenu.getScene());
                 AudioManager.MainMenuAudio();
             }
@@ -108,18 +110,10 @@ class PauseMenu {
         layout.getChildren().addAll(MenuText,resumeButton,restartButton,settingsButton,quitButton);
         layout.setSpacing(20);
         layout.setAlignment(Pos.CENTER);
-        layout.setStyle("fx-text-fill:PURPLE;\n" +
-                "    -fx-padding: 15 30 15 30;\n" +
-                "    -fx-font-family: \"Helvetica\";\n" +
-                "    -fx-font-size: 18px;\n" +
-                "    -fx-font-weight: bold;\n" +
-                "\n" +
-                "    -fx-background-color:\n" +
-                "    linear-gradient(#d0e4f7 0%, #73b1e7  25%, #0a77d5 75%, #539fe1 100%),\n" +
-                "    linear-gradient(#000000, #000000 ),\n" +
-                "    linear-gradient(from 25% 25% to 100% 100%, #8fc800 , #006e2e);\n" +
-                "    -fx-background-insets: 0,1,4;\n" +
-                "    -fx-background-radius: 9,8,5;");
+        BackgroundSize backgroundSize = new BackgroundSize(800, 600, true, true, true, false);
+        BackgroundImage backgroundImage = new BackgroundImage(new Image ("image/1.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.ROUND, BackgroundPosition.CENTER,backgroundSize);
+        Background background = new Background(backgroundImage);
+        layout.setBackground (background);
         scene = new Scene(layout, 800, 600);
 
 

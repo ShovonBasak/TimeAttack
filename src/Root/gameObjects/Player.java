@@ -5,8 +5,10 @@ import javafx.application.Platform;
 import javafx.scene.effect.Bloom;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import Root.scenes.GameScene;
+import javafx.scene.paint.Paint;
 
 public class Player extends MovableObject {
     public static boolean dead = false;
@@ -29,12 +31,18 @@ public class Player extends MovableObject {
     }
 
     public void addHealth(int healthPoint) {
+        GameScene.playerToolTip.setText("+"+healthPoint);
+        GameScene.playerToolTip.setTextFill(Color.LIMEGREEN);
+        GameScene.ft.playFromStart();
         this.healthPoint += healthPoint;
     }
 
     public void substractHealth(int healthPoint) {
         if(this.healthPoint-healthPoint>0){
             this.healthPoint -= healthPoint;
+            GameScene.playerToolTip.setText("Ouch!");
+            GameScene.playerToolTip.setTextFill(Paint.valueOf("Red"));
+            GameScene.ft.playFromStart();
             //Give red effect on player
             this.setEffect (new Bloom (0.3));
         }
@@ -50,14 +58,21 @@ public class Player extends MovableObject {
             if (!GameScene.isPaused) {
                 if (e.getSceneX() < getScene().getWidth() && e.getSceneX() > getScene().getX()) {
                     this.setCenterX(e.getSceneX());
+
                 }
                 if (e.getSceneY() < getScene().getHeight() && e.getSceneY() > getScene().getY()) {
                     this.setCenterY(e.getSceneY());
                 }
+                updateTooltipLocation();
             }
 
 
         });
+    }
+
+    private void updateTooltipLocation(){
+        GameScene.playerToolTip.setTranslateX(this.getCenterX()-20);
+        GameScene.playerToolTip.setTranslateY(this.getCenterY()-50);
     }
 
     public void run() {

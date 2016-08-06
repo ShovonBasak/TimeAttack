@@ -34,7 +34,7 @@ public class GameScene implements Runnable {
     private Scene scene;
     private Pane Pane;
     private Player player;
-    private CandyCane candyCane;
+    private Gem gem;
     private GameOverScene gameOverScene;
     private Main mainMenu;
     private CustomLable ScoreLable;
@@ -88,12 +88,12 @@ public class GameScene implements Runnable {
 
 
 
-        candyCane = new CandyCane(28 + randomPosition.nextInt(800), 28 + randomPosition.nextInt(600), 20, player, ScoreLable);
+        gem = new Gem(28 + randomPosition.nextInt(800), 28 + randomPosition.nextInt(600), 12, player, ScoreLable);
 
 
         Pane = new Pane(player);
         Pane.getChildren().addAll(ScoreLable,LevelLable,Hp,playerToolTip);
-        Pane.getChildren().addAll(candyCane);
+        Pane.getChildren().addAll(gem);
 
 
 
@@ -143,7 +143,7 @@ public class GameScene implements Runnable {
         isPaused = false;
         notify();
         player.resume();
-        candyCane.resume();
+        gem.resume();
         Enemy.list.forEach(Enemy::resume);
     }
 
@@ -170,7 +170,7 @@ public class GameScene implements Runnable {
 
 
             if(level % 1 == 0){
-                Enemy1 enemy = new Enemy1(10, 300, mainMenu.getWindow().getScene ().getWidth ()/40, player, candyCane);
+                Enemy1 enemy = new Enemy1(10, 300, mainMenu.getWindow().getScene ().getWidth ()/40, player, gem);
                 Enemy.list.add(enemy);
                 Pane.getChildren().addAll(enemy);
                 enemy.setSpeed(2);
@@ -181,14 +181,16 @@ public class GameScene implements Runnable {
                 for(int i=0; i<5 ; i++)
                 {
                     if(i<3){
-                        enemy3 = new Enemy3(0, 0, mainMenu.getWindow().getScene ().getWidth ()/40, "yellow", player, candyCane);
+                        enemy3 = new Enemy3(0, 0, mainMenu.getWindow().getScene ().getWidth ()/40, "yellow", player, gem);
                         enemy3.setRelativeY(200+i*150);
                         enemy3.setDirection("right");
                     }
                     else{
-                        enemy3 = new Enemy3(scene.getWidth(), 0, mainMenu.getWindow().getScene ().getWidth ()/40, "yellow", player, candyCane);
+                        enemy3 = new Enemy3(scene.getWidth(), 0, mainMenu.getWindow().getScene ().getWidth ()/40, "yellow", player, gem);
                         enemy3.setRelativeY(275+(i-3)*150);
                         enemy3.setDirection("left");
+                        enemy3.setScaleX(enemy3.getScaleX()*-1);
+
                     }
                     Enemy.list.add(enemy3);
                     Pane.getChildren().addAll(enemy3);
@@ -199,7 +201,7 @@ public class GameScene implements Runnable {
 
             if(level == 3){
 
-                Enemy enemy = new Enemy2(1024, 0, mainMenu.getWindow().getScene ().getWidth ()/40, player, candyCane);
+                Enemy enemy = new Enemy2(1024, 0, mainMenu.getWindow().getScene ().getWidth ()/40, player, gem);
                 enemy.setSpeed(2);
                 Enemy.list.add(enemy);
                 Pane.getChildren().addAll(enemy);

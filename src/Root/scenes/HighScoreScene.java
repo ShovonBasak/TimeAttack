@@ -91,6 +91,7 @@ public class HighScoreScene {
         hBox.setStyle("-fx-background-color: #2F4F4F;");
 
 
+
         layout.getChildren().addAll(hBox, highScoreBoard);
 
         scene = new Scene(layout, 800, 600);
@@ -117,10 +118,13 @@ public class HighScoreScene {
         //columns
         //title
 
-        highScoreBoard.setStyle("-fx-background-color: linear-gradient(#e2ecfe, #99bcfd);" +
-                "-fx-background-color: linear-gradient(from 0% 0% to 50% 50%,#3278fa,#99bcfd);" +
-                "-fx-border-width: 2px;" +
-                "-fx-alignment:CENTER;");
+        highScoreBoard.setStyle("--fx-base: #dbd94b;\n" +
+                "    -fx-control-inner-background: #2f5a94;\n" +
+                "    -fx-background-color: #000000;\n" +
+                "    -fx-table-cell-border-color: transparent;\n" +
+                "    -fx-table-header-border-color: transparent;\n" +
+                "    -fx-padding: 5;" +
+                "    -fx-column-header-background-color:transparent");
         highScoreBoard.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 
