@@ -1,7 +1,7 @@
 package Root.database;
 
 
-import Root.UserInterface.ScoreBoard;
+import Root.CustomContol.ScoreBoard;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

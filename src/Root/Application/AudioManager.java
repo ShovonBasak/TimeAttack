@@ -14,7 +14,6 @@ public class AudioManager {
 
     public static void updateVolume(){
         mediaPlayer.setVolume(volume);
-
     }
 
     private static String GetFilepPath(){

@@ -4,6 +4,8 @@ package Root.scenes;
 import Root.Application.AudioManager;
 import Root.Application.Main;
 import Root.CustomContol.CustomButton;
+import Root.Settings.Sound;
+import Root.gameData.XMLService;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,6 +28,8 @@ public class SettingsScene {
     private  Slider slider;
     private Button SFX;
     private Button BGM;
+    private Sound sound;
+    private XMLService xmlService;
 
     public SettingsScene(Main mainMenu) {
         layout=new BorderPane();
@@ -72,7 +76,8 @@ public class SettingsScene {
 
 
 
-
+        sound = new Sound();
+        xmlService = new XMLService();
 
 
         scene=new Scene(layout,800,600);
@@ -194,8 +199,11 @@ public class SettingsScene {
             if(AudioManager.SFX){
                 SFX.setStyle ("-fx-background-color: #009f8d;");
                 AudioManager.mediaPlayer.play ();
+                sound.setSFX(true);
+                xmlService.info();
             }else {
                 SFX.setStyle ("-fx-background-color: #db1803;");
+                sound.setSFX(false);
             }
         });
 
@@ -213,9 +221,11 @@ public class SettingsScene {
             if(AudioManager.BGM){
                 BGM.setStyle ("-fx-background-color: #009f8d;");
                 AudioManager.mediaPlayer.play ();
+                sound.setBGM(true);
             }else {
                 BGM.setStyle ("-fx-background-color: #db1803;");
                 AudioManager.mediaPlayer.stop ();
+                sound.setBGM(false);
             }
         });
 
