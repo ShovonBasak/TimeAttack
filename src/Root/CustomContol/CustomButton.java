@@ -5,27 +5,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class CustomButton extends Button {
-    private CustomButton(double x, double y, String text) {
-        super.setLayoutX(x);
-        super.setLayoutY(y);
-        super.setText(text);
-        super.setStyle("-fx-background-color: #009f8d; -fx-border-color: white;");
-        super.setTextFill(Color.WHITE);
-        super.setFont(Font.font("Harrington", 15));
-    }
-
-    public CustomButton(double x, double y, String text, int s) {
-        this(x, y, text);
-        super.setStyle("-fx-background-color: #009f8d; -fx-border-color: white;");
-        super.setTextFill(Color.WHITE);
-        this.setFont(Font.font("Harrington", s));
-    }
-
     public CustomButton(String text) {
         super.setText(text);
-        super.setStyle("-fx-background-color: #009f8d; -fx-border-color: white;");
+        super.setStyle("-fx-border-color: Black, Yellow;\n" +
+                "    -fx-border-width: 1, 1;\n" +
+                "    -fx-border-style: solid;\n" +
+                "    -fx-border-radius: 0, 0;\n" +
+                "    -fx-border-insets: 1 1 1 1, 0;");
 
-        super.setTextFill(Color.WHITE);
+        super.setTextFill(Color.BLUE);
         this.setFont(Font.font("Harrington", 15));
     }
 
