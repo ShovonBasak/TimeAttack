@@ -47,6 +47,7 @@ public class SettingsScene {
         backButton.setOnAction(event ->{
             AudioManager.buttonAudio();
             mainMenu.getWindow().setScene(mainMenu.getScene());
+            saveSettings ();
         } );
         top.getChildren().addAll(backButton,settingsText);
         layout.setTop(top);
@@ -76,14 +77,11 @@ public class SettingsScene {
 
 
 
-        sound = new Sound();
-        xmlService = new XMLService();
-
-
         scene=new Scene(layout,800,600);
         scene.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
             if(e.getCode() == ESCAPE){
                 mainMenu.getWindow().setScene(mainMenu.getScene());
+                saveSettings ();
             }
         });
     }
@@ -106,6 +104,7 @@ public class SettingsScene {
             AudioManager.buttonAudio();
             mainMenu.getWindow().setScene(gameScene.getScene());
             AudioManager.mediaPlayer.stop();
+            saveSettings ();
         } );
         top.getChildren().addAll(backButton,settingsText);
         layout.setTop(top);
@@ -147,7 +146,25 @@ public class SettingsScene {
         return  scene;
     }
 
+    public void saveSettings(){
+        Sound s = new Sound ();
+        s.setBGM (AudioManager.BGM);
+        s.setSFX (AudioManager.SFX);
+        s.setMaxSound(AudioManager.volume);
+        XMLService xs=new XMLService ();
+        xs.updateSoundInfo (s.getMaxSound (),s.getSFX (),s.getBGM ());
+    }
+
     private void AudioSettings(){
+
+        //load from file
+        try{
+            XMLService xs=new XMLService ();
+            Sound s=xs.info ();
+            AudioManager.BGM=s.getBGM ();
+            AudioManager.SFX=s.getSFX ();
+            AudioManager.volume=s.getMaxSound ();
+        }catch (Exception e){e.printStackTrace ();}
         //Controls Scene
         VBox AudioSettings=new VBox(20);
         AudioSettings.setAlignment(Pos.TOP_CENTER);
