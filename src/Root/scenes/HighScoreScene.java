@@ -118,9 +118,9 @@ public class HighScoreScene {
         //columns
         //title
 
-        highScoreBoard.setStyle("--fx-base: #1d1d1d;\n" +
-                "    -fx-control-inner-background: #1d1d1d;\n" +
-                "    -fx-background-color: #1d1d1d;\n" +
+        highScoreBoard.setStyle("--fx-base: #dbd94b;\n" +
+                "    -fx-control-inner-background: #2f5a94;\n" +
+                "    -fx-background-color: #000000;\n" +
                 "    -fx-table-cell-border-color: transparent;\n" +
                 "    -fx-table-header-border-color: transparent;\n" +
                 "    -fx-padding: 5;" +

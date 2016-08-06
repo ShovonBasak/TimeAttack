@@ -16,10 +16,4 @@ public class CustomButton extends Button {
         super.setTextFill(Color.BLUE);
         this.setFont(Font.font("Harrington", 15));
     }
-
-
-
-
-
-
 }
