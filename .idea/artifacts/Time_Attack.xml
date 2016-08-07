@@ -1,15 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="javafx" build-on-make="true" name="Time Attack">
+  <artifact type="jar" build-on-make="true" name="Time Attack">
     <output-path>$PROJECT_DIR$/out/artifacts/Time_Attack</output-path>
-    <properties id="javafx-properties">
-      <options>
-        <option name="appClass" value="Root.Application.Main" />
-        <option name="description" value="&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;" />
-        <option name="title" value="Time Attack" />
-        <option name="vendor" value="2TakarDeveloper" />
-      </options>
-    </properties>
-    <root id="root">
+    <root id="archive" name="Time Attack.jar">
       <element id="archive" name="JavaFxApplication.jar">
         <element id="module-output" name="JavaFxApplication" />
       </element>
